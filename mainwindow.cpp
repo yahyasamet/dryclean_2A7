@@ -51,10 +51,10 @@ void MainWindow::on_pb_ajouter_clicked()
     int cin_cl =ui->le_cin->text().toInt();
     int qtt_vet =ui->la_qtt->text().toInt();
     int montant_cmd =ui->le_mt->text().toInt();
-    int etat=ui->etat_cmb->currentText().toInt();
+    int etat=ui->etat_cmb->currentIndex();
     int nb_pts=ui->le_nbpt->text().toInt();
-    int type_v=ui->type_cmb->currentText().toInt();
-    int livraison=ui->type_livr_cmb->currentText().toInt();
+    int type_v=ui->type_cmb->currentIndex();
+    int livraison=ui->type_livr_cmb->currentIndex();
     QString Nom_cl=ui->le_nom->text();
     QString adr_cl=ui->la_adr->text();
     QDate Date_cmd=ui->date->date();
