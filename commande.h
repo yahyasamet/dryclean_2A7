@@ -38,6 +38,8 @@ public:
      bool ajouter();
      bool supprimer(int);
      QSqlQueryModel * afficher();
+     bool recherche_id(int);
+     bool modifier(int);
      private:
          int ref_cmd,cin_cl,qtt_vet,montant_cmd,etat_cmd,nb_pts,type_vet,opt_livr;
              QString Nom_cl,adr_cl;

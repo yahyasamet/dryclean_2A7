@@ -557,7 +557,7 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>130</y>
+          <y>120</y>
           <width>131</width>
           <height>16</height>
          </rect>
@@ -578,7 +578,7 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>360</y>
+          <y>350</y>
           <width>211</width>
           <height>31</height>
          </rect>
@@ -617,7 +617,7 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>540</y>
+          <y>530</y>
           <width>191</width>
           <height>20</height>
          </rect>
@@ -677,7 +677,7 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>330</y>
+          <y>240</y>
           <width>251</width>
           <height>31</height>
          </rect>
@@ -695,7 +695,7 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>310</y>
+          <y>220</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -716,7 +716,7 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>150</y>
+          <y>140</y>
           <width>251</width>
           <height>31</height>
          </rect>
@@ -755,7 +755,7 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>500</y>
+          <y>490</y>
           <width>251</width>
           <height>31</height>
          </rect>
@@ -773,9 +773,9 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>470</y>
+          <y>460</y>
           <width>171</width>
-          <height>16</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="font">
@@ -794,7 +794,7 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>600</y>
+          <y>580</y>
           <width>211</width>
           <height>31</height>
          </rect>
@@ -815,7 +815,7 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>270</y>
+          <y>180</y>
           <width>211</width>
           <height>31</height>
          </rect>
@@ -836,7 +836,7 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>400</y>
+          <y>390</y>
           <width>211</width>
           <height>31</height>
          </rect>
@@ -857,7 +857,7 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>430</y>
+          <y>420</y>
           <width>251</width>
           <height>31</height>
          </rect>
@@ -874,8 +874,8 @@ QComboBox QAbstractView{
        <widget class="QLineEdit" name="la_qtt">
         <property name="geometry">
          <rect>
-          <x>162</x>
-          <y>280</y>
+          <x>140</x>
+          <y>190</y>
           <width>121</width>
           <height>22</height>
          </rect>
@@ -885,7 +885,7 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>570</y>
+          <y>560</y>
           <width>124</width>
           <height>22</height>
          </rect>
@@ -909,9 +909,9 @@ QComboBox QAbstractView{
        <widget class="QComboBox" name="type_livr_cmb">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>630</y>
-          <width>124</width>
+          <x>113</x>
+          <y>620</y>
+          <width>141</width>
           <height>22</height>
          </rect>
         </property>
@@ -929,9 +929,9 @@ QComboBox QAbstractView{
        <widget class="QComboBox" name="etat_cmb">
         <property name="geometry">
          <rect>
-          <x>120</x>
-          <y>370</y>
-          <width>124</width>
+          <x>90</x>
+          <y>360</y>
+          <width>141</width>
           <height>22</height>
          </rect>
         </property>
@@ -950,7 +950,7 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>230</y>
+          <y>310</y>
           <width>251</width>
           <height>31</height>
          </rect>
@@ -959,14 +959,14 @@ QComboBox QAbstractView{
        <widget class="QLabel" name="label_2">
         <property name="geometry">
          <rect>
-          <x>50</x>
-          <y>200</y>
+          <x>40</x>
+          <y>280</y>
           <width>56</width>
           <height>16</height>
          </rect>
         </property>
         <property name="text">
-         <string>Date</string>
+         <string>Date:</string>
         </property>
        </widget>
       </widget>
@@ -1035,7 +1035,7 @@ font-size: 50px;
         <rect>
          <x>90</x>
          <y>30</y>
-         <width>191</width>
+         <width>231</width>
          <height>71</height>
         </rect>
        </property>
@@ -1217,7 +1217,7 @@ QComboBox QAbstractView{
          <string notr="true"/>
         </property>
        </widget>
-       <widget class="QDateEdit" name="dateEdit_3">
+       <widget class="QDateEdit" name="modifier_date">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -1287,10 +1287,10 @@ QComboBox QAbstractView{
          </font>
         </property>
         <property name="text">
-         <string>date:</string>
+         <string>Date:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_18">
+       <widget class="QLineEdit" name="modifier_cin">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -1308,7 +1308,7 @@ QComboBox QAbstractView{
          <string notr="true"/>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_19">
+       <widget class="QLineEdit" name="modifier_montant">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -1347,7 +1347,7 @@ QComboBox QAbstractView{
          <string>montant :</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_20">
+       <widget class="QLineEdit" name="modifier_nom">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -1386,7 +1386,7 @@ QComboBox QAbstractView{
          <string>CIN:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_27">
+       <widget class="QLineEdit" name="modifier_nbr_pts">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -1408,9 +1408,9 @@ QComboBox QAbstractView{
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>470</y>
+          <y>460</y>
           <width>171</width>
-          <height>16</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="font">
@@ -1425,7 +1425,7 @@ QComboBox QAbstractView{
          <string>Nombre de points:</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="comboBox_7">
+       <widget class="QComboBox" name="modifier_etat">
         <property name="geometry">
          <rect>
           <x>90</x>
@@ -1466,7 +1466,7 @@ QComboBox QAbstractView{
          <string>Option Livraison:</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="comboBox_8">
+       <widget class="QComboBox" name="modifier_livraison">
         <property name="geometry">
          <rect>
           <x>90</x>
@@ -1507,16 +1507,6 @@ QComboBox QAbstractView{
          <string>Quantité:</string>
         </property>
        </widget>
-       <widget class="QSpinBox" name="spinBox_3">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>190</y>
-          <width>42</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_28">
         <property name="geometry">
          <rect>
@@ -1538,7 +1528,7 @@ QComboBox QAbstractView{
          <string>Adresse client:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_28">
+       <widget class="QLineEdit" name="modifier_adr">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -1556,7 +1546,7 @@ QComboBox QAbstractView{
          <string notr="true"/>
         </property>
        </widget>
-       <widget class="QComboBox" name="comboBox_9">
+       <widget class="QComboBox" name="modifier_type">
         <property name="geometry">
          <rect>
           <x>100</x>
@@ -1580,6 +1570,16 @@ QComboBox QAbstractView{
           <string>Robe</string>
          </property>
         </item>
+       </widget>
+       <widget class="QLineEdit" name="Modifier_qtt">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>190</y>
+          <width>121</width>
+          <height>22</height>
+         </rect>
+        </property>
        </widget>
       </widget>
      </widget>

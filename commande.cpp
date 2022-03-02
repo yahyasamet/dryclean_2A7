@@ -2,6 +2,7 @@
 #include <QSqlQuery>
 #include <QDate>
 #include <QDebug>
+#include <QMessageBox>
 Commande::Commande()
 {
     QDate date1(1995,2,2);
@@ -124,3 +125,43 @@ model->setHeaderData(10,Qt::Horizontal,QObject::tr("Opt_livr"));
 return model;
 
  }
+ bool Commande::recherche_id(int ref_cmd)
+ {
+     QMessageBox msgBox;
+            QSqlQuery query;
+             QString id_string=QString::number(ref_cmd);
+            query.prepare("SELECT * FROM PRODUIT WHERE ref_cmd= :ref_cmd");
+            query.bindValue(":ref_cmd", id_string);
+            if (query.exec() && query.next())
+            {
+                    return true;
+            }
+            else
+            {
+                msgBox.setText("commande n existe pas");
+                msgBox.exec();
+                return false;
+            }
+
+ }
+bool Commande::modifier(int ref_cmd)
+{
+
+    QSqlQuery query;
+     query.prepare("Update commandes set cin_cl= :cin_cl, Nom_cl= :Nom_cl , qtt_vet= :qtt_vet , montant_cmd= :montant_cmd , Date_cmd= :Date_cmd , etat_cmd= :etat_cmd , adr_cl= :adr_cl , nb_pts= :nb_pts , type_vet= :type_vet , opt_livraison= :opt_livraison  where ref_cmd= :ref_cmd ");
+
+     query.bindValue(":ref_cmd",ref_cmd);
+     query.bindValue(":cin_cl", cin_cl);
+     query.bindValue(":Nom_cl", Nom_cl);
+     query.bindValue(":qtt_vet", qtt_vet);
+     query.bindValue(":montant_cmd", montant_cmd);
+      query.bindValue(":Date_cmd", Date_cmd);
+       query.bindValue(":adr_cl", adr_cl);
+       query.bindValue(":etat_cmd", etat_cmd);
+         query.bindValue(":nb_pts", nb_pts);
+         query.bindValue(":type_vet", type_vet);
+         query.bindValue(":opt_livraison", opt_livr);
+    // query.bindValue(":CIN", CIN);
+
+    return query.exec();
+    }

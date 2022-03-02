@@ -11,7 +11,6 @@
 #include <QTabWidget>
 #include<QDebug>
 #include<QFileDialog>
-#include<QPdfWriter>
 #include<QFile>
 #include<QStringList>
 #include <iostream>
@@ -29,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_36->setPixmap(pix);
 
     ui->le_ref->setValidator(new QIntValidator(0,999,this));
-      ui->le_cin->setValidator(new QIntValidator(0,999,this));
+      ui->le_cin->setValidator(new QIntValidator(0,9999999,this));
       ui->la_qtt->setValidator(new QIntValidator(0,999,this));
        ui->le_mt->setValidator(new QIntValidator(0,999,this));
 
@@ -90,4 +89,32 @@ ui->supprimer_ref->clear();
     {QMessageBox::critical(nullptr,QObject::tr("Not OK"),
                            QObject::tr("Suppression non effectué.\n"
                                        "click cancel to exit"),QMessageBox::Cancel);}
+}
+
+void MainWindow::on_pb_modifier_clicked()
+{
+    int ref_cmd=ui->modifier_ref->text().toInt();
+       QString adr_cl=ui->modifier_adr->text();
+       QString Nom_cl=ui->modifier_nom->text();
+       int cin_cl =ui->modifier_cin->text().toInt();
+       int qtt_vet =ui->Modifier_qtt->text().toInt();
+       int montant_cmd =ui->modifier_montant->text().toInt();
+       int etat=ui->modifier_etat->currentIndex();
+       int nb_pts=ui->modifier_nbr_pts->text().toInt();
+       int type_v=ui->modifier_type->currentIndex();
+       int livraison=ui->modifier_livraison->currentIndex();
+         QDate Date_cmd=ui->modifier_date->date();
+       Commande C(ref_cmd,cin_cl,Nom_cl,qtt_vet,montant_cmd,Date_cmd,etat,adr_cl,nb_pts,type_v,livraison);
+       //C.set_ref_equipement(ui->lineEdit_13->text().toInt());
+           bool test=C.modifier(C.getRef()) ;
+
+           QMessageBox msgBox;
+           if(test)
+           {msgBox.setText("modification avec succes.");
+               ui->tab_v->setModel(C.afficher());
+           }
+           else
+           msgBox.setText("Echec de modification");
+               msgBox.exec();
+
 }
