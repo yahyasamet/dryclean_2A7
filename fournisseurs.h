@@ -40,6 +40,8 @@ public:
     bool ajouter();
     QSqlQueryModel* afficher();
     bool supprimer(QString);
+    bool modifier(QString);
+
 
 };
 

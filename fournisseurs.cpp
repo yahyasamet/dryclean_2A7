@@ -95,8 +95,23 @@ bool Fournisseurs::supprimer(QString MATRICULE_F){
     return query.exec();
 }
 
+bool Fournisseurs::modifier(QString MATRICULE_F)
+{
 
+    QSqlQuery query;
+     query.prepare("Update fournisseur set NOMSOCIETE= :NOMSOCIETE, NUMERO_TEL= :NUMERO_TEL , ADRESSE_SOCIETE= :ADRESSE_SOCIETE , EMAIL_F= :EMAIL_F , TYPE_ACHATF= :TYPE_ACHATF , QUANTITE_F= :QUANTITE_F , PRIX_F= :PRIX_F   where MATRICULE_F= :MATRICULE_F ");
 
+     query.bindValue(":MATRICULE_F",MATRICULE_F);
+     query.bindValue(":NOMSOCIETE", NOMSOCIETE);
+     query.bindValue(":NUMERO_TEL", NUMERO_TEL);
+     query.bindValue(":ADRESSE_SOCIETE", ADRESSE_SOCIETE);
+     query.bindValue(":EMAIL_F", EMAIL_F);
+      query.bindValue(":TYPE_ACHATF", TYPE_ACHATF);
+       query.bindValue(":QUANTITE_F", QUANTITE_F);
+       query.bindValue(":PRIX_F", PRIX_F);
+
+   return query.exec();
+    }
 
 
 

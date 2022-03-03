@@ -140,7 +140,7 @@ font-size: 17px;
 }</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -564,7 +564,7 @@ QPushButton:pressed {
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>280</y>
+          <y>294</y>
           <width>111</width>
           <height>31</height>
          </rect>
@@ -581,11 +581,11 @@ font-size: 13px;
          <enum>Qt::AutoText</enum>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_7">
+       <widget class="QLineEdit" name="email">
         <property name="geometry">
          <rect>
           <x>130</x>
-          <y>150</y>
+          <y>167</y>
           <width>113</width>
           <height>20</height>
          </rect>
@@ -595,7 +595,7 @@ font-size: 13px;
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>180</y>
+          <y>194</y>
           <width>111</width>
           <height>31</height>
          </rect>
@@ -612,11 +612,11 @@ font-size: 13px;
          <enum>Qt::AutoText</enum>
         </property>
        </widget>
-       <widget class="QRadioButton" name="radioButton_3">
+       <widget class="QRadioButton" name="produit">
         <property name="geometry">
          <rect>
           <x>140</x>
-          <y>220</y>
+          <y>234</y>
           <width>83</width>
           <height>18</height>
          </rect>
@@ -628,11 +628,11 @@ font-size: 13px;
          <string>Produits</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_8">
+       <widget class="QLineEdit" name="num">
         <property name="geometry">
          <rect>
           <x>130</x>
-          <y>90</y>
+          <y>107</y>
           <width>113</width>
           <height>20</height>
          </rect>
@@ -642,7 +642,7 @@ font-size: 13px;
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>110</y>
+          <y>130</y>
           <width>111</width>
           <height>31</height>
          </rect>
@@ -663,7 +663,7 @@ font-size: 13px;
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>140</y>
+          <y>160</y>
           <width>111</width>
           <height>31</height>
          </rect>
@@ -684,7 +684,7 @@ font-size: 13px;
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>50</y>
+          <y>70</y>
           <width>111</width>
           <height>31</height>
          </rect>
@@ -701,11 +701,11 @@ font-size: 13px;
          <enum>Qt::AutoText</enum>
         </property>
        </widget>
-       <widget class="QRadioButton" name="radioButton_4">
+       <widget class="QRadioButton" name="machine">
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>220</y>
+          <y>234</y>
           <width>83</width>
           <height>18</height>
          </rect>
@@ -714,11 +714,11 @@ font-size: 13px;
          <string>Machines</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_9">
+       <widget class="QLineEdit" name="nom">
         <property name="geometry">
          <rect>
           <x>130</x>
-          <y>60</y>
+          <y>77</y>
           <width>113</width>
           <height>20</height>
          </rect>
@@ -728,7 +728,7 @@ font-size: 13px;
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>80</y>
+          <y>100</y>
           <width>111</width>
           <height>31</height>
          </rect>
@@ -745,11 +745,11 @@ font-size: 13px;
          <enum>Qt::AutoText</enum>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="modifier">
         <property name="geometry">
          <rect>
           <x>60</x>
-          <y>340</y>
+          <y>354</y>
           <width>146</width>
           <height>31</height>
          </rect>
@@ -762,7 +762,7 @@ font-size: 13px;
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>250</y>
+          <y>264</y>
           <width>111</width>
           <height>31</height>
          </rect>
@@ -779,34 +779,65 @@ font-size: 13px;
          <enum>Qt::AutoText</enum>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_10">
+       <widget class="QLineEdit" name="adresse">
         <property name="geometry">
          <rect>
           <x>130</x>
-          <y>120</y>
+          <y>137</y>
           <width>113</width>
           <height>20</height>
          </rect>
         </property>
        </widget>
-       <widget class="QSpinBox" name="spinBox_2">
+       <widget class="QSpinBox" name="quantite">
         <property name="geometry">
          <rect>
           <x>150</x>
-          <y>260</y>
+          <y>274</y>
           <width>42</width>
           <height>16</height>
          </rect>
         </property>
        </widget>
-       <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+       <widget class="QLineEdit" name="prix">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>290</y>
-          <width>62</width>
+          <x>120</x>
+          <y>304</y>
+          <width>113</width>
           <height>20</height>
          </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="matf">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>47</y>
+          <width>113</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_19">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>40</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+font-size: 13px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Matricule Fiscale:</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
         </property>
        </widget>
       </widget>

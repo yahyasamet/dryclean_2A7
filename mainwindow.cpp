@@ -38,6 +38,7 @@ void MainWindow::on_ajouter_clicked()
 {
   QString typeachats;
 
+
     QString MATRICULE_F=ui->lineEdit_MATRICULE_F->text();
     QString NOMSOCIETE=ui->lineEdit_NOMSOCIETE->text();
     int NUMERO_TEL=ui->lineEdit_NUMERO_TEL->text().toInt();
@@ -99,3 +100,47 @@ void MainWindow::on_supprimer_clicked()
     }
 }
 
+
+void MainWindow::on_modifier_clicked()
+{
+
+  QString typeachats1;
+    QString MATRICULE_F=ui->matf->text();
+
+    QString NOMSOCIETE=ui->nom->text();
+    int NUMERO_TEL=ui->num->text().toInt();
+    QString ADRESSE_SOCIETE=ui->adresse->text();
+    QString EMAIL_F=ui->email->text();
+
+    if (ui->machine->isChecked())
+    typeachats1="machine";
+
+    else if (ui->produit->isChecked())
+    typeachats1="produit";
+
+
+    int QUANTITE_F=ui->quantite->text().toInt();
+    int PRIX_F=ui->prix->text().toInt();
+
+
+    Fournisseurs f(MATRICULE_F, NOMSOCIETE, NUMERO_TEL, ADRESSE_SOCIETE, EMAIL_F, typeachats1, QUANTITE_F, PRIX_F);
+
+        bool test=f.modifier(f.getMATRICULE_F());
+
+
+
+        if(test)
+      {  ui->tableView->setModel(f.afficher());
+        QMessageBox::information(nullptr, QObject::tr("ok"),
+                           QObject::tr("Modification Effectué\n"
+                                       "click cancel to exit"), QMessageBox::Cancel);
+
+        }
+
+        else
+           {
+            QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                               QObject::tr("Modification non Effectué\n"
+                                           "click cancel to exit"), QMessageBox::Cancel);
+        }
+}
