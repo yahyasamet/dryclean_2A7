@@ -21,6 +21,8 @@ public:
     bool supprimer_livraison(int);
     bool recherche_int(int);
     bool modifier_livraison(int);
+    QSqlQueryModel * afficherTrierDescDate();
+    QSqlQueryModel *afficherTrierAscDate();
 
 private:
     int id;

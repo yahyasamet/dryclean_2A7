@@ -21,6 +21,8 @@ private slots:
     void on_supprimer_clicked();
     void on_modifier_clicked();
 
+    void on_comboBox_activated(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     livraisons C;

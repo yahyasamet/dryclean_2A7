@@ -112,3 +112,29 @@ bool livraisons::ajouter_livraisons()
         }
               return query.exec();
     }
+
+    QSqlQueryModel * livraisons::afficherTrierDescDate()
+    {
+        QSqlQueryModel *model= new QSqlQueryModel();
+        model->setQuery("select * from livraisons order by DATE_LIVRAISON DESC");
+        model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM LIVREUR"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("DATE"));
+        return model;
+
+
+    }
+
+    QSqlQueryModel * livraisons::afficherTrierAscDate()
+    {
+        QSqlQueryModel *model= new QSqlQueryModel();
+        model->setQuery("select * from livraisons order by DATE_LIVRAISON ASC");
+        model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM LIVREUR"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("DATE"));
+        return model;
+
+
+    }
+
+

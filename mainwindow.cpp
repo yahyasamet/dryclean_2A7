@@ -94,3 +94,15 @@ void MainWindow::on_modifier_clicked()
     msg.exec();
 }
 
+
+void MainWindow::on_comboBox_activated(const QString &arg1)
+{
+
+
+    if(arg1=="date decroissante")
+        ui->tableView->setModel(C.afficherTrierDescDate());
+        else if(arg1=="date croissante")
+        ui->tableView->setModel(C.afficherTrierAscDate());
+
+
+}
