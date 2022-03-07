@@ -107,15 +107,16 @@ bool employe::ajouter()
 {
     QSqlQuery query;
     query.prepare("INSERT INTO EMPLOYE (CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,PASSWORD,FONCTION,SALAIRE)"" VALUES(:cin, :nom, :prenom, :age, :email, :num_tel, :password,:fonction, :salaire)");
-    query.bindValue(0,cin);
-    query.bindValue(1,nom);
-    query.bindValue(2,prenom);
-    query.bindValue(3,age);
-    query.bindValue(4,email);
-    query.bindValue(5,num_tel);
-    query.bindValue(6,password);
-    query.bindValue(7,fonction);
-    query.bindValue(8,salaire);
+    query.bindValue(":cin",cin);
+    query.bindValue(":nom",nom);
+    query.bindValue(":prenom",prenom);
+    query.bindValue(":age",age);
+    query.bindValue(":email",email);
+    query.bindValue(":num_tel",num_tel);
+    query.bindValue(":password",password);
+    query.bindValue(":fonction",fonction);
+    query.bindValue(":salaire",salaire);
+
     return query.exec();
 }
 
@@ -123,14 +124,13 @@ QSqlQueryModel * employe::afficher()
    {
        QSqlQueryModel* model=new QSqlQueryModel();
 
-             model->setQuery("SELECT* FROM EMPLOYE");
+             model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE");
              model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
              model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
              model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
              model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
              model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
              model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
-             model->setHeaderData(6, Qt::Horizontal, QObject::tr("PASSWORD"));
              model->setHeaderData(8, Qt::Horizontal, QObject::tr("FONCTION"));
              model->setHeaderData(9, Qt::Horizontal, QObject::tr("SALAIRE"));
        return model;
@@ -142,5 +142,23 @@ bool employe::supprimer(int cin)
     QString res=QString::number(cin);
     query.prepare("Delete from EMPLOYE where cin= :cin");
     query.bindValue(":cin",res);
+    return query.exec();
+}
+
+bool employe::modifier(int cin)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE EMPLOYE SET NOM=:nom , PRENOM=:prenom , AGE = :age , EMAIL= :email, NUM_TEL= :num_tel, PASSWORD=:password, FONCTION= :fonction, SALAIRE=:salaire WHERE CIN=:cin");
+
+    query.bindValue(":cin",cin);
+    query.bindValue(":nom",nom);
+    query.bindValue(":prenom",prenom);
+    query.bindValue(":age",age);
+    query.bindValue(":email",email);
+    query.bindValue(":num_tel",num_tel);
+    query.bindValue(":password",password);
+    query.bindValue(":fonction",fonction);
+    query.bindValue(":salaire",salaire);
+
     return query.exec();
 }

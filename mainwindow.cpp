@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->cin->setValidator(new QIntValidator(0,9999999,this));
     ui->tab_emp->setModel(emp.afficher());
 }
 
@@ -76,4 +78,35 @@ void MainWindow::on_supprimer_clicked()
         else
             msgBox.setText("Echec de suppression");
         msgBox.exec();
+}
+
+
+void MainWindow::on_modifier_clicked()
+{
+    QMessageBox msg;
+
+    employe emp;
+
+    emp.setCIN(ui->cin_2->text().toInt());
+    emp.setNom(ui->nom_2->text());
+    emp.setPrenom(ui->prenom_2->text());
+    emp.setAge(ui->age_2->text().toInt());
+    emp.setEmail(ui->email_2->text());
+    emp.setNum(ui->num_tel_2->text().toInt());
+    emp.setPassword(ui->password_2->text());
+    emp.setFonction(ui->fonction_2->text());
+    emp.setSalaire(ui->salaire_2->text().toInt());
+
+    bool test=emp.modifier(emp.getCIN()) ;
+
+    if(test)
+        {         
+            QMessageBox::information(nullptr, QObject::tr("success"),
+                        QObject::tr("modification avec succès"), QMessageBox::Cancel);
+            ui->tab_emp->setModel(emp.afficher());
+        }
+        else
+            QMessageBox::critical(nullptr, QObject::tr("warning"),
+                        QObject::tr("echec de modification"), QMessageBox::Cancel);
+            ui->tab_emp->setModel(emp.afficher());
 }

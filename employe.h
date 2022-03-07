@@ -35,8 +35,9 @@ public:
     void setSalaire (int );
 
     bool ajouter();
-    bool supprimer(int cin);
+    bool supprimer(int);
     QSqlQueryModel *afficher();
+    bool modifier(int);
 private:
     QString nom,prenom,email,password,fonction;
     int salaire,age,cin,num_tel;
