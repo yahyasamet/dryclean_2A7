@@ -122,13 +122,12 @@ bool Fournisseurs::modifier(QString MATRICULE_F)
      query.bindValue(":NUMERO_TEL", NUMERO_TEL);
      query.bindValue(":ADRESSE_SOCIETE", ADRESSE_SOCIETE);
      query.bindValue(":EMAIL_F", EMAIL_F);
-      query.bindValue(":TYPE_ACHATF", TYPE_ACHATF);
-       query.bindValue(":QUANTITE_F", QUANTITE_F);
-       query.bindValue(":PRIX_F", PRIX_F);
+     query.bindValue(":TYPE_ACHATF", TYPE_ACHATF);
+     query.bindValue(":QUANTITE_F", QUANTITE_F);
+     query.bindValue(":PRIX_F", PRIX_F);
 
    return query.exec();
     }
-
 
 
 

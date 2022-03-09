@@ -111,17 +111,22 @@ void MainWindow::on_ajouter_clicked()
 void MainWindow::on_supprimer_clicked()
 {
 
-
-    QString MATRICULE_F=ui->lineEdit_MATRICULE_F->text();
+   Fournisseurs f;
+    QString MATRICULE_F=ui->lineEdit_11->text();
 
 
     bool test=f.supprimer( MATRICULE_F);
 
     if(test)
-  {  ui->tableView->setModel(f.afficher());
+  {
     QMessageBox::information(nullptr, QObject::tr("success"),
                        QObject::tr("Suppression Effectué\n"
                                    "click cancel to exit"), QMessageBox::Cancel);
+    ui->tableView->setModel(f.afficher());
+    ui->lineEdit_11->clear();
+     ui->lineEdit_11->setFocus();
+
+
 
     }
 
@@ -136,6 +141,7 @@ void MainWindow::on_supprimer_clicked()
 
 void MainWindow::on_modifier_clicked()
 {
+
 
   QString typeachats1;
     QString MATRICULE_F=ui->matf->text();

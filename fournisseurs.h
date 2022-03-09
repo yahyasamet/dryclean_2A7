@@ -43,6 +43,7 @@ public:
     bool modifier(QString);
 
 
+
 };
 
 #endif // FOURNISSEURS_H
