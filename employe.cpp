@@ -5,18 +5,18 @@
 
 employe::employe()
 {
-    cin=0;
+    cin="";
     nom="";
     prenom="";
     email="";
-    num_tel=0;
+    num_tel="";
     password="";
     fonction="";
     salaire=0;
     age=0;
 }
 
-employe::employe(int cin,QString nom,QString prenom,int age,QString email,int num_tel,QString password,QString fonction,int salaire)
+employe::employe(QString cin,QString nom,QString prenom,int age,QString email,QString num_tel,QString password,QString fonction,int salaire)
 {
     this->cin=cin;
     this->nom=nom;
@@ -29,7 +29,7 @@ employe::employe(int cin,QString nom,QString prenom,int age,QString email,int nu
     this->salaire=salaire;
 }
 
-int employe::getCIN()
+QString employe::getCIN()
 {
     return cin;
 }
@@ -49,7 +49,7 @@ QString employe::getEmail()
 {
     return email;
 }
-int employe::getNum()
+QString employe::getNum()
 {
     return num_tel;
 }
@@ -66,7 +66,7 @@ int employe::getSalaire()
     return salaire;
 }
 
-void employe::setCIN (int cin)
+void employe::setCIN (QString cin)
 {
     this->cin=cin;
 }
@@ -86,7 +86,7 @@ void employe::setEmail (QString email)
 {
     this->email=email;
 }
-void employe::setNum (int num_tel)
+void employe::setNum (QString num_tel)
 {
     this->num_tel=num_tel;
 }
@@ -116,7 +116,6 @@ bool employe::ajouter()
     query.bindValue(":password",password);
     query.bindValue(":fonction",fonction);
     query.bindValue(":salaire",salaire);
-
     return query.exec();
 }
 
@@ -136,16 +135,15 @@ QSqlQueryModel * employe::afficher()
        return model;
 
    }
-bool employe::supprimer(int cin)
+bool employe::supprimer(QString cin)
 {
     QSqlQuery query;
-    QString res=QString::number(cin);
     query.prepare("Delete from EMPLOYE where cin= :cin");
-    query.bindValue(":cin",res);
+    query.bindValue(":cin",cin);
     return query.exec();
 }
 
-bool employe::modifier(int cin)
+bool employe::modifier(QString cin)
 {
     QSqlQuery query;
     query.prepare("UPDATE EMPLOYE SET NOM=:nom , PRENOM=:prenom , AGE = :age , EMAIL= :email, NUM_TEL= :num_tel, PASSWORD=:password, FONCTION= :fonction, SALAIRE=:salaire WHERE CIN=:cin");
@@ -161,4 +159,14 @@ bool employe::modifier(int cin)
     query.bindValue(":salaire",salaire);
 
     return query.exec();
+}
+
+bool employe:: string_test(QString ch)
+{
+    for (int i=0;i!=ch.length();i++)
+    {
+        if (!((ch[i] >= 'A' && ch[i]<='Z') || (ch[i] >= 'a' && ch[i]<='z')))
+            return false;
+    }
+    return true;
 }

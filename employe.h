@@ -12,35 +12,37 @@ class employe
 {
 public:
     employe();
-    employe(int,QString,QString,int,QString,int,QString,QString,int);
+    employe(QString,QString,QString,int,QString,QString,QString,QString,int);
 
-    int getCIN();
+    QString getCIN();
     QString getNom();
     QString getPrenom();
     int getAge();
     QString getEmail();
-    int getNum();
+    QString getNum();
     QString getPassword();
     QString getFonction();
     int getSalaire();
 
-    void setCIN (int );
+    void setCIN (QString );
     void setNom (QString );
     void setPrenom (QString);
     void setAge(int );
     void setEmail (QString email);
-    void setNum (int );
+    void setNum (QString );
     void setPassword (QString );
     void setFonction (QString );
     void setSalaire (int );
 
     bool ajouter();
-    bool supprimer(int);
+    bool supprimer(QString);
     QSqlQueryModel *afficher();
-    bool modifier(int);
+    bool modifier(QString);
+    bool string_test(QString ch);
+
 private:
-    QString nom,prenom,email,password,fonction;
-    int salaire,age,cin,num_tel;
+    QString nom,prenom,email,password,fonction,cin,num_tel;
+    int salaire,age;
 };
 
 #endif // EMPLOYE_H
