@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>798</width>
+    <width>833</width>
     <height>490</height>
    </rect>
   </property>
@@ -140,7 +140,7 @@ font-size: 17px;
 }</string>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -958,22 +958,116 @@ font-size: 13px;
      </widget>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_5">
+   <widget class="QTabWidget" name="tabWidget_2">
     <property name="geometry">
      <rect>
       <x>290</x>
       <y>20</y>
-      <width>481</width>
-      <height>391</height>
+      <width>501</width>
+      <height>411</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>-1</pointsize>
-     </font>
-    </property>
     <property name="styleSheet">
-     <string notr="true">QGroupBox  {
+     <string notr="true">QTabWidget::tab-bar {
+   border: 1px solid gray;
+ flex: 0 0 25%;
+    max-width: 80%;
+}
+
+QTabBar::tab {
+  background: 	rgb(72,95,225);
+  color: white;
+  padding: 10px;
+ flex: 0 0 25%;
+    max-width: 80%;
+font-size:11px;
+ }
+
+ QTabBar::tab:selected {
+  background: rgb(123,140,234);
+ }
+QTabWidget::pane { 
+   border: none;
+}
+QLineEdit {
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 0 8px;
+    background: white;
+    selection-background-color: darkgray;
+}
+QPushButton {
+    background-color: rgb(7, 214, 255);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    min-width: 10em;
+    padding: 6px;
+}
+QPushButton:hover {
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+QPushButton:pressed {
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #797979, stop:0.48 #696969, stop:0.52 #5e5e5e, stop:1 #4f4f4f);
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+}
+QComboBox::drop-down {
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 20px;
+ 
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+QComboBox::down-arrow {
+     image: url(:/images/combobox-arrow.png);
+}
+ 
+QComboBox QAbstractView{
+	background-color: #4f4f4f;
+	color: #999999;
+ 
+	selection-background-color: #999999;
+	selection-color: #4f4f4f;
+}
+QLabel{
+font-size: 17px;
+
+}</string>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Fournisseurs</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_5">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>-20</y>
+        <width>501</width>
+        <height>411</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox  {
 
 
     background-color: rgb(252, 252, 252);
@@ -1019,67 +1113,154 @@ QPushButton:pressed {
     border-style: inset;
 }
 </string>
-    </property>
-    <property name="title">
-     <string>Gestion des Fournisseurs:</string>
-    </property>
-    <widget class="QLineEdit" name="lineEdit_3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>331</width>
-       <height>41</height>
-      </rect>
-     </property>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QLineEdit" name="lineEdit_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>331</width>
+         <height>41</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_11">
+       <property name="geometry">
+        <rect>
+         <x>400</x>
+         <y>40</y>
+         <width>71</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>../../Desktop/untitled/logo_c++_1.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_18">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>50</y>
+         <width>21</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>../../Desktop/untitled/search.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QTableView" name="tableView">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>121</y>
+         <width>471</width>
+         <height>261</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
     </widget>
-    <widget class="QLabel" name="label_11">
-     <property name="geometry">
-      <rect>
-       <x>400</x>
-       <y>10</y>
-       <width>71</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap>../../Desktop/untitled/logo_c++_1.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_18">
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>50</y>
-       <width>21</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap>../../Desktop/untitled/search.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QTableView" name="tableView">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>121</y>
-       <width>401</width>
-       <height>231</height>
-      </rect>
-     </property>
+    <widget class="QWidget" name="tab_5">
+     <attribute name="title">
+      <string>Envoie de mails</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_6">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>-30</y>
+        <width>491</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox  {
+
+
+    background-color: rgb(252, 252, 252);
+    margin-top: 27px;
+    font-size: 14px;
+
+}
+
+QGroupBox::title  {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 5px 8000px 5px 7700px;
+   background-color: rgb(252, 252, 252);
+    color: rgb(0, 0, 0);
+	font: 75 8pt &quot;MS Shell Dlg 2&quot;;
+
+}
+
+QLineEdit {
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 0 8px;
+    background: white;
+    selection-background-color: darkgray;
+}
+QPushButton {
+    color: rgb(255, 255, 255);
+  background-color: #4d7cff;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: beige;
+    min-width: 10em;
+    padding: 6px;
+}
+QPushButton:hover {
+color: #fff;
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+QPushButton:pressed {
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QLabel" name="label_20">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>40</y>
+         <width>71</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>../../Desktop/untitled/logo_c++_1.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -1088,7 +1269,7 @@ QPushButton:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>798</width>
+     <width>833</width>
      <height>22</height>
     </rect>
    </property>

@@ -9,13 +9,13 @@
 
 class Fournisseurs
 {
+private:
     QString MATRICULE_F, NOMSOCIETE, ADRESSE_SOCIETE, EMAIL_F, TYPE_ACHATF;
-    int NUMERO_TEL, QUANTITE_F;
-    int PRIX_F;
+    int NUMERO_TEL, QUANTITE_F, PRIX_F;
 
 
 public:
-    Fournisseurs(){}
+    Fournisseurs();
     Fournisseurs(QString MATRICULE_F, QString NOMSOCIETE,int NUMERO_TEL,QString ADRESSE_SOCIETE,QString EMAIL_F,QString TYPE_ACHATF, int QUANTITE_F, int PRIX_F );
 
     QString getMATRICULE_F();

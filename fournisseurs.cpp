@@ -2,6 +2,22 @@
 #include <QMessageBox>
 #include <QDebug>
 
+
+Fournisseurs::Fournisseurs()
+{
+       MATRICULE_F="";
+       NOMSOCIETE="";
+       NUMERO_TEL=0;
+       ADRESSE_SOCIETE="";
+       EMAIL_F="";
+       TYPE_ACHATF="";
+       QUANTITE_F=0;
+       PRIX_F=0;
+
+
+}
+
+
 Fournisseurs::Fournisseurs(QString MATRICULE_F, QString NOMSOCIETE,int NUMERO_TEL,QString ADRESSE_SOCIETE,QString EMAIL_F,QString TYPE_ACHATF, int QUANTITE_F, int PRIX_F)
 {
     this->MATRICULE_F=MATRICULE_F;
