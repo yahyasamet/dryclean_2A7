@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/check2.png</file>
+        <file>images/check.png</file>
+        <file>images/checkbox_checked.png</file>
+        <file>images/checkbox_unchecked.png</file>
+        <file>images/checkbox_unchecked_hover.png</file>
+        <file>images/checkbox_unchecked_pressed.png</file>
+        <file>images/unarchive2.png</file>
+        <file>images/uparrow.png</file>
+        <file>images/upload.png</file>
+    </qresource>
+</RCC>
