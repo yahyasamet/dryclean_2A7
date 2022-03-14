@@ -31,6 +31,7 @@ public:
     bool Chaine_Valid(QString);
     int Longueur_entier(int);
     bool recuperer_equipement(QString);
+    QString recuperer_nom();
 
 private:
     int REFERENCE_EQUIPEMENT;

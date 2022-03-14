@@ -9,5 +9,13 @@
         <file>images/unarchive2.png</file>
         <file>images/uparrow.png</file>
         <file>images/upload.png</file>
+        <file>images/chat1.png</file>
+        <file>images/chat2.png</file>
+        <file>images/chat3.png</file>
+        <file>images/chat.png</file>
+        <file>images/connection.png</file>
+        <file>images/return-button.png</file>
+        <file>images/return.png</file>
+        <file>images/return1.png</file>
     </qresource>
 </RCC>

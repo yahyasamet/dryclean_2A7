@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 #include "equipements.h"
 #include <QMainWindow>
-
+#include<QCompleter>
+#include<QDirModel>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -24,12 +25,16 @@ private slots:
 
     void on_Trier_equipement_activated(const QString &arg1);
 
-    void on_recuperer_clicked();
-
     void on_Rechercher_equipement_textChanged(const QString &arg1);
+
+    void on_chatbox_clicked();
+
+    void on_combo_ref_activated(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
     equipements E;
+    QCompleter *stringcompleter,*modelcompleter;
+
 };
 #endif // MAINWINDOW_H

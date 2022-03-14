@@ -199,3 +199,11 @@ QSqlQueryModel *equipements::Recherche_Avancee(QString rech)
     model->setQuery("SELECT * FROM equipements WHERE REFERENCE_EQUIPEMENT  LIKE'%"+rech+"%' or MARQUE_EQUIPEMENT  LIKE'%"+rech+"%' or NOM_EQUIPEMENT  LIKE'%"+rech+"%' or CIN_EMP  LIKE'%"+rech+"%' ");
     return model;
 }
+QString equipements::recuperer_nom()
+{
+    QSqlQuery query;
+    QString cin="1";
+    query.prepare("Select * from employes " );
+    query.exec();
+    return query.value(3).toString();
+}
