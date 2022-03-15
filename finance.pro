@@ -26,12 +26,14 @@ CONFIG += c++11
 
 SOURCES += \
     finances.cpp \
+    historique.cpp \
         main.cpp \
         mainwindow.cpp \
     connection.cpp
 
 HEADERS += \
     finances.h \
+    historique.h \
         mainwindow.h \
     connection.h
 

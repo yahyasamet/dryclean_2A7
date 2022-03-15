@@ -38,6 +38,7 @@ public:
     bool ajouter();
     QSqlQueryModel* afficher();
     QSqlQueryModel* afficher2();
+    QSqlQueryModel* recherche_avancee(QString);
     bool supprimer(QString);
     bool recherche_id(QString);
     bool modifier(QString);
@@ -49,6 +50,9 @@ public:
     QSqlQueryModel* Trie_dateD2();
     QSqlQueryModel* Trie_montantC2();
     QSqlQueryModel* Trie_montantD2();
+    bool DateValide(QDate Date);
+    void excel_dynamique();
+
 };
 
 #endif // FINANCES_H

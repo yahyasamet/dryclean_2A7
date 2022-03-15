@@ -33,13 +33,31 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tablerevenue->setModel(C.afficher2());
     ui->radioButton->setChecked(true);
     QStringList list,list2;
-
+    Historique h;
+     ui->historique->setText(h.load());
     list=cinlist();
     list2=matlist();
     ui->mat->addItems(list);
     ui->mat_3->addItems(list);
     ui->mat_2->addItems(list2);
     ui->mat_4->addItems(list2);
+    QSqlQuery qry;
+    qry.prepare("select ID_FINANCES from finances");
+    qry.exec();
+    while(qry.next()){
+    ui->combo_finance->addItem(qry.value(0).toString());
+    }
+     QSqlQuery qry1;
+    qry1.prepare("select * from finances");
+    qry1.exec();
+    QStringList completionlist;
+    while(qry1.next()){
+    completionlist <<qry1.value(0).toString() <<qry1.value(4).toString()<<qry1.value(5).toString()<<qry1.value(6).toString();
+     }
+     stringcompleter=new QCompleter(completionlist,this);
+     stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
+     ui->lineEdit_7->setCompleter(stringcompleter);
+     C.excel_dynamique();
 }
 
 MainWindow::~MainWindow()
@@ -50,7 +68,7 @@ void MainWindow::on_ajouter_clicked()
 {
 
 
-    QIntValidator v(100, 900, this);
+    QIntValidator v(0, 1000000, this);
     int pos = 0;
     QString ID_FINANCES=ui->id->text();
     int MONTANT_FINANCE=ui->montant->text().toInt();
@@ -79,6 +97,11 @@ void MainWindow::on_ajouter_clicked()
     {
         QMessageBox::information(this, "erreur d'ajout","id déjà existant =");
     }
+    else if (C.DateValide(DATE_FINANCES))
+    {
+        QMessageBox::information(this, "erreur d'ajout","date doit être inferieur à la date actuelle");
+
+    }
     else if (!(v.validate(montantstring,pos)))
     {
         QMessageBox::information(this, "erreur d'ajout","entrer que des numero dans le montant");
@@ -92,6 +115,9 @@ void MainWindow::on_ajouter_clicked()
     msgBox.setText("ajout avec succée");
     ui->tabledepence->setModel(C.afficher());
     ui->tablerevenue->setModel(C.afficher2());
+    Historique h;
+    h.save(ID_FINANCES,"Ajout");
+    ui->historique->setText(h.load());
     QStringList list,list2;
     ui->mat->clear();
     ui->mat_2->clear();
@@ -107,6 +133,7 @@ void MainWindow::on_ajouter_clicked()
     ui->montant->clear();
     ui->provenance->clear();
     ui->date->clear();
+    C.excel_dynamique();
     // Put the focus back into the input box so they can type again:
    ui->id->setFocus();
     }
@@ -132,7 +159,10 @@ void MainWindow::on_supprimer_clicked()
             if(test)
             {
       ui->tabledepence->setModel(C.afficher());
-      QMessageBox::information(nullptr,"Suppression","Chambre supprimé");
+      Historique h;
+      h.save(id,"supprimer");
+      ui->historique->setText(h.load());
+      QMessageBox::information(nullptr,"Suppression","operation supprimé");
       QStringList list,list2;
       ui->mat->clear();
       ui->mat_2->clear();
@@ -156,7 +186,7 @@ void MainWindow::on_supprimer_clicked()
                  if(test)
                  {
            ui->tablerevenue->setModel(C.afficher2());
-           QMessageBox::information(nullptr,"Suppression","Chambre supprimé");
+           QMessageBox::information(nullptr,"Suppression","operation modifié");
            QStringList list,list2;
            ui->mat->clear();
            ui->mat_2->clear();
@@ -168,21 +198,22 @@ void MainWindow::on_supprimer_clicked()
            ui->mat_3->addItems(list);
            ui->mat_2->addItems(list2);
            ui->mat_4->addItems(list2);}
+                 C.excel_dynamique();
              }
        }
 }
 
 void MainWindow::on_modifier_clicked()
 {
-    QModelIndex index = ui->tabledepence->selectionModel()->currentIndex();
+   /* QModelIndex index = ui->tabledepence->selectionModel()->currentIndex();
     QString id = index.data(Qt::DisplayRole).toString();
     QModelIndex index2 = ui->tablerevenue->selectionModel()->currentIndex();
-        QString id2 = index2.data(Qt::DisplayRole).toString();
-        if(id!="")
-        {
+        QString id2 = index2.data(Qt::DisplayRole).toString();*/
+
     QMessageBox msg;
-    QIntValidator v(100, 900, this);
+    QIntValidator v(0, 10000, this);
     int pos = 0;
+    QString id=ui->combo_finance->currentText();
     QString montantstring=ui->montant_2->text();
     QString PROVENANCE=ui->provenance_2->text();
 
@@ -213,6 +244,9 @@ void MainWindow::on_modifier_clicked()
     bool test=C.modifier(C.getID_FINANCES());
     if(test)
     {
+        Historique h;
+        h.save(id,"modifier");
+        ui->historique->setText(h.load());
         msg.setText("modification avec succès");
         ui->tabledepence->setModel(C.afficher());
         ui->tablerevenue->setModel(C.afficher2());
@@ -227,71 +261,14 @@ void MainWindow::on_modifier_clicked()
         ui->mat_3->addItems(list);
         ui->mat_2->addItems(list2);
         ui->mat_4->addItems(list2);
-
+        C.excel_dynamique();
     }
     else
         msg.setText("echec de modification");
 
     msg.exec();
     }
-        }
-        else if (id2!="")
-        {
-            QMessageBox msg;
-            QIntValidator v(100, 900, this);
-            int pos = 0;
-            QString montantstring=ui->montant_2->text();
-            QString PROVENANCE=ui->provenance_2->text();
 
-            if (PROVENANCE=="")
-            {
-                QMessageBox::information(this, "erreur d'ajout","entrer la provenance du produit");
-            }
-            else if (!(v.validate(montantstring,pos)))
-            {
-                QMessageBox::information(this, "erreur d'ajout","entrer que des numero dans le montant");
-            }
-            else
-            {
-
-            finances C;
-            C.setID_FINANCES(id);
-            C.setDATE_FINANCES(ui->date_2->date());
-            C.setPROVENANCE(ui->provenance_2->text());
-            C.setMONTANT_FINANCE(ui->montant_2->text().toInt());
-            C.setID_COMMANDE(ui->mat_3->currentText().toInt());
-            C.setMATRICULE_FISC(ui->mat_4->currentText());
-            if (ui->radioButton->isChecked())
-             C.setTYPE_TRANSACTION(0);
-            else
-             C.setTYPE_TRANSACTION(1);
-
-
-            bool test=C.modifier(C.getID_FINANCES());
-            if(test)
-            {
-                msg.setText("modification avec succès");
-                ui->tabledepence->setModel(C.afficher());
-                ui->tablerevenue->setModel(C.afficher2());
-                QStringList list,list2;
-                ui->mat->clear();
-                ui->mat_2->clear();
-                ui->mat_3->clear();
-                ui->mat_4->clear();
-                list=cinlist();
-                list2=matlist();
-                ui->mat->addItems(list);
-                ui->mat_3->addItems(list);
-                ui->mat_2->addItems(list2);
-                ui->mat_4->addItems(list2);
-
-            }
-            else
-                msg.setText("echec de modification");
-
-            msg.exec();
-            }
-        }
 }
 
 void MainWindow::on_comboBox_activated(int index)
@@ -416,6 +393,7 @@ void MainWindow::on_excel_2_clicked()
                    }
 }
 
+
 void MainWindow::on_Statistique_clicked()
 {
     QSqlQueryModel * model= new QSqlQueryModel();
@@ -497,7 +475,7 @@ void MainWindow::on_Statistique_3_clicked()
     for(auto slice : series->slices())
         slice->setLabel(QString("%1%").arg(100*slice->percentage(), 0, 'f', 1));
 
-    chartView->resize(400,400);
+    chartView->resize(851,591);
     chartView->setParent(ui->horizontalFrame);
     chartView->show();
 }
@@ -508,7 +486,7 @@ QStringList MainWindow::cinlist()
 
     query.prepare("SELECT REF_CMD FROM commandes");
    QStringList list;
-
+   list.push_back(NULL);
       if(query.exec())
       {
           while( query.next() )
@@ -525,7 +503,7 @@ QStringList MainWindow::matlist()
 
     query.prepare("SELECT matricule_f FROM fournisseur");
    QStringList list;
-
+    list.push_back(NULL);
       if(query.exec())
       {
           while( query.next() )
@@ -536,3 +514,67 @@ QStringList MainWindow::matlist()
       return list;
 }
 
+
+void MainWindow::on_combo_finance_activated(int index)
+{
+    QSqlQuery query;
+    QString ID_FINANCES=ui->combo_finance->currentText() ;
+   query.prepare("Select * from finances where ID_FINANCES=:ID_FINANCES" );
+           query.bindValue(":ID_FINANCES",ID_FINANCES) ;
+           query.exec();
+    query.next() ;
+   // E.recuperer_equipement(REFERENCE_EQUIPEMENT);
+    ui->montant_2->setText(query.value(2).toString());
+    ui->date_2->setDate(query.value(1).toDate());
+    ui->provenance_2->setText(query.value(4).toString());
+    int TYPE_TRANSACTION=query.value(3).toString().toInt();
+    if(TYPE_TRANSACTION==0)
+    ui->radioButton_3->setChecked("");
+    else
+    ui->radioButton_4->setChecked("");
+   // ui->combo_cin_2->setCurrentIndex(query.value(5).toInt());
+    ui->mat_3->setCurrentText(query.value(5).toString());
+    ui->mat_4->setCurrentText(query.value(6).toString());
+
+}
+
+void MainWindow::on_mat_activated(int index)
+{
+    QSqlQuery query;
+    QString REF_CMD=ui->mat->currentText() ;
+   query.prepare("Select * from commandes where REF_CMD=:REF_CMD" );
+           query.bindValue(":REF_CMD",REF_CMD) ;
+           query.exec();
+    query.next() ;
+    ui->montant->setText(query.value(4).toString());
+    ui->date->setDate(query.value(5).toDate());
+    ui->provenance->setText(query.value(3).toString());
+
+    ui->radioButton_2->setChecked("");
+
+    ui->mat_2->setCurrentText(NULL);
+
+}
+
+void MainWindow::on_mat_2_activated(int index)
+{
+    QSqlQuery query;
+    QString MATRICULE_F=ui->mat->currentText() ;
+   query.prepare("Select * from fournisseur where MATRICULE_F=:MATRICULE_F" );
+           query.bindValue(":MATRICULE_F",MATRICULE_F) ;
+           query.exec();
+    query.next() ;
+    ui->montant->setText(query.value(7).toString());
+    ui->provenance->setText(query.value(1).toString());
+
+    ui->radioButton->setChecked("");
+
+    ui->mat->setCurrentText(NULL);
+
+}
+
+void MainWindow::on_lineEdit_7_textChanged(const QString &arg1)
+{
+    ui->tabledepence->setModel(C.recherche_avancee(arg1));
+
+}

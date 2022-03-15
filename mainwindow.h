@@ -4,7 +4,11 @@
 #include <QtCharts>
 #include <QChartView>
 #include <QMainWindow>
+#include<QCompleter>
+#include<QDirModel>
 #include "finances.h"
+#include "historique.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,10 +39,19 @@ private slots:
 
     void on_Statistique_3_clicked();
 
+    void on_combo_finance_activated(int index);
+
+    void on_mat_activated(int index);
+
+    void on_mat_2_activated(int index);
+
+    void on_lineEdit_7_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     finances C;
     QStringList files;
+    QCompleter *stringcompleter,*modelcompleter;
 
 };
 

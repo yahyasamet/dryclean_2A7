@@ -76,6 +76,7 @@ bool finances::ajouter()
 QSqlQueryModel* finances::afficher()
 {
     QSqlQueryModel* model=new QSqlQueryModel();
+
     model->setQuery("SELECT* FROM  finances where TYPE_TRANSACTION=0");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_FINANCES"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE_FINANCES"));
@@ -87,6 +88,26 @@ QSqlQueryModel* finances::afficher()
 
 
     return model;
+}
+QSqlQueryModel* finances::recherche_avancee(QString terme)
+{
+    QSqlQueryModel * model =new QSqlQueryModel();
+       QSqlQuery query;
+       query.prepare("select * from finances where PROVENANCE=:terme or ID_FINANCES=:terme or ID_COMMANDE=:terme or MATRICULE_FISC=:terme ");
+       query.bindValue(":terme",terme);
+       query.exec();
+       model->setQuery(query);
+
+       model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_FINANCES"));
+       model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE_FINANCES"));
+       model->setHeaderData(2, Qt::Horizontal, QObject::tr("MONTANT_FINANCE"));
+       model->setHeaderData(3, Qt::Horizontal, QObject::tr("TYPE_TRANSACTION"));
+       model->setHeaderData(4, Qt::Horizontal, QObject::tr("PROVENANCE"));
+       model->setHeaderData(5, Qt::Horizontal, QObject::tr("ID_COMMANDE"));
+       model->setHeaderData(6, Qt::Horizontal, QObject::tr("MATRICULE_FISC"));
+
+       return model;
+
 }
 QSqlQueryModel* finances::afficher2()
 {
@@ -270,4 +291,50 @@ QSqlQueryModel* finances::Trie_montantD2()
 
 
     return model;
+}
+bool finances::DateValide(QDate Date)
+
+    {
+
+        if (Date > QDate::currentDate())
+
+           {return true;}
+
+        else
+            return false;
+
+    }
+void finances::excel_dynamique()
+{
+
+
+
+                   QFile file("C:/Users/ramya/OneDrive/Bureau/dry cleaning/finance/Historique.csv");
+                   QSqlQueryModel* model=new QSqlQueryModel();
+                   model->setQuery("SELECT* FROM  finances");
+
+                   if (file.open(QFile::WriteOnly | QFile::Truncate)) {
+                       QTextStream data(&file);
+                       QStringList strList;
+                       for (int i = 0; i < model->columnCount(); i++) {
+                           if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
+                               strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
+                           else
+                               strList.append("");
+                       }
+                       data << strList.join(";") << "\n";
+                       for (int i = 0; i < model->rowCount(); i++) {
+                           strList.clear();
+                           for (int j = 0; j < model->columnCount(); j++) {
+
+                               if (model->data(model->index(i, j)).toString().length() > 0)
+                                   strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
+                               else
+                                   strList.append("");
+                           }
+                           data << strList.join(";") + "\n";
+                       }
+                       file.close();
+
+                   }
 }
