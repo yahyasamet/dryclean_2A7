@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include<QCompleter>
 #include<QDirModel>
+#include <QSound>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -35,6 +36,7 @@ private:
     Ui::MainWindow *ui;
     equipements E;
     QCompleter *stringcompleter,*modelcompleter;
+    QSound *son,*success,*error;
 
 };
 #endif // MAINWINDOW_H

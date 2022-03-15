@@ -44,7 +44,9 @@ MainWindow::MainWindow(QWidget *parent)
            ui->Rechercher_equipement->setCompleter(stringcompleter);
            Historique h;
            ui->historique->setText(h.load());
-          // ui->listWidget->addItem(h.load());
+           son=new QSound(":/son/son_QT/Simple_Beep2.wav");
+           error=new QSound(":/son/son_QT/Error.wav");
+           success=new QSound(":/son/son_QT/success.wav");
 
 }
 MainWindow::~MainWindow()
@@ -53,6 +55,7 @@ MainWindow::~MainWindow()
 }
 void MainWindow::on_Ajouter_equipement_clicked()
 {
+    son->play();
     int ref=ui->lineEdit_8->text().toInt();
     QString refs=ui->lineEdit_8->text();
     QString marque_EQUIPEMENT=ui->lineEdit_9->text();
@@ -87,24 +90,30 @@ int erreur=0;
     switch(erreur)
     {
     case 1:
+    error->play();
     msgbox.setText("Le nom doit être composé seulement par des lettres !");
     break;
 
     case 2:
+    error->play();
     msgbox.setText("La marque doit être composée seulement par des lettres !");
     break;
 
     case 3:
+    error->play();
     msgbox.setText("L'année doit être composé par 4 chiffres !");
     break;
 
     case 4:
+    error->play();
     msgbox.setText("Vérifier les champs vides !");
     break;
     case 5:
+    error->play();
     msgbox.setText("L'année doit être supérieure à 2000 !");
     break;
     case 6:
+    error->play();
     msgbox.setText("L'année doit être inférieure ou égale à la date actuelle !");
     break;
     }
@@ -113,11 +122,12 @@ if(erreur==0)
 
     bool test=E.ajouter_equipement();
     if(test)
-    {msgbox.setText("Ajout avec succes.");
+    {
+        success->play();
+        msgbox.setText("Ajout avec succes.");
         Historique h;
         h.save(cin,refs,"Ajout");
         ui->historique->setText(h.load());
-
         ui->tableView->setModel(E.afficher_equipements());
           ui->lineEdit_8->clear();
           ui->lineEdit_9->clear();
@@ -126,7 +136,11 @@ if(erreur==0)
 
     }
     else
+    {
+        error->play();
         msgbox.setText("Echec d'ajout");
+    }
+
 }
 
 
@@ -138,6 +152,7 @@ if(erreur==0)
 }
 void MainWindow::on_Supprimer_equipement_clicked()
 {
+    son->play();
     equipements E1;
     QModelIndex index = ui->tableView->selectionModel()->currentIndex();
         int reference_equipement = index.data(Qt::DisplayRole).toInt();
@@ -167,6 +182,7 @@ void MainWindow::on_Supprimer_equipement_clicked()
 
 void MainWindow::on_Modifier_equipement_clicked()
 {
+    son->play();
     int REFERENCE_EQUIPEMENT=ui->combo_ref->currentText().toInt() ;
     QString refs=ui->combo_ref->currentText();
     QString marque_EQUIPEMENT=ui->lineEdit_14->text();
@@ -201,23 +217,29 @@ void MainWindow::on_Modifier_equipement_clicked()
                 switch(erreur)
                 {
                 case 1:
+                error->play();
                 msgbox.setText("Le nom doit être composé seulement par des lettres !");
                 break;
 
                 case 2:
+                error->play();
                 msgbox.setText("La marque doit être composée seulement par des lettres !");
                 break;
 
                 case 3:
+                error->play();
                 msgbox.setText("L'année doit être supérieure à 2000 !");
                 break;
                 case 4:
+                error->play();
                 msgbox.setText("Vérifier les champs vides !");
                 break;
                 case 5:
+                error->play();
                 msgbox.setText("L'année doit être supérieure à 2000 !");
                 break;
                 case 6:
+                error->play();
                 msgbox.setText("L'année doit être inférieure ou égale à la date actuelle !");
                 break;
                 }
@@ -228,7 +250,9 @@ void MainWindow::on_Modifier_equipement_clicked()
                     E.set_ref_equipement(ui->combo_ref->currentText().toInt());
                 bool test=E.modifier_equipement(E.get_refEQUIPEMENT()) ;
                 if(test)
-                {msgbox.setText("modification avec succes.");
+                {
+                    success->play();
+                    msgbox.setText("modification avec succés.");
                     Historique h;
                     h.save(cin,refs,"Modification");
                     ui->historique->setText(h.load());
@@ -237,8 +261,11 @@ void MainWindow::on_Modifier_equipement_clicked()
                     ui->lineEdit_15->clear();
                     ui->lineEdit_16->clear();
                 }
-                else
-                msgbox.setText("Echec de modification");
+                else{
+                    error->play();
+                    msgbox.setText("Échec de modification");
+                    }
+
 
             }
             msgbox.exec();
@@ -263,6 +290,7 @@ void MainWindow::on_Rechercher_equipement_textChanged(const QString &arg1)
 
 void MainWindow::on_chatbox_clicked()
 {
+son->play();
 widget w;
 w.setModal(true);
 w.exec();

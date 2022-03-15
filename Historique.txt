@@ -8,3 +8,12 @@ cin:1  Référence:12  Date:mar. mars 15 2022  Temps:11:35:35  Action:Modification
 cin:1  Référence:13  Date:mar. mars 15 2022  Temps:11:35:39  Action:Modification by: Yahya
 cin:1  Référence:22  Date:mar. mars 15 2022  Temps:11:40:11  Action:Supprimer by: Yahya.
 cin:1  Référence:2  Date:mar. mars 15 2022  Temps:11:40:41  Action:Ajout by: Yahya.
+cin:1  Référence:200  Date:mar. mars 15 2022  Temps:15:23:44  Action:Ajout by: Yahya.
+cin:1  Référence:200  Date:mar. mars 15 2022  Temps:15:24:40  Action:Supprimer by: Yahya.
+cin:  Référence:  Date:mar. mars 15 2022  Temps:16:13:45  Action:Supprimer by: Yahya.
+cin:  Référence:  Date:mar. mars 15 2022  Temps:16:13:48  Action:Supprimer by: Yahya.
+cin:1  Référence:11  Date:mar. mars 15 2022  Temps:16:41:45  Action:Ajout by: Yahya.
+cin:  Référence:  Date:mar. mars 15 2022  Temps:17:08:19  Action:Supprimer by: Yahya.
+cin:1  Référence:14  Date:mar. mars 15 2022  Temps:17:08:41  Action:Ajout by: Yahya.
+cin:2  Référence:150  Date:mar. mars 15 2022  Temps:17:15:40  Action:Ajout by: Yahya.
+cin:2  Référence:150  Date:mar. mars 15 2022  Temps:17:16:24  Action:Modification by: Yahya.

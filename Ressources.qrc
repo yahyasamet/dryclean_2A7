@@ -18,4 +18,13 @@
         <file>images/return.png</file>
         <file>images/return1.png</file>
     </qresource>
+    <qresource prefix="/son">
+        <file>son_QT/Bip.wav</file>
+        <file>son_QT/Bip_Apelle.wav</file>
+        <file>son_QT/Bip1.wav</file>
+        <file>son_QT/Bip2.wav</file>
+        <file>son_QT/Simple_Beep2.wav</file>
+        <file>son_QT/Error.wav</file>
+        <file>son_QT/success.wav</file>
+    </qresource>
 </RCC>
