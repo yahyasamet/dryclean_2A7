@@ -73,7 +73,7 @@ QTabBar::tab:selected {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1220,16 +1220,16 @@ QHeaderView::section {
       <widget class="QTextBrowser" name="historique">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>100</y>
-         <width>861</width>
-         <height>531</height>
+         <width>891</width>
+         <height>541</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">QTextBrowser
 {
-font: 14pt &quot;Louis George Café&quot;;
+font: 13pt &quot;Louis George Café&quot;;
 }</string>
        </property>
       </widget>

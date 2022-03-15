@@ -15,13 +15,14 @@ void Historique::save(QString cin,QString ref,QString action)
     query.next() ;
     prenom=query.value("prenom").toString();
     //QDate date;
-    QDateTime date = QDateTime::currentDateTime();
+    QDate date = QDateTime::currentDateTime().date();
+    QString time=QDateTime::currentDateTime().time().toString();
     QString dates=date.toString();
     QFile file ("C:/Users/ASUS/Documents/interface/interface/Historique.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";
      QTextStream out(&file);
-     out << "cin:"+cin+" Référence:"+ref+" Date:"+dates+" Action:"+action+" by: "+prenom << "\n";
+     out << "cin:"+cin+"  Référence:"+ref+"  Date:"+dates+"  Temps:"+time+"  Action:"+action+" by: "+prenom << ".\n";
 }
 QString Historique::load()
 {   tmp="";
@@ -30,11 +31,30 @@ QString Historique::load()
       tmp="";
 
     QTextStream in(&file);
+    int i=0;
+    QString color="#09B9FF";
 
    while (!in.atEnd()) {
+       switch (i) {
+       case 0:
+       color="#09B9FF";
+       break;
+       case 1:
+           color="#0A8DFF";
+       break;
+       case 2:
+           color="#0070D1";
+       break;
+       case 3:
+           color="#024A7D";
+           break;
+       }
 
          QString myString = in.readLine();
-         tmp+=myString+"\n";
+         tmp+="<font color="+color+">"+myString+"\n <br> <font>";
+         i++;
+         if(i==4)
+             i=0;
 
    }
    return tmp;
