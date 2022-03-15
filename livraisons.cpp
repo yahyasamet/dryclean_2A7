@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QObject>
 #include <QMessageBox>
-
+#include <QTableView>
 livraisons::livraisons()
 {
 id=0;
@@ -15,6 +15,7 @@ livraisons::livraisons(int id ,QDate date_lv,QString nom_lv,int ref_cmd)
     this->nom_lv=nom_lv;
     this->date_lv=date_lv;
     this->ref_cmd=ref_cmd;
+
 
 }
 int livraisons::get_id()
@@ -62,12 +63,17 @@ bool livraisons::ajouter_livraisons()
 
 
         QSqlQueryModel* model=new QSqlQueryModel();
-
-              model->setQuery("SELECT* FROM livraisons");
+              model->setQuery("SELECT ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES WHERE OPT_LIVRAISON=1 ");
               model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
               model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM LIVREUR"));
               model->setHeaderData(2, Qt::Horizontal, QObject::tr("DATE"));
-              model->setHeaderData(3, Qt::Horizontal, QObject::tr("REFERENCE COMMANDE"));
+              model->setHeaderData(3, Qt::Horizontal, QObject::tr("REF COMMANDE"));
+              model->setHeaderData(4, Qt::Horizontal, QObject::tr("NOM CLIENT"));
+              model->setHeaderData(5, Qt::Horizontal, QObject::tr("ADRESS COMMANDE"));
+
+             // QTableView *view = new QTableView;
+               //   view->setModel(model);
+                //  view->show();
 
         return model;
 
@@ -134,74 +140,61 @@ bool livraisons::ajouter_livraisons()
         return true;
     }
 
-    int livraisons::entierValide(int entier)
-
-    {
-
-        int Retour = 0;
-
-            while(entier !=0)
-
-            {
-
-                Retour++;
-
-                entier = entier / 10;
-
-            }
-
-
-
-            return Retour;
-
-    }
 
 
     bool livraisons::DateValide(QDate Date)
 
     {
 
-        if (Date!=QDate::currentDate())
+        if (Date < QDate::currentDate())
 
-           {return false;}
+           {return true;}
 
-        else return true;
+        else
+            return false;
 
     }
 
     QSqlQueryModel * livraisons::afficherTrierDescDate()
     {
         QSqlQueryModel *model= new QSqlQueryModel();
-        model->setQuery("select * from livraisons order by DATE_LIVRAISON DESC");
+        model->setQuery("SELECT ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES WHERE OPT_LIVRAISON=1  order by DATE_LIVRAISON DESC ");
         model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
         model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM LIVREUR"));
         model->setHeaderData(2, Qt::Horizontal, QObject::tr("DATE"));
-        model->setHeaderData(3, Qt::Horizontal, QObject::tr("REFERENCE COMMANDE"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("REF COMMANDE"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("NOM CLIENT"));
+        model->setHeaderData(5, Qt::Horizontal, QObject::tr("ADRESS COMMANDE"));
         return model;
-
 
     }
 
     QSqlQueryModel * livraisons::afficherTrierAscDate()
     {
+
         QSqlQueryModel *model= new QSqlQueryModel();
-        model->setQuery("select * from livraisons order by DATE_LIVRAISON ASC");
+        model->setQuery("SELECT ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES WHERE OPT_LIVRAISON=1  order by DATE_LIVRAISON ASC ");
         model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
         model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM LIVREUR"));
         model->setHeaderData(2, Qt::Horizontal, QObject::tr("DATE"));
-        model->setHeaderData(3, Qt::Horizontal, QObject::tr("REFERENCE COMMANDE"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("REF COMMANDE"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("NOM CLIENT"));
+        model->setHeaderData(5, Qt::Horizontal, QObject::tr("ADRESS COMMANDE"));
         return model;
 
 
     }
     QSqlQueryModel * livraisons::afficherTrierDescId()
     {
+
         QSqlQueryModel *model= new QSqlQueryModel();
-        model->setQuery("select * from livraisons order by ID_LIVR DESC");
+        model->setQuery("SELECT ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES WHERE OPT_LIVRAISON=1  order by ID_LIVR ASC ");
         model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
         model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM LIVREUR"));
         model->setHeaderData(2, Qt::Horizontal, QObject::tr("DATE"));
-        model->setHeaderData(3, Qt::Horizontal, QObject::tr("REFERENCE COMMANDE"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("REF COMMANDE"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("NOM CLIENT"));
+        model->setHeaderData(5, Qt::Horizontal, QObject::tr("ADRESS COMMANDE"));
         return model;
 
 
@@ -209,16 +202,25 @@ bool livraisons::ajouter_livraisons()
 
     QSqlQueryModel * livraisons::afficherTrierAscId()
 {
-    QSqlQueryModel *model= new QSqlQueryModel();
-    model->setQuery("select * from livraisons order by ID_LIVR ASC");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM LIVREUR"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("DATE"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("REFERENCE COMMANDE"));
-    return model;
+        QSqlQueryModel *model= new QSqlQueryModel();
+        model->setQuery("SELECT ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES WHERE OPT_LIVRAISON=1  order by ID_LIVR DESC  ");
+        model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM LIVREUR"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("DATE"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("REF COMMANDE"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("NOM CLIENT"));
+        model->setHeaderData(5, Qt::Horizontal, QObject::tr("ADRESS COMMANDE"));
+        return model;
 
 
 }
 
+
+    QSqlQueryModel *livraisons::Recherche_Avancee(QString rech)
+    {
+        QSqlQueryModel *model= new QSqlQueryModel();
+        model->setQuery("SELECT ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES WHERE ID_LIVR  LIKE'%"+rech+"%' or NOM_LIVREUR  LIKE'%"+rech+"%' or DATE_LIVRAISON  LIKE'%"+rech+"%' or REF_CMD  LIKE'%"+rech+"%' or NOM_CL  LIKE'%"+rech+"%' or ADR_CL  LIKE'%"+rech+"%' ");
+        return model;
+    }
 
 

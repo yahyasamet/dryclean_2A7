@@ -76,203 +76,6 @@ QPushButton:pressed {
     <property name="title">
      <string/>
     </property>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>420</x>
-       <y>100</y>
-       <width>331</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Louis George Café</family>
-       <pointsize>18</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Gestion des livraisons</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_4">
-     <property name="geometry">
-      <rect>
-       <x>1060</x>
-       <y>230</y>
-       <width>176</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Louis George Café</family>
-       <pointsize>10</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string>Calendrier</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_3">
-     <property name="geometry">
-      <rect>
-       <x>840</x>
-       <y>230</y>
-       <width>176</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Louis George Café</family>
-       <pointsize>10</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string>Localisation Maps</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_7">
-     <property name="geometry">
-      <rect>
-       <x>420</x>
-       <y>160</y>
-       <width>751</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>a Big Deal</family>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox">
-     <property name="geometry">
-      <rect>
-       <x>1080</x>
-       <y>290</y>
-       <width>151</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QComboBox {
-	border: 1px solid #333333;
-	border-radius: 3px;
-	background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #797979, stop:0.48 #696969, stop:0.52 #5e5e5e, stop:1 #4f4f4f);
-	padding: 1px 23px 1px 3px;
-	min-width: 6em;
-	color: #ffffff;
-}
-QComboBox::drop-down {
-	subcontrol-origin: padding;
-	subcontrol-position: top right;
-	width: 20px;
- 
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;
-}
-QComboBox::down-arrow {
-     image: url(:/images/combobox-arrow.png);
-}
- 
-QComboBox QAbstractView{
-	background-color: #4f4f4f;
-	color: #999999;
- 
-	selection-background-color: rgb(252, 252, 252);
-	selection-color: #4f4f4f;
-}</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>date decroissante</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>date croissante</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>ID decroissant</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>ID croissant</string>
-      </property>
-     </item>
-    </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>1130</x>
-       <y>170</y>
-       <width>31</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="img.qrc">:/new/prefix1/images/search.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QTableView" name="tableView">
-     <property name="geometry">
-      <rect>
-       <x>400</x>
-       <y>330</y>
-       <width>831</width>
-       <height>381</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>1170</x>
-       <y>40</y>
-       <width>111</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">image::url(:/new/prefix1/images/logo_c++-1.png)</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="img.qrc">:/new/prefix1/images/logo_c++-1.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="QTabWidget" name="tabWidget">
      <property name="geometry">
       <rect>
@@ -651,22 +454,14 @@ QComboBox QAbstractView{
           <string>REF CMD:</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="le_ref_cmd">
+        <widget class="QComboBox" name="le_ref_cmd">
          <property name="geometry">
           <rect>
            <x>40</x>
-           <y>380</y>
-           <width>251</width>
-           <height>41</height>
+           <y>390</y>
+           <width>124</width>
+           <height>22</height>
           </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>a Big Deal</family>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
          </property>
         </widget>
        </widget>
@@ -859,24 +654,6 @@ QComboBox QAbstractView{
           <string>Nom de livreur:</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="le_id_2">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>90</y>
-           <width>251</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>a Big Deal</family>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-        </widget>
         <widget class="QDateEdit" name="la_date_2">
          <property name="geometry">
           <rect>
@@ -960,22 +737,24 @@ QComboBox QAbstractView{
           <string>REF CMD:</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="le_ref_cmd_2">
+        <widget class="QComboBox" name="le_ref_cmd_2">
          <property name="geometry">
           <rect>
            <x>40</x>
-           <y>380</y>
-           <width>251</width>
-           <height>41</height>
+           <y>390</y>
+           <width>124</width>
+           <height>22</height>
           </rect>
          </property>
-         <property name="font">
-          <font>
-           <family>a Big Deal</family>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
+        </widget>
+        <widget class="QComboBox" name="le_id_2">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>60</y>
+           <width>124</width>
+           <height>22</height>
+          </rect>
          </property>
         </widget>
        </widget>
@@ -1147,31 +926,13 @@ QComboBox QAbstractView{
           <string>supprimer</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="le_id_3">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>90</y>
-           <width>251</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>a Big Deal</family>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-        </widget>
         <widget class="QLabel" name="label_16">
          <property name="geometry">
           <rect>
            <x>40</x>
            <y>60</y>
-           <width>56</width>
-           <height>16</height>
+           <width>291</width>
+           <height>91</height>
           </rect>
          </property>
          <property name="font">
@@ -1183,7 +944,7 @@ QComboBox QAbstractView{
           </font>
          </property>
          <property name="text">
-          <string>ID:</string>
+          <string>Selectionner l'ID à supprimer</string>
          </property>
         </widget>
        </widget>
@@ -1417,6 +1178,295 @@ QComboBox QAbstractView{
         </property>
        </widget>
       </widget>
+     </widget>
+    </widget>
+    <widget class="QTabWidget" name="tabWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>30</y>
+       <width>891</width>
+       <height>711</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTabWidget::tab-bar {
+
+   border: 1px solid gray;
+
+ flex: 0 0 25%;
+
+    max-width: 80%;
+
+}
+
+
+
+QTabBar::tab {
+
+  background: 	rgb(72,95,225);
+
+  color: white;
+
+  padding: 10px;
+
+ flex: 0 0 25%;
+
+    max-width: 80%;
+
+font-size:13px;
+
+ }
+
+
+
+ QTabBar::tab:selected {
+
+  background: rgb(123,140,234);
+
+ }
+
+QTabWidget::pane { 
+
+   border: none;
+
+}
+
+QLineEdit {
+
+    border: 2px solid gray;
+
+    border-radius: 10px;
+
+    padding: 0 8px;
+
+    background: white;
+
+    selection-background-color: darkgray;
+
+}
+
+QPushButton {
+
+    background-color: #6610f2;
+
+    border-style: outset;
+
+    border-width: 2px;
+
+    border-radius: 10px;
+
+    border-color: beige;
+
+    min-width: 10em;
+
+    padding: 6px;
+
+}
+
+QPushButton:hover {
+
+    background-color: rgb(43, 163, 255);
+
+    border-style: inset;
+
+}
+
+QPushButton:pressed {
+
+    background-color: rgb(43, 163, 255);
+
+    border-style: inset;
+
+}
+
+QLabel{
+
+font-size: 17px;
+
+
+
+}</string>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab_13">
+      <attribute name="title">
+       <string>affichage</string>
+      </attribute>
+      <widget class="QGroupBox" name="groupBox_10">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>-30</y>
+         <width>891</width>
+         <height>711</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QComboBox" name="comboBox">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>280</y>
+          <width>151</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #797979, stop:0.48 #696969, stop:0.52 #5e5e5e, stop:1 #4f4f4f);
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+}
+QComboBox::drop-down {
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 20px;
+ 
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+QComboBox::down-arrow {
+     image: url(:/images/combobox-arrow.png);
+}
+ 
+QComboBox QAbstractView{
+	background-color: #4f4f4f;
+	color: #999999;
+ 
+	selection-background-color: rgb(252, 252, 252);
+	selection-color: #4f4f4f;
+}</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>date decroissante</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>date croissante</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ID decroissant</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ID croissant</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>780</x>
+          <y>160</y>
+          <width>31</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="img.qrc">:/new/prefix1/images/search.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QTableView" name="tableView">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>320</y>
+          <width>831</width>
+          <height>381</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>90</y>
+          <width>331</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Louis George Café</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Gestion des livraisons</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="Rechercher_livraisons">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>150</y>
+          <width>751</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>a Big Deal</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>770</x>
+          <y>30</y>
+          <width>111</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">image::url(:/new/prefix1/images/logo_c++-1.png)</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="img.qrc">:/new/prefix1/images/logo_c++-1.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab_14">
+      <attribute name="title">
+       <string>Maps</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="tab_15">
+      <attribute name="title">
+       <string>calendrier</string>
+      </attribute>
      </widget>
     </widget>
    </widget>

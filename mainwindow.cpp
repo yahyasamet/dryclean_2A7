@@ -13,12 +13,54 @@
 #include <QPointF>
 #include <QPicture>
 
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->le_id->setValidator(new QIntValidator(0,99999999,this));
+    ui->le_id_2->setValidator(new QIntValidator(0,99999999,this));
+    ui->le_id_4->setValidator(new QIntValidator(0,99999999,this));
      ui->tableView->setModel(C.afficher_livraisons());
+     ui->tableView->horizontalHeader()->setStretchLastSection(true);
+     QDate date = QDate::currentDate();
+        ui->la_date->setDate(date);
+        ui->la_date_2->setDate(date);
+
+     QSqlQuery qry;
+         qry.prepare("select REF_CMD from COMMANDES WHERE OPT_LIVRAISON=1 ");
+         qry.exec();
+         //ui->le_ref_cmd_2->addItem("");
+         //ui->le_ref_cmd->addItem("");
+         while(qry.next()){
+          ui->le_ref_cmd->addItem(qry.value(0).toString());
+          ui->le_ref_cmd_2->addItem(qry.value(0).toString());
+         }
+
+
+         QSqlQuery qry1;
+        // ui->le_id_2->addItem("");
+             qry1.prepare("select ID_LIVR from livraisons");
+             qry1.exec();
+             while(qry1.next()){
+              ui->le_id_2->addItem(qry1.value(0).toString());
+             }
+
+             QSqlQuery qry2;
+             qry2.prepare("SELECT ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES");
+             qry2.exec();
+             QStringList completionlist;
+             while(qry2.next()){
+                 completionlist <<qry2.value("NOM_LIVREUR").toString()<<qry2.value("ID_LIVR").toString()<<qry2.value("DATE_LIVRAISON").toString()<<qry2.value("REF_CMD").toString()<<qry2.value("NOM_CL").toString()<<qry2.value("ADR_CL").toString();
+             }
+
+             stringcompleter=new QCompleter(completionlist,this);
+             stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
+             ui->Rechercher_livraisons->setCompleter(stringcompleter);
+
+
 }
 
 MainWindow::~MainWindow()
@@ -35,15 +77,16 @@ void MainWindow::on_pushButton_2_clicked()
  int id=ui->le_id->text().toInt();
  QString nom_lv=ui->le_nom->text();
  QDate date_lv=ui->la_date->date();
-// QString date_lv2=date_lv.toString("yyyy,dd,MM");
- int ref_cmd=ui->le_ref_cmd->text().toInt();
+ int ref_cmd=ui->le_ref_cmd->currentText().toInt();
+
+
 
  livraisons L(id,date_lv,nom_lv,ref_cmd);
      QMessageBox msgbox;
      int erreur=0;
          if(!L.NOM_Valid(nom_lv) || nom_lv=="")
          erreur=1;
-         if(!L.DateValide(date_lv))
+         if(L.DateValide(date_lv))
          erreur=2;
 
          switch(erreur)
@@ -65,7 +108,8 @@ void MainWindow::on_pushButton_2_clicked()
          ui->tableView->setModel(L.afficher_livraisons());
          ui->le_id->clear();
          ui->le_nom->clear();
-         ui->le_ref_cmd->clear();
+         QDate date = QDate::currentDate();
+            ui->la_date->setDate(date);
 
 
 
@@ -80,36 +124,41 @@ msgbox.exec();
 void MainWindow::on_supprimer_clicked()
 {
 
-    int id=ui->le_id_3->text().toInt();
 
-    bool test=C.supprimer_livraison(id);
-    QMessageBox msgBox;
-    if(test)
-  {
-    msgBox.setText("supprimer avec succée");
-    ui->tableView->setModel(C.afficher_livraisons());
+    QModelIndex index = ui->tableView->selectionModel()->currentIndex();
+           int id = index.data(Qt::DisplayRole).toInt();
 
-    // Put the focus back into the input box so they can type again:
-   ui->le_id_3->setFocus();
-    }
-
-    else
-        msgBox.setText("Echec de suppression");
-    msgBox.exec();
+         QMessageBox::StandardButton reply;
+           reply = QMessageBox::question(this, "Supprimer", "Etes vous sur de supprimer",
+                                         QMessageBox::Yes|QMessageBox::No);
+           if (reply == QMessageBox::Yes) {
+               bool test=C.supprimer_livraison(id);
+               if(test)
+               {
+         ui->tableView->setModel(C.afficher_livraisons());
+         QMessageBox::information(nullptr,"Suppression","case supprimé");}
+           }
 }
+
 
 void MainWindow::on_modifier_clicked()
 {
     livraisons C;
     QMessageBox msg;
-    C.set_id(ui->le_id_2->text().toInt());
+
+
+
+
+
+
+    C.set_id(ui->le_id_2->currentText().toInt());
     C.set_nom_lv(ui->le_nom_2->text());
     C.set_date_lv(ui->la_date_2->date());
-    C.set_ref_cmd(ui->le_ref_cmd_2->text().toInt());
+    C.set_ref_cmd(ui->le_ref_cmd_2->currentText().toInt());
     int erreur=0;
         if(!C.NOM_Valid(C.get_nom_lv()) || C.get_nom_lv()=="")
         erreur=1;
-        if(!C.DateValide( C.get_date_lv()))
+        if(C.DateValide( C.get_date_lv()))
         erreur=2;
 
         switch(erreur)
@@ -129,9 +178,9 @@ if(erreur==0)
     {
         msg.setText("modification avec succès");
        ui->tableView->setModel(C.afficher_livraisons());
-       ui->le_id_2->clear();
        ui->le_nom_2->clear();
-       ui->le_ref_cmd_2->clear();
+       QDate date = QDate::currentDate();
+          ui->la_date_2->setDate(date);
 
 
     }
@@ -145,6 +194,8 @@ if(erreur==0)
 
     msg.exec();
 }
+
+
 
 
 void MainWindow::on_comboBox_activated(const QString &arg1)
@@ -205,4 +256,40 @@ void MainWindow::on_pushButton_5_clicked()
               QMessageBox::information(this, QObject::tr("PDF Enregistré!"),
               QObject::tr("PDF Enregistré!.\n" "Click Cancel to exit."), QMessageBox::Cancel);
 
+}
+
+
+
+void MainWindow::on_le_id_2_activated()
+{
+
+
+
+        QSqlQuery query;
+        QString ID_LIVR=ui->le_id_2->currentText() ;
+       query.prepare("Select * from livraisons where ID_LIVR=:ID_LIVR" );
+               query.bindValue(":ID_LIVR",ID_LIVR) ;
+               query.exec();
+        query.next() ;
+
+        ui->le_nom_2->setText(query.value(1).toString());
+        ui->la_date_2->setDate(query.value(2).toDate());
+        ui->le_ref_cmd_2->setCurrentText(query.value(3).toString());
+
+}
+
+
+
+void MainWindow::on_Rechercher_livraisons_textEdited(const QString &arg1)
+{
+   ui->tableView->setModel(C.Recherche_Avancee(arg1));
+}
+
+
+
+
+
+void MainWindow::on_Rechercher_livraisons_textChanged(const QString &arg1)
+{
+  ui->tableView->setModel(C.Recherche_Avancee(arg1));
 }

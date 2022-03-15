@@ -2,6 +2,7 @@
 #define LIVRAISONS_H
 #include<QString>
 #include<QDate>
+
 #include <QSqlQueryModel>
 class livraisons
 {
@@ -30,6 +31,7 @@ public:
     QSqlQueryModel *afficherTrierAscDate();
     QSqlQueryModel * afficherTrierDescId();
     QSqlQueryModel *afficherTrierAscId();
+    QSqlQueryModel * Recherche_Avancee(QString);
 
 private:
     int id;

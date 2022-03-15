@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 #include "livraisons.h"
 #include <QMainWindow>
-
+#include <QCompleter>
+#include <QDirModel>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -25,8 +26,24 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+
+
+    void on_le_id_2_activated();
+
+
+
+    void on_Rechercher_livraisons_textEdited(const QString &arg1);
+
+
+
+
+
+
+    void on_Rechercher_livraisons_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     livraisons C;
+    QCompleter *stringcompleter,*modelcompleter;
 };
 #endif // MAINWINDOW_H
