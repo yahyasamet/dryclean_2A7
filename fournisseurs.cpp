@@ -129,5 +129,100 @@ bool Fournisseurs::modifier(QString MATRICULE_F)
    return query.exec();
     }
 
+bool Fournisseurs:: recuperer_fournisseur(QString MATRICULE_F)
+{
+    QSqlQuery query;
+          query.prepare("Select * from fournisseur where MATRICULE_F=:MATRICULE_F" );
+                  query.bindValue(":MATRICULE_F",MATRICULE_F) ;
+                  query.exec();
+                  query.next();
+
+          return query.exec();
 
 
+}
+
+QSqlQueryModel * Fournisseurs::Recherche_Avancee(QString recherche)
+{
+    QSqlQueryModel *model= new QSqlQueryModel();
+    QSqlQuery query;
+
+    query.prepare("SELECT * FROM fournisseur WHERE MATRICULE_F  LIKE'%"+recherche+"%' or NOMSOCIETE  LIKE'%"+recherche+"%' or ADRESSE_SOCIETE  LIKE'%"+recherche+"%' or EMAIL_F  LIKE'%"+recherche+"%'");
+    query.bindValue(":recherche", recherche);
+    query.exec();
+    model->setQuery(query);
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("MATRICULE_F"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOMSOCIETE"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("NUMERO_TEL"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("ADRESSE_SOCIETE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL_F"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("TYPE_ACHATF"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("QUANTITE_F"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("PRIX_F"));
+
+
+    return model;
+}
+
+
+QSqlQueryModel *Fournisseurs:: Tri_quantite()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+
+    model->setQuery("select * from fournisseur order by QUANTITE_F" );
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("MATRICULE_F"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOMSOCIETE"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("NUMERO_TEL"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("ADRESSE_SOCIETE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL_F"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("TYPE_ACHATF"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("QUANTITE_F"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("PRIX_F"));
+
+
+ return model;
+
+}
+
+
+
+
+QSqlQueryModel *Fournisseurs:: Tri_prix()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+
+    model->setQuery("select * from fournisseur order by PRIX_F" );
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("MATRICULE_F"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOMSOCIETE"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("NUMERO_TEL"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("ADRESSE_SOCIETE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL_F"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("TYPE_ACHATF"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("QUANTITE_F"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("PRIX_F"));
+
+
+ return model;
+
+}
+
+
+
+QSqlQueryModel *Fournisseurs:: Tri_nom()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+
+    model->setQuery("select * from fournisseur order by NOMSOCIETE" );
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("MATRICULE_F"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOMSOCIETE"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("NUMERO_TEL"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("ADRESSE_SOCIETE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL_F"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("TYPE_ACHATF"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("QUANTITE_F"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("PRIX_F"));
+
+
+ return model;
+
+}

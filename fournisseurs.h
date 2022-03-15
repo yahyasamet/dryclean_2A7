@@ -41,6 +41,12 @@ public:
     QSqlQueryModel* afficher();
     bool supprimer(QString);
     bool modifier(QString);
+    bool recuperer_fournisseur(QString MATRICULE_F);
+    QSqlQueryModel * Recherche_Avancee(QString);
+    QSqlQueryModel *Tri_quantite();
+    QSqlQueryModel *Tri_prix();
+    QSqlQueryModel *Tri_nom();
+
 
 
 

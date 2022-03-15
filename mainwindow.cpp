@@ -5,6 +5,15 @@
 #include<QDebug>
 #include "fournisseurs.h"
 
+#include <QIntValidator>
+#include <QRegExpValidator>
+#include <QSqlQuery>
+#include <QSystemTrayIcon>
+#include <QDebug>
+#include <QUrl>
+#include<QDate>
+
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,6 +21,29 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->tableView->setModel(f.afficher());
+
+
+
+    QSqlQuery qry,qry1;
+            qry.prepare("select MATRICULE_F from fournisseur");
+            qry.exec();
+           ui->combo_box_modifier->addItem("");
+           ui->combo_box_supprimer->addItem("");
+            while(qry.next()){
+             ui->combo_box_modifier->addItem(qry.value(0).toString());
+             ui->combo_box_supprimer->addItem(qry.value(0).toString());}
+            qry1.prepare("select * from fournisseur");
+            qry1.exec();
+            QStringList completionlist;
+            while(qry1.next()){
+                completionlist <<qry1.value("MATRICULE_F").toString() <<qry1.value("NOMSOCIETE").toString() <<qry1.value("ADRESSE_SOCIETE").toString() <<qry1.value("EMAIL_F").toString();
+            }
+            stringcompleter=new QCompleter(completionlist,this);
+            stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
+            ui->rechercheA->setCompleter(stringcompleter);
+
+
+
 
 }
 
@@ -49,10 +81,29 @@ void MainWindow::on_ajouter_clicked()
 
 
 
-      if  (MATRICULE_F=="" || NOMSOCIETE=="" || NUMERO_TEL==0 || ADRESSE_SOCIETE=="" || EMAIL_F=="" )
+     if  (MATRICULE_F=="" )
             {QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                        QObject::tr("Ce champ ne peut pas rester vide!"), QMessageBox::Cancel);}
+                        QObject::tr("Donner la matricule fiscale!"), QMessageBox::Cancel);}
 
+     else if (NOMSOCIETE=="")
+      {QMessageBox::critical(nullptr, QObject::tr("Echec"),
+                  QObject::tr("Donner le nom de la société!"), QMessageBox::Cancel);}
+
+     else if (NUMERO_TEL==0 )
+           {QMessageBox::critical(nullptr, QObject::tr("Echec"),
+                       QObject::tr("Donner le numero tel!"), QMessageBox::Cancel);}
+
+     else if (ADRESSE_SOCIETE=="")
+           {QMessageBox::critical(nullptr, QObject::tr("Echec"),
+                       QObject::tr("Donner l'adresse de la société!"), QMessageBox::Cancel);}
+
+     else if(!ui->lineEdit_ADRESSE_SOCIETE->text().contains(" "))
+         {QMessageBox::critical(nullptr, QObject::tr("Echec"),
+                             QObject::tr("Adresse invalide!"), QMessageBox::Cancel);}
+
+     else if (EMAIL_F=="" )
+           {QMessageBox::critical(nullptr, QObject::tr("Echec"),
+                       QObject::tr("Donner l'adresse mail!"), QMessageBox::Cancel);}
 
     else if(!ui->lineEdit_EMAIL_F->text().contains("@") || !ui->lineEdit_EMAIL_F->text().contains("."))
         {QMessageBox::critical(nullptr, QObject::tr("Echec"),
@@ -112,7 +163,7 @@ void MainWindow::on_supprimer_clicked()
 {
 
    Fournisseurs f;
-    QString MATRICULE_F=ui->lineEdit_11->text();
+    QString MATRICULE_F=ui->combo_box_supprimer->currentText();
 
 
     bool test=f.supprimer( MATRICULE_F);
@@ -123,8 +174,8 @@ void MainWindow::on_supprimer_clicked()
                        QObject::tr("Suppression Effectué\n"
                                    "click cancel to exit"), QMessageBox::Cancel);
     ui->tableView->setModel(f.afficher());
-    ui->lineEdit_11->clear();
-     ui->lineEdit_11->setFocus();
+    ui->combo_box_supprimer->clear();
+     ui->combo_box_supprimer->setFocus();
 
 
 
@@ -144,7 +195,7 @@ void MainWindow::on_modifier_clicked()
 
 
   QString typeachats1;
-    QString MATRICULE_F=ui->matf->text();
+    QString MATRICULE_F=ui->combo_box_modifier->currentText();
     QString NOMSOCIETE=ui->nom->text();
    int NUMERO_TEL=ui->num->text().toInt();
     QString ADRESSE_SOCIETE=ui->adresse->text();
@@ -153,9 +204,30 @@ void MainWindow::on_modifier_clicked()
     int PRIX_F=ui->prix->text().toInt();
 
 
-   if  (MATRICULE_F=="" || NOMSOCIETE=="" || NUMERO_TEL==0 || ADRESSE_SOCIETE=="" || EMAIL_F=="" )
-         {QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                     QObject::tr("Ce champ ne peut pas rester vide!"), QMessageBox::Cancel);}
+
+    if  (MATRICULE_F=="" )
+           {QMessageBox::critical(nullptr, QObject::tr("Echec"),
+                       QObject::tr("Donner la matricule fiscale!"), QMessageBox::Cancel);}
+
+    else if (NOMSOCIETE=="")
+     {QMessageBox::critical(nullptr, QObject::tr("Echec"),
+                 QObject::tr("Donner le nom de la société!"), QMessageBox::Cancel);}
+
+    else if (NUMERO_TEL==0 )
+          {QMessageBox::critical(nullptr, QObject::tr("Echec"),
+                      QObject::tr("Donner le numero tel!"), QMessageBox::Cancel);}
+
+    else if (ADRESSE_SOCIETE=="")
+          {QMessageBox::critical(nullptr, QObject::tr("Echec"),
+                      QObject::tr("Donner l'adresse de la société!"), QMessageBox::Cancel);}
+
+    else if(!ui->adresse->text().contains(" "))
+        {QMessageBox::critical(nullptr, QObject::tr("Echec"),
+                            QObject::tr("Adresse invalide!"), QMessageBox::Cancel);}
+
+    else if (EMAIL_F=="" )
+          {QMessageBox::critical(nullptr, QObject::tr("Echec"),
+                      QObject::tr("Donner l'adresse mail!"), QMessageBox::Cancel);}
 
 
  else if(!ui->email->text().contains("@") || !ui->email->text().contains("."))
@@ -191,13 +263,62 @@ else {
                                            "click cancel to exit"), QMessageBox::Cancel);
         }
         ui->tableView->setModel(f.afficher());
-                       ui->matf->clear();
+                       ui->combo_box_modifier->clear();
                        ui->nom->clear();
                        ui->num->clear();
                        ui->adresse->clear();
                        ui->email->clear();
                        ui->quantite->clear();
                        ui->prix->clear();
-                      ui->matf->setFocus();
+                      ui->combo_box_modifier->setFocus();
    }
+}
+
+
+void MainWindow::on_combo_box_modifier_activated(const QString &)
+{
+    QSqlQuery query;
+    QString MATRICULE_F=ui->combo_box_modifier->currentText() ;
+   query.prepare("Select * from fournisseur where MATRICULE_F=:MATRICULE_F" );
+           query.bindValue(":MATRICULE_F",MATRICULE_F) ;
+           query.exec();
+    query.next() ;
+    ui->nom->setText(query.value(1).toString());
+    ui->num->setText(query.value(2).toString());
+    ui->adresse->setText(query.value(3).toString());
+    ui->email->setText(query.value(4).toString());
+
+
+    QString type=query.value(5).toString();
+    if(type=="machine")
+    ui->machine->setChecked("");
+    else
+    ui->produit->setChecked("");
+
+    ui->quantite->setSpecialValueText(query.value(6).toString());
+    ui->prix->setText(query.value(7).toString());
+}
+
+
+void MainWindow::on_rechercheA_textChanged(const QString & arg1)
+{
+    ui->tableView->setModel(f.Recherche_Avancee(arg1));
+
+}
+
+void MainWindow::on_rechercheA_textEdited(const QString & arg1)
+{
+    ui->tableView->setModel(f.Recherche_Avancee(arg1));
+
+}
+
+void MainWindow::on_Tri_activated(const QString &arg1)
+{
+    if(arg1=="Quantité")
+    ui->tableView->setModel(f.Tri_quantite());
+    else if(arg1=="Prix")
+    ui->tableView->setModel(f.Tri_prix());
+    else if(arg1=="Nom Société")
+    ui->tableView->setModel(f.Tri_nom());
+
 }
