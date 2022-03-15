@@ -54,6 +54,7 @@ bool NomValide(QString chaine);
 bool adresseValide(QString adresse);
 int entierValide(int entier);
 bool DateValide(QDate Date);
+QSqlQueryModel * Recherche_Avancee(QString arg1);
 
 private:
          int ref_cmd,cin_cl,qtt_vet,montant_cmd,etat_cmd,nb_pts,type_vet,opt_livr,cin_emp;

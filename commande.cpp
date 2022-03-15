@@ -290,7 +290,7 @@ bool Commande::genererFacture(QString ref, QString cinS, QString qtt, QString Da
 {
     QPrinter printer;
        printer.setOutputFormat(QPrinter::PdfFormat);
-       printer.setOutputFileName("C:/Users/MSI/Desktop/Projet_C++_2A7/untitled/Facture43.pdf");
+       printer.setOutputFileName("C:/Users/MSI/Desktop/untitled_cb/Facture43.pdf");
        QPainter painter;
        QImage logo("C:/Users/MSI/Desktop/Projet_C++_2A7/untitled/logo_c++_1.png");
        QImage logo_scale=logo.scaled(200, 200, Qt::KeepAspectRatio);
@@ -370,5 +370,23 @@ bool Commande::DateValide(QDate Date)
        {return false;}
     else return true;
 }
+QSqlQueryModel * Commande::Recherche_Avancee(QString arg)
+{
+    QSqlQueryModel *model= new QSqlQueryModel();
+     model->setQuery("select * from commandes WHERE ((ref_cmd ) LIKE '%"+arg+"%') or ((Nom_cl ) LIKE '%"+arg+"%') ");
+     model->setHeaderData(0,Qt::Horizontal,QObject::tr("ref_cmd"));
+     model->setHeaderData(1,Qt::Horizontal,QObject::tr("CIN"));
+     model->setHeaderData(2,Qt::Horizontal,QObject::tr("Nom"));
+     model->setHeaderData(3,Qt::Horizontal,QObject::tr("Qtt"));
+     model->setHeaderData(4,Qt::Horizontal,QObject::tr("Montant"));
+     model->setHeaderData(5,Qt::Horizontal,QObject::tr("Date"));
+     model->setHeaderData(6,Qt::Horizontal,QObject::tr("Etat"));
+     model->setHeaderData(7,Qt::Horizontal,QObject::tr("Adresse"));
+     model->setHeaderData(8,Qt::Horizontal,QObject::tr("nb_pts"));
+     model->setHeaderData(9,Qt::Horizontal,QObject::tr("type_v"));
+     model->setHeaderData(10,Qt::Horizontal,QObject::tr("Opt_livr"));
+     model->setHeaderData(11,Qt::Horizontal,QObject::tr("cin_empl"));
 
 
+return model;
+}
