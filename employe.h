@@ -39,6 +39,7 @@ public:
     QSqlQueryModel *afficher();
     bool modifier(QString);
     bool string_test(QString ch);
+    bool recherche(QString CIN);
 
 private:
     QString nom,prenom,email,password,fonction,cin,num_tel;

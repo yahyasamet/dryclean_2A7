@@ -8,7 +8,7 @@ class Connection
 {
 public:
     Connection();
-    bool createconnect();
+    bool connect();
 };
 
 #endif // CONNECTION_H

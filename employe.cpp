@@ -170,3 +170,19 @@ bool employe:: string_test(QString ch)
     }
     return true;
 }
+
+bool employe::recherche(QString CIN)
+{
+    QMessageBox msgBox;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM EMPLOYE WHERE CIN= :CIN");
+    query.bindValue(":CIN", CIN);
+    if (query.exec() && query.next())
+    {
+            return true;
+    }
+    else
+    {
+        return false;
+    }
+}
