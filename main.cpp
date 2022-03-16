@@ -2,6 +2,8 @@
 #include <QApplication>
 #include <QMessageBox>
 #include "connection.h"
+#include "webaxwidget.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -22,6 +24,11 @@ else
     QMessageBox::critical(nullptr, QObject::tr("database is not open"),
                 QObject::tr("connection failed.\n"
                             "Click Cancel to exit."), QMessageBox::Cancel);
+
+
+
+
+
 return a.exec();
 }
 

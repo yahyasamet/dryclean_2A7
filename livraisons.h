@@ -32,6 +32,9 @@ public:
     QSqlQueryModel * afficherTrierDescId();
     QSqlQueryModel *afficherTrierAscId();
     QSqlQueryModel * Recherche_Avancee(QString);
+    int chercher_ref(int );
+    int chercher_id(int );
+
 
 private:
     int id;

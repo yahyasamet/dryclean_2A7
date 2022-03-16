@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql axcontainer widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,7 +24,8 @@ SOURCES += \
 HEADERS += \
     connection.h \
     livraisons.h \
-    mainwindow.h
+    mainwindow.h \
+    webaxwidget.h
 
 FORMS += \
     mainwindow.ui
@@ -35,4 +36,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    img.qrc
+    img.qrc \
+    mymap.qrc

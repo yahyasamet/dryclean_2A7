@@ -12,6 +12,11 @@
 #include <QPainter>
 #include <QPointF>
 #include <QPicture>
+#include <QtGui>
+
+#include <QVariant>
+#include <QAbstractEventDispatcher>
+#include <QDir>
 
 
 
@@ -20,36 +25,40 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+  setFixedSize(1300,750);
+
+
+   this->showAddrWeb();
+  connect(ui->goPushButton,SIGNAL(clicked(bool)),this,SLOT(showAddrWeb()));
+
+
     ui->le_id->setValidator(new QIntValidator(0,99999999,this));
-    ui->le_id_2->setValidator(new QIntValidator(0,99999999,this));
-    ui->le_id_4->setValidator(new QIntValidator(0,99999999,this));
+
      ui->tableView->setModel(C.afficher_livraisons());
      ui->tableView->horizontalHeader()->setStretchLastSection(true);
+
      QDate date = QDate::currentDate();
         ui->la_date->setDate(date);
         ui->la_date_2->setDate(date);
 
-     QSqlQuery qry;
+        //combox
+     QSqlQuery qry,qry1,qry2;
          qry.prepare("select REF_CMD from COMMANDES WHERE OPT_LIVRAISON=1 ");
-         qry.exec();
-         //ui->le_ref_cmd_2->addItem("");
-         //ui->le_ref_cmd->addItem("");
-         while(qry.next()){
-          ui->le_ref_cmd->addItem(qry.value(0).toString());
-          ui->le_ref_cmd_2->addItem(qry.value(0).toString());
+             qry.exec();
+             while(qry.next()){
+             ui->le_ref_cmd->addItem(qry.value(0).toString());
+             ui->le_ref_cmd_2->addItem(qry.value(0).toString());
          }
-
-
-         QSqlQuery qry1;
-        // ui->le_id_2->addItem("");
-             qry1.prepare("select ID_LIVR from livraisons");
+         qry1.prepare("select ID_LIVR from livraisons");
              qry1.exec();
              while(qry1.next()){
               ui->le_id_2->addItem(qry1.value(0).toString());
+              ui->le_id_3->addItem(qry1.value(0).toString());
+              ui->le_id_4->addItem(qry1.value(0).toString());
              }
 
-             QSqlQuery qry2;
-             qry2.prepare("SELECT ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES");
+         qry2.prepare("SELECT ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES");
              qry2.exec();
              QStringList completionlist;
              while(qry2.next()){
@@ -59,6 +68,11 @@ MainWindow::MainWindow(QWidget *parent)
              stringcompleter=new QCompleter(completionlist,this);
              stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
              ui->Rechercher_livraisons->setCompleter(stringcompleter);
+
+
+
+
+
 
 
 }
@@ -88,6 +102,10 @@ void MainWindow::on_pushButton_2_clicked()
          erreur=1;
          if(L.DateValide(date_lv))
          erreur=2;
+         if(L.chercher_ref(ref_cmd)>=1)
+          erreur=3;
+         if(L.chercher_id(id)>=1)
+          erreur=4;
 
          switch(erreur)
          {
@@ -96,6 +114,12 @@ void MainWindow::on_pushButton_2_clicked()
          break;
          case 2:
          msgbox.setText("La date doit être suppérieur à la date actuel !");
+         break;
+         case 3:
+         msgbox.setText("reference deja existe !");
+         break;
+         case 4:
+         msgbox.setText("ID deja existe !");
          break;
 
          }
@@ -107,6 +131,19 @@ void MainWindow::on_pushButton_2_clicked()
      {msgbox.setText("Ajout avec succes.");
          ui->tableView->setModel(L.afficher_livraisons());
          ui->le_id->clear();
+         //mise a jour des id
+          ui->le_id_2->clear();
+          ui->le_id_3->clear();
+          ui->le_id_4->clear();
+         QSqlQuery qry1;
+         qry1.prepare("select ID_LIVR from livraisons");
+             qry1.exec();
+             while(qry1.next()){
+              ui->le_id_2->addItem(qry1.value(0).toString());
+              ui->le_id_3->addItem(qry1.value(0).toString());
+              ui->le_id_4->addItem(qry1.value(0).toString());
+             }
+
          ui->le_nom->clear();
          QDate date = QDate::currentDate();
             ui->la_date->setDate(date);
@@ -132,11 +169,28 @@ void MainWindow::on_supprimer_clicked()
            reply = QMessageBox::question(this, "Supprimer", "Etes vous sur de supprimer",
                                          QMessageBox::Yes|QMessageBox::No);
            if (reply == QMessageBox::Yes) {
+
                bool test=C.supprimer_livraison(id);
                if(test)
                {
          ui->tableView->setModel(C.afficher_livraisons());
-         QMessageBox::information(nullptr,"Suppression","case supprimé");}
+         QMessageBox::information(nullptr,"Suppression","case supprimé");
+         //mise a jour des id
+          ui->le_id_2->clear();
+          ui->le_id_3->clear();
+          ui->le_id_4->clear();
+         QSqlQuery qry1;
+         qry1.prepare("select ID_LIVR from livraisons");
+             qry1.exec();
+             while(qry1.next()){
+              ui->le_id_2->addItem(qry1.value(0).toString());
+              ui->le_id_3->addItem(qry1.value(0).toString());
+              ui->le_id_4->addItem(qry1.value(0).toString());
+             }
+
+               }
+               else
+                   QMessageBox::information(nullptr,"Suppression","echc de supprimé");
            }
 }
 
@@ -160,6 +214,10 @@ void MainWindow::on_modifier_clicked()
         erreur=1;
         if(C.DateValide( C.get_date_lv()))
         erreur=2;
+        if(C.chercher_ref(C.get_ref_cmd())>=1)
+         erreur=3;
+        if(C.chercher_id(C.get_id())>=1)
+         erreur=4;
 
         switch(erreur)
         {
@@ -168,6 +226,12 @@ void MainWindow::on_modifier_clicked()
         break;
         case 2:
         msg.setText("La date doit être suppérieur à la date actuel !");
+        break;
+        case 3:
+        msg.setText("reference deja existe !");
+        break;
+        case 4:
+        msg.setText("ID deja existe !");
         break;
 
         }
@@ -238,7 +302,7 @@ void MainWindow::on_pushButton_5_clicked()
               painter.drawRect(100,3000,9400,9000);
 
               QSqlQuery query;
-              int id=ui->le_id_4->text().toInt(); //on supprime si tout livraisins
+              int id=ui->le_id_4->currentText().toInt(); //on supprime si tout livraisins
               query.prepare("select * from livraisons where ID_LIVR=:ID_LIVR");   //on supprime  where ID_LIVR=:ID_LIVR si tout livraisins
               query.bindValue(":ID_LIVR", id);   //on supprime si tout livraisins
               query.exec();
@@ -292,4 +356,33 @@ void MainWindow::on_Rechercher_livraisons_textEdited(const QString &arg1)
 void MainWindow::on_Rechercher_livraisons_textChanged(const QString &arg1)
 {
   ui->tableView->setModel(C.Recherche_Avancee(arg1));
+}
+void MainWindow::webShow(const QString &url)
+{
+    ui->webBrowser->dynamicCall("Navigate(const QString&)", url);
+}
+
+void MainWindow::showAddrWeb()
+{
+    QString addr="https://www.google.com/maps/place/"+on_le_id_3_activated();
+    webShow(addr);
+
+}
+
+
+
+QString MainWindow::on_le_id_3_activated()
+{
+
+
+    QSqlQuery query;
+    QString ID_LIVR=ui->le_id_3->currentText() ;
+   query.prepare("SELECT ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES where ID_LIVR=:ID_LIVR" );
+           query.bindValue(":ID_LIVR",ID_LIVR) ;
+           query.exec();
+    query.next() ;
+
+     QString ADR_CL=query.value(5).toString();
+
+    return  ADR_CL;
 }

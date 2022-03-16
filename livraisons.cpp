@@ -4,6 +4,10 @@
 #include <QObject>
 #include <QMessageBox>
 #include <QTableView>
+#include <QPushButton>
+#include<QVBoxLayout>
+#include<QPushButton>
+#include<QDebug>
 livraisons::livraisons()
 {
 id=0;
@@ -71,9 +75,11 @@ bool livraisons::ajouter_livraisons()
               model->setHeaderData(4, Qt::Horizontal, QObject::tr("NOM CLIENT"));
               model->setHeaderData(5, Qt::Horizontal, QObject::tr("ADRESS COMMANDE"));
 
-             // QTableView *view = new QTableView;
+            //  QTableView *view = new QTableView;
                //   view->setModel(model);
                 //  view->show();
+
+
 
         return model;
 
@@ -81,10 +87,11 @@ bool livraisons::ajouter_livraisons()
     bool livraisons::supprimer_livraison(int ID){
         QSqlQuery query;
         livraisons C;
-
+        if (recherche_int(ID))
+        {
         query.prepare("Delete from livraisons where ID_LIVR=:ID_LIVR");
         query.bindValue(":ID_LIVR", ID);
-
+}
         return query.exec();
     }
 
@@ -223,4 +230,39 @@ bool livraisons::ajouter_livraisons()
         return model;
     }
 
+    int livraisons::chercher_ref(int ref)
+    {
+        QSqlQuery qry;
 
+        qry.prepare("SELECT * FROM livraisons WHERE REF_CMD = :REF_CMD");
+        qry.bindValue(":REF_CMD",ref);
+        qDebug() << ref << endl;
+       int count(0);
+        if ( qry.exec() )
+        {
+
+            while (qry.next())
+            {
+                count++;
+            }
+    }
+        return count;
+    }
+    int livraisons::chercher_id(int id)
+    {
+        QSqlQuery qry;
+
+        qry.prepare("SELECT * FROM livraisons WHERE ID_LIVR = :ID_LIVR");
+        qry.bindValue(":ID_LIVR",id);
+        qDebug() << id << endl;
+       int count(0);
+        if ( qry.exec() )
+        {
+
+            while (qry.next())
+            {
+                count++;
+            }
+    }
+        return count;
+    }
