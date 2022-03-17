@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1321</width>
-    <height>767</height>
+    <width>1305</width>
+    <height>749</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -27,7 +27,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
+      <y>0</y>
       <width>381</width>
       <height>721</height>
      </rect>
@@ -403,6 +403,58 @@ QRadioButton::indicator:checked:hover {
         </rect>
        </property>
       </widget>
+      <widget class="QLabel" name="cs2">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>180</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cs3">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>270</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cs4">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>360</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cs1">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>90</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
@@ -725,6 +777,45 @@ QPushButton:pressed {
         </rect>
        </property>
       </widget>
+      <widget class="QLabel" name="cs5">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>180</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cs6">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>270</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="cs7">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>360</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
@@ -896,7 +987,7 @@ QRadioButton::indicator:checked:hover {
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>10</y>
+      <y>0</y>
       <width>911</width>
       <height>721</height>
      </rect>
@@ -922,7 +1013,7 @@ QTabBar::tab:selected {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -988,8 +1079,8 @@ QLineEdit {
       <widget class="QPushButton" name="chatbox">
        <property name="geometry">
         <rect>
-         <x>750</x>
-         <y>600</y>
+         <x>840</x>
+         <y>620</y>
          <width>41</width>
          <height>41</height>
         </rect>
@@ -1004,13 +1095,10 @@ QLineEdit {
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-border-image: url(:/images/images/chat3.png);
+border-image: url(:/images/images/chat5.png);
 }
 QPushButton:hover{
-	border-image: url(:/images/images/chat.png);
-}
-QPushButton:pressed{
-border-image: url(:/images/images/chat1.png);
+	border-image: url(:/images/images/chat4.png);
 }</string>
        </property>
        <property name="text">
@@ -1180,8 +1268,8 @@ QHeaderView::section {
       <widget class="QLabel" name="label">
        <property name="geometry">
         <rect>
-         <x>740</x>
-         <y>640</y>
+         <x>830</x>
+         <y>660</y>
          <width>61</width>
          <height>20</height>
         </rect>
@@ -1191,6 +1279,122 @@ QHeaderView::section {
        </property>
        <property name="text">
         <string>Chat Box</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="facebook">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>620</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border-image: url(:/images/images/facebook.png);
+}
+QPushButton:hover{
+	
+	border-image: url(:/images/images/facebook2.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="instagram">
+       <property name="geometry">
+        <rect>
+         <x>760</x>
+         <y>620</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	
+	border-image: url(:/images/images/instagram.png);
+}
+QPushButton:hover{
+	border-image: url(:/images/images/instagram2.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_23">
+       <property name="geometry">
+        <rect>
+         <x>670</x>
+         <y>660</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 9pt &quot;Louis George Café&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Facebook</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_24">
+       <property name="geometry">
+        <rect>
+         <x>750</x>
+         <y>660</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 9pt &quot;Louis George Café&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Instagram</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="facebook_3">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>620</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	
+	border-image: url(:/images/images/logout.png);
+}
+QPushButton:hover{
+	
+	
+	border-image: url(:/images/images/logout1.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_49">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>660</y>
+         <width>91</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 9pt &quot;Louis George Café&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Déconnexion</string>
        </property>
       </widget>
      </widget>
@@ -1294,6 +1498,24 @@ font: 13pt &quot;Louis George Café&quot;;
       </widget>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_11">
+     <attribute name="title">
+      <string>Facebook</string>
+     </attribute>
+     <widget class="WebAxWidget" name="webBrowser">
+      <property name="control" stdset="0">
+       <string>{8856f961-340a-11d0-a96b-00c04fd705a2}</string>
+      </property>
+      <property name="geometry" stdset="0">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>911</width>
+        <height>641</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -1301,13 +1523,25 @@ font: 13pt &quot;Louis George Café&quot;;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1321</width>
+     <width>1305</width>
      <height>26</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QAxWidget</class>
+   <extends>QWidget</extends>
+   <header>qaxwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>WebAxWidget</class>
+   <extends>QAxWidget</extends>
+   <header>webaxwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

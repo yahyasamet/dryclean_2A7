@@ -51,7 +51,7 @@ QString Historique::load()
        }
 
          QString myString = in.readLine();
-         tmp+="<font color="+color+">"+myString+"\n <br> <font>";
+         tmp+="<font color="+color+">"+myString+"\n<br><br> <font>";
          i++;
          if(i==4)
              i=0;

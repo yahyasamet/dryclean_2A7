@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QMessageBox>
 #include "connection.h"
+#include <QPushButton>
 equipements::equipements()
 {
 REFERENCE_EQUIPEMENT=0;MARQUE_EQUIPEMENT="";NOM_EQUIPEMENT="";ANNEE_EQUIPEMENT=0;ETAT_EQUIPEMENT="";CIN="";
@@ -73,6 +74,7 @@ QSqlQueryModel* equipements::afficher_equipements()
           model->setHeaderData(3, Qt::Horizontal, QObject::tr("Année équipement"));
           model->setHeaderData(4, Qt::Horizontal, QObject::tr("Etat équipement"));
           model->setHeaderData(5, Qt::Horizontal, QObject::tr("Cin"));
+
     return model;
 }
 bool equipements::modifier_equipement(int REFERENCE_EQUIPEMENT)
@@ -206,4 +208,15 @@ QString equipements::recuperer_nom()
     query.prepare("Select * from employes " );
     query.exec();
     return query.value(3).toString();
+}
+int equipements::longueure_bd()
+{
+    int i=0;
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM equipements");
+    qry.exec();
+    while(qry.next()){
+    i++;
+     }
+    return i;
 }

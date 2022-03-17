@@ -32,6 +32,7 @@ public:
     int Longueur_entier(int);
     bool recuperer_equipement(QString);
     QString recuperer_nom();
+    int longueure_bd();
 
 private:
     int REFERENCE_EQUIPEMENT;

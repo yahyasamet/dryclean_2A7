@@ -1,6 +1,6 @@
 
 QT       += core gui network
-QT       += sql
+QT       += sql widgets axcontainer
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets multimedia
 
 
@@ -32,6 +32,7 @@ HEADERS += \
     equipements.h \
     historique.h \
     mainwindow.h \
+    webaxwidget.h \
     widget.h
 
 FORMS += \
@@ -46,4 +47,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    Ressources.qrc
+    Ressources.qrc \
+    mymap.qrc

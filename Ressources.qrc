@@ -17,6 +17,16 @@
         <file>images/return-button.png</file>
         <file>images/return.png</file>
         <file>images/return1.png</file>
+        <file>images/correct.png</file>
+        <file>images/remove.png</file>
+        <file>images/facebook.png</file>
+        <file>images/facebook2.png</file>
+        <file>images/instagram.png</file>
+        <file>images/instagram2.png</file>
+        <file>images/chat4.png</file>
+        <file>images/chat5.png</file>
+        <file>images/logout.png</file>
+        <file>images/logout1.png</file>
     </qresource>
     <qresource prefix="/son">
         <file>son_QT/Bip.wav</file>

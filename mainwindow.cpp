@@ -11,6 +11,7 @@
 #include<QDate>
 #include"widget.h"
 #include"historique.h"
+#include <QTimer>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -47,6 +48,11 @@ MainWindow::MainWindow(QWidget *parent)
            son=new QSound(":/son/son_QT/Simple_Beep2.wav");
            error=new QSound(":/son/son_QT/Error.wav");
            success=new QSound(":/son/son_QT/success.wav");
+           this->showAddrWeb();
+           monTimer=new QTimer();
+
+                QObject::connect(monTimer, SIGNAL(timeout()), this,SLOT(finTempo()));
+
 
 }
 MainWindow::~MainWindow()
@@ -92,16 +98,20 @@ int erreur=0;
     case 1:
     error->play();
     msgbox.setText("Le nom doit être composé seulement par des lettres !");
+    ui->cs3->setStyleSheet("border-image: url(:/images/images/remove.png);");
     break;
 
     case 2:
     error->play();
     msgbox.setText("La marque doit être composée seulement par des lettres !");
+    ui->cs2->setStyleSheet("border-image: url(:/images/images/remove.png);");
+
     break;
 
     case 3:
     error->play();
     msgbox.setText("L'année doit être composé par 4 chiffres !");
+    ui->cs4->setStyleSheet("border-image: url(:/images/images/remove.png);");
     break;
 
     case 4:
@@ -111,10 +121,12 @@ int erreur=0;
     case 5:
     error->play();
     msgbox.setText("L'année doit être supérieure à 2000 !");
+     ui->cs4->setStyleSheet("border-image: url(:/images/images/remove.png);");
     break;
     case 6:
     error->play();
     msgbox.setText("L'année doit être inférieure ou égale à la date actuelle !");
+     ui->cs4->setStyleSheet("border-image: url(:/images/images/remove.png);");
     break;
     }
 if(erreur==0)
@@ -123,6 +135,13 @@ if(erreur==0)
     bool test=E.ajouter_equipement();
     if(test)
     {
+        monTimer->setSingleShot(true); //active le mode singleShot
+
+        monTimer->start(2000); //démarre une tempo de 15 secondes
+     ui->cs1->setStyleSheet("border-image: url(:/images/images/correct.png);");
+     ui->cs2->setStyleSheet("border-image: url(:/images/images/correct.png);");
+     ui->cs3->setStyleSheet("border-image: url(:/images/images/correct.png);");
+     ui->cs4->setStyleSheet("border-image: url(:/images/images/correct.png);");
         success->play();
         msgbox.setText("Ajout avec succes.");
         Historique h;
@@ -219,16 +238,19 @@ void MainWindow::on_Modifier_equipement_clicked()
                 case 1:
                 error->play();
                 msgbox.setText("Le nom doit être composé seulement par des lettres !");
+                ui->cs6->setStyleSheet("border-image: url(:/images/images/remove.png);");
                 break;
 
                 case 2:
                 error->play();
                 msgbox.setText("La marque doit être composée seulement par des lettres !");
+                ui->cs5->setStyleSheet("border-image: url(:/images/images/remove.png);");
                 break;
 
                 case 3:
                 error->play();
                 msgbox.setText("L'année doit être supérieure à 2000 !");
+                ui->cs7->setStyleSheet("border-image: url(:/images/images/remove.png);");
                 break;
                 case 4:
                 error->play();
@@ -237,10 +259,12 @@ void MainWindow::on_Modifier_equipement_clicked()
                 case 5:
                 error->play();
                 msgbox.setText("L'année doit être supérieure à 2000 !");
+                ui->cs7->setStyleSheet("border-image: url(:/images/images/remove.png);");
                 break;
                 case 6:
                 error->play();
                 msgbox.setText("L'année doit être inférieure ou égale à la date actuelle !");
+                ui->cs7->setStyleSheet("border-image: url(:/images/images/remove.png);");
                 break;
                 }
 
@@ -251,6 +275,12 @@ void MainWindow::on_Modifier_equipement_clicked()
                 bool test=E.modifier_equipement(E.get_refEQUIPEMENT()) ;
                 if(test)
                 {
+                    monTimer->setSingleShot(true); //active le mode singleShot
+
+                    monTimer->start(2000); //démarre une tempo de 15 secondes
+                 ui->cs5->setStyleSheet("border-image: url(:/images/images/correct.png);");
+                 ui->cs6->setStyleSheet("border-image: url(:/images/images/correct.png);");
+                 ui->cs7->setStyleSheet("border-image: url(:/images/images/correct.png);");
                     success->play();
                     msgbox.setText("modification avec succés.");
                     Historique h;
@@ -313,4 +343,28 @@ void MainWindow::on_combo_ref_activated(const QString &)
     else
     ui->radioButton_3->setChecked("");
     ui->combo_cin_2->setCurrentText(query.value(5).toString());
+}
+void MainWindow::webShow(const QString &url)
+{
+    ui->webBrowser->dynamicCall("Navigate(const QString&)", url);
+}
+
+void MainWindow::showAddrWeb()
+{
+    QString addr="https://www.facebook.com/esprit.tn/";
+    webShow(addr);
+}
+//mon code après la temporisation
+void MainWindow::finTempo()
+
+{
+         ui->cs1->setStyleSheet("border-image: url(:/images/images/.png);");
+         ui->cs2->setStyleSheet("border-image: url(:/images/images/.png);");
+         ui->cs3->setStyleSheet("border-image: url(:/images/images/.png);");
+         ui->cs4->setStyleSheet("border-image: url(:/images/images/.png);");
+         ui->cs5->setStyleSheet("border-image: url(:/images/images/.png);");
+         ui->cs6->setStyleSheet("border-image: url(:/images/images/.png);");
+         ui->cs7->setStyleSheet("border-image: url(:/images/images/.png);");
+
+
 }

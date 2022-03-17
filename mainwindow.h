@@ -16,6 +16,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void webShow(const QString &url);
+    QTimer *monTimer;
 
 private slots:
     void on_Ajouter_equipement_clicked();
@@ -31,6 +33,9 @@ private slots:
     void on_chatbox_clicked();
 
     void on_combo_ref_activated(const QString &arg1);
+
+    void showAddrWeb();
+    void finTempo();
 
 private:
     Ui::MainWindow *ui;
