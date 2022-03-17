@@ -135,6 +135,7 @@ if(erreur==0)
     bool test=E.ajouter_equipement();
     if(test)
     {
+        ui->combo_ref->addItem(refs);
         monTimer->setSingleShot(true); //active le mode singleShot
 
         monTimer->start(2000); //démarre une tempo de 15 secondes
@@ -185,7 +186,7 @@ void MainWindow::on_Supprimer_equipement_clicked()
             QString cin=query.value("CIN_EMP").toString();
 
       QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Supprimer", "Etes vous sur de supprimer",
+        reply = QMessageBox::question(this, "Supprimer", "Êtes-vous sûr de supprimer",
                                       QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes) {
             bool test=E.supprimer_equipement(reference_equipement);
@@ -195,6 +196,15 @@ void MainWindow::on_Supprimer_equipement_clicked()
                 h.save(cin,refs,"Supprimer");
                 ui->historique->setText(h.load());
       ui->tableView->setModel(E.afficher_equipements());
+      ui->combo_ref->clear();
+      ui->combo_ref->addItem("");
+
+      QSqlQuery qry;
+               qry.prepare("select reference_equipement from equipements");
+                   qry.exec();
+                   while(qry.next()){
+                    ui->combo_ref->addItem(qry.value(0).toString());
+                   }
       QMessageBox::information(nullptr,"Suppression","Equipement supprimé");}
         }
 }
@@ -358,13 +368,13 @@ void MainWindow::showAddrWeb()
 void MainWindow::finTempo()
 
 {
-         ui->cs1->setStyleSheet("border-image: url(:/images/images/.png);");
-         ui->cs2->setStyleSheet("border-image: url(:/images/images/.png);");
-         ui->cs3->setStyleSheet("border-image: url(:/images/images/.png);");
-         ui->cs4->setStyleSheet("border-image: url(:/images/images/.png);");
-         ui->cs5->setStyleSheet("border-image: url(:/images/images/.png);");
-         ui->cs6->setStyleSheet("border-image: url(:/images/images/.png);");
-         ui->cs7->setStyleSheet("border-image: url(:/images/images/.png);");
+         ui->cs1->setStyleSheet("");
+         ui->cs2->setStyleSheet("");
+         ui->cs3->setStyleSheet("");
+         ui->cs4->setStyleSheet("");
+         ui->cs5->setStyleSheet("");
+         ui->cs6->setStyleSheet("");
+         ui->cs7->setStyleSheet("");
 
 
 }
