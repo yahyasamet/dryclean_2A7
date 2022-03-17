@@ -130,8 +130,8 @@ QSqlQueryModel * employe::afficher()
              model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
              model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
              model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
-             model->setHeaderData(8, Qt::Horizontal, QObject::tr("FONCTION"));
-             model->setHeaderData(9, Qt::Horizontal, QObject::tr("SALAIRE"));
+             model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
+             model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
        return model;
 
    }
@@ -171,18 +171,158 @@ bool employe:: string_test(QString ch)
     return true;
 }
 
-bool employe::recherche(QString CIN)
+QSqlQueryModel *employe:: tri_cin_asc()
 {
-    QMessageBox msgBox;
-    QSqlQuery query;
-    query.prepare("SELECT * FROM EMPLOYE WHERE CIN= :CIN");
-    query.bindValue(":CIN", CIN);
-    if (query.exec() && query.next())
-    {
-            return true;
-    }
-    else
-    {
-        return false;
-    }
+    QSqlQueryModel *model=new QSqlQueryModel();
+
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by CIN ASC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+
+    return model;
+}
+
+QSqlQueryModel *employe:: tri_cin_desc()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by CIN DESC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+
+    return model;
+}
+
+QSqlQueryModel *employe:: tri_nom_asc()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by NOM ASC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+
+    return model;
+}
+
+QSqlQueryModel *employe:: tri_nom_desc()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by NOM DESC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+
+    return model;
+}
+
+QSqlQueryModel *employe:: tri_age_asc()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by AGE ASC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+
+    return model;
+}
+
+QSqlQueryModel *employe:: tri_age_desc()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by AGE DESC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+
+    return model;
+}
+
+QSqlQueryModel *employe:: tri_salaire_asc()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by SALAIRE ASC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+
+    return model;
+}
+
+QSqlQueryModel *employe:: tri_salaire_desc()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by SALAIRE DESC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+
+    return model;
+}
+
+QSqlQueryModel* employe::recherche_avancee_employe(QString ch)
+{
+    QSqlQueryModel * model =new QSqlQueryModel();
+       QSqlQuery query;
+       model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE WHERE CIN LIKE'%"+ch+"%' or LOWER(NOM) LIKE LOWER('%"+ch+"%') or LOWER(PRENOM) LIKE LOWER('%"+ch+"%') or LOWER(FONCTION) LIKE LOWER('%"+ch+"%')");
+       query.bindValue(":ch",ch);
+       query.exec();
+
+       model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+       model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+       model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+       model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
+       model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
+       model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
+       model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
+       model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+
+       return model;
 }

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include "employe.h"
+#include <QCompleter>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,8 +29,17 @@ private slots:
 
     void on_gestion_employes_clicked();
 
+    void on_tri_emp_activated(int index);
+
+    void on_recherche_employe_textChanged(const QString &arg1);
+
+    void on_cin_employe_2_activated(const QString &arg1);
+
+    void on_confirm_password_clicked();
+
 private:
     Ui::MainWindow *ui;
     employe emp;
+    QCompleter *StringCompleter,*ModelCompleter;
 };
 #endif // MAINWINDOW_H

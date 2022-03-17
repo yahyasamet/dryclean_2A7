@@ -39,7 +39,15 @@ public:
     QSqlQueryModel *afficher();
     bool modifier(QString);
     bool string_test(QString ch);
-    bool recherche(QString CIN);
+    QSqlQueryModel *tri_cin_asc();
+    QSqlQueryModel *tri_cin_desc();
+    QSqlQueryModel *tri_nom_asc();
+    QSqlQueryModel *tri_nom_desc();
+    QSqlQueryModel *tri_age_asc();
+    QSqlQueryModel *tri_age_desc();
+    QSqlQueryModel *tri_salaire_asc();
+    QSqlQueryModel *tri_salaire_desc();
+    QSqlQueryModel *recherche_avancee_employe(QString ch);
 
 private:
     QString nom,prenom,email,password,fonction,cin,num_tel;

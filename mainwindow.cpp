@@ -14,8 +14,31 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->tab_employe->setModel(emp.afficher());
-}
+    ui->email->setPlaceholderText("email");
+    ui->password->setPlaceholderText("password");
+    ui->recherche_employe->setPlaceholderText("Vous pouvez rechercher par le cin, le nom, le prenom ou la fonction");
 
+    ui->confirm_email->setPlaceholderText("Saisir votre email");
+    ui->old_password->setPlaceholderText("Saisir ancien mot de passe");
+    ui->new_password->setPlaceholderText("Saisir nouveau mot de passe");
+    ui->new_password_2->setPlaceholderText("Confirmer nouveau mot de passe");
+
+    QSqlQuery query,query2;
+    query.prepare("select CIN from Employe");
+    query.exec();
+    while(query.next())
+        ui->cin_employe_2->addItem(query.value(0).toString());
+
+    //recherche avancée
+    QStringList CompletionList;
+    query2.prepare("select * from Employe");
+    query2.exec();
+    while(query2.next())
+        CompletionList <<query2.value("CIN").toString() <<query2.value("NOM").toString()<<query2.value("AGE").toString()<<query2.value("SALAIRE").toString();
+    StringCompleter=new QCompleter(CompletionList, this);
+    StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->recherche_employe->setCompleter(StringCompleter);
+}
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -62,9 +85,6 @@ QMap<QString,QString> check_login(QString email,QString password)
         qDebug() << "Query failed!";
     } else {
         if (query.first()) { // get the first record in the result
-            //QSqlRecord rec = query.record();
-            //int nameCol = rec.indexOf("NOM"); // index of the field "name"
-            //query.next();
             QString ch= query.value("NOM").toString();
             QString ch2= query.value("PRENOM").toString();
             QString ch3= query.value("FONCTION").toString();
@@ -92,19 +112,19 @@ void MainWindow::on_login_clicked()
         QString msg="Bienvenue "+map["nom"]+" "+map["prenom"];
         QMessageBox::information(nullptr, QObject::tr("success"),msg,QMessageBox::Cancel);
         if (fn=="Gerant")
-            ui->stackedWidget->setCurrentIndex(1);
-        else if (fn=="Magasinier")
-        {
             ui->stackedWidget->setCurrentIndex(2);
-        }
-        else if (fn=="Caissier")
+        else if (fn=="Magasinier")
         {
             ui->stackedWidget->setCurrentIndex(3);
         }
-        else if (fn=="Rh")
+        else if (fn=="Caissier")
+        {
             ui->stackedWidget->setCurrentIndex(4);
-        else if (fn=="Comptable")
+        }
+        else if (fn=="Rh")
             ui->stackedWidget->setCurrentIndex(5);
+        //else if (fn=="Comptable")
+            //ui->stackedWidget->setCurrentIndex(6);
     }
 }
 
@@ -112,7 +132,7 @@ void MainWindow::on_ajouter_employe_clicked()
 {
     QMessageBox msgBox;
 
-        bool test=true;
+        bool test=true,x=true,y=true;
 
         QString cin=ui->cin_employe->text();
         QString nom=ui->nom_employe->text();
@@ -132,64 +152,55 @@ void MainWindow::on_ajouter_employe_clicked()
 
         if(cin=="" || nom=="" || prenom=="" || email=="" || num_tel=="" || password=="" || ui->fonction_employe->currentIndex()==0)
         {
-            QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                        QObject::tr("Tous les champs doivent être remplis!"), QMessageBox::Cancel);
+            QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Tous les champs doivent être remplis!"), QMessageBox::Cancel);
             test=false;
         }
 
         else if(cin.length()!=8)
         {
-            QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                        QObject::tr("CIN doit être composé de 8 chiffres!"), QMessageBox::Cancel);
+            QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("CIN doit être composé de 8 chiffres!"), QMessageBox::Cancel);
             test=false;
         }
 
         else if (!(regex.exactMatch(nom)))
         {
-                QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                        QObject::tr("Le nom doit être composé par des lettres seulement et commençant par une lettre majuscule"), QMessageBox::Cancel);
+                QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le nom doit être composé par des lettres seulement et commençant par une lettre majuscule"), QMessageBox::Cancel);
             test=false;
         }
 
         else if (!(regex.exactMatch(prenom)))
         {
-            QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                        QObject::tr("Le prenom doit être composé par des lettres seulement et commençant par une lettre majuscule"), QMessageBox::Cancel);
+            QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le prenom doit être composé par des lettres seulement et commençant par une lettre majuscule"), QMessageBox::Cancel);
             test=false;
         }
 
         else if(age<=20 || age>=60)
         {
-            QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                        QObject::tr("Age doit être entre 20 et 60 ans!"), QMessageBox::Cancel);
+            QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Age doit être entre 20 et 60 ans!"), QMessageBox::Cancel);
             test=false;
         }
 
         else if(!email.contains("@") || !email.contains("."))
         {
-            QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                        QObject::tr("Email invalide!"), QMessageBox::Cancel);
+            QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Email invalide!"), QMessageBox::Cancel);
             test=false;
         }
 
         else if(num_tel.length()!=8)
         {
-            QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                        QObject::tr("Le numero de telephone doit être composé de 8 chiffres!"), QMessageBox::Cancel);
+            QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le numero de telephone doit être composé de 8 chiffres!"), QMessageBox::Cancel);
             test=false;
         }
 
-        else if (!(regex2.exactMatch(password)) || password.length()<=4)
+        else if (!(regex2.exactMatch(password)) || password.length()<4)
         {
-            QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                        QObject::tr("Le mot de passe ne doit pas contenir des symboles et au moins 4 caractères"), QMessageBox::Cancel);
+            QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le mot de passe ne doit pas contenir des symboles et au moins 4 caractères"), QMessageBox::Cancel);
             test=false;
         }
 
         else if(salaire<=0 || salaire>=5000)
         {
-            QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                        QObject::tr("Salaire doit être positive!"), QMessageBox::Cancel);
+            QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Salaire doit être positive!"), QMessageBox::Cancel);
             test=false;
         }
 
@@ -197,17 +208,21 @@ void MainWindow::on_ajouter_employe_clicked()
         {
             if ((cin[i] >= 'A' && cin[i]<='Z') || (cin[i] >= 'a' && cin[i]<='z'))
             {
-                QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                    QObject::tr("Le CIN doit être composé par des chiffres seulement!"), QMessageBox::Cancel);
                 test=false;
+                x=false;
             }
             else if ((num_tel[i] >= 'A' && num_tel[i]<='Z') || (num_tel[i] >= 'a' && num_tel[i]<='z'))
             {
-                QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                    QObject::tr("Le numero de telephone doit être composé par des chiffres seulement!"), QMessageBox::Cancel);
                test=false;
+               y=false;
             }
         }
+
+        if (!x)
+            QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le CIN doit être composé par des chiffres seulement!"), QMessageBox::Cancel);
+        else if (!y)
+            QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le numero de telephone doit être composé par des chiffres seulement!"), QMessageBox::Cancel);
+
 
         if (test)
         {
@@ -230,35 +245,21 @@ void MainWindow::on_ajouter_employe_clicked()
 
 void MainWindow::on_supprimer_employe_clicked()
 {
-    employe emp;
-    QString cin2=ui->cin_employe_3->text();
-
-        bool test=emp.supprimer(cin2);
-        QMessageBox msgBox;
-        if(test)
-      {
-            msgBox.setText("supprimé avec succée");
-            ui->tab_employe->setModel(emp.afficher());
-            ui->cin_employe_3->clear();
-            ui->cin_employe_3->setFocus();
-        }
-        else
-            msgBox.setText("Echec de suppression");
-        msgBox.exec();
+    QString cin2 = ui->tab_employe->selectionModel()->currentIndex().data(Qt::DisplayRole).toString();
+    emp.supprimer(cin2);
+    ui->tab_employe->setModel(emp.afficher());
 }
 
 void MainWindow::on_modifier_employe_clicked()
 {
     QMessageBox msg;
-    bool test=true;
-    bool x=true;
-    bool y=true;
+    bool test=true,x=true,y=true;
     employe emp;
 
     QRegExp regex("([A-Z][a-z]*)");
     QRegExp regex2("[a-zA-Z0-9]*");
 
-    emp.setCIN(ui->cin_employe_2->text());
+    emp.setCIN(ui->cin_employe_2->currentText());
     emp.setNom(ui->nom_employe_2->text());
     emp.setPrenom(ui->prenom_employe_2->text());
     emp.setAge(ui->age_employe_2->text().toInt());
@@ -268,119 +269,161 @@ void MainWindow::on_modifier_employe_clicked()
     emp.setFonction(ui->fonction_employe_2->currentText());
     emp.setSalaire(ui->salaire_employe_2->text().toInt());
 
-    if(ui->cin_employe_2->text()=="" || ui->nom_employe_2->text()=="" || ui->prenom_employe_2->text()=="" || ui->email_employe_2->text()=="" || ui->num_tel_employe_2->text()=="" || ui->password_employe_2->text()=="" || ui->fonction_employe_2->currentIndex()==0)
+    if(ui->nom_employe_2->text()=="" || ui->prenom_employe_2->text()=="" || ui->email_employe_2->text()=="" || ui->num_tel_employe_2->text()=="" || ui->password_employe_2->text()=="" || ui->fonction_employe_2->currentIndex()==0)
     {
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                    QObject::tr("Tous les champs doivent être remplis!"), QMessageBox::Cancel);
-        test=false;
-    }
-
-    else if(ui->cin_employe_2->text().length()!=8)
-    {
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                    QObject::tr("CIN doit être composé de 8 chiffres!"), QMessageBox::Cancel);
+        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Tous les champs doivent être remplis!"), QMessageBox::Cancel);
         test=false;
     }
 
     else if (!(regex.exactMatch(ui->nom_employe_2->text())))
     {
-            QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                    QObject::tr("Le nom doit être composé par des lettres seulement et commençant par une lettre majuscule"), QMessageBox::Cancel);
+            QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le nom doit être composé par des lettres seulement et commençant par une lettre majuscule"), QMessageBox::Cancel);
         test=false;
     }
 
     else if (!(regex.exactMatch(ui->prenom_employe_2->text())))
     {
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                    QObject::tr("Le prenom doit être composé par des lettres seulement et commençant par une lettre majuscule"), QMessageBox::Cancel);
+        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le prenom doit être composé par des lettres seulement et commençant par une lettre majuscule"), QMessageBox::Cancel);
         test=false;
     }
 
     else if(ui->age_employe_2->text().toInt()<=20 || ui->age_employe_2->text().toInt()>=60)
     {
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                    QObject::tr("Age doit être entre 20 et 60 ans!"), QMessageBox::Cancel);
+        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Age doit être entre 20 et 60 ans!"), QMessageBox::Cancel);
         test=false;
     }
 
     else if(!ui->email_employe_2->text().contains("@") || !ui->email_employe_2->text().contains("."))
     {
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                    QObject::tr("Email invalide!"), QMessageBox::Cancel);
+        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Email invalide!"), QMessageBox::Cancel);
         test=false;
     }
 
     else if(ui->num_tel_employe_2->text().length()!=8)
     {
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                    QObject::tr("Le numero de telephone doit être composé de 8 chiffres!"), QMessageBox::Cancel);
+        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le numero de telephone doit être composé de 8 chiffres!"), QMessageBox::Cancel);
         test=false;
     }
 
-    else if (!(regex2.exactMatch(ui->password_employe_2->text())) || ui->password_employe_2->text().length()<=4)
+    else if (!(regex2.exactMatch(ui->password_employe_2->text())) || ui->password_employe_2->text().length()<4)
     {
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                    QObject::tr("Le mot de passe ne doit pas contenir des symboles"), QMessageBox::Cancel);
+        QMessageBox::critical(nullptr, QObject::tr("Echec"), QObject::tr("Le mot de passe ne doit pas contenir des symboles"), QMessageBox::Cancel);
         test=false;
     }
 
     else if (!(regex.exactMatch(ui->fonction_employe_2->currentText())))
     {
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                    QObject::tr("La fonction des employés doit être composé par des lettres seulement et commençant par une lettre majuscule"), QMessageBox::Cancel);
+        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("La fonction des employés doit être composé par des lettres seulement et commençant par une lettre majuscule"), QMessageBox::Cancel);
         test=false;
     }
 
     else if(ui->salaire_employe_2->text().toInt()<=0 || ui->salaire_employe_2->text().toInt()>=5000)
     {
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                    QObject::tr("Salaire doit être positive!"), QMessageBox::Cancel);
+        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Salaire doit être positive!"), QMessageBox::Cancel);
         test=false;
     }
 
     for (int i=0;i!=8;i++)
     {
-        if ((ui->cin_employe_2->text()[i] >= 'A' && ui->cin_employe_2->text()[i]<='Z') || (ui->cin_employe_2->text()[i] >= 'a' && ui->cin_employe_2->text()[i]<='z'))
+        if ((ui->num_tel_employe_2->text()[i] >= 'A' && ui->num_tel_employe_2->text()[i]<='Z') || (ui->num_tel_employe_2->text()[i] >= 'a' && ui->num_tel_employe_2->text()[i]<='z'))
         {
-            //QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                //QObject::tr("Le CIN doit être composé par des chiffres seulement!"), QMessageBox::Cancel);
-            test=false;
-            x=false;
-        }
-        else if ((ui->num_tel_employe_2->text()[i] >= 'A' && ui->num_tel_employe_2->text()[i]<='Z') || (ui->num_tel_employe_2->text()[i] >= 'a' && ui->num_tel_employe_2->text()[i]<='z'))
-        {
-            //QMessageBox::critical(nullptr, QObject::tr("Echec"),
-                //QObject::tr("Le numero de telephone doit être composé par des chiffres seulement!"), QMessageBox::Cancel);
            test=false;
            y=false;
         }
     }
     if (!x)
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),
-            QObject::tr("Le CIN doit être composé par des chiffres seulement!"), QMessageBox::Cancel);
+        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le CIN doit être composé par des chiffres seulement!"), QMessageBox::Cancel);
     else if (!y)
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),
-            QObject::tr("Le numero de telephone doit être composé par des chiffres seulement!"), QMessageBox::Cancel);
+        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le numero de telephone doit être composé par des chiffres seulement!"), QMessageBox::Cancel);
 
     if (test)
     {
-        emp.modifier(emp.getCIN()) ;
+            emp.modifier(emp.getCIN()) ;
 
-        ui->tab_employe->setModel(emp.afficher());
-        ui->cin_employe_2->clear();
-        ui->nom_employe_2->clear();
-        ui->prenom_employe_2->clear();
-        ui->age_employe_2->clear();
-        ui->email_employe_2->clear();
-        ui->num_tel_employe_2->clear();
-        ui->password_employe_2->clear();
-        ui->fonction_employe_2->setCurrentIndex(0);
-        ui->salaire_employe_2->clear();
-        ui->cin_employe_2->setFocus();
+            ui->tab_employe->setModel(emp.afficher());
+            //ui->cin_employe_2->clear();
+            ui->nom_employe_2->clear();
+            ui->prenom_employe_2->clear();
+            ui->age_employe_2->clear();
+            ui->email_employe_2->clear();
+            ui->num_tel_employe_2->clear();
+            ui->password_employe_2->clear();
+            ui->fonction_employe_2->setCurrentIndex(0);
+            ui->salaire_employe_2->clear();
+            ui->cin_employe_2->setFocus();
     }
 }
 
 void MainWindow::on_gestion_employes_clicked()
 {
     ui->stackedWidget->setCurrentIndex(4);
+}
+
+void MainWindow::on_tri_emp_activated(int index)
+{
+    if(index==1)
+        ui->tab_employe->setModel(emp.tri_cin_asc());
+    else if(index==2)
+        ui->tab_employe->setModel(emp.tri_cin_desc());
+    else if(index==3)
+        ui->tab_employe->setModel(emp.tri_nom_asc());
+    else if(index==4)
+        ui->tab_employe->setModel(emp.tri_nom_desc());
+    else if(index==5)
+        ui->tab_employe->setModel(emp.tri_age_asc());
+    else if(index==6)
+        ui->tab_employe->setModel(emp.tri_age_desc());
+    else if(index==7)
+        ui->tab_employe->setModel(emp.tri_salaire_asc());
+    else if(index==8)
+        ui->tab_employe->setModel(emp.tri_salaire_desc());
+}
+
+void MainWindow::on_recherche_employe_textChanged(const QString &arg1)
+{
+    ui->tab_employe->setModel(emp.recherche_avancee_employe(arg1));
+}
+
+void MainWindow::on_cin_employe_2_activated(const QString &arg1)
+{
+       QSqlQuery query;
+       query.prepare("Select * from EMPLOYE where CIN=:CIN" );
+       query.bindValue(":CIN",arg1);
+       query.exec();
+       query.next();
+
+        ui->nom_employe_2->setText(query.value(1).toString());
+        ui->prenom_employe_2->setText(query.value(2).toString());
+        ui->age_employe_2->setText(query.value(3).toString());
+        ui->email_employe_2->setText(query.value(4).toString());
+        ui->num_tel_employe_2->setText(query.value(5).toString());
+        ui->password_employe_2->setText(query.value(6).toString());
+        ui->fonction_employe_2->setCurrentIndex(0);
+        ui->salaire_employe_2->setText(query.value(8).toString());
+}
+
+void MainWindow::on_confirm_password_clicked()
+{
+    QString email=ui->confirm_email->text();
+    QString old=ui->old_password->text();
+    QString new_pass=ui->new_password->text();
+    QString new_pass2=ui->new_password_2->text();
+    QSqlQuery query,query2;
+
+    if (new_pass==new_pass2)
+    {
+        query.prepare("UPDATE EMPLOYE SET PASSWORD=:password2 where EMAIL=:EMAIL AND PASSWORD=:PASSWORD" );
+        query.bindValue(":EMAIL",email);
+        query.bindValue(":PASSWORD",old);
+        query.bindValue(":password2",new_pass);
+        bool test=query.exec();
+        if (test)
+        {
+            QMessageBox::information(nullptr, QObject::tr("success"),QObject::tr("nouveau mot de passe effectué"), QMessageBox::Cancel);
+            ui->stackedWidget->setCurrentIndex(1);
+        }
+    }
+    else
+        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("passwords don't match"), QMessageBox::Cancel);
+
 }
