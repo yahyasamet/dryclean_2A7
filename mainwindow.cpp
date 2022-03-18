@@ -60,14 +60,14 @@ MainWindow::MainWindow(QWidget *parent)
     savePictureButton = new QPushButton("save",this);
     barCodeBox = new BarCodeBox("Code",this);
 
-   // QHBoxLayout *hBoxLayout = new QHBoxLayout();//第一行水平布局
+   // QHBoxLayout *hBoxLayout = new QHBoxLayout();
     ui->hBoxLayout->addWidget(label);
    ui-> hBoxLayout->addWidget(lineEdit);
    ui->hBoxLayout->addWidget(produceCode128Button);
  // ui-> hBoxLayout->addWidget(produceEAN13Button);
   ui-> hBoxLayout->addWidget(savePictureButton);
 
-  // QVBoxLayout *vBoxLayout = new QVBoxLayout(this);//整体垂直布局
+  // QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
     //vBoxLayout->addLayout(hBoxLayout);
    ui-> vBoxLayout->addWidget(barCodeBox);
 
@@ -114,7 +114,7 @@ QSqlQuery qry,qry2,qry1;
        //ui->combo_cin_2->addItem("");
       while(qry.next()){
 
-      ui->supprimer_combo->addItem(qry.value(0).toString());
+     // ui->supprimer_combo->addItem(qry.value(0).toString());
       ui->modifier_combo->addItem(qry.value(0).toString());
        }
       // ui->combo_ref->addItem("");
@@ -154,29 +154,29 @@ MainWindow::~MainWindow()
 }
 void MainWindow::on_pb_ajouter_clicked()
 {
-    int ref_cmd=ui->le_ref->text().toInt();
-    int cin_cl =ui->le_cin->text().toInt();
+    QString ref_cmd=ui->le_ref->text();
+    QString cin_cl =ui->le_cin->text();
     int qtt_vet =ui->la_qtt->text().toInt();
     int montant_cmd =ui->le_mt->text().toInt();
     int etat=ui->etat_cmb->currentIndex();
     int nb_pts=ui->le_nbpt->text().toInt();
     int type_v=ui->type_cmb->currentIndex();
     int livraison=ui->type_livr_cmb->currentIndex();
-    long cin=ui->cin_empl_cmb->currentText().toLong();
+   QString cin=ui->cin_empl_cmb->currentText();
     QString Nom_cl=ui->le_nom->text();
     QString adr_cl=ui->la_adr->text();
     QDate Date_cmd=ui->date->date();
     QMessageBox msgbox;
 
     //pdf
-QString ref=ui->le_ref->text();
-QString cin_clS=ui->le_cin->text();
+
+
 QString qtt_vetS =ui->la_qtt->text();
 QString montant_cmdS =ui->le_mt->text();
 QString nb_ptsS=ui->le_nbpt->text();
 QString type_vS=ui->type_cmb->currentText();
 QString livraisonS=ui->type_livr_cmb->currentText();
-QString cinS=ui->cin_empl_cmb->currentText();
+
 QString Date_cmdS=ui->date->date().toString();
 
     Commande C(ref_cmd,cin_cl,Nom_cl,qtt_vet,montant_cmd,Date_cmd,etat,adr_cl,nb_pts,type_v,livraison,cin);
@@ -191,7 +191,7 @@ QString Date_cmdS=ui->date->date().toString();
 
     if (!hasMatch)
         erreur=1;
-    if(C.entierValide(cin_cl)!=8)
+    if(cin_cl.length()!=8)
         erreur=2;
         if(C.entierValide(qtt_vet)>5)
             erreur=3;
@@ -203,8 +203,8 @@ QString Date_cmdS=ui->date->date().toString();
             erreur=7;
         if(!C.entierValide(nb_pts))
             erreur=8;
-        if(!C.entierValide(cin))
-            erreur=11;
+        //if(cin.length()!=8)
+           // erreur=11;
 
 if (erreur==0)
   {  bool test =C.ajouter();
@@ -216,9 +216,9 @@ if (erreur==0)
         QMessageBox::information(nullptr,QObject::tr("OK"),
                                  QObject::tr("Ajout effectué\n"
                                              "Click cancel to exit."),QMessageBox::Cancel);
-        bool test1=C.genererFacture(ref,cin_clS,qtt_vetS,Date_cmdS,montant_cmdS,type_vS,livraisonS,cinS,Nom_cl);
+        bool test1=C.genererFacture(ref_cmd,cin_cl,qtt_vetS,Date_cmdS,montant_cmdS,type_vS,livraisonS,cin,Nom_cl);
         Historique h;
-            h.save(cinS,ref,montant_cmdS,"Ajout");
+            h.save(cin,ref_cmd,montant_cmdS,"Ajout");
             ui->historique->setText(h.load());
         if(!test1)
            { QMessageBox::critical(nullptr,QObject::tr("Erreur"),
@@ -228,7 +228,10 @@ if (erreur==0)
         {QMessageBox::information(nullptr,QObject::tr("OK"),
                                   QObject::tr("Facture générer avec succés\n"
                                               "Click cancel to exit."),QMessageBox::Cancel);}
-    ui->tab_v->setModel(Etmp.afficher());
+
+
+
+        ui->tab_v->setModel(Etmp.afficher());
     ui->le_ref->clear();
     ui->le_cin->clear();
     ui->le_mt->clear();
@@ -236,7 +239,16 @@ if (erreur==0)
     ui->la_qtt->clear();
     ui->le_nom->clear();
      ui->le_nbpt->clear();
+     //ui->supprimer_combo->clear();
+     ui->modifier_combo->clear();
+     QSqlQuery qry;
+     qry.prepare("select ref_cmd from commandes");
+     qry.exec();
+     while(qry.next()){
 
+    // ui->supprimer_combo->addItem(qry.value(0).toString());
+     ui->modifier_combo->addItem(qry.value(0).toString());
+      }
 
     }
     else
@@ -280,56 +292,41 @@ else if(erreur==11)
 }
 void MainWindow::on_pb_supprimer_clicked()
 {
-    Commande c;
-   int ref_cmd=ui->supprimer_combo->currentText().toInt();
-   QString ref=ui->supprimer_combo->currentText();
-    c.setRef(ui->supprimer_combo->currentText().toInt());
+    QString ref_cmd = ui->tab_v->selectionModel()->currentIndex().data(Qt::DisplayRole).toString();
+ QString cin,mt;
+ QSqlQuery query;
+
+            query.prepare("Select * from commandes where ref_cmd=:ref_cmd" );
+                    query.bindValue(":ref_cmd",ref_cmd) ;
+
+                    query.exec();
+
+                    query.next() ;
+                   cin=query.value(11).toString();
+                    mt=query.value(4).toString();
 
 
 
 
-    QSqlQuery query;
-
-               query.prepare("Select * from commandes where ref_cmd=:ref_cmd" );
-                       query.bindValue(":ref_cmd",ref) ;
-                       query.exec();
-
-                       query.next() ;
-                       QString cin=query.value("cin_employe").toString();
-                       QString mt=query.value("montant_cmd").toString();
-
-if(c.recherche_id(ref_cmd)==true)
-{ bool test=c.supprimer(c.getRef());
-    if(test)
-    {
-        QMessageBox::information(nullptr,QObject::tr("OK"),
-                                 QObject::tr("Suppression effectuee\n"
-                                                                       "Click cancel to exit."), QMessageBox::Cancel);
-
-        Historique h;
-                        h.save(cin,ref,mt,"Supprimer");
-                        ui->historique->setText(h.load());
+ Etmp.supprimer(ref_cmd);
         ui->tab_v->setModel(Etmp.afficher());
 
-    }
-    else
-    {QMessageBox::critical(nullptr,QObject::tr("Not OK"),
-                           QObject::tr("Suppression non effectué.\n"
-                                       "click cancel to exit"),QMessageBox::Cancel);}
-}else {QMessageBox::critical(nullptr,QObject::tr("Reference introuvable"),
-                             QObject::tr("Suppression non effectué.\n"
-                                         "click cancel to exit"),QMessageBox::Cancel);}
+
+
+        Historique h;
+                        h.save(cin,ref_cmd,mt,"Supprimer");
+                        ui->historique->setText(h.load());
 
 }
 
 
 void MainWindow::on_pb_modifier_clicked()
 {
-    int ref_cmd=ui->modifier_combo->currentText().toInt();
+    QString ref_cmd=ui->modifier_combo->currentText();
        QString adr_cl=ui->modifier_adr->text();
        QString Nom_cl=ui->modifier_nom->text();
-       int cin_cl =ui->modifier_cin->text().toInt();
-       int cin =ui->modifier_cin_emp_cmb->currentText().toInt();
+       QString cin_cl =ui->modifier_cin->text();
+       QString cin =ui->modifier_cin_emp_cmb->currentText();
        int qtt_vet =ui->Modifier_qtt->text().toInt();
        int montant_cmd =ui->modifier_montant->text().toInt();
        int etat=ui->modifier_etat->currentIndex();
@@ -361,8 +358,8 @@ void MainWindow::on_pb_modifier_clicked()
                erreur=7;
            if(!C.entierValide(nb_pts))
                erreur=8;
-           if(!C.entierValide(cin))
-               erreur=11;
+         //  if(cin.length()!=8)
+               //erreur=11;
 
 
            if (erreur==0)

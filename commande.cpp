@@ -10,11 +10,11 @@
 Commande::Commande()
 {
     QDate date1(1995,2,2);
-    ref_cmd=0;cin_cl=0;qtt_vet=0;montant_cmd=0;etat_cmd=0;nb_pts=0;type_vet=0;opt_livr=0;
+    ref_cmd="";cin_cl="";qtt_vet=0;montant_cmd=0;etat_cmd=0;nb_pts=0;type_vet=0;opt_livr=0;
        Nom_cl=" ",adr_cl=" ";
         Date_cmd=date1;
 }
-Commande::Commande(int ref_cmd,int cin_cl,QString Nom_cl,int qtt_vet,int montant_cmd, QDate Date_cmd,int etat_cmd,QString adr_cl,int nb_pts, int type_vet, int opt_livr,int cin_emp)
+Commande::Commande(QString ref_cmd,QString cin_cl,QString Nom_cl,int qtt_vet,int montant_cmd, QDate Date_cmd,int etat_cmd,QString adr_cl,int nb_pts, int type_vet, int opt_livr,QString cin_emp)
 {
     this ->ref_cmd=ref_cmd;
     this ->cin_cl=cin_cl;
@@ -29,13 +29,13 @@ Commande::Commande(int ref_cmd,int cin_cl,QString Nom_cl,int qtt_vet,int montant
     this ->Date_cmd=Date_cmd;
      this ->cin_emp=cin_emp;
 }
-int Commande::getRef()
+QString Commande::getRef()
 {return ref_cmd;}
 QString Commande::getNomcl()
 {return Nom_cl;}
 QString Commande::getAdrcl()
 {return adr_cl;}
-int Commande::getCincl()
+QString Commande::getCincl()
 {return cin_cl;}
 int Commande::getQttvet()
 {return qtt_vet;}
@@ -51,13 +51,13 @@ int Commande::getOptLivr()
 {return opt_livr;}
 QDate Commande::getDateCmd()
 {return  Date_cmd;}
-void Commande::setRef(int ref_cmd)
+void Commande::setRef(QString ref_cmd)
 {this->ref_cmd=ref_cmd;}
 void Commande::setNomcl(QString Nom_cl)
 {this->Nom_cl=Nom_cl;}
 void Commande::setAdrcl(QString adr_cl)
 {this->adr_cl=adr_cl;}
-void Commande::setCincl(int cin_cl)
+void Commande::setCincl(QString cin_cl)
 {this->cin_cl=cin_cl;}
 void Commande::setQttvet(int qtt_vet)
 {this ->qtt_vet=qtt_vet;}
@@ -73,7 +73,7 @@ void Commande::setOptLivr(int opt_livr)
 {this->opt_livr=opt_livr;}
 void Commande::setDateCmd(QDate Date_cmd)
 {this ->Date_cmd=Date_cmd;}
-void Commande::setCinCl(int cin_emp)
+void Commande::setCinCl(QString cin_emp)
 {this ->cin_emp=cin_emp;}
 
 
@@ -108,12 +108,12 @@ bool Commande::ajouter()
 
           return query.exec();
 }
-bool Commande::supprimer(int ref_cmd)
+bool Commande::supprimer(QString ref_cmd)
 {
     QSqlQuery query;
-    QString res=QString::number(ref_cmd);
+
     query.prepare("Delete from commandes where ref_cmd= :ref_cmd");
-    query.bindValue(":ref_cmd",res);
+    query.bindValue(":ref_cmd",ref_cmd);
     return query.exec();
 }
 
@@ -135,7 +135,7 @@ model->setHeaderData(10,Qt::Horizontal,QObject::tr("Opt_livr"));
 model->setHeaderData(11,Qt::Horizontal,QObject::tr("cin_empl"));
 return model;
  }
- bool Commande::recherche_id(int ref_cmd)
+ bool Commande::recherche_id(QString ref_cmd)
  {
      QMessageBox msgBox;
      QSqlQuery query;
@@ -167,7 +167,7 @@ return model;
      return count;
 
  }*/
-bool Commande::modifier(int ref_cmd)
+bool Commande::modifier(QString ref_cmd)
 {
 
     QSqlQuery query;
