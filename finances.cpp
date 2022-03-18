@@ -12,11 +12,11 @@ finances::finances()
    TYPE_TRANSACTION=0;
    DATE_FINANCES=date1;
    MATRICULE_FISC="";
-   ID_COMMANDE=0;
+   ID_COMMANDE="";
 
 }
 
-finances::finances(QDate DATE_FINANCES,int TYPE_TRANSACTION,QString PROVENANCE,int MONTANT_FINANCE,QString ID_FINANCES,QString MATRICULE_FISC,int ID_COMMANDE)
+finances::finances(QDate DATE_FINANCES,int TYPE_TRANSACTION,QString PROVENANCE,int MONTANT_FINANCE,QString ID_FINANCES,QString MATRICULE_FISC,QString ID_COMMANDE)
 {
     this->ID_FINANCES=ID_FINANCES;
     this->MONTANT_FINANCE=MONTANT_FINANCE;
@@ -38,7 +38,7 @@ int finances::getMONTANT_FINANCE()
 {return MONTANT_FINANCE;}
 QString finances::getID_FINANCES()
 {return ID_FINANCES;}
-int finances::getID_COMMANDE()
+QString finances::getID_COMMANDE()
 {return ID_COMMANDE;}
 QString finances::getMATRICULE_FISC()
 {return MATRICULE_FISC;}
@@ -53,7 +53,7 @@ void finances::setMONTANT_FINANCE (int MONTANT_FINANCE)
 {this->MONTANT_FINANCE=MONTANT_FINANCE;}
 void finances::setID_FINANCES (QString ID_FINANCES)
 {this->ID_FINANCES=ID_FINANCES;}
-void finances::setID_COMMANDE(int ID_COMMANDE)
+void finances::setID_COMMANDE(QString ID_COMMANDE)
 {this->ID_COMMANDE=ID_COMMANDE;}
 void finances::setMATRICULE_FISC(QString MATRICULE_FISC)
 {this->MATRICULE_FISC=MATRICULE_FISC;}

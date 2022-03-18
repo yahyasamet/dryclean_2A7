@@ -46,6 +46,9 @@ private slots:
     void on_mat_2_activated(int index);
 
     void on_lineEdit_7_textChanged(const QString &arg1);
+    void on_tabledepence_doubleClicked(const QModelIndex &index);
+
+    void on_tablerevenue_doubleClicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;

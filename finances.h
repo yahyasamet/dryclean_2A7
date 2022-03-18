@@ -12,20 +12,20 @@
 #include <QDebug>
 class finances
 {
-    QString PROVENANCE,ID_FINANCES,MATRICULE_FISC;
-    int MONTANT_FINANCE,TYPE_TRANSACTION,ID_COMMANDE;
+    QString PROVENANCE,ID_FINANCES,MATRICULE_FISC,ID_COMMANDE;
+    int MONTANT_FINANCE,TYPE_TRANSACTION;
     QDate DATE_FINANCES;
 
 public:
     finances();
-    finances(QDate DATE_FINANCES,int TYPE_TRANSACTION,QString PROVENANCE,int MONTANT_FINANCE,QString ID_FINANCES,QString MATRICULE_FISC,int ID_COMMANDE);
+    finances(QDate DATE_FINANCES,int TYPE_TRANSACTION,QString PROVENANCE,int MONTANT_FINANCE,QString ID_FINANCES,QString MATRICULE_FISC,QString ID_COMMANDE);
 
     QString getPROVENANCE();
     QDate getDATE_FINANCES();
     int getTYPE_TRANSACTION();
     int getMONTANT_FINANCE();
     QString getID_FINANCES();
-    int getID_COMMANDE();
+    QString getID_COMMANDE();
     QString getMATRICULE_FISC();
 
     void setPROVENANCE(QString PROVENANCE);
@@ -33,7 +33,7 @@ public:
     void setTYPE_TRANSACTION (int TYPE_TRANSACTION);
     void setMONTANT_FINANCE (int MONTANT_FINANCE);
     void setID_FINANCES (QString ID_FINANCES);
-    void setID_COMMANDE (int ID_COMMANDE);
+    void setID_COMMANDE (QString ID_COMMANDE);
     void setMATRICULE_FISC (QString MATRICULE_FISC);
     bool ajouter();
     QSqlQueryModel* afficher();

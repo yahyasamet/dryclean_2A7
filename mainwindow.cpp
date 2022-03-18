@@ -73,7 +73,7 @@ void MainWindow::on_ajouter_clicked()
     QString ID_FINANCES=ui->id->text();
     int MONTANT_FINANCE=ui->montant->text().toInt();
     QString MATRICULE_FISC=ui->mat_2->currentText();
-    int ID_COMMANDE=ui->mat->currentText().toInt();
+    QString ID_COMMANDE=ui->mat->currentText();
     int TYPE_TRANSACTION1;
     if (ui->radioButton->isChecked())
     TYPE_TRANSACTION1=0;
@@ -233,7 +233,7 @@ void MainWindow::on_modifier_clicked()
     C.setDATE_FINANCES(ui->date_2->date());
     C.setPROVENANCE(ui->provenance_2->text());
     C.setMONTANT_FINANCE(ui->montant_2->text().toInt());
-    C.setID_COMMANDE(ui->mat_3->currentText().toInt());
+    C.setID_COMMANDE(ui->mat_3->currentText());
     C.setMATRICULE_FISC(ui->mat_4->currentText());
     if (ui->radioButton->isChecked())
      C.setTYPE_TRANSACTION(0);
@@ -552,14 +552,14 @@ void MainWindow::on_mat_activated(int index)
 
     ui->radioButton_2->setChecked("");
 
-    ui->mat_2->setCurrentText(NULL);
+    ui->mat_2->setCurrentText("");
 
 }
 
 void MainWindow::on_mat_2_activated(int index)
 {
     QSqlQuery query;
-    QString MATRICULE_F=ui->mat->currentText() ;
+    QString MATRICULE_F=ui->mat_2->currentText() ;
    query.prepare("Select * from fournisseur where MATRICULE_F=:MATRICULE_F" );
            query.bindValue(":MATRICULE_F",MATRICULE_F) ;
            query.exec();
@@ -577,4 +577,24 @@ void MainWindow::on_lineEdit_7_textChanged(const QString &arg1)
 {
     ui->tabledepence->setModel(C.recherche_avancee(arg1));
 
+}
+
+void MainWindow::on_tabledepence_doubleClicked(const QModelIndex &index)
+{
+        QString id = index.data(Qt::DisplayRole).toString();
+        bool test=C.supprimer(id);
+        if(test)
+        {
+  ui->tabledepence->setModel(C.afficher());
+        }
+}
+
+void MainWindow::on_tablerevenue_doubleClicked(const QModelIndex &index)
+{
+    QString id = index.data(Qt::DisplayRole).toString();
+    bool test=C.supprimer(id);
+    if(test)
+    {
+ui->tablerevenue->setModel(C.afficher2());
+    }
 }
