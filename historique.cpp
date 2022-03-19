@@ -1,6 +1,7 @@
 #include "historique.h"
 #include <QDateTime>
 #include <QSqlQuery>
+#include "widget.h"
 Historique::Historique()
 {
 
@@ -14,10 +15,13 @@ void Historique::save(QString cin,QString ref,QString action)
            query.exec();
     query.next() ;
     prenom=query.value("prenom").toString();
-    //QDate date;
-    QDate date = QDateTime::currentDateTime().date();
-    QString time=QDateTime::currentDateTime().time().toString();
-    QString dates=date.toString();
+    widget w;
+    int day = QDateTime::currentDateTime().date().day();
+    int month = QDateTime::currentDateTime().date().month();
+    int year = QDateTime::currentDateTime().date().year();
+
+    QString time=w.get_temps();
+    QString dates=QString::number(day)+"/"+QString::number(month)+"/"+QString::number(year);
     QFile file ("C:/Users/ASUS/Documents/interface/interface/Historique.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";

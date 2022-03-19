@@ -27,6 +27,9 @@
         <file>images/chat5.png</file>
         <file>images/logout.png</file>
         <file>images/logout1.png</file>
+        <file>images/Mohamed.jpg</file>
+        <file>images/ramy.jpg</file>
+        <file>images/yahya.jpg</file>
     </qresource>
     <qresource prefix="/son">
         <file>son_QT/Bip.wav</file>

@@ -14,6 +14,8 @@ class widget : public QDialog
 public:
     explicit widget(QWidget *parent = nullptr);
     ~widget();
+    QString load();
+    QString get_temps();
 private slots:
     void on_pushButton_clicked();
 
@@ -21,9 +23,11 @@ private slots:
 
     void on_connecter_2_clicked();
 
+
 private:
     Ui::widget *ui;
     QTcpSocket *mSocket;
+    QString tmp;
 };
 
 #endif // WIDGET_H

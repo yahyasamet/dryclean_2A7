@@ -99,9 +99,6 @@ QPushButton:pressed {
     <property name="text">
      <string/>
     </property>
-    <property name="pixmap">
-     <pixmap>../../../Downloads/hama.webp</pixmap>
-    </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
@@ -123,19 +120,6 @@ QPushButton:pressed {
     </property>
     <property name="scaledContents">
      <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>90</y>
-      <width>801</width>
-      <height>401</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(231, 231, 231);</string>
     </property>
    </widget>
    <widget class="QPushButton" name="connecter">
@@ -194,6 +178,20 @@ QPushButton:hover
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>100</y>
+      <width>801</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(231, 231, 231);
+font: 25 12pt &quot;Malgun Gothic Semilight&quot;;</string>
     </property>
    </widget>
   </widget>
