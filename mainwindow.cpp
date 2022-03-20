@@ -1,12 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "smtp.h"
 #include <QMessageBox>
 #include <sys/types.h>
 #include <QSqlQuery>
 #include <QMap>
 #include <QSqlRecord>
 #include <QComboBox>
+#include "smtp.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -55,22 +55,24 @@ QString random(int len)
 
 void MainWindow::on_forgot_password_clicked()
 {
-    /*MailMessage msg;
-    msg.addRecipient (MailRecipient (MailRecipient::PRIMARY_RECIPIENT,
-                                           "bob@example.com", "Bob"));
-    msg.setSender ("Me <me@example.com>");
-    msg.setSubject ("Subject");
-    msg.setContent ("Content");
+    QString email=ui->email->text();
+    QSqlQuery query;
+    QString password=random(5);
+    if (email=="")
+        QMessageBox::critical(this,"error","this field can't be empty");
+    else if (!emp.chercher_employe(email))
+        QMessageBox::critical(this,"error","Email inexistant");
+    else
+    {
+        Smtp *smtp = new Smtp("perspectives.agence@gmail.com" , "agenceagence", "smtp.gmail.com",465);
+        connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+        smtp->sendMail("perspectives.agence@gmail.com",email,"Your new password is",password);
 
-    SMTPClientSession smtp ("mail.example.com");
-    smtp.login ();
-    smtp.sendMessage (msg);
-    smtp.close ();*/
-    QString pass=random(5);
-    QMessageBox::information(nullptr, QObject::tr("Your new password is :"), pass, QMessageBox::Cancel);
-
-    //smtp *newMail  = new smtp("mirabm48@gmail.com","amira.benmbarek@esprit.tn","mot de passe oublié",pass);
-    //delete newMail;
+        query.prepare("UPDATE EMPLOYE SET PASSWORD=:password WHERE EMAIL=:EMAIL");
+        query.bindValue(":EMAIL",email);
+        query.bindValue(":password",password);
+        query.exec();
+    }
 }
 
 QMap<QString,QString> check_login(QString email,QString password)
@@ -131,7 +133,9 @@ void MainWindow::on_login_clicked()
 void MainWindow::on_ajouter_employe_clicked()
 {
     QMessageBox msgBox;
-
+    /*QSqlQuery query;
+    query.prepare("select CIN from Employe");
+    query.exec();*/
         bool test=true,x=true,y=true;
 
         QString cin=ui->cin_employe->text();
@@ -231,6 +235,7 @@ void MainWindow::on_ajouter_employe_clicked()
             e.ajouter();
             ui->tab_employe->setModel(emp.afficher());
             ui->cin_employe->clear();
+            ui->cin_employe_2->clear();
             ui->nom_employe->clear();
             ui->prenom_employe->clear();
             ui->age_employe->clear();
@@ -240,6 +245,12 @@ void MainWindow::on_ajouter_employe_clicked()
             ui->fonction_employe->setCurrentIndex(0);
             ui->salaire_employe->clear();
             ui->cin_employe->setFocus();
+
+            QSqlQuery query;
+            query.prepare("select CIN from Employe");
+            query.exec();
+            while(query.next())
+                ui->cin_employe_2->addItem(query.value(0).toString());
         }
 }
 
@@ -426,4 +437,9 @@ void MainWindow::on_confirm_password_clicked()
     else
         QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("passwords don't match"), QMessageBox::Cancel);
 
+}
+
+void MainWindow::on_change_password_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
 }

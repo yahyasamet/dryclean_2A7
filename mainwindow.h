@@ -37,6 +37,8 @@ private slots:
 
     void on_confirm_password_clicked();
 
+    void on_change_password_clicked();
+
 private:
     Ui::MainWindow *ui;
     employe emp;

@@ -1,11 +1,13 @@
-QT       += core gui
+QT       += core gui sql printsupport widgets network multimedia charts serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
-QT += sql
-QT += network
-QT += core
+
+DEFINES +=SSL_library_init
+DEFINES +=SSLv23_client_method
+DEFINES +=SSL_CTX_new
+DEFINES +=ERR_get_error
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings

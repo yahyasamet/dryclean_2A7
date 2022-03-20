@@ -48,6 +48,7 @@ public:
     QSqlQueryModel *tri_salaire_asc();
     QSqlQueryModel *tri_salaire_desc();
     QSqlQueryModel *recherche_avancee_employe(QString ch);
+    bool chercher_employe(QString email);
 
 private:
     QString nom,prenom,email,password,fonction,cin,num_tel;

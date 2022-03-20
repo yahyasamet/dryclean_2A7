@@ -326,3 +326,14 @@ QSqlQueryModel* employe::recherche_avancee_employe(QString ch)
 
        return model;
 }
+
+bool employe::chercher_employe(QString email)
+{
+   QSqlQuery query;
+   query.prepare("SELECT * FROM EMPLOYE WHERE EMAIL= :EMAIL");
+   query.bindValue(":EMAIL", email);
+   if (query.exec() && query.next())
+           return true;
+   else
+       return false;
+}
