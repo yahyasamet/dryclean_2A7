@@ -6,7 +6,7 @@
 #include <QString>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
-
+#include <QUrl>
 class Fournisseurs
 {
 private:

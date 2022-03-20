@@ -1,7 +1,7 @@
 #include "fournisseurs.h"
 #include <QMessageBox>
 #include <QDebug>
-
+#include <QUrl>
 
 Fournisseurs::Fournisseurs()
 {

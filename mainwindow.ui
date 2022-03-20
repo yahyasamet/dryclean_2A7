@@ -140,7 +140,7 @@ font-size: 17px;
 }</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -501,7 +501,7 @@ font-size: 13px;
         <rect>
          <x>-11</x>
          <y>-31</y>
-         <width>251</width>
+         <width>271</width>
          <height>411</height>
         </rect>
        </property>
@@ -913,10 +913,10 @@ QPushButton:pressed {
        <widget class="QLabel" name="label_17">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>100</y>
-          <width>111</width>
-          <height>31</height>
+          <x>30</x>
+          <y>130</y>
+          <width>211</width>
+          <height>71</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -925,7 +925,7 @@ font-size: 13px;
 }</string>
         </property>
         <property name="text">
-         <string>Matricule Fiscale:</string>
+         <string>Choisir le fournisseur à supprimer :</string>
         </property>
         <property name="textFormat">
          <enum>Qt::AutoText</enum>
@@ -942,16 +942,6 @@ font-size: 13px;
         </property>
         <property name="text">
          <string>Supprimer</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="combo_box_supprimer">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>150</y>
-          <width>106</width>
-          <height>22</height>
-         </rect>
         </property>
        </widget>
       </widget>
@@ -1298,7 +1288,7 @@ QPushButton:pressed {
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLineEdit" name="sender">
+      <widget class="QLineEdit" name="rcpt">
        <property name="geometry">
         <rect>
          <x>90</x>
@@ -1308,27 +1298,17 @@ QPushButton:pressed {
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="recipient">
+      <widget class="QLineEdit" name="subject">
        <property name="geometry">
         <rect>
          <x>90</x>
          <y>80</y>
-         <width>181</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="objet">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>110</y>
          <width>291</width>
          <height>20</height>
         </rect>
        </property>
       </widget>
-      <widget class="QPushButton" name="sendemailButton">
+      <widget class="QPushButton" name="sendBtn">
        <property name="geometry">
         <rect>
          <x>340</x>
@@ -1341,34 +1321,11 @@ QPushButton:pressed {
         <string>Envoyer</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_22">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>50</y>
-         <width>111</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>De:</string>
-       </property>
-      </widget>
-      <widget class="QTextBrowser" name="emailtext">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>140</y>
-         <width>451</width>
-         <height>211</height>
-        </rect>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_23">
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>80</y>
+         <y>50</y>
          <width>47</width>
          <height>14</height>
         </rect>
@@ -1381,7 +1338,7 @@ QPushButton:pressed {
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>100</y>
+         <y>70</y>
          <width>81</width>
          <height>31</height>
         </rect>
@@ -1400,9 +1357,32 @@ QPushButton:pressed {
        <property name="geometry">
         <rect>
          <x>280</x>
-         <y>80</y>
+         <y>50</y>
          <width>106</width>
          <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="exitBtn">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>360</y>
+         <width>142</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Annuler</string>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="msg">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>120</y>
+         <width>451</width>
+         <height>231</height>
         </rect>
        </property>
       </widget>

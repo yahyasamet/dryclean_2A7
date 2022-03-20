@@ -5,6 +5,10 @@
 #include "fournisseurs.h"
 #include<QCompleter>
 #include<QDirModel>
+#include "smtp.h"
+#include <QMessageBox>
+#include <QUrl>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -24,10 +28,20 @@ private slots:
      void on_rechercheA_textChanged(const QString &arg1);
      void on_rechercheA_textEdited(const QString &arg1);
      void on_Tri_activated(const QString &arg1);
+     void sendMail();
+
+
+
+    // void on_sendemailButton_clicked();
+
+    // void on_recipient_combo_activated(const QString &);
+
+     void on_recipient_combo_activated(const QString &);
 
 private:
     Ui::MainWindow *ui;
     Fournisseurs f;
      QCompleter *stringcompleter,*modelcompleter;
+
 };
 #endif // MAINWINDOW_H

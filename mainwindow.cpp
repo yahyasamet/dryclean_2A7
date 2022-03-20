@@ -5,13 +5,17 @@
 #include<QDebug>
 #include "fournisseurs.h"
 
+
 #include <QIntValidator>
 #include <QRegExpValidator>
 #include <QSqlQuery>
 #include <QSystemTrayIcon>
-#include <QDebug>
+#include <sys/types.h>
 #include <QUrl>
-#include<QDate>
+
+#include <QSqlRecord>
+#include <QComboBox>
+
 
 
 
@@ -21,17 +25,18 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->tableView->setModel(f.afficher());
+    connect(ui->sendBtn, SIGNAL(clicked()),this, SLOT(sendMail()));
+    connect(ui->exitBtn, SIGNAL(clicked()),this, SLOT(close()));
 
 
-
-    QSqlQuery qry,qry1;
+    QSqlQuery qry,qry1,qry_mail;
             qry.prepare("select MATRICULE_F from fournisseur");
             qry.exec();
            ui->combo_box_modifier->addItem("");
-           ui->combo_box_supprimer->addItem("");
+
             while(qry.next()){
              ui->combo_box_modifier->addItem(qry.value(0).toString());
-             ui->combo_box_supprimer->addItem(qry.value(0).toString());}
+           }
             qry1.prepare("select * from fournisseur");
             qry1.exec();
             QStringList completionlist;
@@ -41,6 +46,15 @@ MainWindow::MainWindow(QWidget *parent)
             stringcompleter=new QCompleter(completionlist,this);
             stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
             ui->rechercheA->setCompleter(stringcompleter);
+            qry_mail.prepare("select NOMSOCIETE from fournisseur");
+            qry_mail.exec();
+            ui->recipient_combo->addItem("");
+            while(qry_mail.next()){
+             ui->recipient_combo->addItem(qry_mail.value(0).toString());
+            }
+
+
+
 
 
 
@@ -148,7 +162,27 @@ void MainWindow::on_ajouter_clicked()
                      ui->lineEdit_EMAIL_F->clear();
                      ui->spinBox_QUANTITE_F->clear();
                      ui->lineEdit_PRIX_F->clear();
+                    ui->combo_box_modifier->clear();
+                    ui->recipient_combo->clear();
+
                     ui->lineEdit_MATRICULE_F->setFocus();
+
+
+                    QSqlQuery qry, qry_mail;
+                            qry.prepare("select MATRICULE_F from fournisseur");
+                            qry.exec();
+                           ui->combo_box_modifier->addItem("");
+
+                            while(qry.next()){
+                             ui->combo_box_modifier->addItem(qry.value(0).toString());
+                             }
+
+                            qry_mail.prepare("select NOMSOCIETE from fournisseur");
+                            qry_mail.exec();
+                            ui->recipient_combo->addItem("");
+                            while(qry_mail.next()){
+                             ui->recipient_combo->addItem(qry_mail.value(0).toString());
+                            }
       }
 
 
@@ -162,22 +196,26 @@ void MainWindow::on_ajouter_clicked()
 void MainWindow::on_supprimer_clicked()
 {
 
-   Fournisseurs f;
-    QString MATRICULE_F=ui->combo_box_supprimer->currentText();
+    QString MATRICULE_F = ui->tableView->selectionModel()->currentIndex().data(Qt::DisplayRole).toString();
+     bool test=f.supprimer( MATRICULE_F);
+     ui->tableView->setModel(f.afficher());
+       ui->recipient_combo->clear();
+     QSqlQuery qry_mail;
+     qry_mail.prepare("select NOMSOCIETE from fournisseur");
+     qry_mail.exec();
+     ui->recipient_combo->addItem("");
+     while(qry_mail.next()){
+      ui->recipient_combo->addItem(qry_mail.value(0).toString());
+     }
 
 
-    bool test=f.supprimer( MATRICULE_F);
+
 
     if(test)
   {
     QMessageBox::information(nullptr, QObject::tr("success"),
                        QObject::tr("Suppression Effectué\n"
                                    "click cancel to exit"), QMessageBox::Cancel);
-    ui->tableView->setModel(f.afficher());
-    ui->combo_box_supprimer->clear();
-     ui->combo_box_supprimer->setFocus();
-
-
 
     }
 
@@ -320,5 +358,30 @@ void MainWindow::on_Tri_activated(const QString &arg1)
     ui->tableView->setModel(f.Tri_prix());
     else if(arg1=="Nom Société")
     ui->tableView->setModel(f.Tri_nom());
+
+}
+
+void MainWindow::sendMail()
+{
+    Smtp* smtp = new Smtp("waterproof.application@gmail.com" , "waterproofwaterproof", "smtp.gmail.com",465);
+    connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+
+
+    smtp->sendMail("waterproof.application@gmail.com", ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText());
+}
+
+
+void MainWindow::on_recipient_combo_activated(const QString &)
+{
+    QSqlQuery query;
+    QString NOMSOCIETE=ui->recipient_combo->currentText() ;
+   query.prepare("Select EMAIL_F from fournisseur where NOMSOCIETE=:NOMSOCIETE" );
+           query.bindValue(":NOMSOCIETE",NOMSOCIETE) ;
+           query.exec();
+    query.next() ;
+
+    ui->rcpt->setText(query.value("EMAIL_F").toString());
+
+
 
 }
