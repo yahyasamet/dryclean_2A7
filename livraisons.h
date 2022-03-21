@@ -34,6 +34,7 @@ public:
     QSqlQueryModel * Recherche_Avancee(QString);
     int chercher_ref(int );
     int chercher_id(int );
+    int chercher_ref_mod(int );
 
 
 private:

@@ -91,6 +91,8 @@ void MainWindow::on_pushButton_2_clicked()
  int id=ui->le_id->text().toInt();
  QString nom_lv=ui->le_nom->text();
  QDate date_lv=ui->la_date->date();
+
+
  int ref_cmd=ui->le_ref_cmd->currentText().toInt();
 
 
@@ -214,10 +216,9 @@ void MainWindow::on_modifier_clicked()
         erreur=1;
         if(C.DateValide( C.get_date_lv()))
         erreur=2;
-        if(C.chercher_ref(C.get_ref_cmd())>=1)
-         erreur=3;
-        if(C.chercher_id(C.get_id())>=1)
-         erreur=4;
+        //if(C.chercher_ref_mod(C.get_ref_cmd())<=C.chercher_ref(C.get_ref_cmd()))
+         //erreur=3;
+
 
         switch(erreur)
         {
@@ -227,12 +228,10 @@ void MainWindow::on_modifier_clicked()
         case 2:
         msg.setText("La date doit être suppérieur à la date actuel !");
         break;
-        case 3:
-        msg.setText("reference deja existe !");
-        break;
-        case 4:
-        msg.setText("ID deja existe !");
-        break;
+       // case 3:
+       // msg.setText("reference deja existe !");
+        //break;
+
 
         }
 if(erreur==0)
@@ -282,43 +281,53 @@ void MainWindow::on_pushButton_5_clicked()
 {
     QPdfWriter pdf("C:\\Users\\MSI\\OneDrive\\Bureau\\PDF_livraisons.pdf");
 
-       QPainter painter(&pdf);
-       int i = 4000;
-             QImage image("C:\\Users\\MSI\\OneDrive\\Bureau\\yahyav2\\images\\logo_c++-1.png");
-             painter.drawImage(-20,-30,image);
+          QPainter painter(&pdf);
+                QImage image("C:\\Users\\MSI\\OneDrive\\Bureau\\yahyav2\\images\\logo_c++-1.png");
+                painter.drawImage(15,15,image);
 
-              painter.setPen(Qt::red);
-              painter.setFont(QFont("Time New Roman", 25));
-              painter.drawText(3000,1400,"Bon de Livraison");
-              painter.setPen(Qt::black);
-              painter.setFont(QFont("Time New Roman", 15));
-              painter.drawRect(100,100,9400,2500); // dimension ta3 rectangle eli fih liste des  livraisons
-              painter.drawRect(100,3000,9400,500);
-              painter.setFont(QFont("Time New Roman", 9));
-              painter.drawText(400,3300,"ID");
-              painter.drawText(1350,3300,"Nom livreure");
-              painter.drawText(2900,3300,"Date livraisons");
-              painter.drawText(4500,3300,"Reference Commande");
-              painter.drawRect(100,3000,9400,9000);
+                 painter.setPen(Qt::red);
+                 painter.setFont(QFont("Time New Roman", 25));
+                 painter.drawText(3200,1400,"Bon de Livraison");
+                 painter.setPen(Qt::black);
+                 painter.setFont(QFont("Time New Roman", 15));
+                // painter.drawRect(100,100,9400,2500);
+                // painter.drawRect(100,3000,9400,500);
+                 painter.setFont(QFont("Time New Roman", 9));
+                                  painter.drawText(400,3800,"ID: ");
 
-              QSqlQuery query;
-              int id=ui->le_id_4->currentText().toInt(); //on supprime si tout livraisins
-              query.prepare("select * from livraisons where ID_LIVR=:ID_LIVR");   //on supprime  where ID_LIVR=:ID_LIVR si tout livraisins
-              query.bindValue(":ID_LIVR", id);   //on supprime si tout livraisins
-              query.exec();
-            //  while (query.next()) on utilise selemnt pour affichier tou les livraisons
-             // {
-              query.next(); //on supprime si tout livraisins
-                  painter.drawText(400,i,query.value(0).toString());
-                  painter.drawText(1350,i,query.value(1).toString());
-                  painter.drawText(2900,i,query.value(2).toString());
-                  painter.drawText(4500,i,query.value(3).toString());
+                                  painter.drawText(400,4650,"NOM  LIVREUR: ");
+
+                                  painter.drawText(400,5600,"DATE  LIVRAISON: ");
+
+                                  painter.drawText(400,6550,"REF COMMANDE: ");
+
+                                  painter.drawText(400,7500,"NOM CLIENT: ");
+
+                                  painter.drawText(400,8450,"ADRESSE CLIENT:");
+
+                                  painter.drawText(7800,10100,"Signature");
+                                  painter.drawText(8150,10300,".");
+
+                 painter.drawRect(100,3000,9400,9000);
+
+                 QSqlQuery query;
+                 int id=ui->le_id_4->currentText().toInt();
+                 query.prepare("select  ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES where ID_LIVR=:ID_LIVR");   //on supprime  where ID_LIVR=:ID_LIVR si tout livraisins
+                 query.bindValue(":ID_LIVR", id);
+                 query.exec();
+
+                 query.next();
+                                  painter.drawText(800,3800,query.value(0).toString());
+                                  painter.drawText(1550,4650,query.value(1).toString());
+                                  painter.drawText(1750,5600,query.value(2).toString());
+                                  painter.drawText(1600,6550,query.value(3).toString());
+                                  painter.drawText(1400,7500,query.value(4).toString());
+                                  painter.drawText(1700,8450,query.value(5).toString());
 
 
-               //  i = i + 350;
-             // }
-              QMessageBox::information(this, QObject::tr("PDF Enregistré!"),
-              QObject::tr("PDF Enregistré!.\n" "Click Cancel to exit."), QMessageBox::Cancel);
+
+                 QMessageBox::information(this, QObject::tr("PDF Enregistré!"),
+                 QObject::tr("PDF Enregistré!.\n" "Click Cancel to exit."), QMessageBox::Cancel);
 
 }
 
@@ -367,6 +376,7 @@ void MainWindow::showAddrWeb()
     QString addr="https://www.google.com/maps/place/"+on_le_id_3_activated();
     webShow(addr);
 
+
 }
 
 
@@ -385,4 +395,9 @@ QString MainWindow::on_le_id_3_activated()
      QString ADR_CL=query.value(5).toString();
 
     return  ADR_CL;
+}
+
+int MainWindow::on_Calendrier_clicked()
+{
+return 1;
 }

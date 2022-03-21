@@ -46,6 +46,7 @@ bool livraisons::ajouter_livraisons()
     QSqlQuery query;
     QString id_string= QString ::number(id);
 
+
           query.prepare("INSERT INTO LIVRAISONS (ID_LIVR,DATE_LIVRAISON,NOM_LIVREUR,REF_CMD ) "
                         "VALUES (:ID_LIVR, :DATE_LIVRAISON, :NOM_LIVREUR, :REF_CMD)");
 
@@ -248,6 +249,26 @@ bool livraisons::ajouter_livraisons()
     }
         return count;
     }
+
+    int livraisons::chercher_ref_mod(int ref)
+    {
+        QSqlQuery qry;
+
+        qry.prepare("SELECT * FROM COMMANDES WHERE REF_CMD = :REF_CMD");
+        qry.bindValue(":REF_CMD",ref);
+        qDebug() << ref << endl;
+       int count(0);
+        if ( qry.exec() )
+        {
+
+            while (qry.next())
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
     int livraisons::chercher_id(int id)
     {
         QSqlQuery qry;

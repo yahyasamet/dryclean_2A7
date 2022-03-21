@@ -16,6 +16,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void webShow(const QString &url);
+    int on_Calendrier_clicked();
 
 private slots:
 
@@ -33,6 +34,10 @@ private slots:
 
 
     QString on_le_id_3_activated();
+
+
+
+
 
 private:
     Ui::MainWindow *ui;

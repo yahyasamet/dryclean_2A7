@@ -4,6 +4,23 @@
 #include "connection.h"
 #include "webaxwidget.h"
 
+/*
+#include <QtQml>
+#include "C:\Qt\Qt5.9.9\Examples\Qt-5.9.9\quickcontrols\controls\shared\qtquickcontrolsapplication.h"
+#include "C:\Users\MSI\OneDrive\Bureau\yahyav2\calendrier\calendar\src\sqleventmodel.h"
+
+if(w.on_Calendrier_clicked()==1)
+{
+    QtQuickControlsApplication app(argc, argv);
+    qmlRegisterType<SqlEventModel>("org.qtproject.examples.calendar", 1, 0, "SqlEventModel");
+    QQmlApplicationEngine engine(QUrl("qrc:/calendrier/calendar/qml/main.qml"));
+   if (engine.rootObjects().isEmpty())
+        return -1;
+    return app.exec();
+
+}
+*/
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
