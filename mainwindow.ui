@@ -105,9 +105,9 @@ QLineEdit {
        <widget class="QPushButton" name="confirm_password">
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>50</x>
           <y>520</y>
-          <width>241</width>
+          <width>172</width>
           <height>51</height>
          </rect>
         </property>
@@ -133,7 +133,7 @@ QPushButton:pressed {
 }</string>
         </property>
         <property name="text">
-         <string>Confirm</string>
+         <string>Confirmer</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_16">
@@ -185,6 +185,40 @@ QPushButton:pressed {
         </property>
         <property name="text">
          <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="annuler_pass">
+        <property name="geometry">
+         <rect>
+          <x>231</x>
+          <y>520</y>
+          <width>172</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    color: rgb(255, 255, 255);
+  background-color: #4d7cff;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: beige;
+    min-width: 10em;
+    padding: 6px;
+}
+QPushButton:hover {
+	color: rgb(255, 255, 255);
+    background-color: rgb(70, 70, 70);
+    border-style: inset;
+}
+QPushButton:pressed {
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Annuler</string>
         </property>
        </widget>
       </widget>
@@ -481,9 +515,9 @@ color: gray;
        <widget class="QLabel" name="label_176">
         <property name="geometry">
          <rect>
-          <x>220</x>
+          <x>210</x>
           <y>10</y>
-          <width>101</width>
+          <width>181</width>
           <height>61</height>
          </rect>
         </property>
@@ -848,7 +882,7 @@ QPushButton:pressed {
          <rect>
           <x>200</x>
           <y>80</y>
-          <width>161</width>
+          <width>211</width>
           <height>61</height>
          </rect>
         </property>
@@ -1182,7 +1216,7 @@ font-size: 18px;
           <rect>
            <x>170</x>
            <y>250</y>
-           <width>171</width>
+           <width>251</width>
            <height>22</height>
           </rect>
          </property>
@@ -1192,7 +1226,7 @@ font-size: 18px;
           <rect>
            <x>170</x>
            <y>350</y>
-           <width>171</width>
+           <width>251</width>
            <height>22</height>
           </rect>
          </property>
@@ -1202,7 +1236,7 @@ font-size: 18px;
           <rect>
            <x>170</x>
            <y>200</y>
-           <width>171</width>
+           <width>251</width>
            <height>22</height>
           </rect>
          </property>
@@ -1212,7 +1246,7 @@ font-size: 18px;
           <rect>
            <x>170</x>
            <y>500</y>
-           <width>171</width>
+           <width>251</width>
            <height>22</height>
           </rect>
          </property>
@@ -1222,7 +1256,7 @@ font-size: 18px;
           <rect>
            <x>170</x>
            <y>100</y>
-           <width>171</width>
+           <width>251</width>
            <height>22</height>
           </rect>
          </property>
@@ -1232,7 +1266,7 @@ font-size: 18px;
           <rect>
            <x>170</x>
            <y>150</y>
-           <width>171</width>
+           <width>251</width>
            <height>22</height>
           </rect>
          </property>
@@ -1242,7 +1276,7 @@ font-size: 18px;
           <rect>
            <x>170</x>
            <y>300</y>
-           <width>171</width>
+           <width>251</width>
            <height>22</height>
           </rect>
          </property>
@@ -1252,7 +1286,7 @@ font-size: 18px;
           <rect>
            <x>170</x>
            <y>400</y>
-           <width>171</width>
+           <width>251</width>
            <height>22</height>
           </rect>
          </property>
@@ -1275,7 +1309,7 @@ font-size: 18px;
           <rect>
            <x>30</x>
            <y>150</y>
-           <width>56</width>
+           <width>121</width>
            <height>16</height>
           </rect>
          </property>
@@ -1288,7 +1322,7 @@ font-size: 18px;
           <rect>
            <x>30</x>
            <y>200</y>
-           <width>71</width>
+           <width>121</width>
            <height>16</height>
           </rect>
          </property>
@@ -1313,9 +1347,9 @@ font-size: 18px;
          <property name="geometry">
           <rect>
            <x>30</x>
-           <y>400</y>
+           <y>390</y>
            <width>111</width>
-           <height>16</height>
+           <height>31</height>
           </rect>
          </property>
          <property name="text">
@@ -1340,7 +1374,7 @@ font-size: 18px;
           <rect>
            <x>30</x>
            <y>350</y>
-           <width>81</width>
+           <width>131</width>
            <height>16</height>
           </rect>
          </property>
@@ -1379,7 +1413,7 @@ font-size: 18px;
           <rect>
            <x>170</x>
            <y>450</y>
-           <width>171</width>
+           <width>251</width>
            <height>22</height>
           </rect>
          </property>
@@ -1421,7 +1455,7 @@ font-size: 18px;
           <x>0</x>
           <y>-30</y>
           <width>491</width>
-          <height>651</height>
+          <height>661</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1478,7 +1512,7 @@ font-size: 18px;
           <rect>
            <x>30</x>
            <y>150</y>
-           <width>56</width>
+           <width>111</width>
            <height>16</height>
           </rect>
          </property>
@@ -1504,7 +1538,7 @@ font-size: 18px;
           <rect>
            <x>30</x>
            <y>200</y>
-           <width>71</width>
+           <width>121</width>
            <height>16</height>
           </rect>
          </property>
@@ -1530,7 +1564,7 @@ font-size: 18px;
           <rect>
            <x>30</x>
            <y>350</y>
-           <width>91</width>
+           <width>131</width>
            <height>16</height>
           </rect>
          </property>
@@ -1542,9 +1576,9 @@ font-size: 18px;
          <property name="geometry">
           <rect>
            <x>30</x>
-           <y>400</y>
+           <y>390</y>
            <width>111</width>
-           <height>16</height>
+           <height>31</height>
           </rect>
          </property>
          <property name="text">
@@ -1582,7 +1616,7 @@ font-size: 18px;
           <rect>
            <x>170</x>
            <y>450</y>
-           <width>171</width>
+           <width>251</width>
            <height>22</height>
           </rect>
          </property>
@@ -1618,7 +1652,7 @@ font-size: 18px;
          <rect>
           <x>170</x>
           <y>320</y>
-          <width>171</width>
+          <width>251</width>
           <height>22</height>
          </rect>
         </property>
@@ -1628,7 +1662,7 @@ font-size: 18px;
          <rect>
           <x>170</x>
           <y>470</y>
-          <width>171</width>
+          <width>251</width>
           <height>22</height>
          </rect>
         </property>
@@ -1638,7 +1672,7 @@ font-size: 18px;
          <rect>
           <x>170</x>
           <y>270</y>
-          <width>171</width>
+          <width>251</width>
           <height>22</height>
          </rect>
         </property>
@@ -1648,7 +1682,7 @@ font-size: 18px;
          <rect>
           <x>170</x>
           <y>170</y>
-          <width>171</width>
+          <width>251</width>
           <height>22</height>
          </rect>
         </property>
@@ -1658,7 +1692,7 @@ font-size: 18px;
          <rect>
           <x>170</x>
           <y>220</y>
-          <width>171</width>
+          <width>251</width>
           <height>22</height>
          </rect>
         </property>
@@ -1668,7 +1702,7 @@ font-size: 18px;
          <rect>
           <x>170</x>
           <y>120</y>
-          <width>171</width>
+          <width>251</width>
           <height>22</height>
          </rect>
         </property>
@@ -1678,7 +1712,7 @@ font-size: 18px;
          <rect>
           <x>170</x>
           <y>370</y>
-          <width>171</width>
+          <width>251</width>
           <height>22</height>
          </rect>
         </property>
@@ -1688,7 +1722,7 @@ font-size: 18px;
          <rect>
           <x>170</x>
           <y>70</y>
-          <width>171</width>
+          <width>251</width>
           <height>22</height>
          </rect>
         </property>
@@ -1704,7 +1738,7 @@ font-size: 18px;
           <x>0</x>
           <y>-30</y>
           <width>491</width>
-          <height>651</height>
+          <height>661</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1746,9 +1780,9 @@ font-size: 18px;
         <widget class="QLabel" name="label">
          <property name="geometry">
           <rect>
-           <x>40</x>
+           <x>90</x>
            <y>110</y>
-           <width>421</width>
+           <width>281</width>
            <height>61</height>
           </rect>
          </property>
@@ -1756,7 +1790,23 @@ font-size: 18px;
           <string notr="true">font-size: 35px;</string>
          </property>
          <property name="text">
-          <string>Choose a field to delete</string>
+          <string>Choisir une ligne</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_17">
+         <property name="geometry">
+          <rect>
+           <x>130</x>
+           <y>180</y>
+           <width>191</width>
+           <height>71</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 35px;</string>
+         </property>
+         <property name="text">
+          <string>à supprimer</string>
          </property>
         </widget>
        </widget>

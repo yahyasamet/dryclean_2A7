@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    /*QStringList langues;
+    QStringList langues;
         QTranslator t;
         langues<<"Anglais"<<"Français";
         QString choix=QInputDialog::getItem(NULL,"CHOISIR","Langue",langues);
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
         if(choix!="Français")
         {
             a.installTranslator(&t);
-        }*/
+        }
 
     Connection c;
     c.connect();

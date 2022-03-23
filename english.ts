@@ -1,1827 +1,502 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_CA" sourcelanguage="fr">
+<TS version="2.1" language="en_US" sourcelanguage="fr">
 <context>
-    <name>AlarmeUI</name>
+    <name>MainWindow</name>
     <message>
-        <location filename="alarmeui.ui" line="14"/>
-        <source>Alarme aide</source>
-        <translation>Help alarm</translation>
-    </message>
-    <message>
-        <location filename="alarmeui.ui" line="95"/>
-        <source>Un patient dans la chambre a1</source>
-        <translation>One patient in room </translation>
-    </message>
-    <message>
-        <location filename="alarmeui.ui" line="108"/>
-        <source>a besoin d&apos;aide.</source>
-        <translation>needs help</translation>
-    </message>
-    <message>
-        <location filename="alarmeui.ui" line="139"/>
-        <source>Envoyer de l&apos;aide</source>
-        <translation>Send help</translation>
-    </message>
-</context>
-<context>
-    <name>Menu</name>
-    <message>
-        <location filename="menu.ui" line="21"/>
-        <source>Hoptimal</source>
+        <location filename="mainwindow.ui" line="14"/>
+        <source>MainWindow</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="menu.ui" line="207"/>
-        <source>Login</source>
-        <translation></translation>
+        <location filename="mainwindow.ui" line="136"/>
+        <source>Confirmer</source>
+        <oldsource>Confirm</oldsource>
+        <translation>Confirm</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="456"/>
-        <location filename="menu.ui" line="3874"/>
-        <location filename="menu.ui" line="5495"/>
-        <location filename="menu.ui" line="7185"/>
-        <source>Username</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="695"/>
-        <location filename="menu.ui" line="4117"/>
-        <location filename="menu.ui" line="7420"/>
-        <source>Password</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="746"/>
-        <source>SIGN IN</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="781"/>
-        <source>SIGN UP</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="825"/>
-        <location filename="menu.ui" line="11808"/>
-        <location filename="menu.ui" line="12560"/>
-        <location filename="menu.ui" line="13356"/>
-        <location filename="menu.ui" line="13487"/>
-        <source>Menu</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="850"/>
-        <location filename="menu.ui" line="11586"/>
-        <source>Gestion des offres</source>
-        <translation> Offers management </translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="872"/>
-        <source>Gestion des infrastructures</source>
-        <translation>Infrastructure management</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="913"/>
-        <location filename="menu.ui" line="1111"/>
-        <source>Gestion des patients</source>
-        <translation>Patients management</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="954"/>
-        <source>Gestion de secours</source>
-        <translation>Rescue management</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="976"/>
-        <source>Gestion du personnel</source>
-        <translation>Staff management</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1004"/>
-        <source>Logout</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1039"/>
-        <source>Reunion</source>
-        <translation>Meeting</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1151"/>
-        <source>liste des patients</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1188"/>
-        <source>liste des rendez vous</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1334"/>
-        <location filename="menu.ui" line="1803"/>
-        <source> Home</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1346"/>
-        <location filename="menu.ui" line="1813"/>
-        <source> Patient</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1374"/>
-        <location filename="menu.ui" line="1828"/>
-        <source> Rendez Vous</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1412"/>
-        <source>Liste des patients</source>
-        <translation>List of patients</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1464"/>
-        <location filename="menu.ui" line="1903"/>
-        <source>+</source>
-        <translation>+</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1519"/>
-        <location filename="menu.ui" line="1936"/>
-        <source>Recherche                                                                                                Tri et affichage                       </source>
-        <translation>Search                                                                                                Sort and display                       </translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1597"/>
-        <source>Cin</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1602"/>
-        <location filename="menu.ui" line="9589"/>
-        <source>Nom</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1607"/>
-        <source>Prenom</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1612"/>
-        <source>Numero de la chambre</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1642"/>
-        <location filename="menu.ui" line="2053"/>
-        <source> Avancée</source>
-        <translation>Advanced</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="1872"/>
-        <source>Liste des rendez vous</source>
-        <translation>List of rendez vous</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2006"/>
-        <source>Id de la RDV</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2011"/>
-        <source>Nom du patient</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2016"/>
-        <source>Prenom du patient</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2021"/>
-        <source>Email du patient</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2180"/>
-        <location filename="menu.ui" line="3070"/>
-        <source>Patient</source>
-        <translation>Patient</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2211"/>
-        <location filename="menu.ui" line="3100"/>
-        <source>Nom *</source>
-        <translation>Last name</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2248"/>
-        <location filename="menu.ui" line="2342"/>
-        <location filename="menu.ui" line="2515"/>
-        <location filename="menu.ui" line="3134"/>
-        <location filename="menu.ui" line="3228"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vous ne pouvez pas depasser 20 caractères.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2267"/>
-        <location filename="menu.ui" line="2358"/>
-        <location filename="menu.ui" line="2446"/>
-        <location filename="menu.ui" line="2531"/>
-        <location filename="menu.ui" line="3150"/>
-        <location filename="menu.ui" line="3244"/>
-        <source>error</source>
-        <translation>Error</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2302"/>
-        <location filename="menu.ui" line="3194"/>
-        <source>Prenom *</source>
-        <translation>First name</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2393"/>
-        <source>CIN *</source>
-        <translation>CIN</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2427"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vous ne pouvez pas depasser 8 caractères.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2481"/>
-        <source>Numero de la chambre *</source>
-        <translation>Room&apos;s number</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2566"/>
-        <source>Date de naissance *</source>
-        <translation>Date of birth</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2656"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Imprimer la fiche du patient en pdf.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2700"/>
-        <location filename="menu.ui" line="3557"/>
-        <location filename="menu.ui" line="5884"/>
-        <location filename="menu.ui" line="5978"/>
-        <location filename="menu.ui" line="9515"/>
-        <location filename="menu.ui" line="9721"/>
-        <location filename="menu.ui" line="10500"/>
-        <location filename="menu.ui" line="10700"/>
-        <location filename="menu.ui" line="13461"/>
-        <location filename="menu.ui" line="13599"/>
-        <source>Ajouter</source>
-        <translation>Add</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="2716"/>
-        <location filename="menu.ui" line="3576"/>
-        <location filename="menu.ui" line="10510"/>
-        <location filename="menu.ui" line="10722"/>
-        <location filename="menu.ui" line="11169"/>
-        <location filename="menu.ui" line="11505"/>
-        <location filename="menu.ui" line="13819"/>
-        <location filename="menu.ui" line="13996"/>
+        <location filename="mainwindow.ui" line="221"/>
         <source>Annuler</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="2757"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Supprimer ce patient.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <location filename="mainwindow.ui" line="334"/>
+        <source>Log In</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="menu.ui" line="2798"/>
-        <source>Rendez-Vous</source>
-        <translation>Rendez-vous</translation>
+        <location filename="mainwindow.ui" line="374"/>
+        <source>Mot de passe oublié?</source>
+        <translation>Forgot password?</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="2854"/>
-        <source>Id</source>
-        <translation>Id</translation>
+        <location filename="mainwindow.ui" line="397"/>
+        <source>Changer mot de passe?</source>
+        <translation>Change password?</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="2878"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AUTO INCREMENT&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <location filename="mainwindow.ui" line="533"/>
+        <source>Gérant</source>
+        <translation>Manager</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="575"/>
+        <location filename="mainwindow.ui" line="877"/>
+        <source>Gestion des équipements</source>
+        <translation>Equipments management</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="617"/>
+        <location filename="mainwindow.ui" line="940"/>
+        <source>Gestion des fournisseurs</source>
+        <translation>Suppliers management</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="659"/>
+        <location filename="mainwindow.ui" line="1053"/>
+        <source>Gestion des commandes</source>
+        <translation>Orders management</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="701"/>
+        <location filename="mainwindow.ui" line="1095"/>
+        <source>Gestion des livraisons</source>
+        <translation>Delivery management</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="743"/>
+        <location filename="mainwindow.ui" line="1921"/>
+        <source>Gestion des employés</source>
+        <translation>Employees management</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="785"/>
+        <source>Gestion des finances</source>
+        <translation>Finances management</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="898"/>
+        <location filename="mainwindow.ui" line="1437"/>
+        <location filename="mainwindow.ui" line="1640"/>
+        <source>Magasinier</source>
+        <translation>Storekeeper</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1011"/>
+        <location filename="mainwindow.ui" line="1432"/>
+        <location filename="mainwindow.ui" line="1635"/>
+        <source>Caissier</source>
+        <translation>Cashier</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1167"/>
+        <location filename="mainwindow.ui" line="1211"/>
+        <source>Ajouter</source>
+        <translation>Add</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1304"/>
+        <location filename="mainwindow.ui" line="1507"/>
+        <source>CIN</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="menu.ui" line="2881"/>
-        <location filename="menu.ui" line="7668"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <location filename="mainwindow.ui" line="1317"/>
+        <location filename="mainwindow.ui" line="1520"/>
+        <source>Nom</source>
+        <translation>Last Name</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1330"/>
+        <location filename="mainwindow.ui" line="1546"/>
+        <source>Prénom</source>
+        <translation>First Name</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1343"/>
+        <location filename="mainwindow.ui" line="1533"/>
+        <source>Age</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="menu.ui" line="2954"/>
-        <source>Date et Heure *</source>
-        <translation>Date and hour</translation>
+        <location filename="mainwindow.ui" line="1356"/>
+        <location filename="mainwindow.ui" line="1585"/>
+        <source>Mot de passe</source>
+        <translation>Password</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="3315"/>
-        <source>E-mail *</source>
-        <translation>E-mail</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="3460"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Envoyer un email à cette adresse.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="3510"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Supprimer ce rendez vous.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="3604"/>
-        <source>Register</source>
-        <translation>Register</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="3633"/>
-        <source>Please fill the form correctly.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="4360"/>
-        <location filename="menu.ui" line="7655"/>
-        <source>E-mail</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="4380"/>
-        <source>&lt;img src=&quot;:user.png&quot; /&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="4393"/>
-        <location filename="menu.ui" line="5818"/>
-        <source>UPLOAD PICTURE</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="4640"/>
-        <location filename="menu.ui" line="7924"/>
-        <source>First Name</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="4883"/>
-        <location filename="menu.ui" line="8159"/>
-        <source>Middle Name</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="5126"/>
-        <location filename="menu.ui" line="8394"/>
-        <source>Last Name</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="5182"/>
-        <source>BACK TO LOGIN PAGE</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="5215"/>
-        <source>COMPLETE REGISTRATION</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="5247"/>
-        <source>Gestion du Personnel</source>
-        <translation>Staff management</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="5287"/>
-        <source>Gestion Employé</source>
-        <translation>Employee management</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="5324"/>
-        <source>Gestion Profil</source>
-        <translation>Profile management</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="5360"/>
-        <source>Liste Employe</source>
-        <translation>Emplyee&apos;s list</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="5367"/>
-        <source>Delete Employe</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="5374"/>
-        <source>add employee</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="5543"/>
-        <source>Fname</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="5571"/>
-        <source>Mname</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="5599"/>
-        <source>Lname</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="5627"/>
+        <location filename="mainwindow.ui" line="1369"/>
+        <location filename="mainwindow.ui" line="1559"/>
         <source>Email</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="menu.ui" line="5655"/>
-        <source>ID</source>
-        <translation></translation>
+        <location filename="mainwindow.ui" line="1382"/>
+        <location filename="mainwindow.ui" line="1572"/>
+        <source>Num Tél</source>
+        <translation>Phone number</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="5925"/>
-        <source>sendmail 💌</source>
-        <translation></translation>
+        <location filename="mainwindow.ui" line="1395"/>
+        <location filename="mainwindow.ui" line="1598"/>
+        <source>Fonction</source>
+        <translation>Position</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="6088"/>
-        <source>Voulez Vous L&apos;imprimer ?</source>
-        <translation>Do you want to print this?</translation>
+        <location filename="mainwindow.ui" line="1408"/>
+        <location filename="mainwindow.ui" line="1611"/>
+        <source>Salaire</source>
+        <translation>Salary</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="6124"/>
-        <source>Oui</source>
-        <translation>Yes</translation>
+        <location filename="mainwindow.ui" line="1422"/>
+        <location filename="mainwindow.ui" line="1625"/>
+        <source>Choisir</source>
+        <translation>Choose</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="6160"/>
-        <source>Non</source>
-        <translation>No</translation>
+        <location filename="mainwindow.ui" line="1427"/>
+        <location filename="mainwindow.ui" line="1630"/>
+        <source>Rh</source>
+        <translation>HR</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="6203"/>
-        <location filename="menu.ui" line="13793"/>
-        <source>Print</source>
-        <translation></translation>
+        <location filename="mainwindow.ui" line="1442"/>
+        <location filename="mainwindow.ui" line="1645"/>
+        <source>Comptable</source>
+        <translation>accountant</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="6248"/>
-        <source>QUITTER</source>
-        <translation>Quit</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6263"/>
-        <location filename="menu.ui" line="9919"/>
-        <location filename="menu.ui" line="13407"/>
-        <location filename="menu.ui" line="13538"/>
-        <source>Trier</source>
-        <translation>Sort</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6276"/>
-        <source>Actualiser</source>
-        <translation>Refresh</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6304"/>
-        <source>recherche</source>
-        <translation>Search</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6339"/>
-        <source>aller a l&apos;espace de suppression</source>
-        <translation>Go to print space</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6352"/>
-        <source>Supression</source>
-        <translation>Delete</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6367"/>
-        <source>Delete</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6386"/>
-        <source>Home 🏡</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6475"/>
-        <source>Logged In</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6500"/>
-        <source>Name:</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6525"/>
-        <source>Rank:</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6582"/>
-        <source>E-mail:</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6632"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6674"/>
-        <location filename="menu.ui" line="11541"/>
-        <location filename="menu.ui" line="11731"/>
-        <source>Retour</source>
-        <translation>Back</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6697"/>
-        <source>ADMIN PANEL</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6730"/>
-        <source>SIGN OUT</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6763"/>
-        <source>EDIT MY PROFILE</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6774"/>
-        <source>DELETE MY ACCOUNT</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6797"/>
-        <source>QMainWindow,QWidget,QMessageBox{
-background: qlineargradient(spread:pad, x1:0.472, y1:0, x2:0.502, y2:1, stop:0 rgba(0, 53, 84, 255), stop:1 rgba(0, 70, 111, 255));
-font-family:&quot;Quicksand SemiBold&quot;;
-}
-
-
-QListWidget{
-background:transparent;
-}
-
-QFrame{
-background:transparent;
-}
-
-
-QLabel,QGroupBox{
-color: white;
-background:transparent;
-}
-QComboBox{
-background:rgb(0, 48, 75);
-color:white;
-height:32px;
-border-radius:5px;
-}
-
-QLineEdit,QDateEdit,QDateTimeEdit{
-background:rgba(0, 33, 52, 100);
-color:white;
-height:32px;
-border-radius:8px;
-}
-
-QPushButton{
-width:131px;
-height:32px;
-background:rgba(0, 33, 52, 100);
-color:white;
-border-radius:10px;
-}
-
-QPushButton:hover{
-background: #cae9ff;
-color:black;
-}
-
-
-Line{
-backfround:white;
-}</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6925"/>
-        <source>Edit Profile</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="6948"/>
-        <source>Edit your details below. (avatar may not change until app relaunch)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="7681"/>
-        <source>CHANGE PICTURE</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="8449"/>
-        <source>BACK TO MY PAGE</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="8482"/>
-        <source>SUBMIT CHANGES</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="8586"/>
-        <source>Admin Panel</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="8766"/>
-        <source>There are no auto backups! Be sure of any alterations you make.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="8826"/>
-        <source>ALL USERS</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="8861"/>
-        <source>ALL ADMINS</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="8896"/>
-        <source>GOTO MY PAGE</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="8943"/>
-        <source>DELETE ALL USERS</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="8978"/>
-        <source>DELETE ALL ADMINS</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="8991"/>
-        <source>ROLLBACK ALL CHANGES</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9026"/>
-        <source>SAVE CHANGES</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9074"/>
-        <source>Gestion d&apos;infrastructure</source>
-        <translation>Infrastructure management</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9115"/>
-        <source>Liste des médicaments</source>
-        <translation>Drug list</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9160"/>
-        <source>Liste des équipements</source>
-        <translation>Equipments list</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9242"/>
-        <location filename="menu.ui" line="9775"/>
-        <source>Equipement</source>
-        <translation>Equipment</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9268"/>
-        <source>Statistique</source>
-        <translation>Statistics</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9294"/>
-        <location filename="menu.ui" line="9813"/>
-        <source>Effacer</source>
-        <translation>Delete</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9372"/>
-        <location filename="menu.ui" line="9885"/>
-        <source>Home</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9442"/>
-        <location filename="menu.ui" line="9991"/>
-        <source>Médicament</source>
-        <translation>Drug</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9490"/>
-        <location filename="menu.ui" line="9957"/>
-        <source>chercher</source>
-        <translation>Search</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9540"/>
-        <source>Liste des médicaments : </source>
-        <translation>List of drugss : </translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9567"/>
-        <source>tri par :  </source>
-        <translation>Sort by :  </translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9608"/>
-        <source>Prix</source>
-        <translation>Price</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9627"/>
-        <source>Quantité</source>
-        <translation>Quantity</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="9701"/>
-        <location filename="menu.ui" line="10097"/>
-        <location filename="menu.ui" line="10798"/>
-        <location filename="menu.ui" line="11359"/>
-        <location filename="menu.ui" line="11956"/>
-        <source>TextLabel</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10018"/>
-        <source>Liste des équipements :</source>
-        <translation>List of equipments :</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10130"/>
-        <source>Ajouter un médicament</source>
-        <translation>Add drug</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10137"/>
-        <source>icon</source>
-        <translation>icon</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10154"/>
-        <source>   Nom de médicament :</source>
-        <translation>   Drug name :</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10200"/>
-        <location filename="menu.ui" line="11199"/>
-        <source>   Description : </source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10246"/>
-        <location filename="menu.ui" line="10865"/>
-        <source>   DF :</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10283"/>
-        <location filename="menu.ui" line="10353"/>
-        <location filename="menu.ui" line="10908"/>
-        <location filename="menu.ui" line="11033"/>
-        <source>dd/MM/yyyy</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10316"/>
-        <location filename="menu.ui" line="10990"/>
-        <source>   DLC :</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10386"/>
-        <source>   Quantité :</source>
-        <translation>   Quantity :</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10438"/>
-        <location filename="menu.ui" line="10823"/>
-        <source>   Prix :</source>
-        <translation>   Price :</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10548"/>
-        <location filename="menu.ui" line="11262"/>
-        <source>   Etat de fonctionnement : </source>
-        <translation>   Performance state :</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10570"/>
-        <location filename="menu.ui" line="11285"/>
-        <source>Bon</source>
-        <translation>Great</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10592"/>
-        <location filename="menu.ui" line="11311"/>
-        <source>Mauvais</source>
-        <translation>Bad</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10609"/>
-        <location filename="menu.ui" line="11376"/>
-        <source>   Disponibilité :</source>
-        <translation>   Disponibility :</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10631"/>
-        <location filename="menu.ui" line="11399"/>
-        <source>Disponible</source>
-        <translation>Available</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10655"/>
-        <location filename="menu.ui" line="11427"/>
-        <source>Non disponible</source>
-        <translation>Not available</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10752"/>
-        <source>   Nom d&apos;équipement : </source>
-        <translation>   Equipment name :</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10791"/>
-        <source>Ajouter un équipement </source>
-        <translation>Add equipment</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10941"/>
-        <source>   Nom du médicament </source>
-        <translation>Drug name</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="10973"/>
-        <source>icon med</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="11066"/>
-        <source>   Quantité : </source>
-        <translation>   Quantity :</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="11153"/>
-        <location filename="menu.ui" line="11489"/>
-        <location filename="menu.ui" line="13468"/>
-        <location filename="menu.ui" line="13606"/>
+        <location filename="mainwindow.ui" line="1450"/>
+        <location filename="mainwindow.ui" line="1494"/>
         <source>Modifier</source>
-        <translation>Modify</translation>
+        <translation>Update</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="11333"/>
-        <source>   Nom d&apos;équipement :</source>
-        <translation>   Equipment name :</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="11450"/>
-        <source>Imprimer</source>
-        <translation>Print</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="11633"/>
-        <location filename="menu.ui" line="11823"/>
-        <location filename="menu.ui" line="12575"/>
-        <source>Chambres</source>
-        <translation>Rooms</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="11667"/>
-        <location filename="menu.ui" line="11838"/>
-        <location filename="menu.ui" line="12590"/>
-        <source>Services</source>
-        <translation>Services</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="11943"/>
-        <source>Liste des services</source>
-        <translation>List of services</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="11977"/>
-        <source>Ajouter un service</source>
-        <translation>Add service</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12042"/>
-        <location filename="menu.ui" line="12199"/>
-        <location filename="menu.ui" line="12382"/>
-        <source>Nom du service</source>
-        <translation>Service&apos;s name</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12058"/>
-        <location filename="menu.ui" line="12219"/>
-        <location filename="menu.ui" line="12402"/>
-        <source>Staff1</source>
-        <translation>Staff1</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12074"/>
-        <location filename="menu.ui" line="12235"/>
-        <location filename="menu.ui" line="12422"/>
-        <source>Staff2</source>
-        <translation>Staff2</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12090"/>
-        <location filename="menu.ui" line="12251"/>
-        <location filename="menu.ui" line="12442"/>
-        <source>Staff3</source>
-        <translation>Staff3</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12106"/>
-        <location filename="menu.ui" line="12267"/>
-        <location filename="menu.ui" line="12462"/>
-        <source>Nom equipement</source>
-        <translation>Equipment&apos;s name</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12134"/>
-        <source>Modifier un service</source>
-        <translation>Modify service</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12295"/>
-        <source>Afficher un service</source>
-        <translation>Service display</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12636"/>
-        <source>Liste des chambres</source>
-        <translation>List of rooms</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12722"/>
-        <source>Ajouter une chambre</source>
-        <translation>Add room</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12787"/>
-        <location filename="menu.ui" line="13020"/>
-        <location filename="menu.ui" line="13200"/>
-        <source>Nombre de lits</source>
-        <translation>Beds&apos; number</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12809"/>
-        <location filename="menu.ui" line="13165"/>
-        <source>Chambre de garde</source>
-        <translation>Guard room</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12814"/>
-        <location filename="menu.ui" line="13170"/>
-        <source>Chambre du patient</source>
-        <translation>Patient room</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12828"/>
-        <location filename="menu.ui" line="13040"/>
-        <location filename="menu.ui" line="13216"/>
-        <source>Nom du surveillant</source>
-        <translation>Supervisor&apos;s name</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12841"/>
-        <location filename="menu.ui" line="13000"/>
-        <location filename="menu.ui" line="13184"/>
-        <source>Emplacement</source>
-        <translation>Location</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12857"/>
-        <location filename="menu.ui" line="12960"/>
-        <location filename="menu.ui" line="13137"/>
-        <source>Numero</source>
-        <translation>Number</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12870"/>
-        <location filename="menu.ui" line="12980"/>
-        <location filename="menu.ui" line="13157"/>
-        <source>Type</source>
-        <translation>Type</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="12895"/>
-        <source>Afficher une chambre</source>
-        <translation>Room display</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="13072"/>
-        <source>Modifier une chambre</source>
-        <translation>Modify room</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="13283"/>
-        <source>MENU</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="13304"/>
-        <source>GESTION DES AMBULANCES</source>
-        <translation>Ambulances management</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="13325"/>
-        <source>GESTION DES MISSIONS</source>
-        <translation>Missions managment</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="13363"/>
-        <location filename="menu.ui" line="13494"/>
-        <source>Ambulances</source>
-        <translation>Ambulances</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="13370"/>
-        <location filename="menu.ui" line="13501"/>
-        <source>Missions</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="13388"/>
-        <source>Liste des ambulances :</source>
-        <translation>List of ambulances</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="13400"/>
-        <location filename="menu.ui" line="13531"/>
-        <location filename="menu.ui" line="13806"/>
-        <location filename="menu.ui" line="13983"/>
-        <source>OK</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="13433"/>
-        <source>Immatricule :</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="13454"/>
-        <location filename="menu.ui" line="13592"/>
+        <location filename="mainwindow.ui" line="1733"/>
+        <location filename="mainwindow.ui" line="1777"/>
         <source>Supprimer</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="13519"/>
-        <source>Liste des missions :</source>
-        <translation>List of missions :</translation>
+        <location filename="mainwindow.ui" line="1793"/>
+        <source>Choisir une ligne</source>
+        <translation>Choose a row</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="13571"/>
-        <source>   ID  :     </source>
-        <translation></translation>
+        <location filename="mainwindow.ui" line="1809"/>
+        <source>à supprimer</source>
+        <translation>to delete</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="13640"/>
-        <source>Ajout et modification d&apos;une ambulance :</source>
-        <translation>Add and modify ambulance :</translation>
+        <location filename="mainwindow.ui" line="1973"/>
+        <source>Tri par</source>
+        <translation>Sort by</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="13657"/>
-        <source> Immatricule :    </source>
-        <translation></translation>
+        <location filename="mainwindow.ui" line="1978"/>
+        <source>CIN ascendant</source>
+        <translation>CIN ascending</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="13692"/>
-        <source>  Etat :         </source>
-        <translation>  State :         </translation>
+        <location filename="mainwindow.ui" line="1983"/>
+        <source>CIN descendant</source>
+        <translation>CIN descending</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="13727"/>
-        <source>Ambulancier :       </source>
-        <translation>Paramedic :       </translation>
+        <location filename="mainwindow.ui" line="1988"/>
+        <source>Nom ascendant</source>
+        <translation>Last name ascending</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="13762"/>
-        <source>Materiel medical :</source>
-        <translation>Medical meterial :</translation>
+        <location filename="mainwindow.ui" line="1993"/>
+        <source>Nom descendant</source>
+        <translation>Last Name descending</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="13865"/>
-        <source>Ajout et modification d&apos;une mission :</source>
-        <translation>Add and modify mission</translation>
+        <location filename="mainwindow.ui" line="1998"/>
+        <source>Age ascendant</source>
+        <translation>Age ascending</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="13882"/>
-        <source>      ID :    </source>
-        <translation></translation>
+        <location filename="mainwindow.ui" line="2003"/>
+        <source>Age descendant</source>
+        <translation>Age descending</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="13917"/>
-        <source>  Destination :</source>
-        <translation></translation>
+        <location filename="mainwindow.ui" line="2008"/>
+        <source>Salaire ascendant</source>
+        <translation>Salary ascending</translation>
     </message>
     <message>
-        <location filename="menu.ui" line="13952"/>
-        <source>  Heure :       </source>
-        <translation>  Time :       </translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="14104"/>
-        <source>LES INFORMATIONS
-DU CODE</source>
-        <translation>Code information</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="14145"/>
-        <source>Id:</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="14164"/>
-        <location filename="menu.ui" line="14197"/>
-        <location filename="menu.ui" line="14230"/>
-        <source>ERROR</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="14184"/>
-        <source>Date et heure:</source>
-        <translation>Date and time:</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="14217"/>
-        <source>Nom et prenom:</source>
-        <translation>Last and first name:</translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="14290"/>
-        <source>ERROR CODE #3f71a1
-
-(just kidding it&apos;s just
-a color HEX code)
-but you really have
-an error!!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.ui" line="14327"/>
-        <source> Download</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="1180"/>
-        <location filename="menu.cpp" line="1419"/>
-        <source>Open Image</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="1180"/>
-        <location filename="menu.cpp" line="1419"/>
-        <source>Image Files (*.png *.jpg *.bmp)</source>
-        <translation></translation>
+        <location filename="mainwindow.ui" line="2013"/>
+        <source>Salaire descendant</source>
+        <translation>Salary descending</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="ambulance.cpp" line="69"/>
-        <location filename="ambulance.cpp" line="94"/>
-        <location filename="ambulance.cpp" line="106"/>
-        <source>immatricule</source>
+        <location filename="employe.cpp" line="127"/>
+        <location filename="employe.cpp" line="179"/>
+        <location filename="employe.cpp" line="196"/>
+        <location filename="employe.cpp" line="213"/>
+        <location filename="employe.cpp" line="230"/>
+        <location filename="employe.cpp" line="247"/>
+        <location filename="employe.cpp" line="264"/>
+        <location filename="employe.cpp" line="281"/>
+        <location filename="employe.cpp" line="298"/>
+        <location filename="employe.cpp" line="318"/>
+        <source>CIN</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ambulance.cpp" line="70"/>
-        <location filename="ambulance.cpp" line="95"/>
-        <location filename="ambulance.cpp" line="107"/>
-        <source>etat</source>
-        <translation>State</translation>
-    </message>
-    <message>
-        <location filename="ambulance.cpp" line="71"/>
-        <location filename="ambulance.cpp" line="96"/>
-        <location filename="ambulance.cpp" line="108"/>
-        <source>ambulancier</source>
-        <translation>Paramedic</translation>
-    </message>
-    <message>
-        <location filename="ambulance.cpp" line="72"/>
-        <location filename="ambulance.cpp" line="97"/>
-        <location filename="ambulance.cpp" line="109"/>
-        <source>materiel_medical</source>
-        <translation>Medical_material</translation>
-    </message>
-    <message>
-        <location filename="chambre.cpp" line="49"/>
-        <location filename="chambre.cpp" line="79"/>
-        <location filename="chambre.cpp" line="93"/>
-        <source>emplacement</source>
-        <translation>Location</translation>
-    </message>
-    <message>
-        <location filename="chambre.cpp" line="50"/>
-        <location filename="chambre.cpp" line="80"/>
-        <location filename="chambre.cpp" line="94"/>
-        <source>type</source>
-        <translation>Type</translation>
-    </message>
-    <message>
-        <location filename="chambre.cpp" line="51"/>
-        <location filename="chambre.cpp" line="81"/>
-        <location filename="chambre.cpp" line="95"/>
-        <source>numero</source>
-        <translation>RoomNumber</translation>
-    </message>
-    <message>
-        <location filename="chambre.cpp" line="52"/>
-        <location filename="chambre.cpp" line="82"/>
-        <location filename="chambre.cpp" line="96"/>
-        <source>nombre_lits</source>
-        <translation>Beds_number</translation>
-    </message>
-    <message>
-        <location filename="chambre.cpp" line="53"/>
-        <location filename="chambre.cpp" line="83"/>
-        <location filename="chambre.cpp" line="97"/>
-        <source>nom_surveillant</source>
-        <translation>SupervasiorName</translation>
-    </message>
-    <message>
-        <location filename="employe.cpp" line="34"/>
-        <location filename="employe.cpp" line="58"/>
-        <source>ID already exists.</source>
+        <location filename="employe.cpp" line="128"/>
+        <location filename="employe.cpp" line="180"/>
+        <location filename="employe.cpp" line="197"/>
+        <location filename="employe.cpp" line="214"/>
+        <location filename="employe.cpp" line="231"/>
+        <location filename="employe.cpp" line="248"/>
+        <location filename="employe.cpp" line="265"/>
+        <location filename="employe.cpp" line="282"/>
+        <location filename="employe.cpp" line="299"/>
+        <location filename="employe.cpp" line="319"/>
+        <source>NOM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="employe.cpp" line="35"/>
-        <location filename="employe.cpp" line="59"/>
-        <source>Please change the ID.</source>
+        <location filename="employe.cpp" line="129"/>
+        <location filename="employe.cpp" line="181"/>
+        <location filename="employe.cpp" line="198"/>
+        <location filename="employe.cpp" line="215"/>
+        <location filename="employe.cpp" line="232"/>
+        <location filename="employe.cpp" line="249"/>
+        <location filename="employe.cpp" line="266"/>
+        <location filename="employe.cpp" line="283"/>
+        <location filename="employe.cpp" line="300"/>
+        <location filename="employe.cpp" line="320"/>
+        <source>PRENOM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="employe.cpp" line="99"/>
-        <location filename="menu.cpp" line="2058"/>
-        <source>Error</source>
+        <location filename="employe.cpp" line="130"/>
+        <location filename="employe.cpp" line="182"/>
+        <location filename="employe.cpp" line="199"/>
+        <location filename="employe.cpp" line="216"/>
+        <location filename="employe.cpp" line="233"/>
+        <location filename="employe.cpp" line="250"/>
+        <location filename="employe.cpp" line="267"/>
+        <location filename="employe.cpp" line="284"/>
+        <location filename="employe.cpp" line="301"/>
+        <location filename="employe.cpp" line="321"/>
+        <source>AGE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="employe.cpp" line="100"/>
-        <source>Employeur ajouter</source>
-        <translation>Employee added</translation>
-    </message>
-    <message>
-        <location filename="employe.cpp" line="114"/>
-        <source>username</source>
+        <location filename="employe.cpp" line="131"/>
+        <location filename="employe.cpp" line="183"/>
+        <location filename="employe.cpp" line="200"/>
+        <location filename="employe.cpp" line="217"/>
+        <location filename="employe.cpp" line="234"/>
+        <location filename="employe.cpp" line="251"/>
+        <location filename="employe.cpp" line="268"/>
+        <location filename="employe.cpp" line="285"/>
+        <location filename="employe.cpp" line="302"/>
+        <location filename="employe.cpp" line="322"/>
+        <source>EMAIL</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="employe.cpp" line="115"/>
-        <source>mname</source>
+        <location filename="employe.cpp" line="132"/>
+        <location filename="employe.cpp" line="184"/>
+        <location filename="employe.cpp" line="201"/>
+        <location filename="employe.cpp" line="218"/>
+        <location filename="employe.cpp" line="235"/>
+        <location filename="employe.cpp" line="252"/>
+        <location filename="employe.cpp" line="269"/>
+        <location filename="employe.cpp" line="286"/>
+        <location filename="employe.cpp" line="303"/>
+        <location filename="employe.cpp" line="323"/>
+        <source>NUM_TEL</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="employe.cpp" line="116"/>
-        <source>fname</source>
+        <location filename="employe.cpp" line="133"/>
+        <location filename="employe.cpp" line="185"/>
+        <location filename="employe.cpp" line="202"/>
+        <location filename="employe.cpp" line="219"/>
+        <location filename="employe.cpp" line="236"/>
+        <location filename="employe.cpp" line="253"/>
+        <location filename="employe.cpp" line="270"/>
+        <location filename="employe.cpp" line="287"/>
+        <location filename="employe.cpp" line="304"/>
+        <location filename="employe.cpp" line="324"/>
+        <source>FONCTION</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="employe.cpp" line="117"/>
-        <source>lname</source>
+        <location filename="employe.cpp" line="134"/>
+        <location filename="employe.cpp" line="186"/>
+        <location filename="employe.cpp" line="203"/>
+        <location filename="employe.cpp" line="220"/>
+        <location filename="employe.cpp" line="237"/>
+        <location filename="employe.cpp" line="254"/>
+        <location filename="employe.cpp" line="271"/>
+        <location filename="employe.cpp" line="288"/>
+        <location filename="employe.cpp" line="305"/>
+        <location filename="employe.cpp" line="325"/>
+        <source>SALAIRE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="employe.cpp" line="118"/>
-        <source>email</source>
+        <location filename="mainwindow.cpp" line="112"/>
+        <source>sorry</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="employe.cpp" line="119"/>
-        <location filename="mission.cpp" line="58"/>
-        <location filename="mission.cpp" line="82"/>
-        <location filename="mission.cpp" line="94"/>
-        <source>id</source>
+        <location filename="mainwindow.cpp" line="112"/>
+        <source>wrong login info
+</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="menu.cpp" line="1287"/>
-        <source>effectue.</source>
-        <translation>Done.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="1288"/>
-        <source> Effectué.</source>
-        <translation>Done.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2059"/>
-        <source>Informations manquantes.
-Click Cancel to try again.</source>
-        <translation>Information missing.Click Cancel and try again:</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2064"/>
-        <location filename="menu.cpp" line="2070"/>
-        <location filename="menu.cpp" line="2091"/>
-        <location filename="menu.cpp" line="2212"/>
-        <location filename="menu.cpp" line="2222"/>
-        <location filename="menu.cpp" line="2235"/>
-        <location filename="menu.cpp" line="2251"/>
-        <location filename="menu.cpp" line="2257"/>
-        <location filename="menu.cpp" line="2272"/>
-        <location filename="menu.cpp" line="2278"/>
-        <location filename="menu.cpp" line="2294"/>
-        <location filename="menu.cpp" line="2317"/>
-        <location filename="menu.cpp" line="2415"/>
-        <location filename="menu.cpp" line="2421"/>
-        <location filename="menu.cpp" line="2437"/>
-        <location filename="menu.cpp" line="2443"/>
-        <location filename="menu.cpp" line="2458"/>
-        <location filename="menu.cpp" line="2469"/>
-        <location filename="menu.cpp" line="2480"/>
-        <location filename="menu.cpp" line="2574"/>
-        <location filename="menu.cpp" line="2580"/>
-        <location filename="menu.cpp" line="2596"/>
-        <location filename="menu.cpp" line="2602"/>
-        <source>ERROR</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2065"/>
-        <source>il faut un prix .
-Click Cancel to exit.</source>
-        <translation>Price is necessary.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2071"/>
-        <source>il faut un entier .
-Click Cancel to exit.</source>
-        <translation>Integer is necessary.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2092"/>
-        <source>medicament deja existant.
-Click Cancel to exit.</source>
-        <translation>Drug already existing.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2213"/>
-        <source>il y a une information vide.
-Click Cancel to exit.</source>
-        <translation>One information is empty.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2223"/>
-        <source>erreur a la modification.
-Click Cancel to exit.</source>
-        <translation>Modification error.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2236"/>
-        <source>name not found.
-Click Cancel to exit.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2252"/>
-        <location filename="menu.cpp" line="2416"/>
-        <location filename="menu.cpp" line="2575"/>
-        <source>choisir option de disponibilites.
-Click Cancel to exit.</source>
-        <translation>Change disponibility option.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2258"/>
-        <location filename="menu.cpp" line="2422"/>
-        <location filename="menu.cpp" line="2581"/>
-        <source>dispo et non dispo ne peuvent pas etre cocher en meme temps.
-Click Cancel to exit.</source>
-        <translation>Available and not available cannot be checked at once.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2273"/>
-        <location filename="menu.cpp" line="2438"/>
-        <location filename="menu.cpp" line="2597"/>
-        <source>choisir un etat d&apos;equipement.
-Click Cancel to exit.</source>
-        <translation>Choose equipment  state.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2279"/>
-        <location filename="menu.cpp" line="2444"/>
-        <location filename="menu.cpp" line="2603"/>
-        <source>bon et mauvais ne peuvent pas etre cocher en meme temps.
-Click Cancel to exit.</source>
-        <translation>Great and bad cannot be checked at once.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2295"/>
-        <source>nom manquant.
-Click Cancel to exit.</source>
-        <translation>Name is missing.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2318"/>
-        <source>equipement deja existant.
-Click Cancel to exit.</source>
-        <translation>Equipment already exists.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2459"/>
-        <source>nom or disponibilite ou etat est vide.
-Click Cancel to exit.</source>
-        <translation>Name or disponibility or state is empty.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2470"/>
-        <source>erreur modifier l&apos;equipement.
-Click Cancel to exit.</source>
-        <translation>Error modify equipement.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2481"/>
-        <source>nom non trouve.
-Click Cancel to exit.</source>
-        <translation>Name not found.
-Click Cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2875"/>
-        <location filename="menu.cpp" line="2881"/>
-        <location filename="menu.cpp" line="2928"/>
-        <location filename="menu.cpp" line="2934"/>
-        <source>attention</source>
-        <translation>Attention</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2876"/>
-        <source>Inserer un nom du service.
- Taper CANCEL pour les remplir</source>
-        <translation>Insert service name</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2882"/>
-        <source>Les noms des staffs ne doivent pas etre repetés.
- Taper CANCEL pour les remplir</source>
-        <translation>Names of staff should not be repeated.
-Click Cancel to fullfill.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2892"/>
-        <location filename="menu.cpp" line="2944"/>
-        <location filename="menu.cpp" line="3089"/>
-        <source>Success</source>
-        <translation>Success</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2893"/>
-        <source>Ajout effectué.
- Taper OK pour continuer</source>
-        <translation>Add is made.
-Tape OK to continue.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2898"/>
-        <location filename="menu.cpp" line="2951"/>
-        <source>Echec</source>
-        <translation>Fail</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2899"/>
-        <source>Ajout non effectué.
- Taper CANCEL pour sortir</source>
-        <translation>Add not done.
-Click cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2929"/>
-        <source>Champs non remplis.
- Taper CANCEL pour les remplir</source>
-        <translation>Cases not fullfilled.
-Click cancel to fullfill</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2935"/>
-        <source>Nombre de lits ne doit pas etre égal à 0.
- Taper CANCEL pour changer </source>
-        <translation>Beds&apos; number cannot be equal to 0.
-Click Cancel to change.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2945"/>
-        <source>Ajout chambre effectué.
- Taper OK pour continuer</source>
-        <translation>Add room is done.
-Click OK to continue.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2952"/>
-        <source>Ajout chambre non effectué.
- Taper CANCEL pour sortir</source>
-        <translation>Add room is not done.
-Click ok to continue.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2988"/>
-        <location filename="menu.cpp" line="3020"/>
-        <location filename="menu.cpp" line="3095"/>
-        <location filename="menu.cpp" line="3157"/>
-        <source>echec</source>
-        <translation>Fail</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="2989"/>
-        <source>Affichage du service non effectué.
- Taper CANCEL pour quitter</source>
-        <translation>Service display is not done.
-Click CANCEL to quit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3021"/>
-        <source>Affichage de la chambre non effectué.
- Taper CANCEL pour quitter</source>
-        <translation>Room display is not done.
-Tape CANCEL to quit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3090"/>
-        <source>Mise à jour effectuée.
- Taper OK pour continuer</source>
-        <translation>Update is done.
-Type ok to continue.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3096"/>
-        <source>Mise à jour non effectuée.
- Taper CANCEL pour quitter</source>
-        <translation>Update is done.
-Type CANCEL to quit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3151"/>
+        <location filename="mainwindow.cpp" line="116"/>
+        <location filename="mainwindow.cpp" line="434"/>
         <source>success</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="menu.cpp" line="3152"/>
-        <source>Mise à jour effectuée
-.Taper OK pour continuer</source>
-        <translation>Update is done.
-Type ok to continue.</translation>
+        <location filename="mainwindow.cpp" line="153"/>
+        <location filename="mainwindow.cpp" line="159"/>
+        <location filename="mainwindow.cpp" line="165"/>
+        <location filename="mainwindow.cpp" line="171"/>
+        <location filename="mainwindow.cpp" line="177"/>
+        <location filename="mainwindow.cpp" line="183"/>
+        <location filename="mainwindow.cpp" line="188"/>
+        <location filename="mainwindow.cpp" line="194"/>
+        <location filename="mainwindow.cpp" line="200"/>
+        <location filename="mainwindow.cpp" line="206"/>
+        <location filename="mainwindow.cpp" line="225"/>
+        <location filename="mainwindow.cpp" line="227"/>
+        <location filename="mainwindow.cpp" line="292"/>
+        <location filename="mainwindow.cpp" line="298"/>
+        <location filename="mainwindow.cpp" line="304"/>
+        <location filename="mainwindow.cpp" line="310"/>
+        <location filename="mainwindow.cpp" line="316"/>
+        <location filename="mainwindow.cpp" line="321"/>
+        <location filename="mainwindow.cpp" line="327"/>
+        <location filename="mainwindow.cpp" line="333"/>
+        <location filename="mainwindow.cpp" line="346"/>
+        <location filename="mainwindow.cpp" line="424"/>
+        <location filename="mainwindow.cpp" line="440"/>
+        <location filename="mainwindow.cpp" line="443"/>
+        <source>Echec</source>
+        <translation>Failure</translation>
     </message>
     <message>
-        <location filename="menu.cpp" line="3158"/>
-        <source>Mise à jour non effectuée
-.Taper CANCEL pour sortir</source>
-        <translation>Update is done.
-Type CANCEL to quit.</translation>
+        <location filename="mainwindow.cpp" line="153"/>
+        <location filename="mainwindow.cpp" line="292"/>
+        <source>Tous les champs doivent être remplis!</source>
+        <translation>All fields have to be filled!</translation>
     </message>
     <message>
-        <location filename="menu.cpp" line="3295"/>
-        <location filename="menu.cpp" line="3319"/>
-        <source>OK</source>
+        <location filename="mainwindow.cpp" line="159"/>
+        <source>CIN doit être composé de 8 chiffres!</source>
+        <translation>CIN has to be composed of 8 digits!</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="165"/>
+        <location filename="mainwindow.cpp" line="298"/>
+        <source>Le nom doit être composé par des lettres seulement et commençant par une lettre majuscule</source>
+        <translation>Last name has to start with a capital letter and be composed of letters only</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="171"/>
+        <location filename="mainwindow.cpp" line="304"/>
+        <source>Le prenom doit être composé par des lettres seulement et commençant par une lettre majuscule</source>
+        <translation>First name has to start with a capital letter and be composed of letters only</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="177"/>
+        <location filename="mainwindow.cpp" line="310"/>
+        <source>Age doit être entre 20 et 60 ans!</source>
+        <translation>Age has to be between 20 and 60 years old!</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="183"/>
+        <location filename="mainwindow.cpp" line="316"/>
+        <source>Email invalide!</source>
+        <translation>Invalid email!</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="188"/>
+        <source>Email existe déja!</source>
+        <translation>Email already exists!</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="194"/>
+        <location filename="mainwindow.cpp" line="321"/>
+        <source>Le numero de telephone doit être composé de 8 chiffres!</source>
+        <translation>Phone number has to be composed of 8 digits!</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="200"/>
+        <source>Le mot de passe ne doit pas contenir des symboles et au moins 4 caractères</source>
+        <translation>Password can&apos;t have special characters and has to have a minimum of 4 characters</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="206"/>
+        <location filename="mainwindow.cpp" line="333"/>
+        <source>Salaire doit être positive!</source>
+        <translation>Salary has to be positive!</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="225"/>
+        <source>Le CIN doit être composé par des chiffres seulement!</source>
+        <translation>CIN has to be composed of digits only!</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="227"/>
+        <location filename="mainwindow.cpp" line="346"/>
+        <source>Le numero de telephone doit être composé par des chiffres seulement!</source>
+        <translation>Phone number has to be composed of digits only!</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="327"/>
+        <source>Le mot de passe ne doit pas contenir des symboles</source>
+        <translation>Password can&apos;t have special characters and has to have a minimum of 4 characters</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="424"/>
+        <source>nouveau mot de passe doit etre different</source>
+        <translation>New password has to be different</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="440"/>
+        <source>new passwords don&apos;t match</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="menu.cpp" line="3295"/>
-        <source> Erreur immatricule necessite 5 chiffres.
-click cancel to exit.</source>
-        <translation>Error, immatricule requires 5 digits.
-Click CANCEL to exit.</translation>
+        <location filename="mainwindow.cpp" line="443"/>
+        <source>Email inexistant</source>
+        <translation>email doesn&apos;t exist</translation>
     </message>
     <message>
-        <location filename="menu.cpp" line="3304"/>
-        <source>ajouter une ambulance</source>
-        <translation>Add ambulance</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3304"/>
-        <source>ambulance ajouté.
-click cancel to exit.</source>
-        <translation>Ambulance added.
-Click cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3319"/>
-        <source> Erreur ID necessite 6 chiffres.
-click cancel to exit.</source>
-        <translation>Error ID requires 6 digits.
-Click cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3327"/>
-        <source>ajouter une mission</source>
-        <translation>Add mission</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3327"/>
-        <source>mission ajouté.
-click cancel to exit.</source>
-        <translation>Mission added.
-Click cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3340"/>
-        <source>supprimer une ambulance</source>
-        <translation>Delete ambulance</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3340"/>
-        <source>ambulance supprimé.
-click cancel to exit.</source>
-        <translation>Ambulance deleted.
-Click cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3352"/>
-        <source>supprimer une mission</source>
-        <translation>Delete mission</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3352"/>
-        <source>mission supprimé.
-click cancel to exit.</source>
-        <translation>Mission deleted.
-click cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3444"/>
-        <location filename="menu.cpp" line="3451"/>
-        <source>modifier ambulance</source>
-        <translation>Modify ambulance</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3445"/>
-        <source>ambulance modifié.
-Click Cancel to exit.</source>
-        <translation>Ambulance modified.
-Click cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3452"/>
-        <location filename="menu.cpp" line="3484"/>
-        <source>Erreur.
-click cancel to exit</source>
-        <translation>Error.
-click cancel to exit</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3476"/>
-        <location filename="menu.cpp" line="3483"/>
-        <source>modifier mission</source>
-        <translation>Modify mission</translation>
-    </message>
-    <message>
-        <location filename="menu.cpp" line="3477"/>
-        <source>mission modifié.
-Click Cancel to exit.</source>
-        <translation>Mission modified.
-Click cancel to exit.</translation>
-    </message>
-    <message>
-        <location filename="mission.cpp" line="59"/>
-        <location filename="mission.cpp" line="83"/>
-        <location filename="mission.cpp" line="95"/>
-        <source>destination</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="mission.cpp" line="60"/>
-        <location filename="mission.cpp" line="84"/>
-        <location filename="mission.cpp" line="96"/>
-        <source>heure</source>
-        <translation>Time</translation>
-    </message>
-    <message>
-        <location filename="patient.cpp" line="18"/>
-        <location filename="patient.cpp" line="45"/>
-        <source>Cette chambre n&apos;existe pas.</source>
-        <translation>Room does not exist.</translation>
-    </message>
-    <message>
-        <location filename="patient.cpp" line="19"/>
-        <location filename="patient.cpp" line="46"/>
-        <source>Veuillez changer le numero de la chambre.</source>
-        <translation>Please change room number</translation>
-    </message>
-    <message>
-        <location filename="rendezvous.cpp" line="23"/>
-        <source>Id already exists.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="rendezvous.cpp" line="24"/>
-        <source>Please change the Id.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="rendezvous.cpp" line="48"/>
-        <source>L&apos;identifiant existe déjà</source>
-        <translation>Id already exists</translation>
-    </message>
-    <message>
-        <location filename="rendezvous.cpp" line="49"/>
-        <source>Veuillez changer l&apos;identifiant.</source>
-        <translation>Please change id</translation>
-    </message>
-    <message>
-        <location filename="service.cpp" line="48"/>
-        <location filename="service.cpp" line="83"/>
-        <location filename="service.cpp" line="98"/>
-        <source>Nom</source>
-        <translation>Name</translation>
-    </message>
-    <message>
-        <location filename="service.cpp" line="49"/>
-        <location filename="service.cpp" line="84"/>
-        <location filename="service.cpp" line="99"/>
-        <source>Staff1</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="service.cpp" line="50"/>
-        <location filename="service.cpp" line="85"/>
-        <location filename="service.cpp" line="100"/>
-        <source>Staff2</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="service.cpp" line="51"/>
-        <location filename="service.cpp" line="86"/>
-        <location filename="service.cpp" line="101"/>
-        <source>Staff3</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="service.cpp" line="52"/>
-        <location filename="service.cpp" line="87"/>
-        <location filename="service.cpp" line="102"/>
-        <source>Nom equipement</source>
-        <translation>Equipment name</translation>
+        <location filename="mainwindow.cpp" line="434"/>
+        <source>nouveau mot de passe effectué</source>
+        <translation>New password successfully changed</translation>
     </message>
 </context>
 <context>
-    <name>Reunion</name>
+    <name>Smtp</name>
     <message>
-        <location filename="reunion.ui" line="14"/>
-        <source>Reunion</source>
-        <translation>Meeting</translation>
-    </message>
-    <message>
-        <location filename="reunion.ui" line="82"/>
-        <source>CHAT</source>
+        <location filename="smtp.cpp" line="173"/>
+        <source>Message sent</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="reunion.ui" line="109"/>
-        <source>Message</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="reunion.ui" line="122"/>
-        <source>Send</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="reunion.ui" line="132"/>
-        <source>Clear chat</source>
+        <location filename="smtp.cpp" line="186"/>
+        <source>Failed to send message</source>
         <translation></translation>
     </message>
 </context>

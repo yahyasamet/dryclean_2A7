@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->recherche_employe->setPlaceholderText("Vous pouvez rechercher par le cin, le nom, le prenom ou la fonction");
 
     ui->confirm_email->setPlaceholderText("Saisir votre email");
+    ui->confirm_email->setFocus();
     ui->old_password->setPlaceholderText("Saisir ancien mot de passe");
     ui->new_password->setPlaceholderText("Saisir nouveau mot de passe");
     ui->new_password_2->setPlaceholderText("Confirmer nouveau mot de passe");
@@ -26,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     QSqlQuery query,query2;
     query.prepare("select CIN from Employe");
     query.exec();
+    ui->cin_employe_2->addItem("");
     while(query.next())
         ui->cin_employe_2->addItem(query.value(0).toString());
 
@@ -44,12 +46,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-QString random(int len)
+QString random()
 {
     QString a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     QString r;
     srand(time(NULL));
-    for(int i = 0; i < len; i++) r.push_back(a.at(size_t(rand() % 62)));
+    for(int i = 0; i < 5; i++) r.push_back(a.at(size_t(rand() % 62)));
     return r;
 }
 
@@ -57,17 +59,16 @@ void MainWindow::on_forgot_password_clicked()
 {
     QString email=ui->email->text();
     QSqlQuery query;
-    QString password=random(5);
+    QString password=random();
     if (email=="")
         QMessageBox::critical(this,"error","this field can't be empty");
     else if (!emp.chercher_employe(email))
         QMessageBox::critical(this,"error","Email inexistant");
     else
     {
-        Smtp *smtp = new Smtp("perspectives.agence@gmail.com" , "agenceagence", "smtp.gmail.com",465);
+        Smtp *smtp = new Smtp("waterproof.application@gmail.com" , "waterproofwaterproof", "smtp.gmail.com",465);
         connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
-        smtp->sendMail("perspectives.agence@gmail.com",email,"Your new password is",password);
-
+        smtp->sendMail("perspectives.agence@gmail.com",email,"New password",password);
         query.prepare("UPDATE EMPLOYE SET PASSWORD=:password WHERE EMAIL=:EMAIL");
         query.bindValue(":EMAIL",email);
         query.bindValue(":password",password);
@@ -133,9 +134,6 @@ void MainWindow::on_login_clicked()
 void MainWindow::on_ajouter_employe_clicked()
 {
     QMessageBox msgBox;
-    /*QSqlQuery query;
-    query.prepare("select CIN from Employe");
-    query.exec();*/
         bool test=true,x=true,y=true;
 
         QString cin=ui->cin_employe->text();
@@ -149,10 +147,6 @@ void MainWindow::on_ajouter_employe_clicked()
         int salaire=ui->salaire_employe->text().toInt();
         QRegExp regex("([A-Z][a-z]*)");
         QRegExp regex2("[a-zA-Z0-9]*");
-        QRegExp regex3("a-z");
-        QString email_ending=email.right(9);
-        QString email_start=email.left(email.length()-9);
-        employe emp;
 
         if(cin=="" || nom=="" || prenom=="" || email=="" || num_tel=="" || password=="" || ui->fonction_employe->currentIndex()==0)
         {
@@ -184,9 +178,14 @@ void MainWindow::on_ajouter_employe_clicked()
             test=false;
         }
 
-        else if(!email.contains("@") || !email.contains("."))
+        else if(!email.contains(QRegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")))
         {
             QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Email invalide!"), QMessageBox::Cancel);
+            test=false;
+        }
+        else if (emp.chercher_employe(email))
+        {
+                    QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Email existe déja!"), QMessageBox::Cancel);
             test=false;
         }
 
@@ -249,6 +248,7 @@ void MainWindow::on_ajouter_employe_clicked()
             QSqlQuery query;
             query.prepare("select CIN from Employe");
             query.exec();
+            ui->cin_employe_2->addItem("");
             while(query.next())
                 ui->cin_employe_2->addItem(query.value(0).toString());
         }
@@ -259,12 +259,19 @@ void MainWindow::on_supprimer_employe_clicked()
     QString cin2 = ui->tab_employe->selectionModel()->currentIndex().data(Qt::DisplayRole).toString();
     emp.supprimer(cin2);
     ui->tab_employe->setModel(emp.afficher());
+    ui->cin_employe_2->clear();
+    QSqlQuery query;
+    query.prepare("select CIN from Employe");
+    query.exec();
+    ui->cin_employe_2->addItem("");
+    while(query.next())
+        ui->cin_employe_2->addItem(query.value(0).toString());
 }
 
 void MainWindow::on_modifier_employe_clicked()
 {
     QMessageBox msg;
-    bool test=true,x=true,y=true;
+    bool test=true,y=true;
     employe emp;
 
     QRegExp regex("([A-Z][a-z]*)");
@@ -280,7 +287,7 @@ void MainWindow::on_modifier_employe_clicked()
     emp.setFonction(ui->fonction_employe_2->currentText());
     emp.setSalaire(ui->salaire_employe_2->text().toInt());
 
-    if(ui->nom_employe_2->text()=="" || ui->prenom_employe_2->text()=="" || ui->email_employe_2->text()=="" || ui->num_tel_employe_2->text()=="" || ui->password_employe_2->text()=="" || ui->fonction_employe_2->currentIndex()==0)
+    if(ui->nom_employe_2->text()=="" || ui->prenom_employe_2->text()=="" || ui->email_employe_2->text()=="" || ui->num_tel_employe_2->text()=="" || ui->password_employe_2->text()=="" || ui->fonction_employe_2->currentIndex()==0 || ui->cin_employe_2->currentIndex()==0)
     {
         QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Tous les champs doivent être remplis!"), QMessageBox::Cancel);
         test=false;
@@ -304,12 +311,11 @@ void MainWindow::on_modifier_employe_clicked()
         test=false;
     }
 
-    else if(!ui->email_employe_2->text().contains("@") || !ui->email_employe_2->text().contains("."))
+    else if(!ui->email_employe_2->text().contains(QRegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")))
     {
         QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Email invalide!"), QMessageBox::Cancel);
         test=false;
     }
-
     else if(ui->num_tel_employe_2->text().length()!=8)
     {
         QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le numero de telephone doit être composé de 8 chiffres!"), QMessageBox::Cancel);
@@ -319,12 +325,6 @@ void MainWindow::on_modifier_employe_clicked()
     else if (!(regex2.exactMatch(ui->password_employe_2->text())) || ui->password_employe_2->text().length()<4)
     {
         QMessageBox::critical(nullptr, QObject::tr("Echec"), QObject::tr("Le mot de passe ne doit pas contenir des symboles"), QMessageBox::Cancel);
-        test=false;
-    }
-
-    else if (!(regex.exactMatch(ui->fonction_employe_2->currentText())))
-    {
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("La fonction des employés doit être composé par des lettres seulement et commençant par une lettre majuscule"), QMessageBox::Cancel);
         test=false;
     }
 
@@ -342,9 +342,7 @@ void MainWindow::on_modifier_employe_clicked()
            y=false;
         }
     }
-    if (!x)
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le CIN doit être composé par des chiffres seulement!"), QMessageBox::Cancel);
-    else if (!y)
+    if (!y)
         QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Le numero de telephone doit être composé par des chiffres seulement!"), QMessageBox::Cancel);
 
     if (test)
@@ -352,7 +350,6 @@ void MainWindow::on_modifier_employe_clicked()
             emp.modifier(emp.getCIN()) ;
 
             ui->tab_employe->setModel(emp.afficher());
-            //ui->cin_employe_2->clear();
             ui->nom_employe_2->clear();
             ui->prenom_employe_2->clear();
             ui->age_employe_2->clear();
@@ -421,25 +418,38 @@ void MainWindow::on_confirm_password_clicked()
     QString new_pass2=ui->new_password_2->text();
     QSqlQuery query,query2;
 
-    if (new_pass==new_pass2)
+    if(emp.chercher_employe(email))
     {
-        query.prepare("UPDATE EMPLOYE SET PASSWORD=:password2 where EMAIL=:EMAIL AND PASSWORD=:PASSWORD" );
-        query.bindValue(":EMAIL",email);
-        query.bindValue(":PASSWORD",old);
-        query.bindValue(":password2",new_pass);
-        bool test=query.exec();
-        if (test)
+        if (new_pass==old || old==new_pass2)
+            QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("nouveau mot de passe doit etre different"), QMessageBox::Cancel);
+        else if ((new_pass==new_pass2))
         {
-            QMessageBox::information(nullptr, QObject::tr("success"),QObject::tr("nouveau mot de passe effectué"), QMessageBox::Cancel);
-            ui->stackedWidget->setCurrentIndex(1);
+            query.prepare("UPDATE EMPLOYE SET PASSWORD=:password2 where EMAIL=:EMAIL AND PASSWORD=:PASSWORD" );
+            query.bindValue(":EMAIL",email);
+            query.bindValue(":PASSWORD",old);
+            query.bindValue(":password2",new_pass);
+            bool test=query.exec();
+            if (test)
+            {
+                QMessageBox::information(nullptr, QObject::tr("success"),QObject::tr("nouveau mot de passe effectué"), QMessageBox::Cancel);
+                ui->stackedWidget->setCurrentIndex(1);
+            }
+            else QMessageBox::critical(nullptr,"error","wronginfo");
         }
+        else
+            QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("new passwords don't match"), QMessageBox::Cancel);
     }
     else
-        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("passwords don't match"), QMessageBox::Cancel);
+        QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Email inexistant"), QMessageBox::Cancel);
 
 }
 
 void MainWindow::on_change_password_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_annuler_pass_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
 }

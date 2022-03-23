@@ -39,6 +39,8 @@ private slots:
 
     void on_change_password_clicked();
 
+    void on_annuler_pass_clicked();
+
 private:
     Ui::MainWindow *ui;
     employe emp;
