@@ -20,10 +20,10 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>0</y>
+      <x>0</x>
+      <y>-30</y>
       <width>1291</width>
-      <height>761</height>
+      <height>861</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -185,7 +185,7 @@ font-size: 17px;
 }</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -1481,7 +1481,7 @@ font-size: 17px;
 }</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_13">
       <attribute name="title">
@@ -1493,7 +1493,7 @@ font-size: 17px;
          <x>0</x>
          <y>-30</y>
          <width>911</width>
-         <height>721</height>
+         <height>731</height>
         </rect>
        </property>
        <property name="title">
@@ -1708,10 +1708,23 @@ QComboBox QAbstractView{
        </widget>
       </widget>
      </widget>
-     <widget class="QWidget" name="tab_15">
+     <widget class="QWidget" name="tab_6">
       <attribute name="title">
-       <string>calendrier</string>
+       <string>Calendrier</string>
       </attribute>
+      <widget class="QQuickWidget" name="quickWidget">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>861</width>
+         <height>651</height>
+        </rect>
+       </property>
+       <property name="resizeMode">
+        <enum>QQuickWidget::SizeRootObjectToView</enum>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>
@@ -1722,6 +1735,11 @@ QComboBox QAbstractView{
    <class>QAxWidget</class>
    <extends>QWidget</extends>
    <header>qaxwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QQuickWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">QtQuickWidgets/QQuickWidget</header>
   </customwidget>
   <customwidget>
    <class>WebAxWidget</class>

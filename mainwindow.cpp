@@ -17,6 +17,10 @@
 #include <QVariant>
 #include <QAbstractEventDispatcher>
 #include <QDir>
+#include <QtQml>
+#include <QQuickView>
+#include "C:\Qt\Qt5.9.9\Examples\Qt-5.9.9\quickcontrols\controls\shared\qtquickcontrolsapplication.h"
+#include "sqleventmodel.h"
 
 
 
@@ -27,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
   setFixedSize(1300,750);
+
 
 
    this->showAddrWeb();
@@ -68,6 +73,9 @@ MainWindow::MainWindow(QWidget *parent)
              stringcompleter=new QCompleter(completionlist,this);
              stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
              ui->Rechercher_livraisons->setCompleter(stringcompleter);
+             qmlRegisterType<SqlEventModel>("org.qtproject.examples.calendar", 1, 0, "SqlEventModel");
+             ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
+             ui->quickWidget->show();
 
 
 
@@ -149,6 +157,9 @@ void MainWindow::on_pushButton_2_clicked()
          ui->le_nom->clear();
          QDate date = QDate::currentDate();
             ui->la_date->setDate(date);
+            ui->quickWidget->close();
+            ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
+            ui->quickWidget->show();
 
 
 
@@ -181,6 +192,9 @@ void MainWindow::on_supprimer_clicked()
           ui->le_id_2->clear();
           ui->le_id_3->clear();
           ui->le_id_4->clear();
+          ui->quickWidget->close();
+          ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
+          ui->quickWidget->show();
          QSqlQuery qry1;
          qry1.prepare("select ID_LIVR from livraisons");
              qry1.exec();
@@ -188,6 +202,7 @@ void MainWindow::on_supprimer_clicked()
               ui->le_id_2->addItem(qry1.value(0).toString());
               ui->le_id_3->addItem(qry1.value(0).toString());
               ui->le_id_4->addItem(qry1.value(0).toString());
+
              }
 
                }
@@ -244,6 +259,9 @@ if(erreur==0)
        ui->le_nom_2->clear();
        QDate date = QDate::currentDate();
           ui->la_date_2->setDate(date);
+          ui->quickWidget->close();
+          ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
+          ui->quickWidget->show();
 
 
     }
@@ -397,7 +415,3 @@ QString MainWindow::on_le_id_3_activated()
     return  ADR_CL;
 }
 
-int MainWindow::on_Calendrier_clicked()
-{
-return 1;
-}

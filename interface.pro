@@ -1,9 +1,8 @@
-QT       += core gui sql axcontainer widgets qml
+QT       += core gui sql axcontainer widgets qml  quickwidgets quick
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
-
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -19,16 +18,24 @@ SOURCES += \
     connection.cpp \
     livraisons.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp\
+sqleventmodel.cpp\
+event.cpp
 
 HEADERS += \
     connection.h \
+    event.h \
     livraisons.h \
     mainwindow.h \
-    webaxwidget.h
+    sqleventmodel.h \
+    webaxwidget.h\
+    event.h\
+sqleventmodel.h
 
 FORMS += \
     mainwindow.ui
+
+OTHER_FILES += qml/main.qml
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -37,4 +44,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     img.qrc \
-    mymap.qrc
+    mymap.qrc\
+resources.qrc
+
+target.path = $$[QT_INSTALL_EXAMPLES]C:/Qt/Qt5.9.9/Examples/quickcontrols/controls/calendar
+INSTALLS += target
