@@ -58,12 +58,20 @@ MainWindow::MainWindow(QWidget *parent) :
      stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
      ui->lineEdit_7->setCompleter(stringcompleter);
      C.excel_dynamique();
+        setImCorp();
+        setliq();
+        setrev();
+        setdep();
+        setfisc();
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+//************************debut crud************************
+
 void MainWindow::on_ajouter_clicked()
 {
 
@@ -312,6 +320,8 @@ void MainWindow::on_comboBox_2_activated(int index)
     }
 
 }
+//************************fin crud************************
+
 void MainWindow::on_excel_1_clicked()
 {
     QTableView *table;
@@ -484,7 +494,7 @@ QStringList MainWindow::cinlist()
     QSqlQuery query;
 
 
-    query.prepare("SELECT REF_CMD FROM commandes");
+    query.prepare("SELECT DISTINCT REF_CMD FROM finances f full join commandes c on c.REF_CMD = f.ID_COMMANDE where REF_CMD is not null");
    QStringList list;
    list.push_back(NULL);
       if(query.exec())
@@ -501,7 +511,7 @@ QStringList MainWindow::matlist()
     QSqlQuery query;
 
 
-    query.prepare("SELECT matricule_f FROM fournisseur");
+    query.prepare("SELECT DISTINCT matricule_f FROM finances f full join fournisseur f2 on f.MATRICULE_FISC = f2.matricule_f where matricule_f is not null  "); //MATRICULE_FISC IS not NULL
    QStringList list;
     list.push_back(NULL);
       if(query.exec())
@@ -597,4 +607,504 @@ void MainWindow::on_tablerevenue_doubleClicked(const QModelIndex &index)
     {
 ui->tablerevenue->setModel(C.afficher2());
     }
+}
+//************************bilan financier************************
+void MainWindow::setImCorp()
+{
+    QStringList list= { "terrain", "batiment(s)", "materiels informatique", "equipements", "divers","total" };
+    ui->ImCorp->setRowCount(1);
+    ui->ImCorp->setColumnCount(6);
+    ui->ImCorp->setHorizontalHeaderLabels(list);
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("SELECT SUM(MONTANT_FINANCE) AS prix_total FROM finances where (MATRICULE_FISC IS not NULL) ");
+    float tranche_montant1=model->data(model->index(0, 0)).toFloat();
+    QString s = QString::number(tranche_montant1);
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setText(s);
+    ui->ImCorp->setItem(0,3,item);
+}
+void MainWindow::setliq()
+{
+    QStringList list= { "caisse", "banque","total" };
+    ui->liq->setRowCount(1);
+    ui->liq->setColumnCount(3);
+    ui->liq->setHorizontalHeaderLabels(list);
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("SELECT SUM(MONTANT_FINANCE) AS prix_total FROM finances where (ID_COMMANDE IS not NULL) ");
+    float tranche_montant1=model->data(model->index(0, 0)).toFloat();
+    QString s = QString::number(tranche_montant1);
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setText(s);
+    ui->liq->setItem(0,0,item);
+}
+void MainWindow::setrev()
+{
+    QStringList list= { "caisse", "divers","total" };
+    ui->rev->setRowCount(1);
+    ui->rev->setColumnCount(3);
+    ui->rev->setHorizontalHeaderLabels(list);
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+    QSqlQueryModel * model2= new QSqlQueryModel();
+    model->setQuery("SELECT SUM(MONTANT_FINANCE) AS prix_total FROM finances where (ID_COMMANDE IS not NULL) ");
+    float tranche_montant1=model->data(model->index(0, 0)).toFloat();
+
+    model2->setQuery("SELECT SUM(MONTANT_FINANCE) AS prix_total FROM finances where (TYPE_TRANSACTION = 1) AND (ID_COMMANDE IS NULL) AND (MATRICULE_FISC IS NULL) ");
+    float tranche_montant2=model2->data(model2->index(0, 0)).toFloat();
+
+    QString s = QString::number(tranche_montant1);
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setText(s);
+    ui->rev->setItem(0,0,item);
+
+    QString s2 = QString::number(tranche_montant2);
+    QTableWidgetItem *item2 = new QTableWidgetItem;
+    item2->setText(s2);
+    ui->rev->setItem(0,1,item2);
+
+    float sum=0;
+
+    for (int i=0;i<2;i++)
+    {
+     const QAbstractItemModel *model = ui->rev->model();
+     const QString value = model->data(model->index(0, i), Qt::DisplayRole).toString();
+     sum += value.toInt();
+    }
+
+    QString s3 = QString::number(sum);
+    QTableWidgetItem *item3 = new QTableWidgetItem;
+    item3->setText(s3);
+     ui->rev->setItem(0,2,item3);
+}
+void MainWindow::setdep()
+{
+    QStringList list= { "achat", "divers","facture", "salaire","total" };
+    ui->dep->setRowCount(1);
+    ui->dep->setColumnCount(5);
+    ui->dep->setHorizontalHeaderLabels(list);
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+    QSqlQueryModel * model2= new QSqlQueryModel();
+    QSqlQueryModel * model3= new QSqlQueryModel();
+    QSqlQueryModel * model4= new QSqlQueryModel();
+    model->setQuery("SELECT SUM(MONTANT_FINANCE) AS prix_total FROM finances where (MATRICULE_FISC IS not NULL) ");
+    float tranche_montant1=model->data(model->index(0, 0)).toFloat();
+
+    model2->setQuery("SELECT SUM(MONTANT_FINANCE) AS prix_total FROM finances where (TYPE_TRANSACTION = 0) AND (ID_COMMANDE IS NULL) AND (MATRICULE_FISC IS NULL) AND (PROVENANCE not like 'facture')");
+    float tranche_montant2=model2->data(model2->index(0, 0)).toFloat();
+
+    model3->setQuery("SELECT SUM(MONTANT_FINANCE) AS prix_total FROM finances where (TYPE_TRANSACTION = 0) AND (PROVENANCE = 'facture')");
+    float tranche_montant3=model3->data(model3->index(0, 0)).toFloat();
+
+    model4->setQuery("SELECT SUM(salaire) AS salaire FROM finances T1 INNER JOIN commandes T2 ON T2.REF_CMD = T1.ID_COMMANDE INNER JOIN EMPLOYES T3 ON T3.cin = T2.CIN_EMPLOYE ");
+    float tranche_montant4=(model4->data(model4->index(0, 0)).toFloat())*12;
+
+    QString s = QString::number(tranche_montant1);
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setText(s);
+    ui->dep->setItem(0,0,item);
+
+    QString s2 = QString::number(tranche_montant2);
+    QTableWidgetItem *item2 = new QTableWidgetItem;
+    item2->setText(s2);
+    ui->dep->setItem(0,1,item2);
+
+    QString s3 = QString::number(tranche_montant3);
+    QTableWidgetItem *item3 = new QTableWidgetItem;
+    item3->setText(s3);
+    ui->dep->setItem(0,2,item3);
+
+    QString s4 = QString::number(tranche_montant4);
+    QTableWidgetItem *item4 = new QTableWidgetItem;
+    item4->setText(s4);
+    ui->dep->setItem(0,3,item4);
+
+    float sum=0;
+
+    for (int i=0;i<4;i++)
+    {
+     const QAbstractItemModel *model = ui->dep->model();
+     const QString value = model->data(model->index(0, i), Qt::DisplayRole).toString();
+     sum += value.toInt();
+    }
+
+    QString s5 = QString::number(sum);
+    QTableWidgetItem *item5 = new QTableWidgetItem;
+    item5->setText(s5);
+     ui->dep->setItem(0,4,item5);
+}
+void MainWindow::setfisc()
+{
+    QStringList list= { "résultat Net Fiscal", "pourcentage impôt","impôt","résulat fiscal final" };
+    ui->fisc->setRowCount(1);
+    ui->fisc->setColumnCount(4);
+    ui->fisc->setHorizontalHeaderLabels(list);
+
+     QAbstractItemModel *model = ui->rev->model();
+     QString revenue_string = model->data(model->index(0, 2), Qt::DisplayRole).toString();
+     float revenue= revenue_string.toInt();
+
+     QAbstractItemModel *model2 = ui->dep->model();
+     QString depense_string = model2->data(model2->index(0, 4), Qt::DisplayRole).toString();
+     float depense= depense_string.toInt();
+
+     QString somme = QString::number(revenue-depense);
+     QTableWidgetItem *item = new QTableWidgetItem;
+     item->setText(somme);
+      ui->fisc->setItem(0,0,item);
+
+}
+void MainWindow::on_calcultotal_clicked()
+{
+    float sum=0;
+
+    for (int i=0;i<5;i++)
+    {
+     const QAbstractItemModel *model = ui->ImCorp->model();
+     const QString value = model->data(model->index(0, i), Qt::DisplayRole).toString();
+     sum += value.toInt();
+    }
+
+    QString s = QString::number(sum);
+    QTableWidgetItem *item2 = new QTableWidgetItem;
+    item2->setText(s);
+     ui->ImCorp->setItem(0,5,item2);
+
+}
+
+void MainWindow::on_calcultotal_2_clicked()
+{
+    float sum=0;
+
+    for (int i=0;i<3;i++)
+    {
+     const QAbstractItemModel *model = ui->liq->model();
+     const QString value = model->data(model->index(0,i), Qt::DisplayRole).toString();
+     sum += value.toInt();
+    }
+
+    QString s = QString::number(sum);
+    QTableWidgetItem *item2 = new QTableWidgetItem;
+    item2->setText(s);
+     ui->liq->setItem(0,2,item2);
+}
+
+void MainWindow::on_calcultotal_3_clicked()
+{
+    float sum=0;
+
+    for (int i=0;i<2;i++)
+    {
+     const QAbstractItemModel *model = ui->rev->model();
+     const QString value = model->data(model->index(0, i), Qt::DisplayRole).toString();
+     sum += value.toInt();
+    }
+
+    QString s3 = QString::number(sum);
+    QTableWidgetItem *item3 = new QTableWidgetItem;
+    item3->setText(s3);
+     ui->rev->setItem(0,2,item3);
+}
+
+void MainWindow::on_calcultotal_4_clicked()
+{
+    float sum=0;
+
+    for (int i=0;i<5;i++)
+    {
+     const QAbstractItemModel *model = ui->dep->model();
+     const QString value = model->data(model->index(0, i), Qt::DisplayRole).toString();
+     sum += value.toInt();
+    }
+
+    QString s5 = QString::number(sum);
+    QTableWidgetItem *item5 = new QTableWidgetItem;
+    item5->setText(s5);
+     ui->dep->setItem(0,4,item5);
+}
+
+void MainWindow::on_tabWidget_4_tabBarClicked(int index)
+{
+    setImCorp();
+    setliq();
+    setrev();
+    setdep();
+    setfisc();
+}
+
+void MainWindow::on_calcultotal_5_clicked()
+{
+    double impot=0;
+    float resfinal=0;
+
+
+      QAbstractItemModel *model = ui->fisc->model();
+      QAbstractItemModel *model2 = ui->fisc->model();
+
+      QString restring = model->data(model->index(0, 0), Qt::DisplayRole).toString();
+      QString pourimpstring = model2->data(model2->index(0, 1), Qt::DisplayRole).toString();
+       impot = (restring.toInt())*(pourimpstring.toInt()*0.01);
+        QString impostring = QString::number(impot);
+     resfinal = (restring.toInt())-(impot);
+     QString resfinalstring = QString::number(resfinal);
+
+
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setText(impostring);
+     ui->fisc->setItem(0,2,item);
+
+     QTableWidgetItem *item2 = new QTableWidgetItem;
+     item2->setText(resfinalstring);
+      ui->fisc->setItem(0,3,item2);
+
+
+}
+
+void MainWindow::on_pushButton_11_clicked()
+{
+    QTableView *table;
+
+
+                        table = ui->ImCorp;
+                   QString filters("CSV files (.csv);;All files (.*)");
+                   QString defaultFilter("CSV files (*.csv)");
+                   QString fileName = QFileDialog::getSaveFileName(0, "Save file", QCoreApplication::applicationDirPath(),
+                                      filters, &defaultFilter);
+                   QFile file(fileName);
+
+                   QAbstractItemModel *model =  table->model();
+
+                   if (file.open(QFile::WriteOnly | QFile::Append)) {
+                       QTextStream data(&file);
+                       QStringList strList;
+                       for (int i = 0; i < model->columnCount(); i++) {
+                           if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
+                               strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
+                           else
+                               strList.append("");
+
+                       }
+
+                       data << strList.join(";") << "\n";
+                       for (int i = 0; i < model->rowCount(); i++) {
+                           strList.clear();
+                           for (int j = 0; j < model->columnCount(); j++) {
+
+                               if (model->data(model->index(i, j)).toString().length() > 0)
+                                   strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
+                               else
+                                   strList.append("");
+                           }
+                           data << strList.join(";") + "\n";
+                       }
+
+                       file.close();
+                       QMessageBox::information(nullptr, QObject::tr("export excel"),
+                                                 QObject::tr("export avec succes .\n"
+                                                           "Click OK to exit."), QMessageBox::Ok);
+                       ligne(fileName);
+                       part2(fileName);
+                       ligne(fileName);
+                       part3(fileName);
+                       ligne(fileName);
+                       part4(fileName);
+                       ligne(fileName);
+                       part5(fileName);
+                   }
+}
+void MainWindow::part2(QString fileName)
+{
+    QTableView *table;
+                   table = ui->liq;
+
+
+
+                   QFile file(fileName);
+
+                   QAbstractItemModel *model =  table->model();
+
+                   if (file.open(QFile::WriteOnly | QFile::Append)) {
+                       QTextStream data(&file);
+                       QStringList strList;
+                       for (int i = 0; i < model->columnCount(); i++) {
+                           if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
+                               strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
+                           else
+                               strList.append("");
+
+                       }
+
+                       data << strList.join(";") << "\n";
+                       for (int i = 0; i < model->rowCount(); i++) {
+                           strList.clear();
+                           for (int j = 0; j < model->columnCount(); j++) {
+
+                               if (model->data(model->index(i, j)).toString().length() > 0)
+                                   strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
+                               else
+                                   strList.append("");
+                           }
+                           data << strList.join(";") + "\n";
+                       }
+
+                       file.close();
+
+                   }
+}
+void MainWindow::part3(QString fileName)
+{
+    QTableView *table;
+                   table = ui->rev;
+
+
+
+                   QFile file(fileName);
+
+                   QAbstractItemModel *model =  table->model();
+
+                   if (file.open(QFile::WriteOnly | QFile::Append)) {
+                       QTextStream data(&file);
+                       QStringList strList;
+                       for (int i = 0; i < model->columnCount(); i++) {
+                           if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
+                               strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
+                           else
+                               strList.append("");
+
+                       }
+
+                       data << strList.join(";") << "\n";
+                       for (int i = 0; i < model->rowCount(); i++) {
+                           strList.clear();
+                           for (int j = 0; j < model->columnCount(); j++) {
+
+                               if (model->data(model->index(i, j)).toString().length() > 0)
+                                   strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
+                               else
+                                   strList.append("");
+                           }
+                           data << strList.join(";") + "\n";
+                       }
+
+                       file.close();
+
+                   }
+}
+void MainWindow::part5(QString fileName)
+{
+    QTableView *table;
+                   table = ui->fisc;
+
+
+
+                   QFile file(fileName);
+
+                   QAbstractItemModel *model =  table->model();
+
+                   if (file.open(QFile::WriteOnly | QFile::Append)) {
+                       QTextStream data(&file);
+                       QStringList strList;
+                       for (int i = 0; i < model->columnCount(); i++) {
+                           if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
+                               strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
+                           else
+                               strList.append("");
+
+                       }
+
+                       data << strList.join(";") << "\n";
+                       for (int i = 0; i < model->rowCount(); i++) {
+                           strList.clear();
+                           for (int j = 0; j < model->columnCount(); j++) {
+
+                               if (model->data(model->index(i, j)).toString().length() > 0)
+                                   strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
+                               else
+                                   strList.append("");
+                           }
+                           data << strList.join(";") + "\n";
+                       }
+
+                       file.close();
+
+                   }
+}
+void MainWindow::part4(QString fileName)
+{
+    QTableView *table;
+                   table = ui->dep;
+
+
+
+                   QFile file(fileName);
+
+                   QAbstractItemModel *model =  table->model();
+
+                   if (file.open(QFile::WriteOnly | QFile::Append)) {
+                       QTextStream data(&file);
+                       QStringList strList;
+                       for (int i = 0; i < model->columnCount(); i++) {
+                           if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
+                               strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
+                           else
+                               strList.append("");
+
+                       }
+
+                       data << strList.join(";") << "\n";
+                       for (int i = 0; i < model->rowCount(); i++) {
+                           strList.clear();
+                           for (int j = 0; j < model->columnCount(); j++) {
+
+                               if (model->data(model->index(i, j)).toString().length() > 0)
+                                   strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
+                               else
+                                   strList.append("");
+                           }
+                           data << strList.join(";") + "\n";
+                       }
+
+                       file.close();
+
+                   }
+}
+
+void MainWindow::ligne(QString fileName)
+{
+    QTableView *table;
+                   table = ui->tableWidget;
+
+
+
+                   QFile file(fileName);
+
+                   QAbstractItemModel *model =  table->model();
+
+                   if (file.open(QFile::WriteOnly | QFile::Append)) {
+                       QTextStream data(&file);
+                       QStringList strList;
+                       for (int i = 0; i < model->columnCount(); i++) {
+                           if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
+                               strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
+                           else
+                               strList.append("");
+
+                       }
+
+                       data << strList.join(";") << "\n";
+                       for (int i = 0; i < model->rowCount(); i++) {
+                           strList.clear();
+                           for (int j = 0; j < model->columnCount(); j++) {
+
+                               if (model->data(model->index(i, j)).toString().length() > 0)
+                                   strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
+                               else
+                                   strList.append("");
+                           }
+                           data << strList.join(";") + "\n";
+                       }
+
+                       file.close();
+
+                   }
 }

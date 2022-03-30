@@ -8,7 +8,7 @@
 #include<QDirModel>
 #include "finances.h"
 #include "historique.h"
-
+#include <QKeyEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,6 +24,7 @@ public:
 
     QStringList cinlist();
     QStringList matlist();
+    void  setupSummaryTable();
 
 private slots:
     void on_ajouter_clicked();
@@ -49,6 +50,33 @@ private slots:
     void on_tabledepence_doubleClicked(const QModelIndex &index);
 
     void on_tablerevenue_doubleClicked(const QModelIndex &index);
+
+    void setImCorp();
+    void setliq();
+    void setrev();
+    void setdep();
+    void setfisc();
+
+     void part2(QString);
+     void part3(QString);
+     void part4(QString);
+     void part5(QString);
+     void ligne(QString);
+
+
+    void on_calcultotal_clicked();
+
+    void on_calcultotal_2_clicked();
+
+    void on_calcultotal_3_clicked();
+
+    void on_calcultotal_4_clicked();
+
+    void on_tabWidget_4_tabBarClicked(int index);
+
+    void on_calcultotal_5_clicked();
+
+    void on_pushButton_11_clicked();
 
 private:
     Ui::MainWindow *ui;

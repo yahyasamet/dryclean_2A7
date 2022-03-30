@@ -2517,11 +2517,687 @@ QPushButton:pressed {
         <bool>true</bool>
        </property>
       </widget>
+      <widget class="QTabWidget" name="tabWidget_4">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>70</y>
+         <width>861</width>
+         <height>551</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTabWidget::tab-bar {
+
+   border: 1px solid gray;
+
+ flex: 0 0 25%;
+
+    max-width: 80%;
+
+}
+
+
+
+QTabBar::tab {
+
+  background: 	rgb(72,95,225);
+
+  color: white;
+
+  padding: 10px;
+
+ flex: 0 0 25%;
+
+    max-width: 80%;
+
+font-size:13px;
+
+ }
+
+
+
+ QTabBar::tab:selected {
+
+  background: rgb(123,140,234);
+
+ }
+
+QTabWidget::pane { 
+
+   border: none;
+
+}
+
+QLineEdit {
+
+    border: 2px solid gray;
+
+    border-radius: 10px;
+
+    padding: 0 8px;
+
+    background: white;
+
+    selection-background-color: darkgray;
+
+}
+
+QPushButton {
+
+    background-color: #6610f2;
+
+    border-style: outset;
+
+    border-width: 2px;
+
+    border-radius: 10px;
+
+    border-color: beige;
+
+    min-width: 10em;
+
+    padding: 6px;
+
+}
+
+QPushButton:hover {
+
+    background-color: rgb(43, 163, 255);
+
+    border-style: inset;
+
+}
+
+QPushButton:pressed {
+
+    background-color: rgb(43, 163, 255);
+
+    border-style: inset;
+
+}
+
+QLabel{
+
+font-size: 17px;
+
+
+
+}
+
+</string>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="tab_4">
+        <attribute name="title">
+         <string>imobilisation corporelle</string>
+        </attribute>
+        <widget class="QGroupBox" name="groupBox_11">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>-30</y>
+           <width>861</width>
+           <height>641</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox  {
+    background-color: #0A7CBC;
+
+    margin-top: 27px;
+    font-size: 14px;
+
+}
+
+QGroupBox::title  {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 5px 8000px 5px 8000px;
+    background-color: rgb(54, 49, 120);
+    color: rgb(255, 255, 255);
+
+}
+QLabel
+{
+color: white;
+font-size: 50px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QLabel" name="label_58">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>40</y>
+            <width>291</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Louis George Café</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>immobilisation</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_96">
+          <property name="geometry">
+           <rect>
+            <x>340</x>
+            <y>40</y>
+            <width>291</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Louis George Café</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>corporelle</string>
+          </property>
+         </widget>
+         <widget class="QTableWidget" name="ImCorp">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>130</y>
+            <width>801</width>
+            <height>201</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="calcultotal">
+          <property name="geometry">
+           <rect>
+            <x>610</x>
+            <y>470</y>
+            <width>176</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Louis George Café</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>calcul totale</string>
+          </property>
+         </widget>
+         <widget class="QTableWidget" name="tableWidget">
+          <property name="geometry">
+           <rect>
+            <x>160</x>
+            <y>190</y>
+            <width>661</width>
+            <height>81</height>
+           </rect>
+          </property>
+          <column>
+           <property name="text">
+            <string/>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string/>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string/>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string/>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string/>
+           </property>
+          </column>
+         </widget>
+         <zorder>tableWidget</zorder>
+         <zorder>label_58</zorder>
+         <zorder>label_96</zorder>
+         <zorder>ImCorp</zorder>
+         <zorder>calcultotal</zorder>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_10">
+        <attribute name="title">
+         <string>liquidité</string>
+        </attribute>
+        <widget class="QGroupBox" name="groupBox_12">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>-30</y>
+           <width>861</width>
+           <height>541</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox  {
+    background-color: #0A7CBC;
+
+    margin-top: 27px;
+    font-size: 14px;
+
+}
+
+QGroupBox::title  {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 5px 8000px 5px 8000px;
+    background-color: rgb(54, 49, 120);
+    color: rgb(255, 255, 255);
+
+}
+QLabel
+{
+color: white;
+font-size: 50px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QLabel" name="label_59">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>40</y>
+            <width>291</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Louis George Café</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>liquidité</string>
+          </property>
+         </widget>
+         <widget class="QTableWidget" name="liq">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>130</y>
+            <width>811</width>
+            <height>181</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="calcultotal_2">
+          <property name="geometry">
+           <rect>
+            <x>610</x>
+            <y>460</y>
+            <width>176</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Louis George Café</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>calcul totale</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_11">
+        <attribute name="title">
+         <string>revenue</string>
+        </attribute>
+        <widget class="QGroupBox" name="groupBox_13">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>-30</y>
+           <width>861</width>
+           <height>541</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox  {
+    background-color: #0A7CBC;
+
+    margin-top: 27px;
+    font-size: 14px;
+
+}
+
+QGroupBox::title  {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 5px 8000px 5px 8000px;
+    background-color: rgb(54, 49, 120);
+    color: rgb(255, 255, 255);
+
+}
+QLabel
+{
+color: white;
+font-size: 50px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QLabel" name="label_60">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>20</y>
+            <width>291</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Louis George Café</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>revenues</string>
+          </property>
+         </widget>
+         <widget class="QTableWidget" name="rev">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>110</y>
+            <width>811</width>
+            <height>201</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="calcultotal_3">
+          <property name="geometry">
+           <rect>
+            <x>610</x>
+            <y>450</y>
+            <width>176</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Louis George Café</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>calcul totale</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_15">
+        <attribute name="title">
+         <string>depenses</string>
+        </attribute>
+        <widget class="QGroupBox" name="groupBox_14">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>-30</y>
+           <width>861</width>
+           <height>541</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox  {
+    background-color: #0A7CBC;
+
+    margin-top: 27px;
+    font-size: 14px;
+
+}
+
+QGroupBox::title  {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 5px 8000px 5px 8000px;
+    background-color: rgb(54, 49, 120);
+    color: rgb(255, 255, 255);
+
+}
+QLabel
+{
+color: white;
+font-size: 50px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QLabel" name="label_61">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>20</y>
+            <width>291</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Louis George Café</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>depenses</string>
+          </property>
+         </widget>
+         <widget class="QTableWidget" name="dep">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>110</y>
+            <width>801</width>
+            <height>201</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="calcultotal_4">
+          <property name="geometry">
+           <rect>
+            <x>610</x>
+            <y>450</y>
+            <width>176</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Louis George Café</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>calcul totale</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_16">
+        <attribute name="title">
+         <string>resultat fiscal</string>
+        </attribute>
+        <widget class="QGroupBox" name="groupBox_15">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>-30</y>
+           <width>861</width>
+           <height>541</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox  {
+    background-color: #0A7CBC;
+
+    margin-top: 27px;
+    font-size: 14px;
+
+}
+
+QGroupBox::title  {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 5px 8000px 5px 8000px;
+    background-color: rgb(54, 49, 120);
+    color: rgb(255, 255, 255);
+
+}
+QLabel
+{
+color: white;
+font-size: 50px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QLabel" name="label_62">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>20</y>
+            <width>291</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Louis George Café</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>resultat</string>
+          </property>
+         </widget>
+         <widget class="QTableWidget" name="fisc">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>110</y>
+            <width>811</width>
+            <height>191</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="calcultotal_5">
+          <property name="geometry">
+           <rect>
+            <x>610</x>
+            <y>450</y>
+            <width>176</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Louis George Café</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>calcul totale</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_63">
+          <property name="geometry">
+           <rect>
+            <x>220</x>
+            <y>20</y>
+            <width>291</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Louis George Café</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>fiscale</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+      </widget>
       <widget class="QPushButton" name="pushButton_11">
        <property name="geometry">
         <rect>
-         <x>670</x>
-         <y>640</y>
+         <x>640</x>
+         <y>630</y>
          <width>201</width>
          <height>41</height>
         </rect>
@@ -2540,24 +3216,6 @@ QPushButton:pressed {
        <property name="text">
         <string>télechrager fichier excel</string>
        </property>
-      </widget>
-      <widget class="QStackedWidget" name="stackedWidget">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>80</y>
-         <width>411</width>
-         <height>551</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(244, 244, 244);</string>
-       </property>
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <widget class="QWidget" name="page"/>
-       <widget class="QWidget" name="page_2"/>
       </widget>
      </widget>
     </widget>

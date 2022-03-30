@@ -19,15 +19,34 @@ QString Historique::load()
 {   tmp="";
     QFile file("C:/Users/ramya/OneDrive/Bureau/dry cleaning/finance/Historique.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-      tmp="";
+          tmp="";
 
-    QTextStream in(&file);
+        QTextStream in(&file);
+        int i=0;
+        QString color="#09B9FF";
 
-   while (!in.atEnd()) {
+       while (!in.atEnd()) {
+           switch (i) {
+           case 0:
+           color="#09B9FF";
+           break;
+           case 1:
+               color="#0A8DFF";
+           break;
+           case 2:
+               color="#0070D1";
+           break;
+           case 3:
+               color="#024A7D";
+               break;
+           }
 
-         QString myString = in.readLine();
-         tmp+=myString+"\n";
+             QString myString = in.readLine();
+             tmp+="<font color="+color+">"+myString+"\n<br><br> <font>";
+             i++;
+             if(i==4)
+                 i=0;
 
-   }
-   return tmp;
+       }
+       return tmp;
 }
