@@ -30,6 +30,8 @@
         <file>images/Mohamed.jpg</file>
         <file>images/ramy.jpg</file>
         <file>images/yahya.jpg</file>
+        <file>images/logo_1.png</file>
+        <file>images/recherche.png</file>
     </qresource>
     <qresource prefix="/son">
         <file>son_QT/Bip.wav</file>

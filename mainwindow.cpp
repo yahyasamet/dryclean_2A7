@@ -12,6 +12,7 @@
 #include"widget.h"
 #include"historique.h"
 #include <QTimer>
+#include<QDesktopServices>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -48,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
            son=new QSound(":/son/son_QT/Simple_Beep2.wav");
            error=new QSound(":/son/son_QT/Error.wav");
            success=new QSound(":/son/son_QT/success.wav");
-           this->showAddrWeb();
+
            monTimer=new QTimer();
 
                 QObject::connect(monTimer, SIGNAL(timeout()), this,SLOT(finTempo()));
@@ -354,16 +355,7 @@ void MainWindow::on_combo_ref_activated(const QString &)
     ui->radioButton_3->setChecked("");
     ui->combo_cin_2->setCurrentText(query.value(5).toString());
 }
-void MainWindow::webShow(const QString &url)
-{
-    ui->webBrowser->dynamicCall("Navigate(const QString&)", url);
-}
 
-void MainWindow::showAddrWeb()
-{
-    QString addr="https://www.facebook.com/esprit.tn/";
-    webShow(addr);
-}
 //mon code après la temporisation
 void MainWindow::finTempo()
 
@@ -377,4 +369,16 @@ void MainWindow::finTempo()
          ui->cs7->setStyleSheet("");
 
 
+}
+
+void MainWindow::on_facebook_clicked()
+{
+    QString link = "https://www.facebook.com/MORYS-Fashion-107812848401567";
+    QDesktopServices::openUrl(QUrl(link));
+}
+
+void MainWindow::on_instagram_clicked()
+{
+    QString link = "https://www.instagram.com/drycleaningband/";
+    QDesktopServices::openUrl(QUrl(link));
 }

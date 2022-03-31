@@ -1,7 +1,5 @@
 #include "MessengerSocket.h"
 
-namespace AslihanAkbiyik
-{
 MessengerSocket::MessengerSocket(qintptr handle, QObject *parent) : QTcpSocket(parent)
 {
     setSocketDescriptor(handle);
@@ -16,4 +14,4 @@ MessengerSocket::MessengerSocket(qintptr handle, QObject *parent) : QTcpSocket(p
 
     });
 }
-}
+

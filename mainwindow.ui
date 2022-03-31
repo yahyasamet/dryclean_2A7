@@ -1233,6 +1233,9 @@ QComboBox QAbstractView{
          <height>21</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:/images/images/recherche.png);</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -1498,24 +1501,6 @@ font: 13pt &quot;Louis George Café&quot;;
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_11">
-     <attribute name="title">
-      <string>Facebook</string>
-     </attribute>
-     <widget class="WebAxWidget" name="webBrowser">
-      <property name="control" stdset="0">
-       <string>{8856f961-340a-11d0-a96b-00c04fd705a2}</string>
-      </property>
-      <property name="geometry" stdset="0">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>911</width>
-        <height>641</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -1530,18 +1515,6 @@ font: 13pt &quot;Louis George Café&quot;;
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QAxWidget</class>
-   <extends>QWidget</extends>
-   <header>qaxwidget.h</header>
-  </customwidget>
-  <customwidget>
-   <class>WebAxWidget</class>
-   <extends>QAxWidget</extends>
-   <header>webaxwidget.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

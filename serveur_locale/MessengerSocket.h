@@ -4,8 +4,7 @@
 #include <QTcpSocket>
 
 
-namespace AslihanAkbiyik
-{
+
 
 class MessengerSocket : public QTcpSocket
 {
@@ -16,5 +15,5 @@ signals:
     void ReadyRead(MessengerSocket *);
     void StateChanged(MessengerSocket *, int);
 };
-} //end namespace AslihanAkbiyik
+
 #endif // MESSENGERSOCKET_H

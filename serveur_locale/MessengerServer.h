@@ -3,8 +3,7 @@
 
 #include <QTcpServer>
 
-namespace AslihanAkbiyik
-{
+
 
 class MessengerSocket;
 
@@ -18,6 +17,5 @@ protected:
 private:
     QList<MessengerSocket *> mSockets;
 };
-} //end of namespace AslihanAkbiyik
 
 #endif // MESSENGERSERVER_H

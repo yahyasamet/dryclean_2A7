@@ -32,7 +32,6 @@ HEADERS += \
     equipements.h \
     historique.h \
     mainwindow.h \
-    webaxwidget.h \
     widget.h
 
 FORMS += \
@@ -47,5 +46,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    Ressources.qrc \
-    mymap.qrc
+    Ressources.qrc

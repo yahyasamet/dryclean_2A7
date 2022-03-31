@@ -3,8 +3,6 @@
 #include <QCoreApplication>
 #include "MessengerServer.h"
 
-using namespace AslihanAkbiyik;
-
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);

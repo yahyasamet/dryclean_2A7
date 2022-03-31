@@ -16,7 +16,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void webShow(const QString &url);
     QTimer *monTimer;
 
 private slots:
@@ -34,8 +33,11 @@ private slots:
 
     void on_combo_ref_activated(const QString &arg1);
 
-    void showAddrWeb();
     void finTempo();
+
+    void on_facebook_clicked();
+
+    void on_instagram_clicked();
 
 private:
     Ui::MainWindow *ui;

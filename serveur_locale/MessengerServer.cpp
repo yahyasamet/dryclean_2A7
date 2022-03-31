@@ -4,8 +4,6 @@
 #include <QDebug>
 
 
-namespace AslihanAkbiyik
-{
 
 
 MessengerServer::MessengerServer(QObject *parent) : QTcpServer(parent)
@@ -61,4 +59,4 @@ void MessengerServer::incomingConnection(qintptr handle)
               }
             });
 }
-} // end of namespace
+
