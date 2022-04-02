@@ -134,7 +134,7 @@ font-size: 17px;
 </string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1307,7 +1307,7 @@ font-size: 17px;
 </string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_6">
      <attribute name="title">
@@ -1715,30 +1715,6 @@ QComboBox QAbstractView{
           </rect>
          </property>
         </widget>
-        <widget class="QPushButton" name="excel_1">
-         <property name="geometry">
-          <rect>
-           <x>580</x>
-           <y>460</y>
-           <width>201</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Louis George Café</family>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>télechrager fichier excel</string>
-         </property>
-        </widget>
        </widget>
        <widget class="QWidget" name="tab_8">
         <attribute name="title">
@@ -1972,30 +1948,6 @@ QComboBox QAbstractView{
            <width>781</width>
            <height>381</height>
           </rect>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="excel_2">
-         <property name="geometry">
-          <rect>
-           <x>580</x>
-           <y>460</y>
-           <width>201</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Louis George Café</family>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>télechrager fichier excel</string>
          </property>
         </widget>
        </widget>

@@ -21,6 +21,7 @@
 #include <QtCharts>
 #include <QChartView>
 #include <QPieSeries>
+#include<QSound>
 #include "finances.h"
 using namespace QtCharts;
 MainWindow::MainWindow(QWidget *parent) :
@@ -34,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->radioButton->setChecked(true);
     QStringList list,list2;
     Historique h;
-     ui->historique->setText(h.load());
+    ui->historique->setText(h.load());
     list=cinlist();
     list2=matlist();
     ui->mat->addItems(list);
@@ -63,7 +64,7 @@ MainWindow::MainWindow(QWidget *parent) :
         setrev();
         setdep();
         setfisc();
-
+        son =new QSound(":/son/son_QT/Simple_Beep2.wav");
 }
 
 MainWindow::~MainWindow()
@@ -75,7 +76,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_ajouter_clicked()
 {
 
-
+    son->play();
     QIntValidator v(0, 1000000, this);
     int pos = 0;
     QString ID_FINANCES=ui->id->text();
@@ -85,7 +86,7 @@ void MainWindow::on_ajouter_clicked()
     int TYPE_TRANSACTION1;
     if (ui->radioButton->isChecked())
     TYPE_TRANSACTION1=0;
-    else
+    else if (ui->radioButton_2->isChecked())
     TYPE_TRANSACTION1=1;
     QDate DATE_FINANCES=ui->date->date();
     QString PROVENANCE=ui->provenance->text();
@@ -131,6 +132,7 @@ void MainWindow::on_ajouter_clicked()
     ui->mat_2->clear();
     ui->mat_3->clear();
     ui->mat_4->clear();
+    ui->combo_finance->clear();
     list=cinlist();
     list2=matlist();
     ui->mat->addItems(list);
@@ -141,9 +143,25 @@ void MainWindow::on_ajouter_clicked()
     ui->montant->clear();
     ui->provenance->clear();
     ui->date->clear();
+    QSqlQuery qry;
+    qry.prepare("select ID_FINANCES from finances");
+    qry.exec();
+    while(qry.next()){
+    ui->combo_finance->addItem(qry.value(0).toString());
+    }
     C.excel_dynamique();
     // Put the focus back into the input box so they can type again:
    ui->id->setFocus();
+   QSqlQuery qry1;
+  qry1.prepare("select * from finances");
+  qry1.exec();
+  QStringList completionlist;
+  while(qry1.next()){
+  completionlist <<qry1.value(0).toString() <<qry1.value(4).toString()<<qry1.value(5).toString()<<qry1.value(6).toString();
+   }
+   stringcompleter=new QCompleter(completionlist,this);
+   stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
+   ui->lineEdit_7->setCompleter(stringcompleter);
     }
 
     else
@@ -153,6 +171,7 @@ void MainWindow::on_ajouter_clicked()
 }
 void MainWindow::on_supprimer_clicked()
 {
+    son->play();
     QModelIndex index = ui->tabledepence->selectionModel()->currentIndex();
         QString id = index.data(Qt::DisplayRole).toString();
         QModelIndex index2 = ui->tablerevenue->selectionModel()->currentIndex();
@@ -176,12 +195,19 @@ void MainWindow::on_supprimer_clicked()
       ui->mat_2->clear();
       ui->mat_3->clear();
       ui->mat_4->clear();
+      ui->combo_finance->clear();
       list=cinlist();
       list2=matlist();
       ui->mat->addItems(list);
       ui->mat_3->addItems(list);
       ui->mat_2->addItems(list2);
-      ui->mat_4->addItems(list2);}
+      ui->mat_4->addItems(list2);
+      QSqlQuery qry;
+      qry.prepare("select ID_FINANCES from finances");
+      qry.exec();
+      while(qry.next()){
+      ui->combo_finance->addItem(qry.value(0).toString());
+      }      }
         }
        }
        else if (id2!="")
@@ -195,17 +221,34 @@ void MainWindow::on_supprimer_clicked()
                  {
            ui->tablerevenue->setModel(C.afficher2());
            QMessageBox::information(nullptr,"Suppression","operation modifié");
+           QSqlQuery qry1;
+          qry1.prepare("select * from finances");
+          qry1.exec();
+          QStringList completionlist;
+          while(qry1.next()){
+          completionlist <<qry1.value(0).toString() <<qry1.value(4).toString()<<qry1.value(5).toString()<<qry1.value(6).toString();
+           }
+           stringcompleter=new QCompleter(completionlist,this);
+           stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
+           ui->lineEdit_7->setCompleter(stringcompleter);
            QStringList list,list2;
            ui->mat->clear();
            ui->mat_2->clear();
            ui->mat_3->clear();
            ui->mat_4->clear();
+           ui->combo_finance->clear();
            list=cinlist();
            list2=matlist();
            ui->mat->addItems(list);
            ui->mat_3->addItems(list);
            ui->mat_2->addItems(list2);
-           ui->mat_4->addItems(list2);}
+           ui->mat_4->addItems(list2);
+           QSqlQuery qry;
+           qry.prepare("select ID_FINANCES from finances");
+           qry.exec();
+           while(qry.next()){
+           ui->combo_finance->addItem(qry.value(0).toString());
+           }}
                  C.excel_dynamique();
              }
        }
@@ -217,10 +260,11 @@ void MainWindow::on_modifier_clicked()
     QString id = index.data(Qt::DisplayRole).toString();
     QModelIndex index2 = ui->tablerevenue->selectionModel()->currentIndex();
         QString id2 = index2.data(Qt::DisplayRole).toString();*/
-
+    son->play();
     QMessageBox msg;
     QIntValidator v(0, 10000, this);
     int pos = 0;
+
     QString id=ui->combo_finance->currentText();
     QString montantstring=ui->montant_2->text();
     QString PROVENANCE=ui->provenance_2->text();
@@ -243,15 +287,25 @@ void MainWindow::on_modifier_clicked()
     C.setMONTANT_FINANCE(ui->montant_2->text().toInt());
     C.setID_COMMANDE(ui->mat_3->currentText());
     C.setMATRICULE_FISC(ui->mat_4->currentText());
-    if (ui->radioButton->isChecked())
+    if (ui->radioButton_3->isChecked())
      C.setTYPE_TRANSACTION(0);
-    else
+    else if (ui->radioButton_4->isChecked())
      C.setTYPE_TRANSACTION(1);
 
 
     bool test=C.modifier(C.getID_FINANCES());
     if(test)
     {
+        QSqlQuery qry1;
+       qry1.prepare("select * from finances");
+       qry1.exec();
+       QStringList completionlist;
+       while(qry1.next()){
+       completionlist <<qry1.value(0).toString() <<qry1.value(4).toString()<<qry1.value(5).toString()<<qry1.value(6).toString();
+        }
+        stringcompleter=new QCompleter(completionlist,this);
+        stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
+        ui->lineEdit_7->setCompleter(stringcompleter);
         Historique h;
         h.save(id,"modifier");
         ui->historique->setText(h.load());
@@ -263,12 +317,19 @@ void MainWindow::on_modifier_clicked()
         ui->mat_2->clear();
         ui->mat_3->clear();
         ui->mat_4->clear();
+        ui->combo_finance->clear();
         list=cinlist();
         list2=matlist();
         ui->mat->addItems(list);
         ui->mat_3->addItems(list);
         ui->mat_2->addItems(list2);
         ui->mat_4->addItems(list2);
+        QSqlQuery qry;
+        qry.prepare("select ID_FINANCES from finances");
+        qry.exec();
+        while(qry.next()){
+        ui->combo_finance->addItem(qry.value(0).toString());
+        }
         C.excel_dynamique();
     }
     else
@@ -283,19 +344,19 @@ void MainWindow::on_comboBox_activated(int index)
 {
     if(index==0)
     {
-        ui->tabledepence->setModel(C.Trie_dateD());
+        ui->tabledepence->setModel(C.Trie(0,"DATE_FINANCES"));
     }
     else if (index==1)
     {
-        ui->tabledepence->setModel(C.Trie_dateC());
+        ui->tabledepence->setModel(C.Trie(0,"DATE_FINANCES DESC"));
     }
     else if (index==2)
     {
-        ui->tabledepence->setModel(C.Trie_montantD());
+        ui->tabledepence->setModel(C.Trie(0,"MONTANT_FINANCE"));
     }
     else if (index==3)
     {
-        ui->tabledepence->setModel(C.Trie_montantC());
+        ui->tabledepence->setModel(C.Trie(0,"MONTANT_FINANCE DESC"));
     }
 
 }
@@ -304,104 +365,24 @@ void MainWindow::on_comboBox_2_activated(int index)
 {
     if(index==0)
     {
-        ui->tablerevenue->setModel(C.Trie_dateD2());
+        ui->tablerevenue->setModel(C.Trie(1,"DATE_FINANCES"));
     }
     else if (index==1)
     {
-        ui->tablerevenue->setModel(C.Trie_dateC2());
+        ui->tablerevenue->setModel(C.Trie(1,"DATE_FINANCES DESC"));
     }
     else if (index==2)
     {
-        ui->tablerevenue->setModel(C.Trie_montantD2());
+        ui->tablerevenue->setModel(C.Trie(1,"MONTANT_FINANCE"));
     }
     else if (index==3)
     {
-        ui->tablerevenue->setModel(C.Trie_montantC2());
+        ui->tablerevenue->setModel(C.Trie(1,"MONTANT_FINANCE DESC"));
     }
 
 }
 //************************fin crud************************
 
-void MainWindow::on_excel_1_clicked()
-{
-    QTableView *table;
-                   table = ui->tabledepence;
-
-                   QString filters("CSV files (.csv);;All files (.*)");
-                   QString defaultFilter("CSV files (*.csv)");
-                   QString fileName = QFileDialog::getSaveFileName(0, "Save file", QCoreApplication::applicationDirPath(),
-                                      filters, &defaultFilter);
-                   QFile file(fileName);
-
-                   QAbstractItemModel *model =  table->model();
-                   if (file.open(QFile::WriteOnly | QFile::Truncate)) {
-                       QTextStream data(&file);
-                       QStringList strList;
-                       for (int i = 0; i < model->columnCount(); i++) {
-                           if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
-                               strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
-                           else
-                               strList.append("");
-                       }
-                       data << strList.join(";") << "\n";
-                       for (int i = 0; i < model->rowCount(); i++) {
-                           strList.clear();
-                           for (int j = 0; j < model->columnCount(); j++) {
-
-                               if (model->data(model->index(i, j)).toString().length() > 0)
-                                   strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
-                               else
-                                   strList.append("");
-                           }
-                           data << strList.join(";") + "\n";
-                       }
-                       file.close();
-                       QMessageBox::information(nullptr, QObject::tr("export excel"),
-                                                 QObject::tr("export avec succes .\n"
-                                                             "Click OK to exit."), QMessageBox::Ok);
-                   }
-}
-
-
-void MainWindow::on_excel_2_clicked()
-{
-    QTableView *table;
-                   table = ui->tabledepence;
-
-                   QString filters("CSV files (.csv);;All files (.*)");
-                   QString defaultFilter("CSV files (*.csv)");
-                   QString fileName = QFileDialog::getSaveFileName(0, "Save file", QCoreApplication::applicationDirPath(),
-                                      filters, &defaultFilter);
-                   QFile file(fileName);
-
-                   QAbstractItemModel *model =  table->model();
-                   if (file.open(QFile::WriteOnly | QFile::Truncate)) {
-                       QTextStream data(&file);
-                       QStringList strList;
-                       for (int i = 0; i < model->columnCount(); i++) {
-                           if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
-                               strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
-                           else
-                               strList.append("");
-                       }
-                       data << strList.join(";") << "\n";
-                       for (int i = 0; i < model->rowCount(); i++) {
-                           strList.clear();
-                           for (int j = 0; j < model->columnCount(); j++) {
-
-                               if (model->data(model->index(i, j)).toString().length() > 0)
-                                   strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
-                               else
-                                   strList.append("");
-                           }
-                           data << strList.join(";") + "\n";
-                       }
-                       file.close();
-                       QMessageBox::information(nullptr, QObject::tr("export excel"),
-                                                 QObject::tr("export avec succes .\n"
-                                                             "Click OK to exit."), QMessageBox::Ok);
-                   }
-}
 
 
 void MainWindow::on_Statistique_clicked()
@@ -435,7 +416,7 @@ void MainWindow::on_Statistique_clicked()
 
     QChart *chart = new QChart();
     chart->addSeries(series);
-    chart->setTitle(" gain: NB: "+ QString::number(tranche_montant1-tranche_montant2));
+    chart->setTitle(" gain: NB: "+ QString::number(tranche_montant2-tranche_montant1));
     chart->legend()->hide();
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
@@ -474,7 +455,7 @@ void MainWindow::on_Statistique_3_clicked()
 
     QChart *chart = new QChart();
     chart->addSeries(series);
-    chart->setTitle("depenses:");
+    chart->setTitle("depenses");
     chart->legend()->hide();
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
@@ -585,7 +566,10 @@ void MainWindow::on_mat_2_activated(int index)
 
 void MainWindow::on_lineEdit_7_textChanged(const QString &arg1)
 {
+    if (arg1 != NULL)
     ui->tabledepence->setModel(C.recherche_avancee(arg1));
+    else
+     ui->tabledepence->setModel(C.afficher());
 
 }
 
@@ -823,14 +807,14 @@ void MainWindow::on_calcultotal_4_clicked()
      ui->dep->setItem(0,4,item5);
 }
 
-void MainWindow::on_tabWidget_4_tabBarClicked(int index)
+/*void MainWindow::on_tabWidget_4_tabBarClicked(int index)
 {
     setImCorp();
     setliq();
     setrev();
     setdep();
     setfisc();
-}
+}*/
 
 void MainWindow::on_calcultotal_5_clicked()
 {
@@ -1108,3 +1092,13 @@ void MainWindow::ligne(QString fileName)
 
                    }
 }
+
+void MainWindow::on_tabWidget_2_tabBarClicked(int index)
+{
+    setImCorp();
+    setliq();
+    setrev();
+    setdep();
+    setfisc();
+}
+

@@ -42,14 +42,8 @@ public:
     bool supprimer(QString);
     bool recherche_id(QString);
     bool modifier(QString);
-    QSqlQueryModel* Trie_dateC();
-    QSqlQueryModel* Trie_dateD();
-    QSqlQueryModel* Trie_montantC();
-    QSqlQueryModel* Trie_montantD();
-    QSqlQueryModel* Trie_dateC2();
-    QSqlQueryModel* Trie_dateD2();
-    QSqlQueryModel* Trie_montantC2();
-    QSqlQueryModel* Trie_montantD2();
+    QSqlQueryModel* Trie(int,QString);
+
     bool DateValide(QDate Date);
     void excel_dynamique();
 

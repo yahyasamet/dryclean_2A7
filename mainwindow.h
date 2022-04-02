@@ -9,7 +9,7 @@
 #include "finances.h"
 #include "historique.h"
 #include <QKeyEvent>
-
+#include <QSound>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -34,9 +34,9 @@ private slots:
     void on_comboBox_2_activated(int index);
 
 
-    void on_excel_1_clicked();
+
     void on_Statistique_clicked();
-    void on_excel_2_clicked();
+
 
     void on_Statistique_3_clicked();
 
@@ -72,17 +72,21 @@ private slots:
 
     void on_calcultotal_4_clicked();
 
-    void on_tabWidget_4_tabBarClicked(int index);
+  //  void on_tabWidget_4_tabBarClicked(int index);
 
     void on_calcultotal_5_clicked();
 
     void on_pushButton_11_clicked();
+
+    void on_tabWidget_2_tabBarClicked(int index);
+
 
 private:
     Ui::MainWindow *ui;
     finances C;
     QStringList files;
     QCompleter *stringcompleter,*modelcompleter;
+    QSound *son;
 
 };
 

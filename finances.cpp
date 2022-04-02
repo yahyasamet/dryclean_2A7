@@ -170,127 +170,33 @@ bool finances::modifier(QString ID_FINANCES)
     }
           return query.exec();
 }
-QSqlQueryModel* finances::Trie_dateC()
+QSqlQueryModel* finances::Trie(int type,QString ordres)
 {
-    QSqlQueryModel* model=new QSqlQueryModel();
-    model->setQuery("SELECT* FROM  finances where TYPE_TRANSACTION=0 order by DATE_FINANCES  ");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_FINANCES"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE_FINANCES"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("MONTANT_FINANCE"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("TYPE_TRANSACTION"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("PROVENANCE"));
-    model->setHeaderData(5, Qt::Horizontal, QObject::tr("ID_COMMANDE"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("MATRICULE_FISC"));
+    QSqlQueryModel * model =new QSqlQueryModel();
+           QSqlQuery query;
+           QString type_s = QString::number(type);
+           if (ordres=="DATE_FINANCES")
+           query.prepare("SELECT* FROM  finances where TYPE_TRANSACTION=:type_s order by DATE_FINANCES");
+           else if (ordres=="DATE_FINANCES DESC")
+           query.prepare("SELECT* FROM  finances where TYPE_TRANSACTION=:type_s order by DATE_FINANCES DESC");
+           else if(ordres=="MONTANT_FINANCE")
+           query.prepare("SELECT* FROM  finances where TYPE_TRANSACTION=:type_s order by MONTANT_FINANCE");
+           else
+           query.prepare("SELECT* FROM  finances where TYPE_TRANSACTION=:type_s order by MONTANT_FINANCE DESC");
 
+           query.bindValue(":type_s",type_s);
+           query.exec();
+           model->setQuery(query);
 
-    return model;
-}
-QSqlQueryModel* finances::Trie_dateD()
-{
-    QSqlQuery query;
-    QSqlQueryModel* model=new QSqlQueryModel();
-    model->setQuery("SELECT* FROM  finances where TYPE_TRANSACTION=0  order by DATE_FINANCES DESC");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_FINANCES"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE_FINANCES"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("MONTANT_FINANCE"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("TYPE_TRANSACTION"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("PROVENANCE"));
-    model->setHeaderData(5, Qt::Horizontal, QObject::tr("ID_COMMANDE"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("MATRICULE_FISC"));
+           model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_FINANCES"));
+           model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE_FINANCES"));
+           model->setHeaderData(2, Qt::Horizontal, QObject::tr("MONTANT_FINANCE"));
+           model->setHeaderData(3, Qt::Horizontal, QObject::tr("TYPE_TRANSACTION"));
+           model->setHeaderData(4, Qt::Horizontal, QObject::tr("PROVENANCE"));
+           model->setHeaderData(5, Qt::Horizontal, QObject::tr("ID_COMMANDE"));
+           model->setHeaderData(6, Qt::Horizontal, QObject::tr("MATRICULE_FISC"));
 
-
-    return model;
-}
-QSqlQueryModel* finances::Trie_montantC()
-{
-    QSqlQueryModel* model=new QSqlQueryModel();
-    model->setQuery("SELECT* FROM  finances where TYPE_TRANSACTION=0 order by MONTANT_FINANCE");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_FINANCES"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE_FINANCES"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("MONTANT_FINANCE"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("TYPE_TRANSACTION"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("PROVENANCE"));
-    model->setHeaderData(5, Qt::Horizontal, QObject::tr("ID_COMMANDE"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("MATRICULE_FISC"));
-
-
-    return model;
-}
-QSqlQueryModel* finances::Trie_montantD()
-{
-    QSqlQueryModel* model=new QSqlQueryModel();
-    model->setQuery("SELECT* FROM  finances where TYPE_TRANSACTION=0  order by MONTANT_FINANCE DESC ");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_FINANCES"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE_FINANCES"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("MONTANT_FINANCE"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("TYPE_TRANSACTION"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("PROVENANCE"));
-    model->setHeaderData(5, Qt::Horizontal, QObject::tr("ID_COMMANDE"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("MATRICULE_FISC"));
-
-
-    return model;
-}
-QSqlQueryModel* finances::Trie_dateC2()
-{
-    QSqlQueryModel* model=new QSqlQueryModel();
-    model->setQuery("SELECT* FROM  finances where TYPE_TRANSACTION=1 order by DATE_FINANCES  ");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_FINANCES"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE_FINANCES"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("MONTANT_FINANCE"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("TYPE_TRANSACTION"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("PROVENANCE"));
-    model->setHeaderData(5, Qt::Horizontal, QObject::tr("ID_COMMANDE"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("MATRICULE_FISC"));
-
-
-    return model;
-}
-QSqlQueryModel* finances::Trie_dateD2()
-{
-    QSqlQuery query;
-    QSqlQueryModel* model=new QSqlQueryModel();
-    model->setQuery("SELECT* FROM  finances where TYPE_TRANSACTION=1 order by DATE_FINANCES DESC");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_FINANCES"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE_FINANCES"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("MONTANT_FINANCE"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("TYPE_TRANSACTION"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("PROVENANCE"));
-    model->setHeaderData(5, Qt::Horizontal, QObject::tr("ID_COMMANDE"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("MATRICULE_FISC"));
-
-
-    return model;
-}
-QSqlQueryModel* finances::Trie_montantC2()
-{
-    QSqlQueryModel* model=new QSqlQueryModel();
-    model->setQuery("SELECT* FROM  finances where TYPE_TRANSACTION=1 order by MONTANT_FINANCE");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_FINANCES"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE_FINANCES"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("MONTANT_FINANCE"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("TYPE_TRANSACTION"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("PROVENANCE"));
-    model->setHeaderData(5, Qt::Horizontal, QObject::tr("ID_COMMANDE"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("MATRICULE_FISC"));
-
-
-    return model;
-}
-QSqlQueryModel* finances::Trie_montantD2()
-{
-    QSqlQueryModel* model=new QSqlQueryModel();
-    model->setQuery("SELECT* FROM  finances where TYPE_TRANSACTION=1 order by MONTANT_FINANCE DESC ");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_FINANCES"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE_FINANCES"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("MONTANT_FINANCE"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("TYPE_TRANSACTION"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("PROVENANCE"));
-    model->setHeaderData(5, Qt::Horizontal, QObject::tr("ID_COMMANDE"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("MATRICULE_FISC"));
-
-
-    return model;
+           return model;
 }
 bool finances::DateValide(QDate Date)
 
