@@ -25,6 +25,9 @@ public:
     QStringList cinlist();
     QStringList matlist();
     void  setupSummaryTable();
+    QString id_increment();
+    void idout(int);
+
 
 private slots:
     void on_ajouter_clicked();

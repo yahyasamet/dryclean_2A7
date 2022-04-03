@@ -79,7 +79,7 @@ void MainWindow::on_ajouter_clicked()
     son->play();
     QIntValidator v(0, 1000000, this);
     int pos = 0;
-    QString ID_FINANCES=ui->id->text();
+    QString ID_FINANCES=id_increment();
     int MONTANT_FINANCE=ui->montant->text().toInt();
     QString MATRICULE_FISC=ui->mat_2->currentText();
     QString ID_COMMANDE=ui->mat->currentText();
@@ -122,6 +122,7 @@ void MainWindow::on_ajouter_clicked()
     if(test)
   {
     msgBox.setText("ajout avec succée");
+    idout(ID_FINANCES.toInt());
     ui->tabledepence->setModel(C.afficher());
     ui->tablerevenue->setModel(C.afficher2());
     Historique h;
@@ -1101,4 +1102,29 @@ void MainWindow::on_tabWidget_2_tabBarClicked(int index)
     setdep();
     setfisc();
 }
+QString MainWindow::id_increment()
+{
+    QString tmp="";
 
+    int i=0;
+    QFile file("C:/Users/ramya/OneDrive/Bureau/dry cleaning/finance/id.txt");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+          tmp="";
+    QTextStream in(&file);
+    QString line;
+    while(!file.atEnd()){
+    line = file.readLine();
+    i++;
+    }
+    file.close();
+    QString is=QString::number(i);
+    return is;
+}
+void MainWindow::idout (int i)
+{
+    QFile file ("C:/Users/ramya/OneDrive/Bureau/dry cleaning/finance/id.txt");
+     if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
+      qDebug()<<"erreur";
+     QTextStream out(&file);
+     out << i << "\n";
+}
