@@ -179,6 +179,12 @@ void MainWindow::on_supprimerf_clicked()
             QString id2 = index2.data(Qt::DisplayRole).toString();
        if (id!="")
        {
+           if (!C.recherche_id(id))
+           {
+                QMessageBox::information(this, "erreur de suppression","Id non valide");
+           }
+           else
+           {
       QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "Supprimer", "Etes vous sur de supprimer",
                                       QMessageBox::Yes|QMessageBox::No);
@@ -210,9 +216,16 @@ void MainWindow::on_supprimerf_clicked()
       ui->combo_finance->addItem(qry.value(0).toString());
       }      }
         }
+           }
        }
        else if (id2!="")
-       {
+       {  
+           if (!C.recherche_id(id2))
+           {
+                QMessageBox::information(this, "erreur de suppression","Id non valide");
+           }
+           else
+           {
            QMessageBox::StandardButton reply;
              reply = QMessageBox::question(this, "Supprimer", "Etes vous sur de supprimer",
                                            QMessageBox::Yes|QMessageBox::No);
@@ -252,7 +265,7 @@ void MainWindow::on_supprimerf_clicked()
            }}
                  C.excel_dynamique();
              }
-       }
+           }       }
 }
 
 void MainWindow::on_modifierf_clicked()
