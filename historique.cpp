@@ -23,12 +23,29 @@ QString Historique::load()
       tmp="";
 
     QTextStream in(&file);
-
+    int i=0;
+            QString color="#09B9FF";
    while (!in.atEnd()) {
+       switch (i) {
+                  case 0:
+                  color="#09B9FF";
+                  break;
+                  case 1:
+                      color="#0A8DFF";
+                  break;
+                  case 2:
+                      color="#0070D1";
+                  break;
+                  case 3:
+                      color="#6f85d1";
+                      break;
+                  }
 
          QString myString = in.readLine();
-         tmp+=myString+"\n";
-
+         tmp+="<font color="+color+">"+myString+"\n<br><br> <font>";
+         i++;
+                     if(i==4)
+                         i=0;
    }
    return tmp;
 }

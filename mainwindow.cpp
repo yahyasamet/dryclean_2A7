@@ -375,7 +375,7 @@ void MainWindow::on_pb_modifier_clicked()
                               h.save(cin_clS,ref,montant_cmds,"Modification");
                               ui->historique->setText(h.load());
                if(etat==1)
-               {mSystemTrayIcon ->showMessage(tr("Notification"),tr("La commande n° %1 est prete.Veuillez Consulter la base de donnee").arg(ref_cmd));}
+               {mSystemTrayIcon ->showMessage(tr("Notification"),tr("La commande n° %1 est prete.").arg(ref_cmd));}
                ui->tab_v->setModel(C.afficher());
            }
            else
