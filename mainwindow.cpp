@@ -309,6 +309,15 @@ else {
                        ui->quantite->clear();
                        ui->prix->clear();
                       ui->combo_box_modifier->setFocus();
+
+                      QSqlQuery qry;
+                              qry.prepare("select MATRICULE_F from fournisseur");
+                              qry.exec();
+                             ui->combo_box_modifier->addItem("");
+
+                              while(qry.next()){
+                               ui->combo_box_modifier->addItem(qry.value(0).toString());
+                               }
    }
 }
 
