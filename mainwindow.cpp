@@ -168,7 +168,7 @@ void MainWindow::on_ajouter_clicked()
                     ui->lineEdit_MATRICULE_F->setFocus();
 
 
-                    QSqlQuery qry, qry_mail;
+                    QSqlQuery qry,qry1, qry_mail;
                             qry.prepare("select MATRICULE_F from fournisseur");
                             qry.exec();
                            ui->combo_box_modifier->addItem("");
@@ -183,6 +183,16 @@ void MainWindow::on_ajouter_clicked()
                             while(qry_mail.next()){
                              ui->recipient_combo->addItem(qry_mail.value(0).toString());
                             }
+
+                            qry1.prepare("select * from fournisseur");
+                            qry1.exec();
+                            QStringList completionlist;
+                            while(qry1.next()){
+                                completionlist <<qry1.value("MATRICULE_F").toString() <<qry1.value("NOMSOCIETE").toString() <<qry1.value("ADRESSE_SOCIETE").toString() <<qry1.value("EMAIL_F").toString();
+                            }
+                            stringcompleter=new QCompleter(completionlist,this);
+                            stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
+                            ui->rechercheA->setCompleter(stringcompleter);
       }
 
 
