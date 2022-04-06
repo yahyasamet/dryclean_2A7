@@ -56,11 +56,18 @@ void BarCodeBox::savePicture()
     //Le premier paramètre spécifie le nom du fichier enregistré, le second est le format d'image et le troisième est la qualité d'image 0-100
     if(pixmap.save("C:/Users/MSI/Desktop/untitled_cb/Barcode.png","PNG",90))//enregistrer l'image
     {
-        QMessageBox::information(this,"Sucess","");
+        QMessageBox::information(nullptr,QObject::tr("OK"),
+                                          QObject::tr("Le code à barre à été enregitré\n"
+                                                      "Click cancel to exit."),QMessageBox::Cancel);
+
+
     }
     else
     {
-        QMessageBox::critical(this,"Erreur","");
+        QMessageBox::critical(nullptr,QObject::tr("OK"),
+                                          QObject::tr("Le code à barre n'a pas été enregistré\n"
+                                                      "Click cancel to exit."),QMessageBox::Cancel);
+
     }
 }
 void BarCodeBox::paintEvent(QPaintEvent *event)

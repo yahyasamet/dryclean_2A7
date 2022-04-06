@@ -33,6 +33,8 @@
 #include "barcode.h"
 #include <QBoxLayout>
 #include "historique.h"
+#include <QPrintDialog>
+
 
 using namespace std;
 
@@ -53,24 +55,23 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     label = new QLabel("Code：",this);
-  lineEdit = new QLineEdit(this);
- // cin= new QComboBox(this);
-  produceCode128Button = new QPushButton("code128",this);
-   // produceEAN13Button = new QPushButton("EAN13",this);
-    savePictureButton = new QPushButton("save",this);
-    barCodeBox = new BarCodeBox("Code",this);
 
-   // QHBoxLayout *hBoxLayout = new QHBoxLayout();
-    ui->hBoxLayout->addWidget(label);
-   ui-> hBoxLayout->addWidget(lineEdit);
-   ui->hBoxLayout->addWidget(produceCode128Button);
- // ui-> hBoxLayout->addWidget(produceEAN13Button);
-  ui-> hBoxLayout->addWidget(savePictureButton);
+     // cin= new QComboBox(this);
+      produceCode128Button = new QPushButton("code128",this);
+        //produceEAN13Button = new QPushButton("EAN13",this);
+        savePictureButton = new QPushButton("save",this);
+        barCodeBox = new BarCodeBox("Code",this);
 
-  // QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
-    //vBoxLayout->addLayout(hBoxLayout);
-   ui-> vBoxLayout->addWidget(barCodeBox);
+       // QHBoxLayout *hBoxLayout = new QHBoxLayout();
+        ui->hBoxLayout->addWidget(label);
 
+       ui->hBoxLayout->addWidget(produceCode128Button);
+     // ui-> hBoxLayout->addWidget(produceEAN13Button);
+      ui-> hBoxLayout->addWidget(savePictureButton);
+
+      // QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
+        //vBoxLayout->addLayout(hBoxLayout);
+       ui-> vBoxLayout->addWidget(barCodeBox);
    /*QSqlQuery qry1;
    qry1.prepare("select cin_cl from commandes");
    qry1.exec();
@@ -83,7 +84,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     connect(produceCode128Button,SIGNAL(clicked()),this,SLOT(produceBarCode128Slot()));
-    //connect(produceEAN13Button,SIGNAL(clicked()),this,SLOT(produceBarCodeEAN13Slot()));
+//    connect(produceEAN13Button,SIGNAL(clicked()),this,SLOT(produceBarCodeEAN13Slot()));
   connect(savePictureButton,SIGNAL(clicked()),this,SLOT(savePictureSlot()));
 
     //this->resize(1400,1300);
@@ -168,6 +169,7 @@ void MainWindow::on_pb_ajouter_clicked()
     QDate Date_cmd=ui->date->date();
     QMessageBox msgbox;
 
+
     //pdf
 
 
@@ -216,20 +218,19 @@ if (erreur==0)
         QMessageBox::information(nullptr,QObject::tr("OK"),
                                  QObject::tr("Ajout effectué\n"
                                              "Click cancel to exit."),QMessageBox::Cancel);
-        bool test1=C.genererFacture(ref_cmd,cin_cl,qtt_vetS,Date_cmdS,montant_cmdS,type_vS,livraisonS,cin,Nom_cl);
+        bool test1=genererFacture(ref_cmd,cin_cl,qtt_vetS,Date_cmdS,montant_cmdS,type_vS,livraisonS,cin,Nom_cl);
         Historique h;
             h.save(cin,ref_cmd,montant_cmdS,"Ajout");
             ui->historique->setText(h.load());
+//testPrint=PrintFacture(ref_cmd,cin_cl,qtt_vetS,Date_cmdS,montant_cmdS,type_vS,livraisonS,cin,Nom_cl);
         if(!test1)
            { QMessageBox::critical(nullptr,QObject::tr("Erreur"),
                                        QObject::tr("Facture non générer\n"
                                                    "click cancel to exit"),QMessageBox::Cancel);  }
         else
         {QMessageBox::information(nullptr,QObject::tr("OK"),
-                                  QObject::tr("Facture générer avec succés\n"
+                                  QObject::tr("Facture générer et passée à l'impression avec succés\n"
                                               "Click cancel to exit."),QMessageBox::Cancel);}
-
-
 
         ui->tab_v->setModel(Etmp.afficher());
     ui->le_ref->clear();
@@ -491,14 +492,15 @@ void MainWindow::on_modifier_combo_activated(int index)
        ui->modifier_cin_emp_cmb->setCurrentText(query.value(11).toString());
 }
 
-void MainWindow::on_supprimer_combo_activated(int index)
+/*void MainWindow::on_supprimer_combo_activated(int index)
 {
 
-}
+}*/
 
 void MainWindow::produceBarCode128Slot()
 {
-    QString code=lineEdit->text();
+    QString code= ui->tab_v->selectionModel()->currentIndex().data(Qt::DisplayRole).toString();
+   // QString code=lineEdit->text();
     BarCode code128;//Définit l'objet qui encode le numéro de code-barres
     QString barCodes;//Enregistrez la chaîne bs, indiquant b : ligne noire s : ligne blanche
     if((barCodes=code128.process128BCode(code))!=NULL)
@@ -510,7 +512,7 @@ void MainWindow::produceBarCode128Slot()
 
 void MainWindow::produceBarCodeEAN13Slot()
 {
-    QString code=lineEdit->text();//Obtenir le numéro saisi
+    QString code= ui->tab_v->selectionModel()->currentIndex().data(Qt::DisplayRole).toString();
 
     BarCode codeEAN13;//Définit l'objet qui encode le numéro de code-barres
     QString barCodes;//Enregistrez 01 chaînes, indiquant 1 : ligne noire 0 : ligne blanche
@@ -529,4 +531,52 @@ void MainWindow::savePictureSlot()
 void MainWindow::on_recherche_textChanged(const QString &arg)
 {
 ui->tab_v->setModel(Etmp.Recherche_Avancee(arg));
+}
+bool MainWindow::genererFacture(QString ref, QString cinS, QString qtt, QString Date, QString mt, QString type, QString livr, QString cin_e, QString nom)
+{
+   //QPrinter printer;
+   //printer.setOutputFormat(QPrinter::PdfFormat);
+    QPrinter * impr;
+    QPrintDialog pd(this);
+    if (pd.exec()==QDialog::Rejected)
+        return false;
+    impr = pd.printer();
+       impr->setOutputFormat(QPrinter::PdfFormat);
+      // printer.setOutputFileName("C:/Users/MSI/Desktop/untitled_cb/Facture43.pdf");
+    impr->setOutputFileName("C:/Users/MSI/Desktop/untitled_cb/Facture43.pdf");
+    QPainter painter;
+       QImage logo("C:/Users/MSI/Desktop/Projet_C++_2A7/untitled/logo_c++_1.png");
+       QImage logo_scale=logo.scaled(200, 200, Qt::KeepAspectRatio);
+       if (!painter.begin(impr))
+       {qWarning("failed to open file.");
+       return false;}
+       painter.drawImage(600,50,logo_scale);
+        painter.setPen(Qt::red);
+       painter.drawText(360,75,"Facture");
+        painter.setPen(Qt::black);
+       painter.drawText(90,160,"reference:"); //x,y,txt
+      painter.drawText(160,160,ref);
+       painter.drawText(90,210,"CIN du client: ");
+       painter.drawText(200,210,cinS);
+       painter.drawText(90,260,"Nom du client: ");
+       painter.drawText(200,260,nom);
+       painter.drawText(90,310,"Qtt de vetements: ");
+       painter.drawText(200,310,qtt);
+       painter.drawText(90,360,"Date de commande: ");
+       painter.drawText(230,360,Date);
+       painter.drawText(90,410,"Montant à payé DT:");
+       painter.drawText(220,410,mt);
+       painter.drawText(90,460,"Type de vetements: ");
+       painter.drawText(210,460,type);
+       painter.drawText(90,520,"Livraison: ");
+       painter.drawText(190,520,livr);
+       painter.drawText(90,570,"Cin employe: ");
+       painter.drawText(200,570,cin_e);
+       painter.drawText(350,610,"Merci de nous avoir fait confiance");
+      // (*Facture)=&printer;
+      // Facture=printer;
+       painter.end();
+
+       return true;
+
 }

@@ -28,6 +28,7 @@ public:
 
     ~MainWindow();
 
+bool genererFacture(QString ref,QString cinS,QString qtt,QString Date,QString mt,QString type,QString livr,QString cin_e,QString nom);
 
 public slots:
     void produceBarCode128Slot();//code 128
@@ -45,8 +46,7 @@ private slots:
 
     void on_modifier_combo_activated(int index);
 
-    void on_supprimer_combo_activated(int index);
-
+   // void on_supprimer_combo_activated(int index);
 
 
     void on_recherche_textChanged(const QString &arg);
@@ -58,11 +58,12 @@ private:
     QCompleter * ModelCompleter;
     QSystemTrayIcon * mSystemTrayIcon;
     QLabel *label;
-    QLineEdit *lineEdit;
+//QPrinter Facture;
     QPushButton *produceCode128Button;
-    QPushButton *produceEAN13Button;
+    //QPushButton *produceEAN13Button;
     QPushButton *savePictureButton;
     //QComboBox *cin;
     BarCodeBox *barCodeBox;
+
 };
 #endif // MAINWINDOW_H

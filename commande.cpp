@@ -7,6 +7,8 @@
 #include <QPainter>
 #include <QImage>
 #include<QPdfWriter>
+#include <QPrintDialog>
+
 Commande::Commande()
 {
     QDate date1(1995,2,2);
@@ -286,7 +288,7 @@ QSqlQueryModel * Commande::afficherTrierDescMontant()
      return model;
 
  }
-bool Commande::genererFacture(QString ref, QString cinS, QString qtt, QString Date, QString mt, QString type, QString livr, QString cin_e, QString nom)
+/*bool Commande::genererFacture(QString ref, QString cinS, QString qtt, QString Date, QString mt, QString type, QString livr, QString cin_e, QString nom)
 {
     QPrinter printer;
        printer.setOutputFormat(QPrinter::PdfFormat);
@@ -321,9 +323,10 @@ bool Commande::genererFacture(QString ref, QString cinS, QString qtt, QString Da
        painter.drawText(200,570,cin_e);
        painter.drawText(350,610,"Merci de nous avoir fait confiance");
        painter.end();
+
        return true;
 
-}
+}*/
 /*bool Commande::NomValide(QString chaine)
 {
     int i=0;
@@ -390,3 +393,46 @@ QSqlQueryModel * Commande::Recherche_Avancee(QString arg)
 
 return model;
 }
+/*bool Commande::PrintFacture(QString ref, QString cinS, QString qtt, QString Date, QString mt, QString type, QString livr, QString cin_e, QString nom)
+{
+    QPrinter * impresova;
+    QPrintDialog pd(this);
+    if (pd.exec()==QDialog::Rejected)
+        return;
+    impresova = pd.printer();
+    QPrinter printer;
+       printer.setOutputFormat(QPrinter::PdfFormat);
+       printer.setOutputFileName("C:/Users/MSI/Desktop/untitled_cb/Facture43.pdf");
+       QPainter painter;
+       QImage logo("C:/Users/MSI/Desktop/Projet_C++_2A7/untitled/logo_c++_1.png");
+       QImage logo_scale=logo.scaled(200, 200, Qt::KeepAspectRatio);
+       if (!painter.begin(&printer))
+       {qWarning("failed to open file.");
+       return false;}
+       painter.drawImage(600,50,logo_scale);
+        painter.setPen(Qt::red);
+       painter.drawText(360,75,"Facture");
+        painter.setPen(Qt::black);
+       painter.drawText(90,160,"reference:"); //x,y,txt
+      painter.drawText(160,160,ref);
+       painter.drawText(90,210,"CIN du client: ");
+       painter.drawText(200,210,cinS);
+       painter.drawText(90,260,"Nom du client: ");
+       painter.drawText(200,260,nom);
+       painter.drawText(90,310,"Qtt de vetements: ");
+       painter.drawText(200,310,qtt);
+       painter.drawText(90,360,"Date de commande: ");
+       painter.drawText(230,360,Date);
+       painter.drawText(90,410,"Montant à payé DT:");
+       painter.drawText(220,410,mt);
+       painter.drawText(90,460,"Type de vetements: ");
+       painter.drawText(210,460,type);
+       painter.drawText(90,520,"Livraison: ");
+       painter.drawText(190,520,livr);
+       painter.drawText(90,570,"Cin employes: ");
+       painter.drawText(200,570,cin_e);
+       painter.drawText(350,610,"Merci de nous avoir fait confiance");
+       painter.end();
+       return true;
+
+}*/

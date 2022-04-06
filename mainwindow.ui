@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1565</width>
-    <height>905</height>
+    <height>924</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -111,7 +111,7 @@ font-size: 17px;
         <x>-30</x>
         <y>-30</y>
         <width>421</width>
-        <height>831</height>
+        <height>841</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -186,7 +186,7 @@ font-size: 50px;
          <x>50</x>
          <y>110</y>
          <width>331</width>
-         <height>721</height>
+         <height>731</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1786,7 +1786,7 @@ QTabWidget::pane {
         <x>0</x>
         <y>-30</y>
         <width>1151</width>
-        <height>841</height>
+        <height>901</height>
        </rect>
       </property>
       <property name="styleSheet">

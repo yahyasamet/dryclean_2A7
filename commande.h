@@ -7,6 +7,8 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QSharedDataPointer>
+#include <QPrintDialog>
+#include <QPrinter>
 
 class Commande
 {
@@ -49,11 +51,12 @@ public:
      QSqlQueryModel * afficher();
      bool recherche_id(QString);
      bool modifier(QString);
-     bool genererFacture(QString ref,QString cinS,QString qtt,QString Date,QString mt,QString type,QString livr,QString cin_e,QString nom);
+     //bool genererFacture(QString ref,QString cinS,QString qtt,QString Date,QString mt,QString type,QString livr,QString cin_e,QString nom);
 bool NomValide(QString chaine);
 bool adresseValide(QString adresse);
 int entierValide(int entier);
 bool DateValide(QDate Date);
+//bool PrintFacture(QString ref, QString cinS, QString qtt, QString Date, QString mt, QString type, QString livr, QString cin_e, QString nom);
 QSqlQueryModel * Recherche_Avancee(QString arg1);
 
 private:
