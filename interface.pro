@@ -1,6 +1,5 @@
-QT       += core gui sql axcontainer widgets qml  quickwidgets quick
+QT       += core gui sql axcontainer widgets qml  quickwidgets quick opengl
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
 # The following define makes your compiler emit warnings if you use
@@ -14,26 +13,35 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+include(src/src.pri)
+include(shared/shared.pri)
+
 SOURCES += \
     connection.cpp \
     livraisons.cpp \
     main.cpp \
     mainwindow.cpp\
+    secformdialog.cpp \
 sqleventmodel.cpp\
-event.cpp
+event.cpp\
+qrcode.cpp
 
 HEADERS += \
     connection.h \
-    event.h \
     livraisons.h \
     mainwindow.h \
-    sqleventmodel.h \
+    secformdialog.h \
     webaxwidget.h\
     event.h\
-sqleventmodel.h
+sqleventmodel.h\
+qtquickcontrolsapplication.h\
+qrcode.h
+
+
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    secformdialog.ui
 
 OTHER_FILES += qml/main.qml
 
@@ -47,5 +55,6 @@ RESOURCES += \
     mymap.qrc\
 resources.qrc
 
-target.path = $$[QT_INSTALL_EXAMPLES]C:/Qt/Qt5.9.9/Examples/quickcontrols/controls/calendar
+target.path = $$[QT_INSTALL_EXAMPLES]/quickcontrols/controls/calendar
 INSTALLS += target
+

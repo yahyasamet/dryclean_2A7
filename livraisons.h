@@ -8,16 +8,16 @@ class livraisons
 {
 public:
     livraisons();
-    livraisons(int,QDate,QString,int);
+    livraisons(int,QDate,QString,QString);
     int get_id();
     QString get_nom_lv();
     QDate get_date_lv();
-    int get_ref_cmd();
+    QString get_ref_cmd();
 
     void set_nom_lv(QString);
     void set_date_lv(QDate);
     void set_id(int);
-    void set_ref_cmd(int);
+    void set_ref_cmd(QString);
 
     bool ajouter_livraisons();
     QSqlQueryModel * afficher_livraisons();
@@ -32,16 +32,16 @@ public:
     QSqlQueryModel * afficherTrierDescId();
     QSqlQueryModel *afficherTrierAscId();
     QSqlQueryModel * Recherche_Avancee(QString);
-    int chercher_ref(int );
+    //
+    int chercher_ref(QString );
     int chercher_id(int );
-    int chercher_ref_mod(int );
 
 
 private:
     int id;
     QString nom_lv ;
     QDate date_lv;
-    int ref_cmd;
+    QString ref_cmd;
 
 
 

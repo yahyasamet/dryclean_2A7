@@ -13,14 +13,18 @@
 #include <QPointF>
 #include <QPicture>
 #include <QtGui>
-
+#include <QtOpenGL>
 #include <QVariant>
 #include <QAbstractEventDispatcher>
 #include <QDir>
 #include <QtQml>
 #include <QQuickView>
-#include "C:\Qt\Qt5.9.9\Examples\Qt-5.9.9\quickcontrols\controls\shared\qtquickcontrolsapplication.h"
+#include "qtquickcontrolsapplication.h"
 #include "sqleventmodel.h"
+#include <QSurfaceFormat>
+#include "qrcode.h"
+const QString RESULTS_PATH = "C:\\Users\\MSI\\OneDrive\\Bureau\\yahyav3\\Qrcode\\";
+
 
 
 
@@ -30,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-  setFixedSize(1300,750);
+  //setFixedSize(1300,750);
 
 
 
@@ -61,6 +65,7 @@ MainWindow::MainWindow(QWidget *parent)
               ui->le_id_2->addItem(qry1.value(0).toString());
               ui->le_id_3->addItem(qry1.value(0).toString());
               ui->le_id_4->addItem(qry1.value(0).toString());
+              ui->le_id_5->addItem(qry1.value(0).toString());
              }
 
          qry2.prepare("SELECT ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES");
@@ -73,9 +78,12 @@ MainWindow::MainWindow(QWidget *parent)
              stringcompleter=new QCompleter(completionlist,this);
              stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
              ui->Rechercher_livraisons->setCompleter(stringcompleter);
-             qmlRegisterType<SqlEventModel>("org.qtproject.examples.calendar", 1, 0, "SqlEventModel");
-             ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
-             ui->quickWidget->show();
+
+//             QOpenGLContext::currentContext();
+
+//             qmlRegisterType<SqlEventModel>("org.qtproject.examples.calendar", 1, 0, "SqlEventModel");
+//             ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
+//             ui->quickWidget->show();
 
 
 
@@ -101,7 +109,7 @@ void MainWindow::on_pushButton_2_clicked()
  QDate date_lv=ui->la_date->date();
 
 
- int ref_cmd=ui->le_ref_cmd->currentText().toInt();
+ QString ref_cmd=ui->le_ref_cmd->currentText();
 
 
 
@@ -145,6 +153,7 @@ void MainWindow::on_pushButton_2_clicked()
           ui->le_id_2->clear();
           ui->le_id_3->clear();
           ui->le_id_4->clear();
+          ui->le_id_5->clear();
          QSqlQuery qry1;
          qry1.prepare("select ID_LIVR from livraisons");
              qry1.exec();
@@ -152,14 +161,15 @@ void MainWindow::on_pushButton_2_clicked()
               ui->le_id_2->addItem(qry1.value(0).toString());
               ui->le_id_3->addItem(qry1.value(0).toString());
               ui->le_id_4->addItem(qry1.value(0).toString());
+              ui->le_id_5->addItem(qry1.value(0).toString());
              }
 
          ui->le_nom->clear();
          QDate date = QDate::currentDate();
             ui->la_date->setDate(date);
-            ui->quickWidget->close();
-            ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
-            ui->quickWidget->show();
+//            ui->quickWidget->close();
+//            ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
+//            ui->quickWidget->show();
 
 
 
@@ -192,9 +202,10 @@ void MainWindow::on_supprimer_clicked()
           ui->le_id_2->clear();
           ui->le_id_3->clear();
           ui->le_id_4->clear();
-          ui->quickWidget->close();
-          ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
-          ui->quickWidget->show();
+          ui->le_id_5->clear();
+//          ui->quickWidget->close();
+//          ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
+//          ui->quickWidget->show();
          QSqlQuery qry1;
          qry1.prepare("select ID_LIVR from livraisons");
              qry1.exec();
@@ -202,6 +213,7 @@ void MainWindow::on_supprimer_clicked()
               ui->le_id_2->addItem(qry1.value(0).toString());
               ui->le_id_3->addItem(qry1.value(0).toString());
               ui->le_id_4->addItem(qry1.value(0).toString());
+               ui->le_id_5->addItem(qry1.value(0).toString());
 
              }
 
@@ -225,7 +237,7 @@ void MainWindow::on_modifier_clicked()
     C.set_id(ui->le_id_2->currentText().toInt());
     C.set_nom_lv(ui->le_nom_2->text());
     C.set_date_lv(ui->la_date_2->date());
-    C.set_ref_cmd(ui->le_ref_cmd_2->currentText().toInt());
+    C.set_ref_cmd(ui->le_ref_cmd_2->currentText());
     int erreur=0;
         if(!C.NOM_Valid(C.get_nom_lv()) || C.get_nom_lv()=="")
         erreur=1;
@@ -259,9 +271,9 @@ if(erreur==0)
        ui->le_nom_2->clear();
        QDate date = QDate::currentDate();
           ui->la_date_2->setDate(date);
-          ui->quickWidget->close();
-          ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
-          ui->quickWidget->show();
+//          ui->quickWidget->close();
+//          ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
+//          ui->quickWidget->show();
 
 
     }
@@ -299,8 +311,8 @@ void MainWindow::on_pushButton_5_clicked()
 {
     QPdfWriter pdf("C:\\Users\\MSI\\OneDrive\\Bureau\\PDF_livraisons.pdf");
 
-          QPainter painter(&pdf);
-                QImage image("C:\\Users\\MSI\\OneDrive\\Bureau\\yahyav2\\images\\logo_c++-1.png");
+                QPainter painter(&pdf);
+                QImage image("C:\\Users\\MSI\\OneDrive\\Bureau\\yahyav3\\images\\logo_c++-1.png");
                 painter.drawImage(15,15,image);
 
                  painter.setPen(Qt::red);
@@ -308,8 +320,6 @@ void MainWindow::on_pushButton_5_clicked()
                  painter.drawText(3200,1400,"Bon de Livraison");
                  painter.setPen(Qt::black);
                  painter.setFont(QFont("Time New Roman", 15));
-                // painter.drawRect(100,100,9400,2500);
-                // painter.drawRect(100,3000,9400,500);
                  painter.setFont(QFont("Time New Roman", 9));
                                   painter.drawText(400,3800,"ID: ");
 
@@ -363,8 +373,8 @@ void MainWindow::on_le_id_2_activated()
                query.exec();
         query.next() ;
 
-        ui->le_nom_2->setText(query.value(1).toString());
-        ui->la_date_2->setDate(query.value(2).toDate());
+        ui->le_nom_2->setText(query.value(2).toString());
+        ui->la_date_2->setDate(query.value(1).toDate());
         ui->le_ref_cmd_2->setCurrentText(query.value(3).toString());
 
 }
@@ -384,6 +394,7 @@ void MainWindow::on_Rechercher_livraisons_textChanged(const QString &arg1)
 {
   ui->tableView->setModel(C.Recherche_Avancee(arg1));
 }
+
 void MainWindow::webShow(const QString &url)
 {
     ui->webBrowser->dynamicCall("Navigate(const QString&)", url);
@@ -403,15 +414,82 @@ QString MainWindow::on_le_id_3_activated()
 {
 
 
-    QSqlQuery query;
-    QString ID_LIVR=ui->le_id_3->currentText() ;
-   query.prepare("SELECT ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES where ID_LIVR=:ID_LIVR" );
-           query.bindValue(":ID_LIVR",ID_LIVR) ;
-           query.exec();
-    query.next() ;
+       QSqlQuery query;
+       QString ID_LIVR=ui->le_id_3->currentText() ;
+       query.prepare("SELECT ID_LIVR,NOM_LIVREUR,DATE_LIVRAISON,REF_CMD,NOM_CL,ADR_CL FROM livraisons NATURAL JOIN COMMANDES where ID_LIVR=:ID_LIVR" );
+       query.bindValue(":ID_LIVR",ID_LIVR) ;
+       query.exec();
+       query.next() ;
 
      QString ADR_CL=query.value(5).toString();
 
     return  ADR_CL;
+}
+
+
+void MainWindow::on_Calendrier_clicked()
+{
+
+    secDialog= new SECFORMDialog(this);
+    secDialog->show();
+
+
+}
+
+void MainWindow::on_goPushButton_2_clicked()
+{
+
+    QDir().rmpath(RESULTS_PATH);
+        QDir().mkpath(RESULTS_PATH);
+
+    int ID_LIVR=ui->le_id_5->currentText().toInt();
+
+
+                 QSqlQuery qry;
+                 qry.prepare("select * from LIVRAISONS where ID_LIVR=:ID_LIVR");
+                 qry.bindValue(":ID_LIVR",ID_LIVR);
+                 qry.exec();
+
+                  QString nom,ref,id,date;//attributs
+
+
+                while(qry.next()){
+
+                     id=qry.value(0).toString();
+                     nom=qry.value(2).toString();
+                     date=qry.value(1).toString();
+                     ref=qry.value(3).toString();
+
+
+
+                 }
+
+                const QString RESULTS_PATH = "C:\\Users\\MSI\\OneDrive\\Bureau\\yahyav3\\Qrcode\\";
+                 QString cc;
+                        cc=id+ " " +nom+ " " +date+ " " +ref;
+
+
+                        using namespace ::qrcodegen;
+                 QrCode qr = QrCode::encodeText(cc.toUtf8().constData(), QrCode::Ecc::HIGH);
+
+                 // Read the black & white pixels
+                 QImage im(qr.getSize(),qr.getSize(), QImage::Format_RGB888);
+                 for (int y = 0; y < qr.getSize(); y++) {
+                     for (int x = 0; x < qr.getSize(); x++) {
+                         int color = qr.getModule(x, y);  // 0 for white, 1 for black
+
+                         // You need to modify this part
+                         if(color==0)
+                             im.setPixel(x, y,qRgb(254, 254, 254));
+                         else
+                             im.setPixel(x, y,qRgb(0, 0, 0));
+                     }
+                 }
+                 im=im.scaled(100,100);
+                 QString nomimg=nom+".PNG";
+                 im.save(RESULTS_PATH + nomimg,"PNG");
+                ui->qr_code->setPixmap(QPixmap::fromImage(im));
+
+
 }
 

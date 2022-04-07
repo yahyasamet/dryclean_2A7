@@ -4,11 +4,16 @@
 #include "connection.h"
 #include "webaxwidget.h"
 #include "sqleventmodel.h"
-
+#include <QSurfaceFormat>
 
 int main(int argc, char *argv[])
 {
+
     QApplication a(argc, argv);
+//qputenv("QT_OPENGL", "software");
+
+//QApplication::setAttribute(Qt::AA_UseSoftwareOpenGL, true);
+
 
     Connection c;
 
@@ -21,13 +26,14 @@ if(test)
                 QObject::tr("connection successful.\n"
                             "Click Cancel to exit."), QMessageBox::Cancel);
 
+
 }
 else
     QMessageBox::critical(nullptr, QObject::tr("database is not open"),
                 QObject::tr("connection failed.\n"
                             "Click Cancel to exit."), QMessageBox::Cancel);
 
-
+w.show();
 
 
 

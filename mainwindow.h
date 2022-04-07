@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QCompleter>
 #include <QDirModel>
+#include "secformdialog.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -38,9 +39,17 @@ private slots:
 
 
 
+
+
+    void on_Calendrier_clicked();
+
+    void on_goPushButton_2_clicked();
+
+
 private:
     Ui::MainWindow *ui;
     livraisons C;
     QCompleter *stringcompleter,*modelcompleter;
+   SECFORMDialog *secDialog;
 };
 #endif // MAINWINDOW_H

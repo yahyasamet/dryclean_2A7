@@ -54,10 +54,12 @@ import QtQuick.Controls.Private 1.0
 import QtQuick.Controls.Styles 1.1
 import org.qtproject.examples.calendar 1.0
 
-Rectangle {
+
+Item{
+
     visible: true
-    width: 640
-    height: 400
+//    width: 640
+//    height: 400
 
 
     SystemPalette {

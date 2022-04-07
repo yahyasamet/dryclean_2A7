@@ -20,10 +20,10 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>-30</y>
+      <x>10</x>
+      <y>-20</y>
       <width>1291</width>
-      <height>861</height>
+      <height>761</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1371,6 +1371,219 @@ QComboBox QAbstractView{
        </widget>
       </widget>
      </widget>
+     <widget class="QWidget" name="tab_6">
+      <attribute name="title">
+       <string>Qr code</string>
+      </attribute>
+      <widget class="QGroupBox" name="groupBox_13">
+       <property name="geometry">
+        <rect>
+         <x>-10</x>
+         <y>-30</y>
+         <width>391</width>
+         <height>721</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox  {
+    background-color: #0A7CBC;
+
+    margin-top: 27px;
+    font-size: 14px;
+
+}
+
+QGroupBox::title  {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 5px 8000px 5px 8000px;
+    background-color: rgb(54, 49, 120);
+    color: rgb(255, 255, 255);
+
+}
+QLabel
+{
+color: white;
+font-size: 50px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QGroupBox" name="groupBox_14">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>140</y>
+          <width>321</width>
+          <height>531</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton
+{
+color: white;
+font-size: 20px;
+}
+QLabel
+{
+color: white;
+font-size: 20px;
+}
+QGroupBox
+{
+border: 0px;
+
+}
+QLineEdit {
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 0 8px;
+    background: white;
+    selection-background-color: darkgray;
+}
+QPushButton {
+    color: rgb(255, 255, 255);
+  background-color: #4d7cff;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: beige;
+    min-width: 10em;
+    padding: 6px;
+}
+QPushButton:hover {
+color: #fff;
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+QPushButton:pressed {
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #797979, stop:0.48 #696969, stop:0.52 #5e5e5e, stop:1 #4f4f4f);
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+}
+QComboBox::drop-down {
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 20px;
+ 
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+QComboBox::down-arrow {
+     image: url(:/images/combobox-arrow.png);
+}
+ 
+QComboBox QAbstractView{
+	background-color: #4f4f4f;
+	color: #999999;
+ 
+	selection-background-color: rgb(252, 252, 252);
+	selection-color: #4f4f4f;
+}</string>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="l">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>60</y>
+           <width>56</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>-1</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>ID:</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="le_id_5">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>60</y>
+           <width>124</width>
+           <height>22</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="goPushButton_2">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>350</y>
+           <width>176</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Louis George Café</family>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>qr coade</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="qr_code">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>120</y>
+           <width>221</width>
+           <height>171</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_23">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>90</y>
+          <width>281</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Louis George Café</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>QR code</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
     </widget>
     <widget class="QTabWidget" name="tabWidget_2">
      <property name="geometry">
@@ -1481,7 +1694,7 @@ font-size: 17px;
 }</string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_13">
       <attribute name="title">
@@ -1493,7 +1706,7 @@ font-size: 17px;
          <x>0</x>
          <y>-30</y>
          <width>911</width>
-         <height>731</height>
+         <height>721</height>
         </rect>
        </property>
        <property name="title">
@@ -1583,7 +1796,7 @@ QComboBox QAbstractView{
           <x>0</x>
           <y>320</y>
           <width>831</width>
-          <height>381</height>
+          <height>291</height>
          </rect>
         </property>
        </widget>
@@ -1708,24 +1921,6 @@ QComboBox QAbstractView{
        </widget>
       </widget>
      </widget>
-     <widget class="QWidget" name="tab_6">
-      <attribute name="title">
-       <string>Calendrier</string>
-      </attribute>
-      <widget class="QQuickWidget" name="quickWidget">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>20</y>
-         <width>861</width>
-         <height>651</height>
-        </rect>
-       </property>
-       <property name="resizeMode">
-        <enum>QQuickWidget::SizeRootObjectToView</enum>
-       </property>
-      </widget>
-     </widget>
     </widget>
    </widget>
   </widget>
@@ -1735,11 +1930,6 @@ QComboBox QAbstractView{
    <class>QAxWidget</class>
    <extends>QWidget</extends>
    <header>qaxwidget.h</header>
-  </customwidget>
-  <customwidget>
-   <class>QQuickWidget</class>
-   <extends>QWidget</extends>
-   <header location="global">QtQuickWidgets/QQuickWidget</header>
   </customwidget>
   <customwidget>
    <class>WebAxWidget</class>

@@ -12,8 +12,9 @@ livraisons::livraisons()
 {
 id=0;
 nom_lv=" ";
+ref_cmd=" ";
 }
-livraisons::livraisons(int id ,QDate date_lv,QString nom_lv,int ref_cmd)
+livraisons::livraisons(int id ,QDate date_lv,QString nom_lv,QString ref_cmd)
 {
     this->id=id;
     this->nom_lv=nom_lv;
@@ -28,7 +29,7 @@ QString livraisons::get_nom_lv()
 {return nom_lv;}
 QDate livraisons::get_date_lv()
 {return date_lv;}
-int livraisons::get_ref_cmd()
+QString livraisons::get_ref_cmd()
 {return ref_cmd;}
 
 void livraisons::set_nom_lv(QString nom_lv)
@@ -38,7 +39,7 @@ void livraisons::set_date_lv(QDate date_lv)
 {this->date_lv=date_lv;}
 void livraisons::set_id(int id)
 {this->id=id;}
-void livraisons::set_ref_cmd(int ref_cmd)
+void livraisons::set_ref_cmd(QString ref_cmd)
 {this->ref_cmd=ref_cmd;}
 bool livraisons::ajouter_livraisons()
 {
@@ -138,7 +139,7 @@ bool livraisons::ajouter_livraisons()
         int i=0;
         while(i<chaine.size())
         {
-            if(! ((chaine[i]>='A' && chaine[i]<='Z')|| (chaine[i]>='a' && chaine[i]<='z')))
+            if(! ((chaine[i]>='A' && chaine[i]<='Z')|| (chaine[i]>='a' && chaine[i]<='z')  || (chaine[i]==' ')))
             {
                return false;
             }
@@ -231,11 +232,11 @@ bool livraisons::ajouter_livraisons()
         return model;
     }
 
-    int livraisons::chercher_ref(int ref)
+    int livraisons::chercher_ref(QString ref)
     {
         QSqlQuery qry;
 
-        qry.prepare("SELECT * FROM livraisons WHERE REF_CMD = :REF_CMD");
+        qry.prepare("SELECT * FROM livraisons WHERE REF_CMD LIKE :REF_CMD");
         qry.bindValue(":REF_CMD",ref);
         qDebug() << ref << endl;
        int count(0);
@@ -250,24 +251,7 @@ bool livraisons::ajouter_livraisons()
         return count;
     }
 
-    int livraisons::chercher_ref_mod(int ref)
-    {
-        QSqlQuery qry;
 
-        qry.prepare("SELECT * FROM COMMANDES WHERE REF_CMD = :REF_CMD");
-        qry.bindValue(":REF_CMD",ref);
-        qDebug() << ref << endl;
-       int count(0);
-        if ( qry.exec() )
-        {
-
-            while (qry.next())
-            {
-                count++;
-            }
-        }
-        return count;
-    }
 
     int livraisons::chercher_id(int id)
     {
