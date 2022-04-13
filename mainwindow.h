@@ -5,6 +5,7 @@
 #include<QCompleter>
 #include<QDirModel>
 #include <QSound>
+#include"arduino.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -16,7 +17,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    QTimer *monTimer;
+    QTimer *monTimer,*monTimer2;
 
 private slots:
     void on_Ajouter_equipement_clicked();
@@ -32,18 +33,24 @@ private slots:
     void on_chatbox_clicked();
 
     void on_combo_ref_activated(const QString &arg1);
-
     void finTempo();
-
+    void finTempo2();
     void on_facebook_clicked();
 
     void on_instagram_clicked();
+    QString on_combo_ref_2_activated(const QString &arg1);
+
+    void on_Demarrer_arduino_clicked();
+    void update_label();
+    void on_Eteindre_arduino_clicked();
 
 private:
     Ui::MainWindow *ui;
     equipements E;
     QCompleter *stringcompleter,*modelcompleter;
     QSound *son,*success,*error;
+    QByteArray data; // variable contenant les données reçues
+    Arduino A; // objet temporaire
 
 };
 #endif // MAINWINDOW_H

@@ -205,7 +205,7 @@ QString equipements::recuperer_nom()
 {
     QSqlQuery query;
     QString cin="1";
-    query.prepare("Select * from employes " );
+    query.prepare("Select * from employe " );
     query.exec();
     return query.value(3).toString();
 }
@@ -219,4 +219,19 @@ int equipements::longueure_bd()
     i++;
      }
     return i;
+}
+bool equipements::recherche_ref(QString REFERENCE_EQUIPEMENT)
+{
+    QMessageBox msgBox;
+    QSqlQuery query;
+    query.prepare("Select * from equipements where REFERENCE_EQUIPEMENT=:REFERENCE_EQUIPEMENT");
+    query.bindValue(":REFERENCE_EQUIPEMENT", REFERENCE_EQUIPEMENT);
+    if (query.exec() && query.next())
+    {
+            return true;
+    }
+    else
+    {
+        return false;
+    }
 }

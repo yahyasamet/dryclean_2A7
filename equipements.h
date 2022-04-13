@@ -33,6 +33,7 @@ public:
     bool recuperer_equipement(QString);
     QString recuperer_nom();
     int longueure_bd();
+    bool recherche_ref(QString REFERENCE_EQUIPEMENT);
 
 private:
     int REFERENCE_EQUIPEMENT;

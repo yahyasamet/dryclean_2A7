@@ -10,7 +10,7 @@ void Historique::save(QString cin,QString ref,QString action)
 {
     QSqlQuery query;
     QString prenom;
-   query.prepare("Select * from employes where cin=2" );
+   query.prepare("Select * from employe where cin=2" );
            query.bindValue(":cin",2) ;
            query.exec();
     query.next() ;

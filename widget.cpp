@@ -11,7 +11,7 @@ widget::widget(QWidget *parent) :
 {
     QSqlQuery query;
     QString cin="1";
-    query.prepare("Select prenom from employes " );
+    query.prepare("Select prenom from employe " );
     query.exec();
     QString nom,image;
     query.next();
@@ -56,11 +56,7 @@ if(ui->line_message->text()!="")
 
 void widget::on_connecter_clicked()
 {
-    chat C(this);
-    if(C.exec()==QDialog::Rejected){
-        return;
-    }
-    mSocket->connectToHost(C.hostname(),C.port());
+    mSocket->connectToHost("localhost",3333);
     ui->textEdit->setText(load());
     QString temps=get_temps();
     QFile file ("C:/Users/ASUS/Documents/interface/interface/chat.txt");

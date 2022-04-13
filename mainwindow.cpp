@@ -12,7 +12,8 @@
 #include"widget.h"
 #include"historique.h"
 #include <QTimer>
-#include<QDesktopServices>
+#include <QDesktopServices>
+#include <QMovie>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -22,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView->setModel(E.afficher_equipements());
     ui->radioButton->setChecked("");
     QSqlQuery qry,qry2,qry1;
-           qry.prepare("select cin from employes");
+           qry.prepare("select cin from employe");
            qry.exec();
            qry2.prepare("select REFERENCE_EQUIPEMENT from equipements");
            qry2.exec();
@@ -34,12 +35,13 @@ MainWindow::MainWindow(QWidget *parent)
            ui->combo_ref->addItem("");
            while(qry2.next()){
            ui->combo_ref->addItem(qry2.value(0).toString());
+           ui->combo_ref_2->addItem(qry2.value(0).toString());
             }
            qry1.prepare("select * from equipements");
            qry1.exec();
            QStringList completionlist;
            while(qry1.next()){
-               completionlist <<qry1.value("MARQUE_EQUIPEMENT").toString() <<qry1.value("NOM_EQUIPEMENT").toString();
+               completionlist <<qry1.value("MARQUE_EQUIPEMENT").toString()<<qry1.value("REFERENCE_EQUIPEMENT").toString() <<qry1.value("NOM_EQUIPEMENT").toString();
            }
            stringcompleter=new QCompleter(completionlist,this);
            stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
@@ -49,16 +51,47 @@ MainWindow::MainWindow(QWidget *parent)
            son=new QSound(":/son/son_QT/Simple_Beep2.wav");
            error=new QSound(":/son/son_QT/Error.wav");
            success=new QSound(":/son/son_QT/success.wav");
-
            monTimer=new QTimer();
+           monTimer2=new QTimer();
 
                 QObject::connect(monTimer, SIGNAL(timeout()), this,SLOT(finTempo()));
-
-
+                QObject::connect(monTimer2, SIGNAL(timeout()), this,SLOT(finTempo2()));
+                int ret=A.connect_arduino(); // lancer la connexion à arduino
+                switch(ret){
+                case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
+                    break;
+                case(1):qDebug() << "arduino is available but not connected to :" <<A.getarduino_port_name();
+                   break;
+                case(-1):qDebug() << "arduino is not available";
+                }
+                 QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer
+                 //le slot update_label suite à la reception du signal readyRead (reception des données).
+                 QMovie *movie = new QMovie(":/images/images/giphy.gif");
+                 ui->bubbles->setMovie(movie);
+                 movie->start();
+                 QMovie *movie2= new QMovie(":/images/images/machinef.gif");
+                 monTimer2->setSingleShot(true); //active le mode singleShot
+                 monTimer2->start(3000); //démarre une tempo de 3 secondes
+                 ui->label_28->setMovie(movie2);
+                 movie2->start();
 }
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+void MainWindow::update_label()
+{
+    data=A.read_from_arduino();
+
+    if(data=="1")
+
+        ui->Demarrer_arduino->setText("Démarrer"); // si les données reçues de arduino via la liaison série sont égales à 1
+    // alors afficher ON
+
+    else if (data=="0")
+
+        ui->Eteindre_arduino->setText("Eteindre");   // si les données reçues de arduino via la liaison série sont égales à 0
+     //alors afficher ON
 }
 void MainWindow::on_Ajouter_equipement_clicked()
 {
@@ -136,7 +169,18 @@ if(erreur==0)
     bool test=E.ajouter_equipement();
     if(test)
     {
+        QSqlQuery qry1;
+        qry1.prepare("select * from equipements");
+        qry1.exec();
+        QStringList completionlist;
+        while(qry1.next()){
+            completionlist <<qry1.value("MARQUE_EQUIPEMENT").toString() <<qry1.value("NOM_EQUIPEMENT").toString();
+        }
+        stringcompleter=new QCompleter(completionlist,this);
+        stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
+        ui->Rechercher_equipement->setCompleter(stringcompleter);
         ui->combo_ref->addItem(refs);
+        ui->combo_ref_2->addItem(refs);
         monTimer->setSingleShot(true); //active le mode singleShot
 
         monTimer->start(2000); //démarre une tempo de 15 secondes
@@ -178,6 +222,11 @@ void MainWindow::on_Supprimer_equipement_clicked()
     QModelIndex index = ui->tableView->selectionModel()->currentIndex();
         int reference_equipement = index.data(Qt::DisplayRole).toInt();
         QString refs=index.data(Qt::DisplayRole).toString();
+        int cas;
+        if(E.recherche_ref(refs))
+            cas=1;
+        else
+            cas=-1;
         QSqlQuery query;
 
            query.prepare("Select * from equipements where reference_equipement=:reference_equipement" );
@@ -193,6 +242,17 @@ void MainWindow::on_Supprimer_equipement_clicked()
             bool test=E.supprimer_equipement(reference_equipement);
             if(test)
             {
+                QSqlQuery qry1;
+                qry1.prepare("select * from equipements");
+                qry1.exec();
+                QStringList completionlist;
+                while(qry1.next())
+                {
+                completionlist <<qry1.value("MARQUE_EQUIPEMENT").toString()<<qry1.value("REFERENCE_EQUIPEMENT").toString() <<qry1.value("NOM_EQUIPEMENT").toString();
+                }
+                stringcompleter=new QCompleter(completionlist,this);
+                stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
+                ui->Rechercher_equipement->setCompleter(stringcompleter);
                 Historique h;
                 h.save(cin,refs,"Supprimer");
                 ui->historique->setText(h.load());
@@ -206,7 +266,11 @@ void MainWindow::on_Supprimer_equipement_clicked()
                    while(qry.next()){
                     ui->combo_ref->addItem(qry.value(0).toString());
                    }
-      QMessageBox::information(nullptr,"Suppression","Equipement supprimé");}
+      if(cas==1)
+      QMessageBox::information(nullptr,"Suppression","Equipement supprimé");
+      else if(cas==-1)
+      QMessageBox::information(nullptr,"Suppression","Equipement n'est pas supprimé");
+            }
         }
 }
 
@@ -286,6 +350,16 @@ void MainWindow::on_Modifier_equipement_clicked()
                 bool test=E.modifier_equipement(E.get_refEQUIPEMENT()) ;
                 if(test)
                 {
+                    QSqlQuery qry1;
+                    qry1.prepare("select * from equipements");
+                    qry1.exec();
+                    QStringList completionlist;
+                    while(qry1.next()){
+                        completionlist <<qry1.value("MARQUE_EQUIPEMENT").toString()<<qry1.value("REFERENCE_EQUIPEMENT").toString() <<qry1.value("NOM_EQUIPEMENT").toString();
+                    }
+                    stringcompleter=new QCompleter(completionlist,this);
+                    stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
+                    ui->Rechercher_equipement->setCompleter(stringcompleter);
                     monTimer->setSingleShot(true); //active le mode singleShot
 
                     monTimer->start(2000); //démarre une tempo de 15 secondes
@@ -355,7 +429,6 @@ void MainWindow::on_combo_ref_activated(const QString &)
     ui->radioButton_3->setChecked("");
     ui->combo_cin_2->setCurrentText(query.value(5).toString());
 }
-
 //mon code après la temporisation
 void MainWindow::finTempo()
 
@@ -367,8 +440,6 @@ void MainWindow::finTempo()
          ui->cs5->setStyleSheet("");
          ui->cs6->setStyleSheet("");
          ui->cs7->setStyleSheet("");
-
-
 }
 
 void MainWindow::on_facebook_clicked()
@@ -381,4 +452,48 @@ void MainWindow::on_instagram_clicked()
 {
     QString link = "https://www.instagram.com/drycleaningband/";
     QDesktopServices::openUrl(QUrl(link));
+}
+QString MainWindow::on_combo_ref_2_activated(const QString &arg1)
+{
+    QSqlQuery query;
+    QString REFERENCE_EQUIPEMENT=ui->combo_ref_2->currentText() ;
+   query.prepare("Select etat_equipement from equipements where REFERENCE_EQUIPEMENT=:REFERENCE_EQUIPEMENT" );
+           query.bindValue(":REFERENCE_EQUIPEMENT",REFERENCE_EQUIPEMENT) ;
+           query.exec();
+    query.next() ;
+    return query.value("etat_equipement").toString();
+
+}
+
+void MainWindow::on_Demarrer_arduino_clicked()
+{
+    QString etat=on_combo_ref_2_activated("");
+    if(etat=="En panne")
+    {
+
+        A.write_to_arduino("0"); //envoyer 0 à arduino
+        QMessageBox::critical(nullptr, QObject::tr("Machine en panne"),
+                    QObject::tr("demarrage echouee.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+        // ecrire en panne sur l'afficheur et la machine ne demarre pas
+    }
+    else
+    {
+
+        A.write_to_arduino("1"); //envoyer 1 à arduino
+        QMessageBox::information(nullptr, QObject::tr("Machine en marche"),
+                    QObject::tr("demarrage avec succee.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+        // ecrire en marche sur l'afficheur et la machine demarre correctement
+    }
+
+}
+
+void MainWindow::on_Eteindre_arduino_clicked()
+{
+    A.write_to_arduino("2"); //envoyer 0 à arduino
+}
+void MainWindow::finTempo2()
+{
+    delete ui->label_28;
 }
