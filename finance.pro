@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui multimedia sql charts widgets
+QT       += core gui multimedia sql charts widgets serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,13 +29,15 @@ SOURCES += \
     historique.cpp \
         main.cpp \
         mainwindow.cpp \
-    connection.cpp
+    connection.cpp \
+    arduino.cpp
 
 HEADERS += \
     finances.h \
     historique.h \
         mainwindow.h \
-    connection.h
+    connection.h \
+    arduino.h
 
 FORMS += \
         mainwindow.ui

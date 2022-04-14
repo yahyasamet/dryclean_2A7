@@ -23,6 +23,8 @@
 #include <QPieSeries>
 #include<QSound>
 #include "finances.h"
+#include <QVector>
+
 using namespace QtCharts;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -65,6 +67,17 @@ MainWindow::MainWindow(QWidget *parent) :
         setdep();
         setfisc();
         son =new QSound(":/son/son_QT/Simple_Beep2.wav");
+        //arduino
+        int ret=A.connect_arduino(); // lancer la connexion à arduino
+            switch(ret){
+            case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
+                break;
+            case(1):qDebug() << "arduino is available but not connected to :" <<A.getarduino_port_name();
+               break;
+            case(-1):qDebug() << "arduino is not available";
+                break;
+                       }
+
 }
 
 MainWindow::~MainWindow()
@@ -401,6 +414,7 @@ void MainWindow::on_comboBox_trie_f_2_activated(int index)
 
 void MainWindow::on_Statistique_clicked()
 {
+
     QSqlQueryModel * model= new QSqlQueryModel();
     model->setQuery("SELECT SUM(MONTANT_FINANCE) AS prix_total FROM finances WHERE TYPE_TRANSACTION = 0");
     float tranche_montant1=model->data(model->index(0, 0)).toFloat();
@@ -410,10 +424,13 @@ void MainWindow::on_Statistique_clicked()
 
 
 
+
+
+
+
     float total=tranche_montant1+tranche_montant2;
     QString a=QString("depenses . "+QString::number((tranche_montant1*100)/total,'f',2)+"%" );
     QString b=QString("revenues .  "+QString::number((tranche_montant2*100)/total,'f',2)+"%" );
-
 
     QPieSeries *series = new QPieSeries();
     series->append(a,tranche_montant1);
@@ -431,15 +448,28 @@ void MainWindow::on_Statistique_clicked()
     QChart *chart = new QChart();
     chart->addSeries(series);
     chart->setTitle(" gain: NB: "+ QString::number(tranche_montant2-tranche_montant1));
-    chart->legend()->hide();
+    chart->legend()->show();
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
     series->setLabelsVisible();
     series->setLabelsPosition(QPieSlice::LabelInsideHorizontal);
+    QStringList list;
+    for(int i=0;i<2;i++)
+    {
+        if (i==0)
+    list.push_back(a);
+        else
+        list.push_back(b);
 
+    }
+    int i=0;
     for(auto slice : series->slices())
-        slice->setLabel(QString("%1%").arg(100*slice->percentage(), 0, 'f', 1));
+    {
+       slice->setLabel(QString("%1%").arg(100*slice->percentage(), 0, 'f', 1));
+       slice->setLabel(list[i]);
+       i++;
+    }
 
     chartView->resize(851,591);
     chartView->setParent(ui->horizontalFramestat);
@@ -455,11 +485,13 @@ void MainWindow::on_Statistique_3_clicked()
     QSqlQuery qry;
     qry.prepare("SELECT * FROM finances where TYPE_TRANSACTION = 0 ");
     QPieSeries *series = new QPieSeries();
+     QStringList list;
     if(qry.exec())
     {
         while(qry.next())
         {
             series->append(qry.value(0).toString(),qry.value(2).toInt());
+            list.push_back(qry.value(4).toString());
         }
     }
 
@@ -470,15 +502,22 @@ void MainWindow::on_Statistique_3_clicked()
     QChart *chart = new QChart();
     chart->addSeries(series);
     chart->setTitle("depenses");
-    chart->legend()->hide();
+    chart->legend()->show();
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
     series->setLabelsVisible();
     series->setLabelsPosition(QPieSlice::LabelInsideHorizontal);
 
+    QStringList list2;
+    int i=0;
     for(auto slice : series->slices())
-        slice->setLabel(QString("%1%").arg(100*slice->percentage(), 0, 'f', 1));
+    {
+        list2.push_back(QString("%1%").arg(100*slice->percentage(), 0, 'f', 1));
+        slice->setLabel(list2[i]+" "+list[i]);
+      //  slice->setLabel(list[i]);
+        i++;
+     }
 
     chartView->resize(851,591);
     chartView->setParent(ui->horizontalFramestat);
@@ -694,7 +733,7 @@ void MainWindow::setdep()
     model3->setQuery("SELECT SUM(MONTANT_FINANCE) AS prix_total FROM finances where (TYPE_TRANSACTION = 0) AND (PROVENANCE = 'facture')");
     float tranche_montant3=model3->data(model3->index(0, 0)).toFloat();
 
-    model4->setQuery("SELECT SUM(salaire) AS salaire FROM finances T1 INNER JOIN commandes T2 ON T2.REF_CMD = T1.ID_COMMANDE INNER JOIN EMPLOYES T3 ON T3.cin = T2.CIN_EMPLOYE ");
+    model4->setQuery("SELECT SUM(salaire) AS salaire FROM finances T1 INNER JOIN commandes T2 ON T2.REF_CMD = T1.ID_COMMANDE INNER JOIN EMPLOYE T3 ON T3.cin = T2.CIN_EMPLOYE ");
     float tranche_montant4=(model4->data(model4->index(0, 0)).toFloat())*12;
 
     QString s = QString::number(tranche_montant1);
