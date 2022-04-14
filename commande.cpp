@@ -137,21 +137,44 @@ model->setHeaderData(10,Qt::Horizontal,QObject::tr("Opt_livr"));
 model->setHeaderData(11,Qt::Horizontal,QObject::tr("cin_empl"));
 return model;
  }
- bool Commande::recherche_id(QString ref_cmd)
+ QString Commande::recherche_cin_arduino(QString cin)
  {
      QMessageBox msgBox;
-     QSqlQuery query;
-     query.prepare("SELECT * FROM commandes WHERE ref_cmd= :ref_cmd");
-     query.bindValue(":ref_cmd", ref_cmd);
+     QSqlQuery query,q1;
+     query.prepare("SELECT * From(SELECT ROWNUM , nom_cl,montant_cmd,nb_pts FROM commandes WHERE cin_cl= :cin order by ref_cmd DESC)WHERE ROWNUM=1");
+     query.bindValue(":cin", cin);
      if (query.exec() && query.next())
      {
-             return true;
+         int m=(query.value(2).toInt()) *0.1;
+         q1.prepare("update commandes set nb_pts =nb_pts+:m WHERE cin_cl= :cin ");
+              q1.bindValue(":cin", cin);
+               q1.bindValue(":m", m);
+              q1.exec();
+              return query.value(1).toString();
+
+
      }
      else
      {
-         return false;
+        return "false";
      }
  }
+ bool Commande::recherche_id(QString ref_cmd)
+  {
+      QMessageBox msgBox;
+      QSqlQuery query;
+      query.prepare("SELECT * FROM commandes WHERE ref_cmd= :ref_cmd");
+      query.bindValue(":ref_cmd", ref_cmd);
+      if (query.exec() && query.next())
+      {
+              return true;
+      }
+      else
+      {
+          return false;
+      }
+  }
+
  /*int Commande::recherche_id(int ref_cmd)
  {
      QSqlQuery query;

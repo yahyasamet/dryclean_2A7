@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "commande.h"
+#include "arduino.h"
 #include <QMainWindow>
 #include <QCompleter>
 #include <QDirModel>
@@ -10,6 +11,7 @@
 #include <QPushButton>
 #include <QComboBox>
 #include <QCompleter>
+#include <QDebug>
 #include "barcodebox.h"
 
 QT_BEGIN_NAMESPACE
@@ -29,6 +31,7 @@ public:
     ~MainWindow();
 
 bool genererFacture(QString ref,QString cinS,QString qtt,QString Date,QString mt,QString type,QString livr,QString cin_e,QString nom);
+
 
 public slots:
     void produceBarCode128Slot();//code 128
@@ -51,6 +54,13 @@ private slots:
 
     void on_recherche_textChanged(const QString &arg);
 
+    //void on_pushButton_2_clicked();
+
+    void update_label();
+
+
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Commande Etmp;
@@ -64,6 +74,8 @@ private:
     QPushButton *savePictureButton;
     //QComboBox *cin;
     BarCodeBox *barCodeBox;
+    QByteArray data;
+    Arduino A;
 
 };
 #endif // MAINWINDOW_H
