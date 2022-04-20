@@ -7,6 +7,7 @@
 #include <QDirModel>
 #include <QWidget>
 #include <QLabel>
+#include <QTimer>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QComboBox>
@@ -27,6 +28,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    QTimer *timer;
 
     ~MainWindow();
 
@@ -37,6 +39,7 @@ public slots:
     void produceBarCode128Slot();//code 128
     void produceBarCodeEAN13Slot();//EAN 13
     void savePictureSlot();
+    void finTempo();
 
 private slots:
     void on_pb_ajouter_clicked();
@@ -59,7 +62,6 @@ private slots:
     void update_label();
 
 
-    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -75,7 +77,9 @@ private:
     //QComboBox *cin;
     BarCodeBox *barCodeBox;
     QByteArray data;
+    QString dataa;
     Arduino A;
+
 
 };
 #endif // MAINWINDOW_H

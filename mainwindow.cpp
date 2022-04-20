@@ -12,6 +12,7 @@
 #include<QDebug>
 #include<QFileDialog>
 #include<QFile>
+#include <QTimer>
 #include<QStringList>
 #include <iostream>
 #include<QTextDocument>
@@ -91,10 +92,10 @@ MainWindow::MainWindow(QWidget *parent)
   connect(savePictureButton,SIGNAL(clicked()),this,SLOT(savePictureSlot()));
 
     //this->resize(1400,1300);
-    ui->le_ref->setValidator(new QIntValidator(0,99999,this));
+    ui->le_ref->setValidator(new QIntValidator(0,99999999,this));
     //ui->supprimer_ref->setValidator(new QIntValidator(0,99999,this));
    // ui->modifier_ref->setValidator(new QIntValidator(0,99999,this));
-     ui->le_cin->setValidator(new QIntValidator(0,99999999,this));
+    // ui->le_cin->setValidator(new QIntValidator(0,999999999999,this));
       ui->modifier_cin->setValidator(new QIntValidator(0,99999999,this));
       //ui->modifier_cin_emp->setValidator(new QIntValidator(0,99999999,this));
      //ui->cin_empl->setValidator(new QIntValidator(0,99999999,this));
@@ -161,7 +162,17 @@ mSystemTrayIcon->setVisible(true);
            case(-1):qDebug()<< " Arduino is not available :"<<A.getarduino_port_name();
          break;
      }
+    // dataa=A.read_from_arduino();
+
+
+    // QString::fromStdString(data.toStdString());
+    // QString r="false";
+     //QByteArray r2=r.toUtf8();
+    // A.write_to_arduino(r);
      QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label()));
+
+
+
 
 
      //gif
@@ -171,11 +182,71 @@ mSystemTrayIcon->setVisible(true);
  ui->scan_line->setPlaceholderText("Veuillez scanner le code à barre");
 
 
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+void MainWindow::update_label()
+{
+
+    dataa=A.read_from_arduino();
+
+    QString numstring="";
+    for (int var = 0; var < dataa.length(); ++var) {
+        //bool ok;
+        if (dataa.at(var).isDigit()){
+             numstring =numstring+QString::number(dataa.at(var).digitValue());
+        }
+    }
+       qDebug()<<"read2:"<<numstring;
+    if (numstring.length()>=8)
+    {
+    ui->lineEditID->setText(numstring);
+    QString r=Etmp.recherche_cin_arduino(numstring);
+    QString c=Etmp.recherche_cin_arduino_nb_pts(numstring);
+    //timer
+
+   timer =new QTimer();
+   QObject::connect(timer, SIGNAL(timeout()), this,SLOT(finTempo()));
+
+    QMovie *movie2=new QMovie("C:/Users/MSI/Desktop/untitled_cb/gif_error.gif");
+    QMovie *movie1=new QMovie("C:/Users/MSI/Desktop/untitled_cb/gif_confirmation.gif");
+    timer->setSingleShot(true);
+    timer->start(5000);
+    if(r=="false")
+
+    {ui->gif->setMovie(movie2);
+
+    movie2->start();
+    ui->scan_line->setPlaceholderText("le CIN est introuvable.Veuillez rescanner le code à nouveau");
+    ui->lineEdit1->setText("Nom est introuvable");
+
+      ui->nb_pts->setText("Nombre de points est introuvable");
+    }
+    else
+    {ui->gif->setMovie(movie1);
+        movie1->start();
+         ui->scan_line->setPlaceholderText("Opération réussite");
+        ui->nb_pts->setText(c);
+             ui->lineEdit1->setText(r);
+    }
+
+    ui->tab_v->setModel(Etmp.afficher());
+
+QString t=r+" "+c;
+
+    A.write_to_arduino(t);
+   // A.write_to_arduino(c);
+    }
+     ui->scan_line->setPlaceholderText("Veuillez scanner le code à barre");
+    // ui->lineEditID->clear();
+    // ui->nb_pts->clear();
+ //    ui->lineEdit1->clear();
+
+
 }
 void MainWindow::on_pb_ajouter_clicked()
 {
@@ -217,8 +288,8 @@ QString Date_cmdS=ui->date->date().toString();
 
     if (!hasMatch)
         erreur=1;
-    if(cin_cl.length()!=8)
-        erreur=2;
+    //if(cin_cl.length()!=8)
+       // erreur=2;
         if(C.entierValide(qtt_vet)>5)
             erreur=3;
         if(C.entierValide(montant_cmd)>5)
@@ -604,41 +675,15 @@ bool MainWindow::genererFacture(QString ref, QString cinS, QString qtt, QString 
 
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::finTempo()
 {
-    QString C=Etmp.recherche_cin_arduino("56788765");
-    ui->lineEdit1->setPlaceholderText(C);
-    ui->tab_v->setModel(Etmp.afficher());
+    QMovie *movie=new QMovie("C:/Users/MSI/Desktop/untitled_cb/scan_gif.gif");
+ui->gif->setMovie(movie);
+movie->start();
+
+ui->lineEditID->clear();
+ui->nb_pts->clear();
+  ui->lineEdit1->clear();
 
 }
 
-void MainWindow::update_label()
-{
-    data=A.read_from_arduino();
-
-
-    QString::fromStdString(data.toStdString());
-    QString r="false";
-   // QString r=Etmp.recherche_cin_arduino(data);
- QMovie *movie2=new QMovie("C:/Users/MSI/Desktop/untitled_cb/gif_error.gif");
-  QMovie *movie1=new QMovie("C:/Users/MSI/Desktop/untitled_cb/gif_confirmation.gif");
-
-    if(r=="false")
-
-    {ui->gif->setMovie(movie2);
-                movie2->start();
-    ui->scan_line->setPlaceholderText("le CIN est introuvable.Veuillez rescanner le code à nouveau");
-
-    }
-
-
-    else
-
-    {ui->gif->setMovie(movie1);
-        movie1->start();
-         ui->scan_line->setPlaceholderText("Opération réussite");
-    }
-    QByteArray r2=r.toUtf8();
-    A.write_to_arduino(r2);
-
-}

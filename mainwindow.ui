@@ -99,7 +99,7 @@ font-size: 17px;
 }</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -729,6 +729,27 @@ QComboBox QAbstractView{
           <width>124</width>
           <height>22</height>
          </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_29">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>530</y>
+          <width>101</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>MS Shell Dlg 2</family>
+          <pointsize>-1</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Référence:</string>
         </property>
        </widget>
       </widget>
@@ -2212,27 +2233,97 @@ QPushButton:pressed {
         <string>Validation de la carte fidélité</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
-       <property name="geometry">
-        <rect>
-         <x>200</x>
-         <y>740</y>
-         <width>172</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>PushButton</string>
-       </property>
-      </widget>
       <widget class="QLineEdit" name="lineEdit1">
        <property name="geometry">
         <rect>
-         <x>510</x>
+         <x>460</x>
+         <y>670</y>
+         <width>221</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="nb_pts">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
          <y>740</y>
          <width>221</width>
          <height>22</height>
         </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEditID">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>610</y>
+         <width>221</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_75">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>580</y>
+         <width>401</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Louis George Café</family>
+         <pointsize>13</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>CIN Client:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_76">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>640</y>
+         <width>401</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Louis George Café</family>
+         <pointsize>13</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Nom du client:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_77">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>710</y>
+         <width>401</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Louis George Café</family>
+         <pointsize>13</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Nombre de points:</string>
        </property>
       </widget>
      </widget>

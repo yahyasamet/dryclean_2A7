@@ -51,6 +51,7 @@ public:
      QSqlQueryModel * afficher();
      bool recherche_id(QString);
      QString recherche_cin_arduino(QString);
+      QString recherche_cin_arduino_nb_pts(QString cin);
      bool modifier(QString);
      //bool genererFacture(QString ref,QString cinS,QString qtt,QString Date,QString mt,QString type,QString livr,QString cin_e,QString nom);
 bool NomValide(QString chaine);

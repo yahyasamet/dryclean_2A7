@@ -137,6 +137,25 @@ model->setHeaderData(10,Qt::Horizontal,QObject::tr("Opt_livr"));
 model->setHeaderData(11,Qt::Horizontal,QObject::tr("cin_empl"));
 return model;
  }
+ QString Commande::recherche_cin_arduino_nb_pts(QString cin)
+ {
+     qDebug() <<cin;
+     QMessageBox msgBox;
+     QSqlQuery query,q1;
+     query.prepare("SELECT * From(SELECT ROWNUM , nom_cl,montant_cmd,nb_pts FROM commandes WHERE cin_cl= :cin order by ref_cmd DESC)WHERE ROWNUM=1");
+     query.bindValue(":cin", cin);
+     if (query.exec() && query.next())
+     {
+
+              return query.value(3).toString();
+
+
+     }
+     else
+     {
+        return "false";
+     }
+ }
  QString Commande::recherche_cin_arduino(QString cin)
  {
      QMessageBox msgBox;

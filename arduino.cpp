@@ -15,7 +15,7 @@ QSerialPort *Arduino::getserial()
 {
    return serial;
 }
-int Arduino::connect_arduino()
+int Arduino::connect_arduino()//ydetecti ana port mawjoud fih l'arduino
 {
     foreach(const QSerialPortInfo &serial_port_info, QSerialPortInfo::availablePorts())
     {
@@ -28,7 +28,7 @@ arduino_port_name=serial_port_info.portName();
   }
       }
 }
-qDebug()<<" Le nom du port Arduino est : :" <<arduino_port_name;
+qDebug()<<" Le nom du port Arduino est :" <<arduino_port_name;
 if(arduino_is_available)
 {
     serial->setPortName(arduino_port_name);
@@ -54,22 +54,44 @@ int Arduino::close_arduino()
     }
     return 1;
 }
-QByteArray Arduino::read_from_arduino()
+QString Arduino::read_from_arduino()
 {
+     QStringList list;
     if(serial->isReadable()){
-        data=serial->readAll();
-        return data;
+        //data=serial->readAll();
+      //  QString temp = QString::fromStdString(data.toStdString());
+       // return temp;
+        while (serial->canReadLine()) {
+            QByteArray data = serial->readLine();
+           list = QString(data).split(',');
+
     }
 }
-int Arduino::write_to_arduino(QByteArray d)
+     qDebug()<<"read:"<<list.join(',');
+    return list.join(',');
+
+}
+int Arduino::write_to_arduino(QString d)
 {
-    if(serial->isWritable())
-    {
-        serial->write(d);
-    }else{
-        qDebug()<<"Couldn't write to serial!";
+    int i = 0;
+    int size = d.size();
+    qDebug()<<"write:"<<d;
+    QString line = "";
+    int c = 0;
+    while(i < size){
+        line.append(d[i]);
+        if(c == 24){
+            int sended = serial->write(line.toUtf8(), 24);
+            serial->flush();
+            line.clear();
+            c = 0;
+        }
+        i++;
+        c++;
     }
+    if(c > 0){
+        serial->write(line.toUtf8(), c);
+    }
+    serial->flush();
 
 }
-
-

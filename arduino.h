@@ -10,8 +10,8 @@ public:
     Arduino();
     int connect_arduino();
     int close_arduino();
-    int write_to_arduino(QByteArray);
-    QByteArray read_from_arduino();
+    int write_to_arduino(QString);
+    QString read_from_arduino();
     QSerialPort *getserial();
     QString getarduino_port_name();
 private:
@@ -21,6 +21,7 @@ private:
    QString arduino_port_name;
    bool arduino_is_available;
    QByteArray data;
+   QString dataa;
 };
 
 #endif // ARDUINO_H
