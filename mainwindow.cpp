@@ -81,17 +81,9 @@ MainWindow::~MainWindow()
 }
 void MainWindow::update_label()
 {
-    data=A.read_from_arduino();
-
-    if(data=="1")
-
-        ui->Demarrer_arduino->setText("Démarrer"); // si les données reçues de arduino via la liaison série sont égales à 1
-    // alors afficher ON
-
-    else if (data=="0")
-
-        ui->Eteindre_arduino->setText("Eteindre");   // si les données reçues de arduino via la liaison série sont égales à 0
-     //alors afficher ON
+    dataa=A.read_from_arduino();
+    qDebug()<< "nb_pieces: "<< dataa;
+ ui->nb_pieces->setText(dataa+"    Terminé !") ;// si les données reçues de arduino via la liaison série sont égales à 1
 }
 void MainWindow::on_Ajouter_equipement_clicked()
 {
@@ -487,11 +479,6 @@ void MainWindow::on_Demarrer_arduino_clicked()
         // ecrire en marche sur l'afficheur et la machine demarre correctement
     }
 
-}
-
-void MainWindow::on_Eteindre_arduino_clicked()
-{
-    A.write_to_arduino("2"); //envoyer 0 à arduino
 }
 void MainWindow::finTempo2()
 {

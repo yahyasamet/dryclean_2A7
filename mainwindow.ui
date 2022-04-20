@@ -73,7 +73,7 @@ QTabBar::tab:selected {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1126,25 +1126,6 @@ QPushButton:hover{
         <string>Gestion des équipements</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_4">
-       <property name="geometry">
-        <rect>
-         <x>820</x>
-         <y>40</y>
-         <width>81</width>
-         <height>81</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap>../../../Downloads/logo_c++-1.png</pixmap>
-       </property>
-       <property name="scaledContents">
-        <bool>true</bool>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_5">
        <property name="geometry">
         <rect>
@@ -1472,25 +1453,6 @@ font: 13pt &quot;Louis George Café&quot;;
 }</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_19">
-       <property name="geometry">
-        <rect>
-         <x>820</x>
-         <y>10</y>
-         <width>81</width>
-         <height>81</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap>../../../Downloads/logo_c++-1.png</pixmap>
-       </property>
-       <property name="scaledContents">
-        <bool>true</bool>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_2">
        <property name="geometry">
         <rect>
@@ -1531,6 +1493,22 @@ font: 13pt &quot;Louis George Café&quot;;
         <string>Historique</string>
        </property>
       </widget>
+      <widget class="QLabel" name="label_32">
+       <property name="geometry">
+        <rect>
+         <x>820</x>
+         <y>10</y>
+         <width>71</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_6">
@@ -1555,25 +1533,6 @@ font: 13pt &quot;Louis George Café&quot;;
       <property name="title">
        <string/>
       </property>
-      <widget class="QLabel" name="label_25">
-       <property name="geometry">
-        <rect>
-         <x>820</x>
-         <y>10</y>
-         <width>81</width>
-         <height>81</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap>../../../Downloads/logo_c++-1.png</pixmap>
-       </property>
-       <property name="scaledContents">
-        <bool>true</bool>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_27">
        <property name="geometry">
         <rect>
@@ -1781,14 +1740,88 @@ QComboBox QAbstractView{
         <string/>
        </property>
       </widget>
+      <widget class="QLabel" name="label_34">
+       <property name="geometry">
+        <rect>
+         <x>810</x>
+         <y>10</y>
+         <width>91</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_30">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>520</y>
+         <width>231</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Louis George Café</family>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel
+{
+color: black;
+font-size: 20px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Nombre de pièces triées:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="nb_pieces">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>520</y>
+         <width>191</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Louis George Café</family>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel
+{
+color: black;
+font-size: 20px;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
       <zorder>bubbles</zorder>
-      <zorder>label_25</zorder>
       <zorder>label_27</zorder>
       <zorder>label_26</zorder>
       <zorder>Demarrer_arduino</zorder>
       <zorder>Eteindre_arduino</zorder>
       <zorder>label_29</zorder>
       <zorder>combo_ref_2</zorder>
+      <zorder>label_34</zorder>
+      <zorder>label_30</zorder>
+      <zorder>nb_pieces</zorder>
      </widget>
     </widget>
    </widget>

@@ -49,8 +49,9 @@ private:
     equipements E;
     QCompleter *stringcompleter,*modelcompleter;
     QSound *son,*success,*error;
-    QByteArray data; // variable contenant les données reçues
+    QByteArray data,dataa; // variable contenant les données reçues
     Arduino A; // objet temporaire
+    //QString dataa;
 
 };
 #endif // MAINWINDOW_H
