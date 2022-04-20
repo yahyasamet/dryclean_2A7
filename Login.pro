@@ -16,15 +16,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    arduino.cpp \
     connection.cpp \
     employe.cpp \
+    historique.cpp \
     main.cpp \
     mainwindow.cpp \
     smtp.cpp
 
 HEADERS += \
+    arduino.h \
     connection.h \
     employe.h \
+    historique.h \
     mainwindow.h \
     smtp.h
 

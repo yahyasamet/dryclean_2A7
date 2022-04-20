@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include "employe.h"
 #include <QCompleter>
+#include "arduino.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -41,9 +42,13 @@ private slots:
 
     void on_annuler_pass_clicked();
 
+        void update_label();
+
 private:
     Ui::MainWindow *ui;
     employe emp;
+    arduino ard;
+    QByteArray data;
     QCompleter *StringCompleter,*ModelCompleter;
 };
 #endif // MAINWINDOW_H

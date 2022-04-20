@@ -14,9 +14,11 @@ employe::employe()
     fonction="";
     salaire=0;
     age=0;
+    presence=0;
+    serial_number="";
 }
 
-employe::employe(QString cin,QString nom,QString prenom,int age,QString email,QString num_tel,QString password,QString fonction,int salaire)
+employe::employe(QString cin,QString nom,QString prenom,int age,QString email,QString num_tel,QString password,QString fonction,int salaire,int presence,QString serial_number)
 {
     this->cin=cin;
     this->nom=nom;
@@ -27,6 +29,8 @@ employe::employe(QString cin,QString nom,QString prenom,int age,QString email,QS
     this->password=password;
     this->fonction=fonction;
     this->salaire=salaire;
+    this->presence=presence;
+    this->serial_number=presence;
 }
 
 QString employe::getCIN()
@@ -65,6 +69,14 @@ int employe::getSalaire()
 {
     return salaire;
 }
+int employe::getPresence()
+{
+    return presence;
+}
+QString employe::getSerial_number()
+{
+    return serial_number;
+}
 
 void employe::setCIN (QString cin)
 {
@@ -102,11 +114,19 @@ void employe::setSalaire (int salaire)
 {
     this->salaire=salaire;
 }
+void employe::setPresence (int presence)
+{
+    this->presence=presence;
+}
+void employe::setSerial_number (QString serial_number)
+{
+    this->serial_number=serial_number;
+}
 
 bool employe::ajouter()
 {
     QSqlQuery query;
-    query.prepare("INSERT INTO EMPLOYE (CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,PASSWORD,FONCTION,SALAIRE)"" VALUES(:cin, :nom, :prenom, :age, :email, :num_tel, :password,:fonction, :salaire)");
+    query.prepare("INSERT INTO EMPLOYE (CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,PASSWORD,FONCTION,SALAIRE,PRESENCE,SERIAL_NUMBER)"" VALUES(:cin, :nom, :prenom, :age, :email, :num_tel, :password,:fonction, :salaire, :presence, :serial_number)");
     query.bindValue(":cin",cin);
     query.bindValue(":nom",nom);
     query.bindValue(":prenom",prenom);
@@ -116,6 +136,8 @@ bool employe::ajouter()
     query.bindValue(":password",password);
     query.bindValue(":fonction",fonction);
     query.bindValue(":salaire",salaire);
+    query.bindValue(":presence",presence);
+    query.bindValue(":serial_number",serial_number);
     return query.exec();
 }
 
@@ -123,7 +145,7 @@ QSqlQueryModel * employe::afficher()
    {
        QSqlQueryModel* model=new QSqlQueryModel();
 
-             model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE");
+             model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE");
              model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
              model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
              model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
@@ -132,6 +154,7 @@ QSqlQueryModel * employe::afficher()
              model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
              model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
              model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+             model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
        return model;
 
    }
@@ -175,7 +198,7 @@ QSqlQueryModel *employe:: tri_cin_asc()
 {
     QSqlQueryModel *model=new QSqlQueryModel();
 
-    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by CIN ASC");
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE order by CIN ASC");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
@@ -184,6 +207,7 @@ QSqlQueryModel *employe:: tri_cin_asc()
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
     model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+    model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
 
     return model;
 }
@@ -192,7 +216,7 @@ QSqlQueryModel *employe:: tri_cin_desc()
 {
     QSqlQueryModel *model=new QSqlQueryModel();
 
-    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by CIN DESC");
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE order by CIN DESC");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
@@ -201,6 +225,7 @@ QSqlQueryModel *employe:: tri_cin_desc()
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
     model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+    model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
 
     return model;
 }
@@ -209,7 +234,7 @@ QSqlQueryModel *employe:: tri_nom_asc()
 {
     QSqlQueryModel *model=new QSqlQueryModel();
 
-    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by NOM ASC");
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE order by NOM ASC");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
@@ -218,6 +243,7 @@ QSqlQueryModel *employe:: tri_nom_asc()
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
     model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+    model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
 
     return model;
 }
@@ -226,7 +252,7 @@ QSqlQueryModel *employe:: tri_nom_desc()
 {
     QSqlQueryModel *model=new QSqlQueryModel();
 
-    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by NOM DESC");
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE order by NOM DESC");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
@@ -235,6 +261,7 @@ QSqlQueryModel *employe:: tri_nom_desc()
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
     model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+    model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
 
     return model;
 }
@@ -243,7 +270,7 @@ QSqlQueryModel *employe:: tri_age_asc()
 {
     QSqlQueryModel *model=new QSqlQueryModel();
 
-    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by AGE ASC");
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE order by AGE ASC");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
@@ -252,6 +279,7 @@ QSqlQueryModel *employe:: tri_age_asc()
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
     model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+    model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
 
     return model;
 }
@@ -260,7 +288,7 @@ QSqlQueryModel *employe:: tri_age_desc()
 {
     QSqlQueryModel *model=new QSqlQueryModel();
 
-    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by AGE DESC");
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE order by AGE DESC");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
@@ -269,6 +297,7 @@ QSqlQueryModel *employe:: tri_age_desc()
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
     model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+    model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
 
     return model;
 }
@@ -277,7 +306,7 @@ QSqlQueryModel *employe:: tri_salaire_asc()
 {
     QSqlQueryModel *model=new QSqlQueryModel();
 
-    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by SALAIRE ASC");
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE order by SALAIRE ASC");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
@@ -286,6 +315,7 @@ QSqlQueryModel *employe:: tri_salaire_asc()
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
     model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+    model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
 
     return model;
 }
@@ -294,7 +324,7 @@ QSqlQueryModel *employe:: tri_salaire_desc()
 {
     QSqlQueryModel *model=new QSqlQueryModel();
 
-    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE order by SALAIRE DESC");
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE order by SALAIRE DESC");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
@@ -303,6 +333,7 @@ QSqlQueryModel *employe:: tri_salaire_desc()
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
     model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+    model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
 
     return model;
 }
@@ -311,7 +342,7 @@ QSqlQueryModel* employe::recherche_avancee_employe(QString ch)
 {
     QSqlQueryModel * model =new QSqlQueryModel();
        QSqlQuery query;
-       model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE FROM EMPLOYE WHERE CIN LIKE'%"+ch+"%' or LOWER(NOM) LIKE LOWER('%"+ch+"%') or LOWER(PRENOM) LIKE LOWER('%"+ch+"%') or LOWER(FONCTION) LIKE LOWER('%"+ch+"%')");
+       model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE WHERE CIN LIKE'%"+ch+"%' or LOWER(NOM) LIKE LOWER('%"+ch+"%') or LOWER(PRENOM) LIKE LOWER('%"+ch+"%') or LOWER(FONCTION) LIKE LOWER('%"+ch+"%')");
        query.bindValue(":ch",ch);
        query.exec();
 
@@ -323,6 +354,7 @@ QSqlQueryModel* employe::recherche_avancee_employe(QString ch)
        model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
        model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
        model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+       model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
 
        return model;
 }
@@ -336,4 +368,15 @@ bool employe::chercher_employe(QString email)
            return true;
    else
        return false;
+}
+
+bool employe::update(QString data)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE EMPLOYE SET PRESENCE=:presence WHERE SERIAL_NUMBER=:SERIAL_NUMBER");
+
+    query.bindValue(":PRESENCE",presence);
+    query.bindValue(":SERIAL_NUMBER",data);
+
+    return query.exec();
 }

@@ -7,12 +7,39 @@
 #include <QSqlRecord>
 #include <QComboBox>
 #include "smtp.h"
+#include <QPixmap>
+#include <QDebug>
+#include <QCryptographicHash>
+#include <QMovie>
+#include "historique.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->stackedWidget->setCurrentIndex(1);
+    QPixmap logo("C:/Users/Amira/Desktop/esprit/sem2/qt/untitled2/pics/logo_c++-1.png");
+    ui->logo_pic->setPixmap(logo.scaled(150,150,Qt::KeepAspectRatio));
+
+    QPixmap logo_pic_2("C:/Users/Amira/Desktop/esprit/sem2/qt/untitled2/pics/logo_c++-1.png");
+    ui->logo_pic_2->setPixmap(logo_pic_2.scaled(150,150,Qt::KeepAspectRatio));
+
+    QPixmap logo_crud("C:/Users/Amira/Desktop/esprit/sem2/qt/untitled2/pics/logo_c++-1.png");
+    ui->logo_crud->setPixmap(logo_crud.scaled(100,100,Qt::KeepAspectRatio));
+
+    QPixmap search_pic("C:/Users/Amira/Desktop/esprit/sem2/qt/untitled2/pics/search.png");
+    ui->search_pic->setPixmap(search_pic.scaled(23,23,Qt::KeepAspectRatio));
+
+    QPixmap user("C:/Users/Amira/Desktop/esprit/sem2/qt/untitled2/pics/user.png");
+    ui->user_pic->setPixmap(user.scaled(40,40,Qt::KeepAspectRatio));
+
+    QPixmap lock("C:/Users/Amira/Desktop/esprit/sem2/qt/untitled2/pics/lock.png");
+    ui->lock_pic->setPixmap(lock.scaled(40,40,Qt::KeepAspectRatio));
+
+    QPixmap password_pic("C:/Users/Amira/Desktop/esprit/sem2/qt/untitled2/pics/forgot.png");
+    ui->password_pic->setPixmap(password_pic.scaled(50,50,Qt::KeepAspectRatio));
+
     ui->tab_employe->setModel(emp.afficher());
     ui->email->setPlaceholderText("email");
     ui->password->setPlaceholderText("password");
@@ -23,6 +50,26 @@ MainWindow::MainWindow(QWidget *parent)
     ui->old_password->setPlaceholderText("Saisir ancien mot de passe");
     ui->new_password->setPlaceholderText("Saisir nouveau mot de passe");
     ui->new_password_2->setPlaceholderText("Confirmer nouveau mot de passe");
+
+    //QMovie *movie=new QMovie("C:/Users/Amira/Desktop/esprit/sem2/qt/integration/pics/giphyfd.gif");
+    //ui->rfid_gif->setMovie(movie);
+    //movie->start();
+
+    int ret = ard.connect_arduino();
+        switch (ret)
+        {
+            case(0): qDebug()<<"arduino is avaible and connected to: "<<ard.getarduino_port_name();
+            break;
+
+            case(1): qDebug()<<"arduino is avaible but not connected to: "<<ard.getarduino_port_name();
+            break;
+
+            case(-1): qDebug()<<"arduino is not avaible";
+            break;
+        }
+    QObject::connect(ard.getserial(), SIGNAL(readyRead()), this, SLOT(update_label()));
+
+
 
     QSqlQuery query,query2;
     query.prepare("select CIN from Employe");
@@ -44,6 +91,58 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::update_label()
+{
+    bool test=true;
+    QString data2 = ard.read_from_arduino();
+   qDebug()<<data2;
+
+   QString numstring="";
+       for (int var = 0; var < data2.length(); ++var) {
+
+           if (data2.at(var).isDigit()){
+                numstring =numstring+QString::number(data2.at(var).digitValue());
+           }
+       }
+    if(numstring.length()!=0)
+    {
+        if(numstring == "124759673" )
+        {
+            QMessageBox::information(this,"Access granted","Employé est identifié: Caissier");
+        }
+        else if(numstring == "8313310625" )
+        {
+            QMessageBox::information(this,"Access granted","Employé est identifié: Magasinier");
+        }
+        else if(numstring == "6724782148" )
+        {
+            QMessageBox::information(this,"Access granted","Employé est identifié: Gerant");
+        }
+        else
+        {
+            QMessageBox::information(this,"Error","Access denied");
+            test=false;
+        }
+
+         emp.update(numstring);
+
+        QSqlQuery query;
+
+            query.prepare("select * from Employe where SERIAL_NUMBER LIKE :serial_number");
+            query.bindValue(":serial_number",numstring);
+            query.exec();
+            query.next();
+            QString fn=query.value("FONCTION").toString();
+                    QString nom=query.value("NOM").toString();
+                    QString prenom=query.value("PRENOM").toString();
+
+            Historique h;
+            ui->presence_emp->setText(h.load_door());
+            h.save_door(fn,nom,prenom,test);
+            ui->presence_emp->setText(h.load_door());
+    }
 }
 
 QString random()
@@ -114,21 +213,22 @@ void MainWindow::on_login_clicked()
     {
         QString msg="Bienvenue "+map["nom"]+" "+map["prenom"];
         QMessageBox::information(nullptr, QObject::tr("success"),msg,QMessageBox::Cancel);
-        if (fn=="Gerant")
+        if (fn=="Gerant" || fn=="Manager")
             ui->stackedWidget->setCurrentIndex(2);
-        else if (fn=="Magasinier")
+        else if (fn=="Magasinier" || fn=="Storekeeper")
         {
             ui->stackedWidget->setCurrentIndex(3);
         }
-        else if (fn=="Caissier")
+        else if (fn=="Caissier" || fn=="Cashier")
         {
             ui->stackedWidget->setCurrentIndex(4);
         }
-        else if (fn=="Rh")
+        else if (fn=="Rh" || fn=="HR")
             ui->stackedWidget->setCurrentIndex(5);
-        //else if (fn=="Comptable")
+        //else if (fn=="Comptable" || fn=="Accountant")
             //ui->stackedWidget->setCurrentIndex(6);
     }
+
 }
 
 void MainWindow::on_ajouter_employe_clicked()
@@ -144,7 +244,7 @@ void MainWindow::on_ajouter_employe_clicked()
         QString num_tel=ui->num_tel_employe->text();
         QString password=ui->password_employe->text();
         QString fonction=ui->fonction_employe->currentText();
-        int salaire=ui->salaire_employe->text().toInt();
+        float salaire=ui->salaire_employe->text().toInt();
         QRegExp regex("([A-Z][a-z]*)");
         QRegExp regex2("[a-zA-Z0-9]*");
 
@@ -201,7 +301,7 @@ void MainWindow::on_ajouter_employe_clicked()
             test=false;
         }
 
-        else if(salaire<=0 || salaire>=5000)
+        else if(salaire<=0 || salaire>5000)
         {
             QMessageBox::critical(nullptr, QObject::tr("Echec"),QObject::tr("Salaire doit être positive!"), QMessageBox::Cancel);
             test=false;
@@ -229,9 +329,12 @@ void MainWindow::on_ajouter_employe_clicked()
 
         if (test)
         {
-            employe e( cin, nom, prenom, age, email, num_tel, password, fonction, salaire);
+            employe e( cin, nom, prenom, age, email, num_tel, password, fonction, salaire,0,0);
 
-            e.ajouter();
+            bool q=e.ajouter();
+            if (q)
+                QMessageBox::information(this,"success","success");
+            else QMessageBox::critical(this,"echec", "query problem");
             ui->tab_employe->setModel(emp.afficher());
             ui->cin_employe->clear();
             ui->cin_employe_2->clear();
@@ -245,12 +348,21 @@ void MainWindow::on_ajouter_employe_clicked()
             ui->salaire_employe->clear();
             ui->cin_employe->setFocus();
 
-            QSqlQuery query;
+            QSqlQuery query,query2;
             query.prepare("select CIN from Employe");
             query.exec();
             ui->cin_employe_2->addItem("");
             while(query.next())
                 ui->cin_employe_2->addItem(query.value(0).toString());
+
+            QStringList CompletionList;
+            query2.prepare("select * from Employe");
+            query2.exec();
+            while(query2.next())
+                CompletionList <<query2.value("CIN").toString() <<query2.value("NOM").toString()<<query2.value("AGE").toString()<<query2.value("SALAIRE").toString();
+            StringCompleter=new QCompleter(CompletionList, this);
+            StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+            ui->recherche_employe->setCompleter(StringCompleter);
         }
 }
 
