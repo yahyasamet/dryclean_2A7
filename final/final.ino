@@ -84,7 +84,7 @@ void setup() {
  
   Hid.SetReportParser(0, &Parser);
   pinMode (buzzer, OUTPUT) ;
- // digitalWrite (buzzer, LOW) ;
+ digitalWrite (buzzer, HIGH) ;
   lcd.init(); //initialisation de l'écran LCD
   lcd.cursor_on();
   lcd.blink_on();

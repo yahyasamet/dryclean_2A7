@@ -12,6 +12,8 @@ public:
     Historique();
     void save(QString,QString,QString,QString);
     QString load();
+    void saveA(QString,QString,QString,QString);
+    QString loadA();
 
 };
 

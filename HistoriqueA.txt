@@ -1,0 +1,8 @@
+ cin employe: 56788765 Nom: Amira Bm Date de l'action: jeu. avr. 21 13:39:18 2022
+ cin employe: 56788765 Nom: Amira Bm Date de l'action: jeu. avr. 21 13:39:24 2022
+ cin client: 56788765 Nom client: Amira BmNombre de points:190 Date du scan: jeu. avr. 21 13:41:39 2022
+ cin client: 56788765 Nom client: Amira BmNombre de points:194 Date du scan: jeu. avr. 21 13:41:50 2022
+ cin client: 56788765 Nom client: Amira BmNombre de points:198 Date du scan: jeu. avr. 21 13:43:07 2022
+ cin employe: 1123453 cin client: 56788765 Nom client: Amira BmNombre de points:202 Date du scan: jeu. avr. 21 13:52:23 2022
+ cin employe: 1123453 cin client: 56788765 Nom client: Amira BmNombre de points:206 Date du scan: jeu. avr. 21 13:52:34 2022
+ cin employe: 1123453 cin client: 121254876705 Nom client: Test TestNombre de points:178 Date du scan: jeu. avr. 21 13:55:36 2022

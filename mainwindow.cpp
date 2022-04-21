@@ -137,8 +137,10 @@ StringCompleter=new QCompleter(completionlist,this);
            ui->recherche->setCompleter(StringCompleter);
 
 
-       Historique h;
+       Historique h,h1;
                  ui->historique->setText(h.load());
+
+                 ui->historique_2->setText(h1.loadA());
 
 
 
@@ -207,6 +209,7 @@ void MainWindow::update_label()
     ui->lineEditID->setText(numstring);
     QString r=Etmp.recherche_cin_arduino(numstring);
     QString c=Etmp.recherche_cin_arduino_nb_pts(numstring);
+     QString g=Etmp.recherche_cin_arduino_emp(numstring);
     //timer
 
    timer =new QTimer();
@@ -232,6 +235,11 @@ void MainWindow::update_label()
          ui->scan_line->setPlaceholderText("Opération réussite");
         ui->nb_pts->setText(c);
              ui->lineEdit1->setText(r);
+
+             Historique h;
+                 h.saveA(r,numstring,c,g);
+                 ui->historique_2->setText(h.loadA());
+
     }
 
     ui->tab_v->setModel(Etmp.afficher());

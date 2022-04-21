@@ -178,6 +178,25 @@ return model;
         return "false";
      }
  }
+ QString Commande::recherche_cin_arduino_emp(QString cin)
+ {
+    // qDebug() <<cin;
+     QMessageBox msgBox;
+     QSqlQuery query,q1;
+     query.prepare("SELECT * From(SELECT ROWNUM ,cin_employe FROM commandes WHERE cin_cl= :cin order by ref_cmd DESC)WHERE ROWNUM=1");
+     query.bindValue(":cin", cin);
+     if (query.exec() && query.next())
+     {
+
+              return query.value(1).toString();
+
+
+     }
+     else
+     {
+        return "false";
+     }
+ }
  bool Commande::recherche_id(QString ref_cmd)
   {
       QMessageBox msgBox;
