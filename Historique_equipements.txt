@@ -1,0 +1,6 @@
+cin:12345678  Référence:1  Date:5/4/2022  Temps:23:21  Action:Ajout by: .
+cin:12345678  Référence:1  Date:5/4/2022  Temps:23:22  Action:Modification by: .
+cin:14353886  Référence:2  Date:5/4/2022  Temps:23:22  Action:Ajout by: .
+cin:14353886  Référence:3  Date:5/4/2022  Temps:23:23  Action:Ajout by: .
+cin:14353886  Référence:3  Date:5/4/2022  Temps:23:23  Action:Supprimer by: .
+cin:  Référence:ramy  Date:5/4/2022  Temps:23:23  Action:Supprimer by: .

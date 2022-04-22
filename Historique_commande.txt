@@ -1,0 +1,8 @@
+ cin employe: 12345678 Référence commande: 12345 montant: 10 Date de l'action: Tue Apr 5 16:34:43 2022 Action: Supprimer
+ cin employe: 12345678 Référence commande: 12345 montant: 20 Date de l'action: Tue Apr 5 16:36:36 2022 Action: Ajout
+ cin employe: 12345678 Référence commande: 12345 montant: 20 Date de l'action: Tue Apr 5 16:36:49 2022 Action: Modification
+ cin employe: 12345678 Référence commande: 12345 montant: 20 Date de l'action: Tue Apr 5 16:37:25 2022 Action: Modification
+ cin employe: 12345678 Référence commande: 32154 montant: 12 Date de l'action: Tue Apr 5 16:38:20 2022 Action: Ajout
+ cin employe: 12345678 Référence commande: 44444 montant: 2 Date de l'action: Tue Apr 5 16:43:23 2022 Action: Ajout
+ cin employe: 12345678 Référence commande: 32123 montant: 24 Date de l'action: Tue Apr 5 16:46:30 2022 Action: Ajout
+ cin employe: 12345678 Référence commande: 44444 montant: 2 Date de l'action: Tue Apr 5 16:47:19 2022 Action: Modification

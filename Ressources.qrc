@@ -1,0 +1,52 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/antenna.png</file>
+        <file>images/antenna1.png</file>
+        <file>images/chat.png</file>
+        <file>images/chat1.png</file>
+        <file>images/chat2.png</file>
+        <file>images/chat3.png</file>
+        <file>images/chat4.png</file>
+        <file>images/chat5.png</file>
+        <file>images/check.png</file>
+        <file>images/check2.png</file>
+        <file>images/checkbox_checked.png</file>
+        <file>images/checkbox_unchecked.png</file>
+        <file>images/checkbox_unchecked_hover.png</file>
+        <file>images/checkbox_unchecked_pressed.png</file>
+        <file>images/connection.png</file>
+        <file>images/correct.png</file>
+        <file>images/facebook.png</file>
+        <file>images/facebook2.png</file>
+        <file>images/instagram.png</file>
+        <file>images/instagram2.png</file>
+        <file>images/logout.png</file>
+        <file>images/logout1.png</file>
+        <file>images/recuperer.png</file>
+        <file>images/remove.png</file>
+        <file>images/return.png</file>
+        <file>images/return1.png</file>
+        <file>images/return-button.png</file>
+        <file>images/unarchive.png</file>
+        <file>images/unarchive2.png</file>
+        <file>images/uparrow.png</file>
+        <file>images/upload.png</file>
+        <file>images/ramy.jpg</file>
+        <file>images/yahya.jpg</file>
+        <file>images/Mohamed.jpg</file>
+        <file>images/logo_1.png</file>
+        <file>images/recherche.png</file>
+    </qresource>
+    <qresource prefix="/son">
+        <file>son_QT/Bip.wav</file>
+        <file>son_QT/Bip_Apelle.wav</file>
+        <file>son_QT/Bip1.wav</file>
+        <file>son_QT/Bip2.wav</file>
+        <file>son_QT/Error.wav</file>
+        <file>son_QT/Simple_Beep2.wav</file>
+        <file>son_QT/success.wav</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+    </qresource>
+</RCC>

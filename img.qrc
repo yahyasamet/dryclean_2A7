@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>images/bin.png</file>
+        <file>images/edit.png</file>
+        <file>images/logo_c++-1.png</file>
+        <file>images/options.png</file>
+        <file>images/search.png</file>
+    </qresource>
+</RCC>
