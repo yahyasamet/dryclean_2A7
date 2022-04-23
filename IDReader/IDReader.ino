@@ -5,7 +5,7 @@
 
 #define SS_PIN 10
 #define RST_PIN 9
- 
+ String x;
 MFRC522 rfid(SS_PIN, RST_PIN); // Instance of the class
 MFRC522::MIFARE_Key key; 
 
@@ -42,10 +42,10 @@ RKey.toUpperCase();
 pinMode(redLEDPin, OUTPUT);     //LED startup sequence
   pinMode(greenLEDPin, OUTPUT);
 lockServo.attach(3);
- 
 }
 
 void loop() {
+
 // Reset the loop if no new card present on the sensor/reader.
 if ( ! rfid.PICC_IsNewCardPresent()) return;
 
@@ -80,10 +80,13 @@ NUID_hex.toUpperCase();
 for (byte i = 0; i < 4; i++) {
 nuidPICC[i] = rfid.uid.uidByte[i];
 }
+  
+       x=Serial.readString(); 
+       
 
 if (compareNUID(nuidPICC, 67, 247, 82, 148)) 
-    {//Serial.println("Welcome manager"); 
-      if (locked == true)         //If the lock is closed then open it
+    {//Serial.println("Welcome manager");
+      if ((locked == true) && (x=="1"))       //If the lock is closed then open it
       {
           lockServo.write(lockPos);
           locked = false;
@@ -96,7 +99,7 @@ if (compareNUID(nuidPICC, 67, 247, 82, 148))
            delay(200);
            digitalWrite(greenLEDPin, LOW);
       }
-      else if (locked == false)   //If the lock is open then close it
+      else if ((locked == false)&& (x=="1"))   //If the lock is open then close it
       { 
         
           lockServo.write(unlockPos);
@@ -114,7 +117,7 @@ if (compareNUID(nuidPICC, 67, 247, 82, 148))
     }
 else if (compareNUID(nuidPICC, 83, 133, 106, 25)) 
     {//Serial.println("Welcome storekeeper"); 
-      if (locked == true)         //If the lock is closed then open it
+      if ((locked == true)   && (x=="1")  )   //If the lock is closed then open it
       {
           lockServo.write(lockPos);
           locked = false;
@@ -127,7 +130,7 @@ else if (compareNUID(nuidPICC, 83, 133, 106, 25))
            delay(200);
            digitalWrite(greenLEDPin, LOW);
       }
-      else if (locked == false)   //If the lock is open then close it
+      else if ((locked == false) && (x=="1")  ) //If the lock is open then close it
       { 
         
           lockServo.write(unlockPos);
@@ -146,7 +149,7 @@ else if (compareNUID(nuidPICC, 83, 133, 106, 25))
 
  else if (compareNUID(nuidPICC, 124, 75, 96, 73)) 
     {//Serial.println("Welcome cashier"); 
-      if (locked == true)         //If the lock is closed then open it
+      if( (locked == true)    &&  (x=="1") )     //If the lock is closed then open it
       {
           lockServo.write(lockPos);
           locked = false;
@@ -159,7 +162,7 @@ else if (compareNUID(nuidPICC, 83, 133, 106, 25))
            delay(200);
            digitalWrite(greenLEDPin, LOW);
       }
-      else if (locked == false)   //If the lock is open then close it
+      else if( (locked == false) && (x=="1") )   //If the lock is open then close it
       { 
         
           lockServo.write(unlockPos);
@@ -176,7 +179,7 @@ else if (compareNUID(nuidPICC, 83, 133, 106, 25))
      
     }   
 else 
-     {if (locked == false)   //If the lock is open then close it
+     {if ((locked == false)  && (x=="0") )  //If the lock is open then close it
       {
           lockServo.write(unlockPos);
           locked = true;
