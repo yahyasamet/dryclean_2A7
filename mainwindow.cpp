@@ -371,6 +371,8 @@ void MainWindow::update_label()
                 numstring =numstring+QString::number(data2.at(var).digitValue());
            }
        }
+       if(numstring.length()>1)
+       {
        QSqlQuery query;
        query.prepare("SELECT FONCTION,SERIAL_NUMBER FROM EMPLOYE WHERE SERIAL_NUMBER LIKE :SERIAL_NUMBER");
        query.bindValue(":SERIAL_NUMBER", numstring);
@@ -380,14 +382,14 @@ void MainWindow::update_label()
        QString fonction=query.value("FONCTION").toString();
 
 
-    if(numstring.length()!=0)
-    {
+   qDebug()<<"serial="<<serial;
     if(numstring == serial )
     {
 
         QMessageBox::information(this,"Access granted",fonction);
         ard.write_to_arduino("1");
     }
+
     else
     {
         QMessageBox::information(this,"Error","Access denied");
@@ -396,15 +398,15 @@ void MainWindow::update_label()
     }
      emp.update(numstring);
 
-    QSqlQuery query;
+    QSqlQuery query1;
 
-        query.prepare("select * from Employe where SERIAL_NUMBER LIKE :serial_number");
-        query.bindValue(":serial_number",numstring);
-        query.exec();
-        query.next();
-        QString fn=query.value("FONCTION").toString();
-                QString nom=query.value("NOM").toString();
-                QString prenom=query.value("PRENOM").toString();
+        query1.prepare("SELECT * FROM EMPLOYE WHERE SERIAL_NUMBER LIKE :SERIAL_NUMBER");
+        query1.bindValue(":SERIAL_NUMBER",numstring);
+        query1.exec();
+        query1.next();
+        QString fn=query1.value("FONCTION").toString();
+                QString nom=query1.value("NOM").toString();
+                QString prenom=query1.value("PRENOM").toString();
 
         Historique h;
             ui->presence_emp->setText(h.load_door());

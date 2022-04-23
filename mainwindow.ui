@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="page_0">
      <widget class="QGroupBox" name="groupBox_46">
@@ -12149,7 +12149,7 @@ QComboBox QAbstractView{
      <x>0</x>
      <y>0</y>
      <width>1580</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

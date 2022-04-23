@@ -81,8 +81,8 @@ int arduino::write_to_arduino(QString d){
     int c = 0;
     while(i < size){
         line.append(d[i]);
-        if(c == 24){
-            serial->write(line.toUtf8(), 24);
+        if(c == size){
+            serial->write(line.toUtf8(), size);
             serial->flush();
             line.clear();
             c = 0;
