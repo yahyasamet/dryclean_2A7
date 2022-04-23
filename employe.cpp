@@ -15,9 +15,10 @@ employe::employe()
     salaire=0;
     age=0;
     presence=0;
+    serial_number="";
 }
 
-employe::employe(QString cin,QString nom,QString prenom,int age,QString email,QString num_tel,QString password,QString fonction,int salaire,int presence)
+employe::employe(QString cin,QString nom,QString prenom,int age,QString email,QString num_tel,QString password,QString fonction,int salaire,int presence,QString serial_number)
 {
     this->cin=cin;
     this->nom=nom;
@@ -29,6 +30,7 @@ employe::employe(QString cin,QString nom,QString prenom,int age,QString email,QS
     this->fonction=fonction;
     this->salaire=salaire;
     this->presence=presence;
+    this->serial_number=presence;
 }
 
 QString employe::getCIN()
@@ -71,6 +73,10 @@ int employe::getPresence()
 {
     return presence;
 }
+QString employe::getSerial_number()
+{
+    return serial_number;
+}
 
 void employe::setCIN (QString cin)
 {
@@ -112,11 +118,15 @@ void employe::setPresence (int presence)
 {
     this->presence=presence;
 }
+void employe::setSerial_number (QString serial_number)
+{
+    this->serial_number=serial_number;
+}
 
 bool employe::ajouter()
 {
     QSqlQuery query;
-    query.prepare("INSERT INTO EMPLOYE (CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,PASSWORD,FONCTION,SALAIRE,PRESENCE)"" VALUES(:cin, :nom, :prenom, :age, :email, :num_tel, :password,:fonction, :salaire, :presence)");
+    query.prepare("INSERT INTO EMPLOYE (CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,PASSWORD,FONCTION,SALAIRE,PRESENCE,SERIAL_NUMBER)"" VALUES(:cin, :nom, :prenom, :age, :email, :num_tel, :password,:fonction, :salaire, :presence, :serial_number)");
     query.bindValue(":cin",cin);
     query.bindValue(":nom",nom);
     query.bindValue(":prenom",prenom);
@@ -127,6 +137,7 @@ bool employe::ajouter()
     query.bindValue(":fonction",fonction);
     query.bindValue(":salaire",salaire);
     query.bindValue(":presence",presence);
+    query.bindValue(":serial_number",serial_number);
     return query.exec();
 }
 
@@ -357,4 +368,15 @@ bool employe::chercher_employe(QString email)
            return true;
    else
        return false;
+}
+
+bool employe::update(QString data)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE EMPLOYE SET PRESENCE=:presence WHERE SERIAL_NUMBER=:SERIAL_NUMBER");
+
+    query.bindValue(":PRESENCE",presence);
+    query.bindValue(":SERIAL_NUMBER",data);
+
+    return query.exec();
 }

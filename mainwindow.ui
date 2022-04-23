@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="page_0">
      <widget class="QGroupBox" name="groupBox_46">
@@ -486,7 +486,7 @@ color: gray;
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>../../Downloads/logo_c++-1.png</pixmap>
+        <pixmap>../logo_c++-1.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -931,7 +931,7 @@ QPushButton:pressed {
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>../../Downloads/logo_c++-1.png</pixmap>
+        <pixmap>../logo_c++-1.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -1127,7 +1127,7 @@ QPushButton:pressed {
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>../../Downloads/logo_c++-1.png</pixmap>
+        <pixmap>../logo_c++-1.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -2251,30 +2251,14 @@ QTabWidget::pane {
         <attribute name="title">
          <string>Door lock</string>
         </attribute>
-        <widget class="QTextBrowser" name="his_door">
+        <widget class="QTextBrowser" name="presence_emp">
          <property name="geometry">
           <rect>
            <x>10</x>
            <y>10</y>
-           <width>1021</width>
-           <height>601</height>
+           <width>1031</width>
+           <height>611</height>
           </rect>
-         </property>
-        </widget>
-        <widget class="QLabel" name="rfid_gif">
-         <property name="geometry">
-          <rect>
-           <x>850</x>
-           <y>20</y>
-           <width>171</width>
-           <height>191</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
          </property>
         </widget>
        </widget>

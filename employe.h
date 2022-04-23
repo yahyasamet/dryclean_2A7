@@ -12,7 +12,7 @@ class employe
 {
 public:
     employe();
-    employe(QString,QString,QString,int,QString,QString,QString,QString,int,int);
+    employe(QString,QString,QString,int,QString,QString,QString,QString,int,int,QString);
 
     QString getCIN();
     QString getNom();
@@ -24,6 +24,7 @@ public:
     QString getFonction();
     int getSalaire();
     int getPresence();
+    QString getSerial_number ();
 
     void setCIN (QString );
     void setNom (QString );
@@ -35,6 +36,8 @@ public:
     void setFonction (QString );
     void setSalaire (int );
     void setPresence (int );
+    void setSerial_number (QString);
+
 
     bool ajouter();
     bool supprimer(QString);
@@ -51,9 +54,10 @@ public:
     QSqlQueryModel *tri_salaire_desc();
     QSqlQueryModel *recherche_avancee_employe(QString ch);
     bool chercher_employe(QString email);
+    bool update(QString);
 
 private:
-    QString nom,prenom,email,password,fonction,cin,num_tel;
+    QString nom,prenom,email,password,fonction,cin,num_tel,serial_number;
     int age,salaire,presence;
 };
 

@@ -23,6 +23,8 @@
 #include "equipements.h"
 #include "livraisons.h"
 #include "secformdialog.h"
+#include "arduino.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -75,6 +77,8 @@ private slots:
     void on_annuler_pass_clicked();
 
     void on_fournisseurs_2_clicked();
+
+    void update_label();
 
     void on_ajouter_f_clicked();
      void on_supprimer_f_clicked();
@@ -207,6 +211,7 @@ private:
     QCompleter *StringCompleter,*ModelCompleter;
     Fournisseurs f;
     QCompleter *stringcompleter,*modelcompleter;
+    arduino ard;
 
     Commande Etmp;
     QSystemTrayIcon * mSystemTrayIcon;

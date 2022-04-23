@@ -19,7 +19,7 @@ public:
     void save_e(QString,QString,QString);
     QString load_e();
 	
-	void save_door(QString,QString,QString);
+    void save_door(QString,QString,QString,bool);
     QString load_door();
 
 };

@@ -7,7 +7,7 @@ Fournisseurs::Fournisseurs()
 {
        MATRICULE_F="";
        NOMSOCIETE="";
-       NUMERO_TEL=0;
+       NUMERO_TEL="";
        ADRESSE_SOCIETE="";
        EMAIL_F="";
        TYPE_ACHATF="";
@@ -18,7 +18,7 @@ Fournisseurs::Fournisseurs()
 }
 
 
-Fournisseurs::Fournisseurs(QString MATRICULE_F, QString NOMSOCIETE,int NUMERO_TEL,QString ADRESSE_SOCIETE,QString EMAIL_F,QString TYPE_ACHATF, int QUANTITE_F, int PRIX_F)
+Fournisseurs::Fournisseurs(QString MATRICULE_F, QString NOMSOCIETE,QString NUMERO_TEL,QString ADRESSE_SOCIETE,QString EMAIL_F,QString TYPE_ACHATF, int QUANTITE_F, int PRIX_F)
 {
     this->MATRICULE_F=MATRICULE_F;
     this->NOMSOCIETE=NOMSOCIETE;
@@ -36,7 +36,7 @@ QString Fournisseurs::getMATRICULE_F()
 { return MATRICULE_F;}
 QString Fournisseurs::getNOMSOCIETE()
 {return NOMSOCIETE;}
-int Fournisseurs::getNUMERO_TEL()
+QString Fournisseurs::getNUMERO_TEL()
 {return NUMERO_TEL;}
 QString Fournisseurs::getADRESSE_SOCIETE()
 { return ADRESSE_SOCIETE;}
@@ -53,7 +53,7 @@ void Fournisseurs::setMATRICULE_F(QString MATRICULE_F)
 {this->MATRICULE_F=MATRICULE_F;}
 void Fournisseurs::setNOMSOCIETE(QString NOMSOCIETE)
 {this->NOMSOCIETE=NOMSOCIETE;}
-void Fournisseurs::setNUMERO_TEL(int NUMERO_TEL)
+void Fournisseurs::setNUMERO_TEL(QString NUMERO_TEL)
 {this->NUMERO_TEL=NUMERO_TEL;}
 void Fournisseurs::setADRESSE_SOCIETE (QString ADRESSE_SOCIETE)
 {this->ADRESSE_SOCIETE=ADRESSE_SOCIETE;}
