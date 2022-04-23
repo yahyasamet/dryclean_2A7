@@ -7,6 +7,8 @@
 #include <QPainter>
 #include <QImage>
 #include<QPdfWriter>
+#include <QPrintDialog>
+
 Commande::Commande()
 {
     QDate date1(1995,2,2);
@@ -135,21 +137,82 @@ model->setHeaderData(10,Qt::Horizontal,QObject::tr("Opt_livr"));
 model->setHeaderData(11,Qt::Horizontal,QObject::tr("cin_empl"));
 return model;
  }
- bool Commande::recherche_id(QString ref_cmd)
+ QString Commande::recherche_cin_arduino_nb_pts(QString cin)
  {
+     qDebug() <<cin;
      QMessageBox msgBox;
-     QSqlQuery query;
-     query.prepare("SELECT * FROM commandes WHERE ref_cmd= :ref_cmd");
-     query.bindValue(":ref_cmd", ref_cmd);
+     QSqlQuery query,q1;
+     query.prepare("SELECT * From(SELECT ROWNUM , nom_cl,montant_cmd,nb_pts FROM commandes WHERE cin_cl= :cin order by ref_cmd DESC)WHERE ROWNUM=1");
+     query.bindValue(":cin", cin);
      if (query.exec() && query.next())
      {
-             return true;
+
+              return query.value(3).toString();
+
+
      }
      else
      {
-         return false;
+        return "false";
      }
  }
+ QString Commande::recherche_cin_arduino(QString cin)
+ {
+     QMessageBox msgBox;
+     QSqlQuery query,q1;
+     query.prepare("SELECT * From(SELECT ROWNUM , nom_cl,montant_cmd,nb_pts FROM commandes WHERE cin_cl= :cin order by ref_cmd DESC)WHERE ROWNUM=1");
+     query.bindValue(":cin", cin);
+     if (query.exec() && query.next())
+     {
+         int m=(query.value(2).toInt()) *0.1;
+         q1.prepare("update commandes set nb_pts =nb_pts+:m WHERE cin_cl= :cin ");
+              q1.bindValue(":cin", cin);
+               q1.bindValue(":m", m);
+              q1.exec();
+              return query.value(1).toString();
+
+
+     }
+     else
+     {
+        return "false";
+     }
+ }
+ QString Commande::recherche_cin_arduino_emp(QString cin)
+ {
+    // qDebug() <<cin;
+     QMessageBox msgBox;
+     QSqlQuery query,q1;
+     query.prepare("SELECT * From(SELECT ROWNUM ,cin_employe FROM commandes WHERE cin_cl= :cin order by ref_cmd DESC)WHERE ROWNUM=1");
+     query.bindValue(":cin", cin);
+     if (query.exec() && query.next())
+     {
+
+              return query.value(1).toString();
+
+
+     }
+     else
+     {
+        return "false";
+     }
+ }
+ bool Commande::recherche_id(QString ref_cmd)
+  {
+      QMessageBox msgBox;
+      QSqlQuery query;
+      query.prepare("SELECT * FROM commandes WHERE ref_cmd= :ref_cmd");
+      query.bindValue(":ref_cmd", ref_cmd);
+      if (query.exec() && query.next())
+      {
+              return true;
+      }
+      else
+      {
+          return false;
+      }
+  }
+
  /*int Commande::recherche_id(int ref_cmd)
  {
      QSqlQuery query;
@@ -286,73 +349,7 @@ QSqlQueryModel * Commande::afficherTrierDescMontant()
      return model;
 
  }
-bool Commande::genererFacture(QString ref, QString cinS, QString qtt, QString Date, QString mt, QString type, QString livr, QString cin_e, QString nom)
-{
-    QPrinter printer;
-       printer.setOutputFormat(QPrinter::PdfFormat);
-       printer.setOutputFileName("C:/Users/Amira/Desktop/esprit/sem2/qt/integration/Facture43.pdf");
-       QPainter painter;
-       QImage logo("C:/Users/Amira/Desktop/esprit/sem2/qt/integration/pics/logo_c++_1.png");
-       QImage logo_scale=logo.scaled(200, 200, Qt::KeepAspectRatio);
-       if (!painter.begin(&printer))
-       {qWarning("failed to open file.");
-       return false;}
-       painter.drawImage(600,50,logo_scale);
-        painter.setPen(Qt::red);
-       painter.drawText(360,75,"Facture");
-        painter.setPen(Qt::black);
-       painter.drawText(90,160,"reference:"); //x,y,txt
-      painter.drawText(160,160,ref);
-       painter.drawText(90,210,"CIN du client: ");
-       painter.drawText(200,210,cinS);
-       painter.drawText(90,260,"Nom du client: ");
-       painter.drawText(200,260,nom);
-       painter.drawText(90,310,"Qtt de vetements: ");
-       painter.drawText(200,310,qtt);
-       painter.drawText(90,360,"Date de commande: ");
-       painter.drawText(230,360,Date);
-       painter.drawText(90,410,"Montant à payé DT:");
-       painter.drawText(220,410,mt);
-       painter.drawText(90,460,"Type de vetements: ");
-       painter.drawText(210,460,type);
-       painter.drawText(90,520,"Livraison: ");
-       painter.drawText(190,520,livr);
-       painter.drawText(90,570,"Cin employes: ");
-       painter.drawText(200,570,cin_e);
-       painter.drawText(350,610,"Merci de nous avoir fait confiance");
-       painter.end();
-       return true;
 
-}
-/*bool Commande::NomValide(QString chaine)
-{
-    int i=0;
-        while(i<chaine.size())
-        {
-            if (((chaine[i]>='A' && chaine[i]<='Z')|| (chaine[i]>='a' && chaine[i]<='z')) || chaine[i]==' ')
-            {
-               i++;
-            }
-            else
-                return false;
-        }
-        if(i==chaine.size())
-        return true;
-    }
-bool Commande::adresseValide(QString adresse)
-{
-    int i=0;
-    while(i<adresse.size())
-    {
-        if(! ((adresse[i]>='A' && adresse[i]<='Z')|| (adresse[i]>='a' && adresse[i]<='z')) && adresse[i]==' ' && (adresse[i]<=9 && adresse[i]>=0))
-        {
-           return false;
-        }
-        else
-            i++;
-    }
-    return true;
-}*/
 int Commande::entierValide(int entier)
 {
     int Retour = 0;
@@ -390,3 +387,4 @@ QSqlQueryModel * Commande::Recherche_Avancee(QString arg)
 
 return model;
 }
+

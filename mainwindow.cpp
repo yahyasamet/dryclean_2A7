@@ -145,28 +145,28 @@ MainWindow::MainWindow(QWidget *parent)
                 }
 
     //integration ines//////////////////////////////////////////////////////////
-                QPixmap pix("C:/Users/Amira/Desktop/esprit/sem2/qt/integration/pics/logo_c++-1.png");
-                    QPixmap pix1("C:/Users/Amira/Desktop/esprit/sem2/qt/integration/pics/search.png");
-                    ui->label_150->setPixmap(pix);
-                    ui->label_149->setPixmap(pix1);
-                    ui->modifier_cin_emp_cmb_2->addItem("");
-                    ui->modifier_combo_2->addItem("");
-                   // ui->modifier_etat->addItem("");
-                   // ui->modifier_livraison->addItem("");
-                    //ui->modifier_type->addItem("");
+                QPixmap pix("C:/Users/MSI/Desktop/untitled_cb/logo_c++_1.png");
+                QPixmap pix1("C:/Users/MSI/Desktop/untitled_cb/search.png");
+                ui->label_36->setPixmap(pix);
+                ui->label_14->setPixmap(pix1);
+                ui->modifier_cin_emp_cmb_2->addItem("");
+                ui->modifier_combo_2->addItem("");
+               // ui->modifier_etat->addItem("");
+               // ui->modifier_livraison->addItem("");
+                //ui->modifier_type->addItem("");
 
 
-                    label = new QLabel("Code：",this);
-                  lineEdit = new QLineEdit(this);
+                label = new QLabel("Code：",this);
+
                  // cin= new QComboBox(this);
                   produceCode128Button = new QPushButton("code128",this);
-                   // produceEAN13Button = new QPushButton("EAN13",this);
+                    //produceEAN13Button = new QPushButton("EAN13",this);
                     savePictureButton = new QPushButton("save",this);
                     barCodeBox = new BarCodeBox("Code",this);
 
                    // QHBoxLayout *hBoxLayout = new QHBoxLayout();
                     ui->hBoxLayout_2->addWidget(label);
-                   ui-> hBoxLayout_2->addWidget(lineEdit);
+
                    ui->hBoxLayout_2->addWidget(produceCode128Button);
                  // ui-> hBoxLayout->addWidget(produceEAN13Button);
                   ui-> hBoxLayout_2->addWidget(savePictureButton);
@@ -174,64 +174,89 @@ MainWindow::MainWindow(QWidget *parent)
                   // QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
                     //vBoxLayout->addLayout(hBoxLayout);
                    ui-> vBoxLayout_2->addWidget(barCodeBox);
+               /*QSqlQuery qry1;
+               qry1.prepare("select cin_cl from commandes");
+               qry1.exec();
 
-                    connect(produceCode128Button,SIGNAL(clicked()),this,SLOT(produceBarCode128Slot()));
-                    //connect(produceEAN13Button,SIGNAL(clicked()),this,SLOT(produceBarCodeEAN13Slot()));
-                  connect(savePictureButton,SIGNAL(clicked()),this,SLOT(savePictureSlot()));
+                     while(qry1.next()){
 
-                    //this->resize(1400,1300);
-                    ui->le_ref_2->setValidator(new QIntValidator(0,99999,this));
-                    //ui->supprimer_ref->setValidator(new QIntValidator(0,99999,this));
-                   // ui->modifier_ref->setValidator(new QIntValidator(0,99999,this));
-                     ui->le_cin_2->setValidator(new QIntValidator(0,99999999,this));
-                      ui->modifier_cin_2->setValidator(new QIntValidator(0,99999999,this));
-                      //ui->modifier_cin_emp->setValidator(new QIntValidator(0,99999999,this));
-                     //ui->cin_empl->setValidator(new QIntValidator(0,99999999,this));
-                      ui->la_qtt_2->setValidator(new QIntValidator(0,999,this));
-                      ui->Modifier_qtt_2->setValidator(new QIntValidator(0,999,this));
-                      ui->modifier_montant_2->setValidator(new QIntValidator(0,9999,this));
-                       ui->le_mt_2->setValidator(new QIntValidator(0,999,this));
-                ui->date_2->setDate(QDate::currentDate());
-                ui->modifier_date_2->setDate(QDate::currentDate());
-                       ui->le_nbpt_2->setValidator(new QIntValidator(0,9999,this));
-                ui->modifier_nbr_pts_2->setValidator(new QIntValidator(0,9999,this));
-                //ui->modifier_etat->addItem("");
-                       // ui->modifier_type->addItem("");
-                        //ui->modifier_livraison->addItem("");
+                     //ui->cin->addItem(qry1.value(0).toString());
+                      }*/
 
-                QSqlQuery qry3,qry2,qry4;
-                       qry3.prepare("select ref_cmd from commandes");
-                       qry3.exec();
-                       qry2.prepare("select cin from EMPLOYE");
-                       qry2.exec();
-                       //ui->combo_cin_2->addItem("");
-                      while(qry.next()){
 
-                     // ui->supprimer_combo->addItem(qry.value(0).toString());
-                      ui->modifier_combo_2->addItem(qry.value(0).toString());
-                       }
-                      // ui->combo_ref->addItem("");
-                       while(qry2.next()){
-                       ui->cin_empl_cmb_2->addItem(qry2.value(0).toString());
-                       ui->modifier_cin_emp_cmb_2->addItem(qry2.value(0).toString());}
-                qry4.prepare("select * from commandes");
-                qry4.exec();
-                QStringList completionlist2;
-                while(qry4.next()){
-                              completionlist2 <<qry4.value("ref_cmd").toString() <<qry4.value("Nom_cl").toString();
-                          }
-                StringCompleter=new QCompleter(completionlist2,this);
-                           StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-                           ui->recherche_2->setCompleter(StringCompleter);
-                       Historique h;
-                                 ui->historique_2->setText(h.load());
 
-                      //Metier:Notification
+                connect(produceCode128Button,SIGNAL(clicked()),this,SLOT(produceBarCode128Slot()));
+            //    connect(produceEAN13Button,SIGNAL(clicked()),this,SLOT(produceBarCodeEAN13Slot()));
+              connect(savePictureButton,SIGNAL(clicked()),this,SLOT(savePictureSlot()));
 
-                      mSystemTrayIcon= new QSystemTrayIcon(this);
-                      mSystemTrayIcon->setIcon(QIcon(":/myappico.png"));
-                mSystemTrayIcon->setVisible(true);
-                     ui->tab_v_2->setModel(Etmp.afficher());
+                //this->resize(1400,1300);
+                ui->le_ref_2->setValidator(new QIntValidator(0,99999999,this));
+                //ui->supprimer_ref->setValidator(new QIntValidator(0,99999,this));
+               // ui->modifier_ref->setValidator(new QIntValidator(0,99999,this));
+                ui->le_cin_2->setValidator(new QIntValidator(0,99999999,this));
+                  ui->modifier_cin_2->setValidator(new QIntValidator(0,99999999,this));
+                  //ui->modifier_cin_emp->setValidator(new QIntValidator(0,99999999,this));
+                 //ui->cin_empl->setValidator(new QIntValidator(0,99999999,this));
+                  ui->la_qtt_2->setValidator(new QIntValidator(0,999,this));
+                  ui->Modifier_qtt_2->setValidator(new QIntValidator(0,999,this));
+                  ui->modifier_montant_2->setValidator(new QIntValidator(0,9999,this));
+                   ui->le_mt_2->setValidator(new QIntValidator(0,999,this));
+            ui->date_2->setDate(QDate::currentDate());
+            ui->modifier_date_2->setDate(QDate::currentDate());
+                   ui->le_nbpt_2->setValidator(new QIntValidator(0,9999,this));
+            ui->modifier_nbr_pts_2->setValidator(new QIntValidator(0,9999,this));
+            //ui->modifier_etat->addItem("");
+                   // ui->modifier_type->addItem("");
+                    //ui->modifier_livraison->addItem("");
+
+            QSqlQuery qry3,qry2,qry4;
+                   qry3.prepare("select ref_cmd from commandes");
+                   qry3.exec();
+                   qry2.prepare("select cin from employes");
+                   qry2.exec();
+                   //ui->combo_cin_2->addItem("");
+                  while(qry3.next()){
+
+                 // ui->supprimer_combo->addItem(qry.value(0).toString());
+                  ui->modifier_combo_2->addItem(qry.value(0).toString());
+                   }
+                  // ui->combo_ref->addItem("");
+                   while(qry2.next()){
+                   ui->cin_empl_cmb_2->addItem(qry2.value(0).toString());
+                   ui->modifier_cin_emp_cmb_2->addItem(qry2.value(0).toString());}
+            qry4.prepare("select * from commandes");
+            qry4.exec();
+            QStringList completionlist1;
+            while(qry4.next()){
+                          completionlist <<qry4.value("ref_cmd").toString() <<qry4.value("Nom_cl").toString();
+                      }
+            StringCompleter=new QCompleter(completionlist1,this);
+                       StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+                       ui->recherche_2->setCompleter(StringCompleter);
+
+
+                   Historique h,h1;
+                             ui->historique->setText(h.load());
+
+                             ui->historique_3->setText(h1.loadA());
+
+
+
+
+                  //Metier:Notification
+
+                  mSystemTrayIcon= new QSystemTrayIcon(this);
+                  mSystemTrayIcon->setIcon(QIcon(":/myappico.png"));
+            mSystemTrayIcon->setVisible(true);
+
+                 ui->tab_v_2->setModel(Etmp.afficher());
+
+
+                 //gif
+                 QMovie *movie=new QMovie("C:/Users/MSI/Desktop/untitled_cb/scan_gif.gif");
+             ui->gif->setMovie(movie);
+             movie->start();
+             ui->scan_line->setPlaceholderText("Veuillez scanner le code à barre");
 
 
     //integration ramy//////////////////////////////////////////////////////////
@@ -239,8 +264,8 @@ MainWindow::MainWindow(QWidget *parent)
                          ui->tablerevenue->setModel(C.afficher2());
                          ui->radioButton_f->setChecked(true);
                          QStringList list,list2;
-                         Historique h1;
-                         ui->historiquef->setText(h1.load_f());
+                         Historique h3;
+                         ui->historiquef->setText(h3.load_f());
                          list=cinlist();
                          list2=matlist();
                          ui->mat->addItems(list);
@@ -298,8 +323,8 @@ MainWindow::MainWindow(QWidget *parent)
                                         stringcompleter=new QCompleter(completionlist4,this);
                                         stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
                                         ui->Rechercher_equipement->setCompleter(stringcompleter);
-                                        Historique h3;
-                                        ui->historique->setText(h3.load_e());
+                                        Historique h5;
+                                        ui->historique->setText(h5.load_e());
                                         son=new QSound(":/son/son_QT/Simple_Beep2.wav");
                                         error=new QSound(":/son/son_QT/Error.wav");
                                         success=new QSound(":/son/son_QT/success.wav");
@@ -362,7 +387,9 @@ void MainWindow::update_label()
 
     bool test=true;
     QString data2 = ard.read_from_arduino();
+
    qDebug()<<data2;
+   qDebug()<<"ind="<<ind;
 
    QString numstring="";
        for (int var = 0; var < data2.length(); ++var) {
@@ -371,7 +398,8 @@ void MainWindow::update_label()
                 numstring =numstring+QString::number(data2.at(var).digitValue());
            }
        }
-       if(numstring.length()>1)
+       if(ind==5)
+       {if(numstring.length()>1)
        {
        QSqlQuery query;
        query.prepare("SELECT FONCTION,SERIAL_NUMBER FROM EMPLOYE WHERE SERIAL_NUMBER LIKE :SERIAL_NUMBER");
@@ -415,10 +443,62 @@ void MainWindow::update_label()
 
 
     }
-    ui->tab_employe->setModel(emp.afficher());
-
+    ui->tab_employe->setModel(emp.afficher());}
     //arduino ines + ramy
+ else if(ind==7)
+       {
+           if (numstring.length()>=8)
 
+          { ui->lineEditID->setText(numstring);
+           QString r=Etmp.recherche_cin_arduino(numstring);
+           QString c=Etmp.recherche_cin_arduino_nb_pts(numstring);
+            QString g=Etmp.recherche_cin_arduino_emp(numstring);
+
+            //timer
+
+          timer =new QTimer();
+          QObject::connect(timer, SIGNAL(timeout()), this,SLOT(finTempo()));
+
+           QMovie *movie2=new QMovie("C:/Users/MSI/Desktop/untitled_cb/gif_error.gif");
+           QMovie *movie1=new QMovie("C:/Users/MSI/Desktop/untitled_cb/gif_confirmation.gif");
+           timer->setSingleShot(true);
+           timer->start(5000);
+           if(r=="false")
+
+           {ui->gif->setMovie(movie2);
+
+           movie2->start();
+           ui->label_106->setText("code scanné");
+           ui->scan_line->setPlaceholderText("le CIN est introuvable.Veuillez rescanner le code à nouveau");
+           ui->lineEdit1->setText("Nom est introuvable");
+
+             ui->nb_pts->setText("Nombre de points est introuvable");
+           }
+           else
+           {ui->gif->setMovie(movie1);
+               movie1->start();
+                ui->scan_line->setPlaceholderText("Opération réussite");
+               ui->nb_pts->setText(c);
+                    ui->lineEdit1->setText(r);
+
+                    Historique h;
+                        h.saveA(r,numstring,c,g);
+                        ui->historique_2->setText(h.loadA());
+
+           }
+
+           ui->tab_v_2->setModel(Etmp.afficher());
+
+       QString t=r+" "+c;
+
+           ard.write_to_arduino(t);
+          // A.write_to_arduino(c);
+               }
+            ui->scan_line->setPlaceholderText("Veuillez scanner le code à barre");
+           // ui->lineEditID->clear();
+           // ui->nb_pts->clear();
+        //    ui->lineEdit1->clear();
+       }
 
     //arduino yahya + mohamed
 
@@ -837,58 +917,60 @@ void MainWindow::on_confirm_password_clicked()
 
 void MainWindow::on_change_password_clicked()
 {
+    ind=0;
     ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::on_annuler_pass_clicked()
-{
+{ind=1;
     ui->stackedWidget->setCurrentIndex(1);
 }
 
 
 void MainWindow::on_fournisseurs_2_clicked()
-{
+{ind=6;
     ui->stackedWidget->setCurrentIndex(6);
 }
 
 void MainWindow::on_commandes_2_clicked()
-{
+{ind=7;
     ui->stackedWidget->setCurrentIndex(7);
 }
 
 void MainWindow::on_livraisons_2_clicked()
-{
+{ind=10;
     ui->stackedWidget->setCurrentIndex(10);
 }
 
 void MainWindow::on_equipements_2_clicked()
-{
+{ind=9;
     ui->stackedWidget->setCurrentIndex(9);
 }
 
 void MainWindow::on_gestion_equipements_clicked()
-{
+{ind=9;
      ui->stackedWidget->setCurrentIndex(9);
 }
 
 void MainWindow::on_gestion_fournisseurs_clicked()
-{
+{ind=6;
     ui->stackedWidget->setCurrentIndex(6);
 }
 
 void MainWindow::on_gestion_commandes_clicked()
-{
+{ind=7;
     ui->stackedWidget->setCurrentIndex(7);
 }
 
 void MainWindow::on_gestion_livraisons_clicked()
-{
+{ind=10;
     ui->stackedWidget->setCurrentIndex(10);
 }
 
 void MainWindow::on_gestion_finances_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(8);
+    ind=8;
+            ui->stackedWidget->setCurrentIndex(8);
 }
 
 //integration zeineb//////////////////////////////////////////////////////////
@@ -1245,7 +1327,7 @@ QString Date_cmdS=ui->date_2->date().toString();
     QRegExp re("([A-Z][a-z]*)([\\s\\\'-][A-Z][a-z]*)*");
     bool hasMatch= re.exactMatch(Nom_cl);
 
-    QRegExp rex("^[a-zA-Z0-9_ ]*$");
+    QRegExp rex("^[a-zA-Z0-9_, ]*$");
     bool match=rex.exactMatch(adr_cl);
 
     if (!hasMatch)
@@ -1275,7 +1357,8 @@ if (erreur==0)
         QMessageBox::information(nullptr,QObject::tr("OK"),
                                  QObject::tr("Ajout effectué\n"
                                              "Click cancel to exit."),QMessageBox::Cancel);
-        bool test1=C.genererFacture(ref_cmd,cin_cl,qtt_vetS,Date_cmdS,montant_cmdS,type_vS,livraisonS,cin,Nom_cl);
+        bool test1=genererFacture(ref_cmd,cin_cl,qtt_vetS,Date_cmdS,montant_cmdS,type_vS,livraisonS,cin,Nom_cl);
+
         Historique h;
             h.save(cin,ref_cmd,montant_cmdS,"Ajout");
             ui->historique_2->setText(h.load());
@@ -1535,14 +1618,10 @@ void MainWindow::on_modifier_combo_2_activated(int index)
        ui->modifier_cin_emp_cmb_2->setCurrentText(query.value(11).toString());
 }
 
-void MainWindow::on_supprimer_combo_activated(int index)
-{
-
-}
-
 void MainWindow::produceBarCode128Slot()
 {
-    QString code=lineEdit->text();
+    QString code= ui->tab_v_2->selectionModel()->currentIndex().data(Qt::DisplayRole).toString();
+   // QString code=lineEdit->text();
     BarCode code128;//Définit l'objet qui encode le numéro de code-barres
     QString barCodes;//Enregistrez la chaîne bs, indiquant b : ligne noire s : ligne blanche
     if((barCodes=code128.process128BCode(code))!=NULL)
@@ -1552,7 +1631,7 @@ void MainWindow::produceBarCode128Slot()
     }
 }
 
-void MainWindow::produceBarCodeEAN13Slot()
+/*void MainWindow::produceBarCodeEAN13Slot()
 {
     QString code=lineEdit->text();//Obtenir le numéro saisi
 
@@ -1563,7 +1642,7 @@ void MainWindow::produceBarCodeEAN13Slot()
         barCodeBox->setBarCodes(barCodes);//Définir les valeurs des variables utilisées dans les fonctions de dessin
         barCodeBox->update();//repeindre
     }
-}
+}*/
 
 void MainWindow::savePictureSlot()
 {
@@ -1573,6 +1652,85 @@ void MainWindow::savePictureSlot()
 void MainWindow::on_recherche_2_textChanged(const QString &arg)
 {
 ui->tab_v_2->setModel(Etmp.Recherche_Avancee(arg));
+}
+bool MainWindow::genererFacture(QString ref, QString cinS, QString qtt, QString Date, QString mt, QString type, QString livr, QString cin_e, QString nom)
+{
+    //QPrinter printer;
+       //printer.setOutputFormat(QPrinter::PdfFormat);
+        QPrinter * impr;
+        QPrintDialog pd(this);
+        if (pd.exec()==QDialog::Rejected)
+            return false;
+        impr = pd.printer();
+           impr->setOutputFormat(QPrinter::PdfFormat);
+          // printer.setOutputFileName("C:/Users/MSI/Desktop/untitled_cb/Facture43.pdf");
+        impr->setOutputFileName("C:/Users/MSI/Desktop/untitled_cb/Facture43.pdf");
+        QPainter painter;
+           QImage logo("C:/Users/MSI/Desktop/Projet_C++_2A7/untitled/logo_c++_1.png");
+           QImage logo_scale=logo.scaled(200, 200, Qt::KeepAspectRatio);
+           if (!painter.begin(impr))
+           {qWarning("failed to open file.");
+           return false;}
+           painter.drawImage(15,15,logo_scale);
+            painter.setPen(Qt::red);
+            painter.setFont(QFont("Time New Roman", 30));
+                            painter.drawText(490,140,"FACTURE");
+                            painter.setPen(Qt::black);
+                            painter.setFont(QFont("Time New Roman", 15));
+                            painter.setFont(QFont("Time New Roman", 10));
+          painter.drawText(10,400,"Reference"); //x,y,txt
+          painter.drawText(20,550,ref);
+           painter.drawText(100,400,"CIN client");
+           painter.drawText(100,550,cinS);
+           painter.drawText(190,400,"Nom client");
+           painter.drawText(200,550,nom);
+           painter.drawText(280,400,"Qtt vetements");
+           painter.drawText(320,550,qtt);
+           painter.drawText(420,400,"Date");
+           painter.drawText(365,550,Date);
+           painter.drawText(490,400,"Montant");
+           painter.drawText(520,550,mt);
+           painter.drawText(570,400,"Type de vetements");
+
+           if(type=="Pontalon")
+           {painter.drawText(590,550,"Pontalon");}
+           else if(type=="Robe")
+           {painter.drawText(590,550,"Robe");}
+           else if(type=="Costume")
+           {painter.drawText(590,550,"Costume");}
+
+           painter.drawText(740,400,"Livraison");
+
+           if(livr=="Non Livrable")
+           {painter.drawText(730,550,"non livrable");}
+           else if(livr=="Livraison")
+           {painter.drawText(740,550,"livrable");}
+           painter.drawText(840,400,"Cin employe");
+           painter.drawText(850,550,cin_e);
+
+                             painter.drawRect(350,50,500,150);
+                             painter.drawRect(-1,350,950,95);
+
+ painter.setPen(Qt::red);
+ painter.setFont(QFont("Times New Roman", 25));
+           painter.drawText(180,710,"Merci de nous avoir fait confiance");
+          // (*Facture)=&printer;
+          // Facture=printer;
+           painter.end();
+
+           return true;
+
+}
+void MainWindow::finTempo1()
+{
+    QMovie *movie=new QMovie("C:/Users/MSI/Desktop/untitled_cb/scan_gif.gif");
+ui->gif->setMovie(movie);
+movie->start();
+
+ui->lineEditID->clear();
+ui->nb_pts->clear();
+  ui->lineEdit1->clear();
+
 }
 
 

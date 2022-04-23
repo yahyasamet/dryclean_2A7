@@ -44,11 +44,13 @@ public:
         void idout(int);
    QTimer *monTimer;
    void webShow(const QString &url);
+   bool genererFacture(QString ref,QString cinS,QString qtt,QString Date,QString mt,QString type,QString livr,QString cin_e,QString nom);
+   void finTempo1();
 
 public slots:
 
     void produceBarCode128Slot();//code 128
-    void produceBarCodeEAN13Slot();//EAN 13
+   // void produceBarCodeEAN13Slot();//EAN 13
     void savePictureSlot();
 
 private slots:
@@ -98,7 +100,7 @@ private slots:
 
      void on_modifier_combo_2_activated(int index);
 
-     void on_supprimer_combo_activated(int index);
+     //void on_supprimer_combo_activated(int index);
 
      void on_recherche_2_textChanged(const QString &arg);
 
@@ -225,10 +227,10 @@ private:
     finances C;
     QStringList files;
     QSound *son;
-
+QTimer *timer;
     equipements E;
     QSound *success,*error;
-
+int ind=0;
     livraisons L;
     SECFORMDialog *secDialog;
 };

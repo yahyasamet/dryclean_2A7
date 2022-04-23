@@ -22,6 +22,10 @@ public:
     void save_door(QString,QString,QString,bool);
     QString load_door();
 
+    void saveA(QString,QString,QString,QString);
+    QString loadA();
+
+
 };
 
 #endif // HISTORIQUE_H
