@@ -60,3 +60,6 @@ cin:14029190  Référence:6  Date:9/4/2022  Temps:13:06  Action:Supprimer by: ramy
 cin:14029190  Référence:7  Date:10/4/2022  Temps:23:49  Action:Ajout by: ramy.
 cin:14029190  Référence:3  Date:10/4/2022  Temps:23:54  Action:Modification by: ramy.
 cin:14029190  Référence:75  Date:10/4/2022  Temps:23:54  Action:Ajout by: ramy.
+cin:14029190  Référence:77  Date:23/4/2022  Temps:13:17  Action:Ajout by: ramy.
+cin:14029190  Référence:5  Date:23/4/2022  Temps:13:19  Action:Ajout by: ramy.
+cin:14029190  Référence:5  Date:23/4/2022  Temps:13:19  Action:Modification by: ramy.

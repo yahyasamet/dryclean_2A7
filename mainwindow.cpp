@@ -82,8 +82,18 @@ MainWindow::~MainWindow()
 void MainWindow::update_label()
 {
     dataa=A.read_from_arduino();
-    qDebug()<< "nb_pieces: "<< dataa;
- ui->nb_pieces->setText(dataa+"    Terminé !") ;// si les données reçues de arduino via la liaison série sont égales à 1
+        qDebug()<< "nb_pieces: "<< dataa;
+     ui->nb_pieces->setText(dataa+"    Terminé !") ;// si les données reçues de arduino via la liaison série sont égales à 1
+        QSqlQuery query;
+         query.prepare("Update equipements set nb_pieces= :nb_pieces  where REFERENCE_EQUIPEMENT= :REFERENCE_EQUIPEMENT ");
+         QString REFERENCE_EQUIPEMENT=ui->combo_ref_2->currentText() ;
+         query.bindValue(":REFERENCE_EQUIPEMENT",REFERENCE_EQUIPEMENT);
+         int d=dataa.toInt();
+         query.bindValue(":nb_pieces", d);
+
+         query.exec();
+         ui->tableView->setModel(E.afficher_equipements());
+
 }
 void MainWindow::on_Ajouter_equipement_clicked()
 {
@@ -460,25 +470,32 @@ QString MainWindow::on_combo_ref_2_activated(const QString &arg1)
 void MainWindow::on_Demarrer_arduino_clicked()
 {
     QString etat=on_combo_ref_2_activated("");
-    if(etat=="En panne")
-    {
+        if(etat=="En panne")
+        {
 
-        A.write_to_arduino("0"); //envoyer 0 à arduino
-        QMessageBox::critical(nullptr, QObject::tr("Machine en panne"),
-                    QObject::tr("demarrage echouee.\n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
-        // ecrire en panne sur l'afficheur et la machine ne demarre pas
-    }
-    else
-    {
+            A.write_to_arduino("0"); //envoyer 0 à arduino
+            QMessageBox::critical(nullptr, QObject::tr("Machine en panne"),
+                        QObject::tr("demarrage echouee.\n"
+                                    "Click Cancel to exit."), QMessageBox::Cancel);
+            // ecrire en panne sur l'afficheur et la machine ne demarre pas
+            QSqlQuery query;
+             query.prepare("Update equipements set nb_pieces= :nb_pieces  where REFERENCE_EQUIPEMENT= :REFERENCE_EQUIPEMENT ");
+             QString REFERENCE_EQUIPEMENT=ui->combo_ref_2->currentText() ;
+             query.bindValue(":REFERENCE_EQUIPEMENT",REFERENCE_EQUIPEMENT);
+             query.bindValue(":nb_pieces", 0);
 
-        A.write_to_arduino("1"); //envoyer 1 à arduino
-        QMessageBox::information(nullptr, QObject::tr("Machine en marche"),
-                    QObject::tr("demarrage avec succee.\n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
-        // ecrire en marche sur l'afficheur et la machine demarre correctement
-    }
+             query.exec();
+             ui->tableView->setModel(E.afficher_equipements());
+        }
+        else
+        {
 
+            A.write_to_arduino("1"); //envoyer 1 à arduino
+            QMessageBox::information(nullptr, QObject::tr("Machine en marche"),
+                        QObject::tr("demarrage avec succee.\n"
+                                    "Click Cancel to exit."), QMessageBox::Cancel);
+            // ecrire en marche sur l'afficheur et la machine demarre correctement
+        }
 }
 void MainWindow::finTempo2()
 {

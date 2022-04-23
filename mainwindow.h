@@ -42,7 +42,6 @@ private slots:
 
     void on_Demarrer_arduino_clicked();
     void update_label();
-    void on_Eteindre_arduino_clicked();
 
 private:
     Ui::MainWindow *ui;
