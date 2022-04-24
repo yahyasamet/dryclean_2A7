@@ -2126,10 +2126,13 @@ void MainWindow::on_Statistique_clicked()
 
 
 
+
+
+
+
     float total=tranche_montant1+tranche_montant2;
     QString a=QString("depenses . "+QString::number((tranche_montant1*100)/total,'f',2)+"%" );
     QString b=QString("revenues .  "+QString::number((tranche_montant2*100)/total,'f',2)+"%" );
-
 
     QPieSeries *series = new QPieSeries();
     series->append(a,tranche_montant1);
@@ -2147,20 +2150,32 @@ void MainWindow::on_Statistique_clicked()
     QChart *chart = new QChart();
     chart->addSeries(series);
     chart->setTitle(" gain: NB: "+ QString::number(tranche_montant2-tranche_montant1));
-    chart->legend()->hide();
+    chart->legend()->show();
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
     series->setLabelsVisible();
     series->setLabelsPosition(QPieSlice::LabelInsideHorizontal);
+    QStringList list;
+    for(int i=0;i<2;i++)
+    {
+        if (i==0)
+    list.push_back(a);
+        else
+        list.push_back(b);
 
+    }
+    int i=0;
     for(auto slice : series->slices())
-        slice->setLabel(QString("%1%").arg(100*slice->percentage(), 0, 'f', 1));
+    {
+       slice->setLabel(QString("%1%").arg(100*slice->percentage(), 0, 'f', 1));
+       slice->setLabel(list[i]);
+       i++;
+    }
 
     chartView->resize(851,591);
     chartView->setParent(ui->horizontalFramestat);
     chartView->show();
-
 
 }
 
@@ -2171,11 +2186,13 @@ void MainWindow::on_Statistique_3_clicked()
     QSqlQuery qry;
     qry.prepare("SELECT * FROM finances where TYPE_TRANSACTION = 0 ");
     QPieSeries *series = new QPieSeries();
+     QStringList list;
     if(qry.exec())
     {
         while(qry.next())
         {
             series->append(qry.value(0).toString(),qry.value(2).toInt());
+            list.push_back(qry.value(4).toString());
         }
     }
 
@@ -2186,15 +2203,22 @@ void MainWindow::on_Statistique_3_clicked()
     QChart *chart = new QChart();
     chart->addSeries(series);
     chart->setTitle("depenses");
-    chart->legend()->hide();
+    chart->legend()->show();
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
     series->setLabelsVisible();
     series->setLabelsPosition(QPieSlice::LabelInsideHorizontal);
 
+    QStringList list2;
+    int i=0;
     for(auto slice : series->slices())
-        slice->setLabel(QString("%1%").arg(100*slice->percentage(), 0, 'f', 1));
+    {
+        list2.push_back(QString("%1%").arg(100*slice->percentage(), 0, 'f', 1));
+        slice->setLabel(list2[i]+" "+list[i]);
+      //  slice->setLabel(list[i]);
+        i++;
+     }
 
     chartView->resize(851,591);
     chartView->setParent(ui->horizontalFramestat);
