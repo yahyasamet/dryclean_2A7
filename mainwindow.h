@@ -185,7 +185,7 @@ private slots:
          void on_Rechercher_livraisons_textEdited(const QString &arg1);
          void on_Rechercher_livraisons_textChanged(const QString &arg1);
 
-         void showAddrWeb();
+
 
          QString on_le_id_3_activated();
 
@@ -240,6 +240,8 @@ private slots:
          void on_connecter_6_clicked();
 
          void on_facebook_10_clicked();
+
+         void on_goPushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

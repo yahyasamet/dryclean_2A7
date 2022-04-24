@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>10</number>
     </property>
     <widget class="QWidget" name="page_0">
      <widget class="QGroupBox" name="groupBox_46">
@@ -11277,7 +11277,7 @@ font-size: 17px;
 }</string>
        </property>
        <property name="currentIndex">
-        <number>5</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tab_14">
         <attribute name="title">
@@ -12976,58 +12976,6 @@ QComboBox QAbstractView{
          </widget>
         </widget>
        </widget>
-       <widget class="QWidget" name="tab_40">
-        <attribute name="title">
-         <string>Maps</string>
-        </attribute>
-        <widget class="QFrame" name="frame">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>10</y>
-           <width>951</width>
-           <height>671</height>
-          </rect>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="WebAxWidget" name="webBrowser">
-          <property name="control" stdset="0">
-           <string>{8856f961-340a-11d0-a96b-00c04fd705a2}</string>
-          </property>
-          <property name="geometry" stdset="0">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>891</width>
-            <height>661</height>
-           </rect>
-          </property>
-         </widget>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="tab_41">
-        <attribute name="title">
-         <string>Calendar</string>
-        </attribute>
-        <widget class="QQuickWidget" name="quickWidget">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>20</y>
-           <width>1001</width>
-           <height>661</height>
-          </rect>
-         </property>
-         <property name="resizeMode">
-          <enum>QQuickWidget::SizeRootObjectToView</enum>
-         </property>
-        </widget>
-       </widget>
       </widget>
      </widget>
      <widget class="QLabel" name="label_293">
@@ -13292,23 +13240,6 @@ font: 25 12pt &quot;Malgun Gothic Semilight&quot;;</string>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QAxWidget</class>
-   <extends>QWidget</extends>
-   <header>qaxwidget.h</header>
-  </customwidget>
-  <customwidget>
-   <class>QQuickWidget</class>
-   <extends>QWidget</extends>
-   <header location="global">QtQuickWidgets/QQuickWidget</header>
-  </customwidget>
-  <customwidget>
-   <class>WebAxWidget</class>
-   <extends>QAxWidget</extends>
-   <header>webaxwidget.h</header>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="img.qrc"/>
  </resources>

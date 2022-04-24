@@ -16,7 +16,7 @@
 #include <QIntValidator>
 #include <QRegExpValidator>
 #include <QUrl>
-
+#include <QDesktopServices>
 #include "QWidget"
 #include <QTextEdit>
 #include <QtSql>
@@ -57,7 +57,7 @@
 #include "qtquickcontrolsapplication.h"
 #include "sqleventmodel.h"
 #include <QSurfaceFormat>
-
+#include <QUrl>
 #include <QPicture>
 #include <QtGui>
 #include <QtOpenGL>
@@ -360,9 +360,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 
            //integration yahya//////////////////////////////////////////////////////////
-                                           /*
-                                              this->showAddrWeb();
-                                            connect(ui->goPushButton,SIGNAL(clicked(bool)),this,SLOT(showAddrWeb()));
+
+
 
 
                                               ui->le_id->setValidator(new QIntValidator(0,99999999,this));
@@ -401,9 +400,9 @@ MainWindow::MainWindow(QWidget *parent)
                                                        stringcompleter=new QCompleter(completionlist6,this);
                                                        stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
                                                        ui->Rechercher_livraisons->setCompleter(stringcompleter);
-                                                        qmlRegisterType<SqlEventModel>("org.qtproject.examples.calendar", 1, 0, "SqlEventModel");
-                                                                 ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
-                                                                   ui->quickWidget->show();*/
+
+
+
 }
 MainWindow::~MainWindow()
 {
@@ -3284,17 +3283,11 @@ void MainWindow::on_Rechercher_livraisons_textChanged(const QString &arg1)
 {
   ui->tableView_2->setModel(L.Recherche_Avancee(arg1));
 }
-void MainWindow::webShow(const QString &url)
-{
-    ui->webBrowser->dynamicCall("Navigate(const QString&)", url);
-}
 
-void MainWindow::showAddrWeb()
+void MainWindow::on_goPushButton_clicked()
 {
     QString addr="https://www.google.com/maps/place/"+on_le_id_3_activated();
-    webShow(addr);
-
-
+    QDesktopServices::openUrl(QUrl(addr));
 }
 
 
@@ -3782,3 +3775,5 @@ void MainWindow::finTempo2()
 delete ui->animation_logo;
 
 }
+
+
