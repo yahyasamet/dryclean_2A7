@@ -10,12 +10,14 @@ widget::widget(QWidget *parent) :
     ui(new Ui::widget)
 {
     QSqlQuery query;
-   // QString cin="1";
-    query.prepare("Select prenom from employe where cin=14353886" );
+    QString cin="1";
+    query.prepare("Select prenom from employe " );
     query.exec();
     QString nom,image;
-    query.next();
-    nom= query.value("prenom").toString();
+    //query.next();
+    //nom= query.value("prenom").toString();
+    nom=prenom_e;
+    qDebug()<<"widget: "<<prenom_e;
     image=nom+".jpg";
     ui->setupUi(this);
     ui->nom_user->setText(nom);// la recuperation du nom de l'utilisateur connecté de la base de données(table employe)
@@ -28,7 +30,6 @@ widget::widget(QWidget *parent) :
         ui->textEdit->append(text);
     });
 }
-
 widget::~widget()
 {
     delete ui;
@@ -43,7 +44,7 @@ if(ui->line_message->text()!="")
     QTextStream T(mSocket);
     T << ui->nom_user->text()<<": "<<ui->line_message->text();
     mSocket->flush();
-    QFile file ("C:/Users/Amira/Desktop/esprit/sem2/qt/integration/chat.txt");
+    QFile file ("C:/Users/ASUS/Documents/interface/interface/chat.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";
      QTextStream out(&file);
@@ -56,14 +57,10 @@ if(ui->line_message->text()!="")
 
 void widget::on_connecter_clicked()
 {
-    chat C(this);
-    if(C.exec()==QDialog::Rejected){
-        return;
-    }
-    mSocket->connectToHost(C.hostname(),C.port());
+    mSocket->connectToHost("localhost",3333);
     ui->textEdit->setText(load());
     QString temps=get_temps();
-    QFile file ("C:/Users/Amira/Desktop/esprit/sem2/qt/integration/chat.txt");
+    QFile file ("C:/Users/ASUS/Documents/interface/interface/chat.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";
      QTextStream out(&file);
@@ -75,7 +72,7 @@ void widget::on_connecter_clicked()
 void widget::on_connecter_2_clicked()
 {
     QString temps=get_temps();
-    QFile file ("C:/Users/Amira/Desktop/esprit/sem2/qt/integration/chat.txt");
+    QFile file ("C:/Users/ASUS/Documents/interface/interface/chat.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";
      QTextStream out(&file);
@@ -85,7 +82,7 @@ void widget::on_connecter_2_clicked()
 QString widget::load(){
 
     tmp="";
-       QFile file("C:/Users/Amira/Desktop/esprit/sem2/qt/integration/chat.txt");
+       QFile file("C:/Users/ASUS/Documents/interface/interface/chat.txt");
        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
          tmp="";
 

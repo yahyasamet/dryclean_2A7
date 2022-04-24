@@ -2,6 +2,7 @@
     <qresource prefix="/images">
         <file>images/antenna.png</file>
         <file>images/antenna1.png</file>
+        <file>images/bin.png</file>
         <file>images/chat.png</file>
         <file>images/chat1.png</file>
         <file>images/chat2.png</file>
@@ -16,26 +17,54 @@
         <file>images/checkbox_unchecked_pressed.png</file>
         <file>images/connection.png</file>
         <file>images/correct.png</file>
+        <file>images/edit.png</file>
+        <file>images/eventindicator.png</file>
         <file>images/facebook.png</file>
         <file>images/facebook2.png</file>
+        <file>images/giphy.gif</file>
+        <file>images/giphy2.gif</file>
+        <file>images/giphy3.gif</file>
+        <file>images/historical.png</file>
         <file>images/instagram.png</file>
         <file>images/instagram2.png</file>
+        <file>images/logo_1.png</file>
+        <file>images/logo_c++-1.png</file>
+        <file>images/logo_machine.png</file>
         <file>images/logout.png</file>
         <file>images/logout1.png</file>
+        <file>images/machine.gif</file>
+        <file>images/machinef.gif</file>
+        <file>images/Mohamed.jpg</file>
+        <file>images/options.png</file>
+        <file>images/ouvrir-une-maison-de-retraite.jpg</file>
+        <file>images/qePsRi.gif</file>
+        <file>images/ramy.jpg</file>
+        <file>images/recherche.png</file>
         <file>images/recuperer.png</file>
         <file>images/remove.png</file>
         <file>images/return.png</file>
         <file>images/return1.png</file>
         <file>images/return-button.png</file>
+        <file>images/search.png</file>
         <file>images/unarchive.png</file>
         <file>images/unarchive2.png</file>
         <file>images/uparrow.png</file>
         <file>images/upload.png</file>
-        <file>images/ramy.jpg</file>
+        <file>images/wash_mashine_an_1.gif</file>
+        <file>images/waste.png</file>
         <file>images/yahya.jpg</file>
-        <file>images/Mohamed.jpg</file>
-        <file>images/logo_1.png</file>
-        <file>images/recherche.png</file>
+        <file>images/bars.png</file>
+        <file>images/cashier.png</file>
+        <file>images/employee.png</file>
+        <file>images/fast-delivery.png</file>
+        <file>images/inventory.png</file>
+        <file>images/store-manager.png</file>
+        <file>images/truck.png</file>
+        <file>images/warehouse.png</file>
+        <file>images/affaires-et-finances.png</file>
+        <file>images/password.png</file>
+        <file>images/user.png</file>
+        <file>images/forgot.png</file>
     </qresource>
     <qresource prefix="/son">
         <file>son_QT/Bip.wav</file>

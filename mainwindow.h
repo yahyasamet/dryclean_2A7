@@ -24,7 +24,7 @@
 #include "livraisons.h"
 #include "secformdialog.h"
 #include "arduino.h"
-
+#include "widget.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -36,16 +36,20 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
-    QStringList cinlist();
+        QString prenom_e;
+        QStringList cinlist();
         QStringList matlist();
         void  setupSummaryTable();
         QString id_increment();
         void idout(int);
-   QTimer *monTimer;
+   QTimer *monTimer,*monTimer2;
    void webShow(const QString &url);
    bool genererFacture(QString ref,QString cinS,QString qtt,QString Date,QString mt,QString type,QString livr,QString cin_e,QString nom);
    void finTempo1();
+   QString load();
+   QString get_temps();
+
+
 
 public slots:
 
@@ -158,24 +162,6 @@ private slots:
 
          void on_tabWidget_2_f_tabBarClicked(int index);
 
-         void on_Ajouter_equipement_clicked();
-
-         void on_Modifier_equipement_clicked();
-
-         void on_Supprimer_equipement_clicked();
-
-         void on_Trier_equipement_activated(const QString &arg1);
-
-         void on_Rechercher_equipement_textChanged(const QString &arg1);
-
-         void on_chatbox_clicked();
-
-         void on_combo_ref_activated(const QString &arg1);
-         void finTempo();
-
-         void on_facebook_clicked();
-
-         void on_instagram_clicked();
          void on_livraisons_2_clicked();
 
          void on_equipements_2_clicked();
@@ -207,12 +193,62 @@ private slots:
 
          void on_goPushButton_2_clicked();
 
+         void on_Ajouter_equipement_in_clicked();
+
+         void on_Supprimer_equipement_eq_clicked();
+
+         void on_Modifier_equipement_md_clicked();
+
+         void finTempo();
+         void finTempo2();
+         void on_combo_ref_md_activated(const QString &arg1);
+
+         QString on_combo_ref_7_activated(const QString &arg1);
+
+         void on_facebook_5_clicked();
+
+         void on_instagram_3_clicked();
+
+         void on_Demarrer_arduino_3_clicked();
+
+         void on_Trier_equipement_3_activated(const QString &arg1);
+
+         void on_Rechercher_equipement_3_textChanged(const QString &arg1);
+
+         void on_chatbox_3_clicked();
+
+         void on_facebook_6_clicked();
+
+         void on_connecter_clicked();
+
+         void on_pushButton_clicked();
+
+         void on_connecter_2_clicked();
+
+         void on_connecter_3_clicked();
+
+         void on_connecter_4_clicked();
+
+         void on_facebook_7_clicked();
+
+         void on_facebook_8_clicked();
+
+         void on_facebook_9_clicked();
+
+         void on_connecter_5_clicked();
+
+         void on_connecter_6_clicked();
+
+         void on_facebook_10_clicked();
+
 private:
     Ui::MainWindow *ui;
     employe emp;
     QCompleter *StringCompleter,*ModelCompleter;
     Fournisseurs f;
     QCompleter *stringcompleter,*modelcompleter;
+    QCompleter *stringcompleter2,*modelcompleter2;
+    //QByteArray data,dataa; // variable contenant les données reçues
     arduino ard;
 
     Commande Etmp;
@@ -233,5 +269,10 @@ QTimer *timer;
 int ind=0;
     livraisons L;
     SECFORMDialog *secDialog;
+    widget w;
+    QTcpSocket *mSocket;
+    QString tmp;
+    int deplacement;
+
 };
 #endif // MAINWINDOW_H

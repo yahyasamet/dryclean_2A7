@@ -1,6 +1,5 @@
 #include "chat.h"
 #include "ui_chat.h"
-#include <QProcess>
 
 chat::chat(QWidget *parent) :
     QDialog(parent),
@@ -16,12 +15,6 @@ chat::~chat()
 
 void chat::on_accepter_button_clicked()
 {
-    //executer le serveur locale ****************************************************************
-    QProcess*   process = new QProcess();
-    //QString program = "C:/Qt/Qt5.9.9/Tools/QtCreator/bin/kjjk/messengerLANserver.exe";
-    QString program = "C:/Users/Amira/Desktop/esprit/sem2/qt/integration/serveur_locale/messengerLANserver.exe";
-    process->start(program);
-    //executer le serveur locale ****************************************************************
     //mHostName=ui->hostname->text();
     mHostName="localhost";
     //mPort=ui->port->value();

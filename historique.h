@@ -13,10 +13,10 @@ public:
     void save(QString,QString,QString,QString);
     QString load();
 
-    void save_f(QString,QString);
+    void save_f(QString,QString,QString);
     QString load_f();
 
-    void save_e(QString,QString,QString);
+    void save_e(QString,QString,QString,QString);
     QString load_e();
 	
     void save_door(QString,QString,QString,bool);

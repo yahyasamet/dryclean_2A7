@@ -51,14 +51,15 @@ bool equipements::ajouter_equipement()
     QString ref_string= QString::number(REFERENCE_EQUIPEMENT);
     QString annee_string= QString::number(ANNEE_EQUIPEMENT);
     QSqlQuery query;
-          query.prepare("INSERT INTO EQUIPEMENTS (REFERENCE_EQUIPEMENT, MARQUE_EQUIPEMENT,NOM_EQUIPEMENT,ANNEE_EQUIPEMENT,ETAT_EQUIPEMENT,CIN_EMP ) "
-                        "VALUES (:REFERENCE_EQUIPEMENT, :MARQUE_EQUIPEMENT, :NOM_EQUIPEMENT, :ANNEE_EQUIPEMENT, :ETAT_EQUIPEMENT, :CIN)");
+          query.prepare("INSERT INTO EQUIPEMENTS (REFERENCE_EQUIPEMENT, MARQUE_EQUIPEMENT,NOM_EQUIPEMENT,ANNEE_EQUIPEMENT,ETAT_EQUIPEMENT,CIN_EMP,Nb_pieces ) "
+                        "VALUES (:REFERENCE_EQUIPEMENT, :MARQUE_EQUIPEMENT, :NOM_EQUIPEMENT, :ANNEE_EQUIPEMENT, :ETAT_EQUIPEMENT, :CIN, :Nb_pieces)");
           query.bindValue(0, ref_string);
           query.bindValue(1, MARQUE_EQUIPEMENT);
           query.bindValue(2, NOM_EQUIPEMENT);
           query.bindValue(3, annee_string);
           query.bindValue(4, ETAT_EQUIPEMENT);
           query.bindValue(5, CIN);
+          query.bindValue(6, 0);
 
 
     return query.exec();
@@ -74,6 +75,7 @@ QSqlQueryModel* equipements::afficher_equipements()
           model->setHeaderData(3, Qt::Horizontal, QObject::tr("Année équipement"));
           model->setHeaderData(4, Qt::Horizontal, QObject::tr("Etat équipement"));
           model->setHeaderData(5, Qt::Horizontal, QObject::tr("Cin"));
+          model->setHeaderData(6, Qt::Horizontal, QObject::tr("Nombre de pieces"));
 
     return model;
 }
@@ -107,6 +109,8 @@ QSqlQueryModel *equipements:: Trie_Etat()
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("Nom équipement"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("Année équipement"));
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("Etat équipement"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("Cin"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("Nombre de pieces"));
 
 
  return model;
@@ -122,6 +126,8 @@ QSqlQueryModel *equipements:: Trie_Annee()
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("Nom équipement"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("Année équipement"));
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("Etat équipement"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("Cin"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("Nombre de pieces"));
 
 
  return model;
@@ -137,6 +143,8 @@ QSqlQueryModel *equipements:: Trie_RefASC()
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("Nom équipement"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("Année équipement"));
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("Etat équipement"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("Cin"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("Nombre de pieces"));
 
 
  return model;
@@ -152,7 +160,8 @@ QSqlQueryModel *equipements:: Trie_RefDESC()
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("Nom équipement"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("Année équipement"));
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("Etat équipement"));
-
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("Cin"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("Nombre de pieces"));
 
  return model;
 
@@ -205,7 +214,7 @@ QString equipements::recuperer_nom()
 {
     QSqlQuery query;
     QString cin="1";
-    query.prepare("Select * from employes " );
+    query.prepare("Select * from employe " );
     query.exec();
     return query.value(3).toString();
 }

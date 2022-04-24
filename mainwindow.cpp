@@ -71,7 +71,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(1);
     ui->tab_employe->setModel(emp.afficher());
     ui->email->setPlaceholderText("email");
     ui->password->setPlaceholderText("password");
@@ -236,9 +236,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 
                    Historique h,h1;
-                             ui->historique->setText(h.load());
+                             ui->historique_2->setText(h.load());
 
                              ui->historique_3->setText(h1.loadA());
+                             ui->presence_emp->setText(h.load_door());
 
 
 
@@ -298,41 +299,69 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //integration mohamed//////////////////////////////////////////////////////////
-                             ui->tableView->setModel(E.afficher_equipements());
-                                 ui->radioButton->setChecked("");
-                                 QSqlQuery qry7,qry8,qry9;
-                                        qry7.prepare("select cin from employe");
-                                        qry7.exec();
-                                        qry8.prepare("select REFERENCE_EQUIPEMENT from equipements");
-                                        qry8.exec();
-                                        ui->combo_cin_2->addItem("");
-                                        while(qry7.next()){
-                                        ui->combo_cin->addItem(qry7.value(0).toString());
-                                        ui->combo_cin_2->addItem(qry7.value(0).toString());
-                                        }
-                                        ui->combo_ref->addItem("");
-                                        while(qry8.next()){
-                                        ui->combo_ref->addItem(qry8.value(0).toString());
-                                         }
-                                        qry9.prepare("select * from equipements");
-                                        qry9.exec();
-                                        QStringList completionlist4;
-                                        while(qry9.next()){
-                                            completionlist4 <<qry9.value("MARQUE_EQUIPEMENT").toString() <<qry1.value("NOM_EQUIPEMENT").toString();
-                                        }
-                                        stringcompleter=new QCompleter(completionlist4,this);
-                                        stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
-                                        ui->Rechercher_equipement->setCompleter(stringcompleter);
-                                        Historique h5;
-                                        ui->historique->setText(h5.load_e());
-                                        son=new QSound(":/son/son_QT/Simple_Beep2.wav");
-                                        error=new QSound(":/son/son_QT/Error.wav");
-                                        success=new QSound(":/son/son_QT/success.wav");
-                                        monTimer=new QTimer();
+                             ui->tableView_4->setModel(E.afficher_equipements());
+                             ui->radioButton_marche_aj->setChecked("");
+                             QSqlQuery qry7,qry8,qry9;
+                                    qry7.prepare("select cin from employe");
+                                    qry7.exec();
+                                    qry8.prepare("select REFERENCE_EQUIPEMENT from equipements");
+                                    qry8.exec();
+                                    ui->combo_cin_aj->addItem("");
+                                    while(qry7.next()){
+                                    ui->combo_cin_aj->addItem(qry7.value(0).toString());
+                                    ui->combo_cin_md->addItem(qry7.value(0).toString());
+                                    }
+                                    ui->combo_ref_md->addItem("");
+                                    while(qry8.next()){
+                                    ui->combo_ref_md->addItem(qry8.value(0).toString());
+                                    ui->combo_ref_7->addItem(qry8.value(0).toString());
+                                     }
+                                    qry7.prepare("select * from equipements");
+                                    qry7.exec();
+                                    while(qry7.next()){
+                                        completionlist <<qry7.value("MARQUE_EQUIPEMENT").toString()<<qry7.value("REFERENCE_EQUIPEMENT").toString() <<qry7.value("NOM_EQUIPEMENT").toString();
+                                    }
+                                    stringcompleter=new QCompleter(completionlist,this);
+                                    stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
+                                    ui->Rechercher_equipement_3->setCompleter(stringcompleter);
+                                    Historique h2;
+                                    ui->historique_5->setText(h2.load_e());
+                                    son=new QSound(":/son/son_QT/Simple_Beep2.wav");
+                                    error=new QSound(":/son/son_QT/Error.wav");
+                                    success=new QSound(":/son/son_QT/success.wav");
+                                    monTimer=new QTimer();
+                                    monTimer2=new QTimer();
 
-                                             QObject::connect(monTimer, SIGNAL(timeout()), this,SLOT(finTempo()));
+                                         QObject::connect(monTimer, SIGNAL(timeout()), this,SLOT(finTempo()));
+                                         QObject::connect(monTimer2, SIGNAL(timeout()), this,SLOT(finTempo2()));
+
+
+                                          QMovie *movie1 = new QMovie(":/images/images/giphy.gif");
+                                          ui->bubbles_3->setMovie(movie1);
+                                          movie1->start();
+                                          QMovie *movie2= new QMovie(":/images/images/machinef.gif");
+                                          monTimer2->setSingleShot(true); //active le mode singleShot
+                                          monTimer2->start(3000); //démarre une tempo de 3 secondes
+                                          ui->animation_logo->setMovie(movie2);
+                                          movie2->start();
+//chat box/////
+                                          mSocket= new QTcpSocket(this);
+                                          connect(mSocket,&QTcpSocket::readyRead,[&]()
+                                          {
+                                              QTextStream T(mSocket);
+                                              auto text =T.readAll();
+                                              ui->textEdit->append(text);
+                                          });
+
+                                          //chat box//
+
+
+    //integration mohamed//////////////////////////////////////////////////////////
+
+
            //integration yahya//////////////////////////////////////////////////////////
-                                             this->showAddrWeb();
+                                           /*
+                                              this->showAddrWeb();
                                             connect(ui->goPushButton,SIGNAL(clicked(bool)),this,SLOT(showAddrWeb()));
 
 
@@ -374,7 +403,7 @@ MainWindow::MainWindow(QWidget *parent)
                                                        ui->Rechercher_livraisons->setCompleter(stringcompleter);
                                                         qmlRegisterType<SqlEventModel>("org.qtproject.examples.calendar", 1, 0, "SqlEventModel");
                                                                  ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
-                                                                   ui->quickWidget->show();
+                                                                   ui->quickWidget->show();*/
 }
 MainWindow::~MainWindow()
 {
@@ -501,7 +530,21 @@ void MainWindow::update_label()
        }
 
     //arduino yahya + mohamed
+else if(ind==10)
+       {
+           QString dataa=ard.read_from_arduino();
+               qDebug()<< "nb_pieces: "<< dataa;
+            ui->nb_pieces_3->setText(dataa+"    Terminé !") ;// si les données reçues de arduino via la liaison série sont égales à 1
+               QSqlQuery query;
+                query.prepare("Update equipements set nb_pieces= :nb_pieces  where REFERENCE_EQUIPEMENT= :REFERENCE_EQUIPEMENT ");
+                QString REFERENCE_EQUIPEMENT=ui->combo_ref_md->currentText() ;
+                query.bindValue(":REFERENCE_EQUIPEMENT",REFERENCE_EQUIPEMENT);
+                int d=dataa.toInt();
+                query.bindValue(":nb_pieces", d);
 
+                query.exec();
+                ui->tableView_4->setModel(E.afficher_equipements());
+       }
 }
 
 QString random()
@@ -573,23 +616,37 @@ void MainWindow::on_login_clicked()
         QString msg="Bienvenue "+map["nom"]+" "+map["prenom"];
         QMessageBox::information(nullptr, QObject::tr("success"),msg,QMessageBox::Cancel);
         if (fn=="Gerant" || fn=="Manager")
+        {
             ui->stackedWidget->setCurrentIndex(2);
-        else if (fn=="Magasinier" || fn=="Storekeeper")
+            deplacement=2;
+        }
+            else if (fn=="Magasinier" || fn=="Storekeeper")
         {
             ui->stackedWidget->setCurrentIndex(3);
+            deplacement=3;
         }
         else if (fn=="Caissier" || fn=="Cashier")
         {
             ui->stackedWidget->setCurrentIndex(4);
+            deplacement=4;
         }
         else if (fn=="Rh" || fn=="HR")
+        {
             ui->stackedWidget->setCurrentIndex(5);
+        }
         else if (fn=="Comptable" || fn=="Accountant")
+        {
             ui->stackedWidget->setCurrentIndex(8);
+        }
     }
+    QString image;
+    prenom_e=map["prenom"];
+     qDebug()<<"widget: "<<map["prenom"];
+     image=map["prenom"]+".jpg";
+     ui->nom_user->setText(map["prenom"]);// la recuperation du nom de l'utilisateur connecté de la base de données(table employe)
+     ui->label_38->setStyleSheet("border-image: url(:/images/images/"+image+");");
 
 }
-
 void MainWindow::on_ajouter_employe_clicked()
 {
     QMessageBox msgBox;
@@ -1790,7 +1847,7 @@ void MainWindow::on_ajouterf_clicked()
     ui->tabledepence->setModel(C.afficher());
     ui->tablerevenue->setModel(C.afficher2());
     Historique h;
-    h.save_f(ID_FINANCES,"Ajout");
+    h.save_f(ID_FINANCES,"Ajout",prenom_e);
     ui->historiquef->setText(h.load_f());
     QStringList list,list2;
     ui->mat->clear();
@@ -1857,7 +1914,7 @@ void MainWindow::on_supprimerf_clicked()
             {
       ui->tabledepence->setModel(C.afficher());
       Historique h;
-      h.save_f(id,"supprimer");
+      h.save_f(id,"supprimer",prenom_e);
       ui->historiquef->setText(h.load_f());
       QMessageBox::information(nullptr,"Suppression","operation supprimé");
       QStringList list,list2;
@@ -1980,7 +2037,7 @@ void MainWindow::on_modifierf_clicked()
         stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
         ui->recherche_f->setCompleter(stringcompleter);
         Historique h;
-        h.save_f(id,"modifier");
+        h.save_f(id,"modifier",prenom_e);
         ui->historiquef->setText(h.load_f());
         msg.setText("modification avec succès");
         ui->tabledepence->setModel(C.afficher());
@@ -2793,23 +2850,23 @@ void MainWindow::idout (int i)
 }
 
 
-//integration mohamed//////////////////////////////////////////////////////////
-void MainWindow::on_Ajouter_equipement_clicked()
+//*******************integration mohamed********************************************
+void MainWindow::on_Ajouter_equipement_in_clicked()
 {
     son->play();
-    int ref=ui->lineEdit_8->text().toInt();
-    QString refs=ui->lineEdit_8->text();
-    QString marque_EQUIPEMENT=ui->lineEdit_9->text();
-    QString nom_EQUIPEMENT=ui->lineEdit_10->text();
-    int annee_EQUIPEMENT=ui->lineEdit_11->text().toInt();
+    int ref=ui->lineEdit_ref_aj->text().toInt();
+    QString refs=ui->lineEdit_ref_aj->text();
+    QString marque_EQUIPEMENT=ui->lineEdit_marque_aj->text();
+    QString nom_EQUIPEMENT=ui->lineEdit_nom_aj->text();
+    int annee_EQUIPEMENT=ui->lineEdit_annee_aj->text().toInt();
     //QString nom_produit=ui->lineEdit_12->text();
-    QString etat1=ui->radioButton->text();
-    QString etat2=ui->radioButton_2->text();//Jointure statique
-    if(ui->radioButton->isChecked() && ui->radioButton_2->isEnabled())
+    QString etat1=ui->radioButton_marche_aj->text();
+    QString etat2=ui->radioButton_panne_aj->text();//Jointure statique
+    if(ui->radioButton_marche_aj->isChecked() && ui->radioButton_panne_aj->isEnabled())
         etat1="En marche";
-    else if(ui->radioButton_2->isChecked() && ui->radioButton->isEnabled())
+    else if(ui->radioButton_panne_aj->isChecked() && ui->radioButton_marche_aj->isEnabled())
         etat1="En panne";
-    QString cin=ui->combo_cin->currentText();
+    QString cin=ui->combo_cin_aj->currentText();
     equipements E(ref,marque_EQUIPEMENT,nom_EQUIPEMENT,annee_EQUIPEMENT,etat1,cin);
     QMessageBox msgbox;
 
@@ -2833,20 +2890,20 @@ int erreur=0;
     case 1:
     error->play();
     msgbox.setText("Le nom doit être composé seulement par des lettres !");
-    ui->cs3->setStyleSheet("border-image: url(:/images/images/remove.png);");
+    ui->cs3_4->setStyleSheet("border-image: url(:/images/images/remove.png);");
     break;
 
     case 2:
     error->play();
     msgbox.setText("La marque doit être composée seulement par des lettres !");
-    ui->cs2->setStyleSheet("border-image: url(:/images/images/remove.png);");
+    ui->cs2_4->setStyleSheet("border-image: url(:/images/images/remove.png);");
 
     break;
 
     case 3:
     error->play();
     msgbox.setText("L'année doit être composé par 4 chiffres !");
-    ui->cs4->setStyleSheet("border-image: url(:/images/images/remove.png);");
+    ui->cs4_4->setStyleSheet("border-image: url(:/images/images/remove.png);");
     break;
 
     case 4:
@@ -2856,12 +2913,12 @@ int erreur=0;
     case 5:
     error->play();
     msgbox.setText("L'année doit être supérieure à 2000 !");
-     ui->cs4->setStyleSheet("border-image: url(:/images/images/remove.png);");
+     ui->cs4_4->setStyleSheet("border-image: url(:/images/images/remove.png);");
     break;
     case 6:
     error->play();
     msgbox.setText("L'année doit être inférieure ou égale à la date actuelle !");
-     ui->cs4->setStyleSheet("border-image: url(:/images/images/remove.png);");
+     ui->cs4_4->setStyleSheet("border-image: url(:/images/images/remove.png);");
     break;
     }
 if(erreur==0)
@@ -2879,25 +2936,26 @@ if(erreur==0)
         }
         stringcompleter=new QCompleter(completionlist,this);
         stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
-        ui->Rechercher_equipement->setCompleter(stringcompleter);
-        ui->combo_ref->addItem(refs);
+        ui->Rechercher_equipement_3->setCompleter(stringcompleter);
+        ui->combo_ref_md->addItem(refs);
+        ui->combo_ref_7->addItem(refs);
         monTimer->setSingleShot(true); //active le mode singleShot
 
         monTimer->start(2000); //démarre une tempo de 15 secondes
-     ui->cs1->setStyleSheet("border-image: url(:/images/images/correct.png);");
-     ui->cs2->setStyleSheet("border-image: url(:/images/images/correct.png);");
-     ui->cs3->setStyleSheet("border-image: url(:/images/images/correct.png);");
-     ui->cs4->setStyleSheet("border-image: url(:/images/images/correct.png);");
+     ui->cs1_4->setStyleSheet("border-image: url(:/images/images/correct.png);");
+     ui->cs2_4->setStyleSheet("border-image: url(:/images/images/correct.png);");
+     ui->cs3_4->setStyleSheet("border-image: url(:/images/images/correct.png);");
+     ui->cs4_4->setStyleSheet("border-image: url(:/images/images/correct.png);");
         success->play();
         msgbox.setText("Ajout avec succes.");
         Historique h;
-        h.save_e(cin,refs,"Ajout");
-        ui->historique->setText(h.load_e());
-        ui->tableView->setModel(E.afficher_equipements());
-          ui->lineEdit_8->clear();
-          ui->lineEdit_9->clear();
-          ui->lineEdit_10->clear();
-          ui->lineEdit_11->clear();
+        h.save_e(cin,refs,"Ajout",prenom_e);
+        ui->historique_5->setText(h.load_e());
+        ui->tableView_4->setModel(E.afficher_equipements());
+          ui->lineEdit_ref_aj->clear();
+          ui->lineEdit_nom_aj->clear();
+          ui->lineEdit_marque_aj->clear();
+          ui->lineEdit_annee_aj->clear();
 
     }
     else
@@ -2907,249 +2965,16 @@ if(erreur==0)
     }
 
 }
+
+
+    //}
+
+
+
     msgbox.exec();
 }
+//*******************integration mohamed********************************************
 
-void MainWindow::on_Supprimer_equipement_clicked()
-{
-    son->play();
-    equipements E1;
-    QModelIndex index = ui->tableView->selectionModel()->currentIndex();
-        int reference_equipement = index.data(Qt::DisplayRole).toInt();
-        QString refs=index.data(Qt::DisplayRole).toString();
-        int cas;
-        if(E.recherche_ref(refs))
-            cas=1;
-        else
-            cas=-1;
-        QSqlQuery query;
-
-           query.prepare("Select * from equipements where reference_equipement=:reference_equipement" );
-                   query.bindValue(":reference_equipement",reference_equipement) ;
-                   query.exec();
-            query.next() ;
-            QString cin=query.value("CIN_EMP").toString();
-
-      QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Supprimer", "Êtes-vous sûr de supprimer",
-                                      QMessageBox::Yes|QMessageBox::No);
-        if (reply == QMessageBox::Yes) {
-            bool test=E.supprimer_equipement(reference_equipement);
-            if(test)
-            {
-                QSqlQuery qry1;
-                qry1.prepare("select * from equipements");
-                qry1.exec();
-                QStringList completionlist;
-                while(qry1.next()){
-                    completionlist <<qry1.value("MARQUE_EQUIPEMENT").toString() <<qry1.value("NOM_EQUIPEMENT").toString();
-                }
-                stringcompleter=new QCompleter(completionlist,this);
-                stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
-                ui->Rechercher_equipement->setCompleter(stringcompleter);
-                Historique h;
-                h.save_e(cin,refs,"Supprimer");
-                ui->historique->setText(h.load_e());
-      ui->tableView->setModel(E.afficher_equipements());
-      ui->combo_ref->clear();
-      ui->combo_ref->addItem("");
-
-      QSqlQuery qry;
-               qry.prepare("select reference_equipement from equipements");
-                   qry.exec();
-                   while(qry.next()){
-                    ui->combo_ref->addItem(qry.value(0).toString());
-                   }
-      if(cas==1)
-      QMessageBox::information(nullptr,"Suppression","Equipement supprimé");
-      else if(cas==-1)
-      QMessageBox::information(nullptr,"Suppression","Equipement n'est pas supprimé");
-            }
-        }
-}
-
-
-void MainWindow::on_Modifier_equipement_clicked()
-{
-    son->play();
-    int REFERENCE_EQUIPEMENT=ui->combo_ref->currentText().toInt() ;
-    QString refs=ui->combo_ref->currentText();
-    QString marque_EQUIPEMENT=ui->lineEdit_14->text();
-    QString nom_EQUIPEMENT=ui->lineEdit_15->text();
-    int annee_EQUIPEMENT=ui->lineEdit_16->text().toInt();
-    //QString nom_produit=ui->lineEdit_12->text();
-    QString etat1=ui->radioButton_3->text();
-    QString etat2=ui->radioButton_4->text();//Jointure statique
-    if(ui->radioButton_3->isChecked())
-        etat1="En marche";
-    else if(ui->radioButton_3->isEnabled())
-        etat1="En panne";
-    QString cin=ui->combo_cin_2->currentText();
-    equipements E(REFERENCE_EQUIPEMENT,marque_EQUIPEMENT,nom_EQUIPEMENT,annee_EQUIPEMENT,etat1,cin);
-        QMessageBox msgbox;
-            int erreur=0;
-            int year = QDate::currentDate().year();
-                if(!E.Chaine_Valid(nom_EQUIPEMENT))
-                erreur=1;
-                if(!E.Chaine_Valid(marque_EQUIPEMENT))
-                erreur=2;
-                if((E.Longueur_entier(annee_EQUIPEMENT))!=4)
-                erreur=3;
-                if( REFERENCE_EQUIPEMENT==0 ||marque_EQUIPEMENT=="" || nom_EQUIPEMENT=="" || cin=="")
-                {
-                    erreur=4;
-                }
-                if(annee_EQUIPEMENT<2000)
-                    erreur=5;
-                if(annee_EQUIPEMENT>year)
-                    erreur=6;
-                switch(erreur)
-                {
-                case 1:
-                error->play();
-                msgbox.setText("Le nom doit être composé seulement par des lettres !");
-                ui->cs6->setStyleSheet("border-image: url(:/images/images/remove.png);");
-                break;
-
-                case 2:
-                error->play();
-                msgbox.setText("La marque doit être composée seulement par des lettres !");
-                ui->cs5->setStyleSheet("border-image: url(:/images/images/remove.png);");
-                break;
-
-                case 3:
-                error->play();
-                msgbox.setText("L'année doit être supérieure à 2000 !");
-                ui->cs7->setStyleSheet("border-image: url(:/images/images/remove.png);");
-                break;
-                case 4:
-                error->play();
-                msgbox.setText("Vérifier les champs vides !");
-                break;
-                case 5:
-                error->play();
-                msgbox.setText("L'année doit être supérieure à 2000 !");
-                ui->cs7->setStyleSheet("border-image: url(:/images/images/remove.png);");
-                break;
-                case 6:
-                error->play();
-                msgbox.setText("L'année doit être inférieure ou égale à la date actuelle !");
-                ui->cs7->setStyleSheet("border-image: url(:/images/images/remove.png);");
-                break;
-                }
-
-            if(erreur==0)
-            {
-
-                    E.set_ref_equipement(ui->combo_ref->currentText().toInt());
-                bool test=E.modifier_equipement(E.get_refEQUIPEMENT()) ;
-                if(test)
-                {
-                    QSqlQuery qry1;
-                    qry1.prepare("select * from equipements");
-                    qry1.exec();
-                    QStringList completionlist;
-                    while(qry1.next()){
-                        completionlist <<qry1.value("MARQUE_EQUIPEMENT").toString() <<qry1.value("NOM_EQUIPEMENT").toString();
-                    }
-                    stringcompleter=new QCompleter(completionlist,this);
-                    stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
-                    ui->Rechercher_equipement->setCompleter(stringcompleter);
-                    monTimer->setSingleShot(true); //active le mode singleShot
-
-                    monTimer->start(2000); //démarre une tempo de 15 secondes
-                 ui->cs5->setStyleSheet("border-image: url(:/images/images/correct.png);");
-                 ui->cs6->setStyleSheet("border-image: url(:/images/images/correct.png);");
-                 ui->cs7->setStyleSheet("border-image: url(:/images/images/correct.png);");
-                    success->play();
-                    msgbox.setText("modification avec succés.");
-                    Historique h;
-                    h.save_e(cin,refs,"Modification");
-                    ui->historique->setText(h.load_e());
-                    ui->tableView->setModel(E.afficher_equipements());
-                    ui->lineEdit_14->clear();
-                    ui->lineEdit_15->clear();
-                    ui->lineEdit_16->clear();
-                }
-                else{
-                    error->play();
-                    msgbox.setText("Échec de modification");
-                    }
-
-
-            }
-            msgbox.exec();
-}
-
-void MainWindow::on_Trier_equipement_activated(const QString &arg1)
-{
-    if(arg1=="Année")
-    ui->tableView->setModel(E.Trie_Annee());
-    else if(arg1=="Etat")
-    ui->tableView->setModel(E.Trie_Etat());
-    else if(arg1=="Référence croissante")
-    ui->tableView->setModel(E.Trie_RefASC());
-    else if(arg1=="Référence décroissante")
-    ui->tableView->setModel(E.Trie_RefDESC());
-}
-
-void MainWindow::on_Rechercher_equipement_textChanged(const QString &arg1)
-{
-    ui->tableView->setModel(E.Recherche_Avancee(arg1));
-}
-
-void MainWindow::on_chatbox_clicked()
-{
-son->play();
-widget w;
-w.setModal(true);
-w.exec();
-}
-
-void MainWindow::on_combo_ref_activated(const QString &)
-{
-    QSqlQuery query;
-    QString REFERENCE_EQUIPEMENT=ui->combo_ref->currentText() ;
-   query.prepare("Select * from equipements where REFERENCE_EQUIPEMENT=:REFERENCE_EQUIPEMENT" );
-           query.bindValue(":REFERENCE_EQUIPEMENT",REFERENCE_EQUIPEMENT) ;
-           query.exec();
-    query.next() ;
-    ui->lineEdit_14->setText(query.value(1).toString());
-    ui->lineEdit_15->setText(query.value(2).toString());
-    ui->lineEdit_16->setText(query.value(3).toString());
-    QString etat=query.value(4).toString();
-    if(etat=="En panne")
-    ui->radioButton_4->setChecked("");
-    else
-    ui->radioButton_3->setChecked("");
-    ui->combo_cin_2->setCurrentText(query.value(5).toString());
-}
-//mon code après la temporisation
-void MainWindow::finTempo()
-
-{
-         ui->cs1->setStyleSheet("");
-         ui->cs2->setStyleSheet("");
-         ui->cs3->setStyleSheet("");
-         ui->cs4->setStyleSheet("");
-         ui->cs5->setStyleSheet("");
-         ui->cs6->setStyleSheet("");
-         ui->cs7->setStyleSheet("");
-
-
-}
-
-void MainWindow::on_facebook_clicked()
-{
-    QString link = "https://www.facebook.com/MORYS-Fashion-107812848401567";
-    QDesktopServices::openUrl(QUrl(link));
-}
-
-void MainWindow::on_instagram_clicked()
-{
-    QString link = "https://www.instagram.com/drycleaningband/";
-    QDesktopServices::openUrl(QUrl(link));
-}
 //integration yahya//////////////////////////////////////////////////////////
 void MainWindow::on_pushButton_2_clicked()
 {
@@ -3529,4 +3354,407 @@ void MainWindow::on_goPushButton_2_clicked()
                  QString nomimg=nom+".PNG";
                  im.save(RESULTS_PATH + nomimg,"PNG");
                 ui->qr_code->setPixmap(QPixmap::fromImage(im));
+}
+
+
+
+void MainWindow::on_Supprimer_equipement_eq_clicked()
+{
+    son->play();
+    equipements E1;
+    QModelIndex index = ui->tableView_4->selectionModel()->currentIndex();
+        int reference_equipement = index.data(Qt::DisplayRole).toInt();
+        QString refs=index.data(Qt::DisplayRole).toString();
+        int cas;
+        if(E.recherche_ref(refs))
+            cas=1;
+        else
+            cas=-1;
+        QSqlQuery query;
+
+           query.prepare("Select * from equipements where reference_equipement=:reference_equipement" );
+                   query.bindValue(":reference_equipement",reference_equipement) ;
+                   query.exec();
+            query.next() ;
+            QString cin=query.value("CIN_EMP").toString();
+
+      QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Supprimer", "Êtes-vous sûr de supprimer",
+                                      QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            bool test=E.supprimer_equipement(reference_equipement);
+            if(test)
+            {
+                QSqlQuery qry1;
+                qry1.prepare("select * from equipements");
+                qry1.exec();
+                QStringList completionlist;
+                while(qry1.next())
+                {
+                completionlist <<qry1.value("MARQUE_EQUIPEMENT").toString()<<qry1.value("REFERENCE_EQUIPEMENT").toString() <<qry1.value("NOM_EQUIPEMENT").toString();
+                }
+                stringcompleter=new QCompleter(completionlist,this);
+                stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
+                ui->Rechercher_equipement_3->setCompleter(stringcompleter);
+                Historique h;
+                h.save_e(cin,refs,"Supprimer",prenom_e);
+                ui->historique_5->setText(h.load_e());
+      ui->tableView_4->setModel(E.afficher_equipements());
+      ui->combo_ref_md->clear();
+      ui->combo_ref_md->addItem("");
+      ui->combo_ref_7->clear();
+      ui->combo_ref_7->addItem("");
+
+      QSqlQuery qry;
+               qry.prepare("select reference_equipement from equipements");
+                   qry.exec();
+                   while(qry.next()){
+                    ui->combo_ref_md->addItem(qry.value(0).toString());
+                    ui->combo_ref_7->addItem(qry.value(0).toString());
+                   }
+      if(cas==1)
+      QMessageBox::information(nullptr,"Suppression","Equipement supprimé");
+      else if(cas==-1)
+      QMessageBox::information(nullptr,"Suppression","Equipement n'est pas supprimé");
+            }
+        }
+}
+
+void MainWindow::on_Modifier_equipement_md_clicked()
+{
+    son->play();
+    int REFERENCE_EQUIPEMENT=ui->combo_ref_md->currentText().toInt() ;
+    QString refs=ui->combo_ref_md->currentText();
+    QString marque_EQUIPEMENT=ui->lineEdit_marque_md->text();
+    QString nom_EQUIPEMENT=ui->lineEdit_nom_md->text();
+    int annee_EQUIPEMENT=ui->lineEdit_annee_md->text().toInt();
+    //QString nom_produit=ui->lineEdit_12->text();
+    QString etat1=ui->radioButton_marche_md->text();
+    QString etat2=ui->radioButton_panne_md->text();//Jointure statique
+    if(ui->radioButton_marche_md->isChecked())
+        etat1="En marche";
+    else if(ui->radioButton_panne_md->isEnabled())
+        etat1="En panne";
+    QString cin=ui->combo_cin_md->currentText();
+    equipements E(REFERENCE_EQUIPEMENT,marque_EQUIPEMENT,nom_EQUIPEMENT,annee_EQUIPEMENT,etat1,cin);
+        QMessageBox msgbox;
+            int erreur=0;
+            int year = QDate::currentDate().year();
+                if(!E.Chaine_Valid(nom_EQUIPEMENT))
+                erreur=1;
+                if(!E.Chaine_Valid(marque_EQUIPEMENT))
+                erreur=2;
+                if((E.Longueur_entier(annee_EQUIPEMENT))!=4)
+                erreur=3;
+                if( REFERENCE_EQUIPEMENT==0 ||marque_EQUIPEMENT=="" || nom_EQUIPEMENT=="" || cin=="")
+                {
+                    erreur=4;
+                }
+                if(annee_EQUIPEMENT<2000)
+                    erreur=5;
+                if(annee_EQUIPEMENT>year)
+                    erreur=6;
+                switch(erreur)
+                {
+                case 1:
+                error->play();
+                msgbox.setText("Le nom doit être composé seulement par des lettres !");
+                ui->cs6_4->setStyleSheet("border-image: url(:/images/images/remove.png);");
+                break;
+
+                case 2:
+                error->play();
+                msgbox.setText("La marque doit être composée seulement par des lettres !");
+                ui->cs5_4->setStyleSheet("border-image: url(:/images/images/remove.png);");
+                break;
+
+                case 3:
+                error->play();
+                msgbox.setText("L'année doit être supérieure à 2000 !");
+                ui->cs7_4->setStyleSheet("border-image: url(:/images/images/remove.png);");
+                break;
+                case 4:
+                error->play();
+                msgbox.setText("Vérifier les champs vides !");
+                break;
+                case 5:
+                error->play();
+                msgbox.setText("L'année doit être supérieure à 2000 !");
+                ui->cs7_4->setStyleSheet("border-image: url(:/images/images/remove.png);");
+                break;
+                case 6:
+                error->play();
+                msgbox.setText("L'année doit être inférieure ou égale à la date actuelle !");
+                ui->cs7_4->setStyleSheet("border-image: url(:/images/images/remove.png);");
+                break;
+                }
+
+            if(erreur==0)
+            {
+
+                    E.set_ref_equipement(ui->combo_ref_md->currentText().toInt());
+                bool test=E.modifier_equipement(E.get_refEQUIPEMENT()) ;
+                if(test)
+                {
+                    QSqlQuery qry1;
+                    qry1.prepare("select * from equipements");
+                    qry1.exec();
+                    QStringList completionlist;
+                    while(qry1.next()){
+                        completionlist <<qry1.value("MARQUE_EQUIPEMENT").toString()<<qry1.value("REFERENCE_EQUIPEMENT").toString() <<qry1.value("NOM_EQUIPEMENT").toString();
+                    }
+                    stringcompleter=new QCompleter(completionlist,this);
+                    stringcompleter->setCaseSensitivity(Qt::CaseInsensitive);
+                    ui->Rechercher_equipement_3->setCompleter(stringcompleter);
+                    monTimer->setSingleShot(true); //active le mode singleShot
+
+                    monTimer->start(2000); //démarre une tempo de 15 secondes
+                 ui->cs5_4->setStyleSheet("border-image: url(:/images/images/correct.png);");
+                 ui->cs6_4->setStyleSheet("border-image: url(:/images/images/correct.png);");
+                 ui->cs7_4->setStyleSheet("border-image: url(:/images/images/correct.png);");
+                    success->play();
+                    msgbox.setText("modification avec succés.");
+                    Historique h;
+                    h.save_e(cin,refs,"Modification",prenom_e);
+                    ui->historique_5->setText(h.load_e());
+                    ui->tableView_4->setModel(E.afficher_equipements());
+                    ui->lineEdit_marque_md->clear();
+                    ui->lineEdit_nom_md->clear();
+                    ui->lineEdit_annee_md->clear();
+                }
+                else{
+                    error->play();
+                    msgbox.setText("Échec de modification");
+                    }
+
+
+            }
+            msgbox.exec();
+}
+//mon code après la temporisation
+void MainWindow::finTempo()
+
+{
+         ui->cs1_4->setStyleSheet("");
+         ui->cs2_4->setStyleSheet("");
+         ui->cs3_4->setStyleSheet("");
+         ui->cs4_4->setStyleSheet("");
+         ui->cs5_4->setStyleSheet("");
+         ui->cs6_4->setStyleSheet("");
+         ui->cs7_4->setStyleSheet("");
+}
+
+void MainWindow::on_combo_ref_md_activated(const QString &arg1)
+{
+    QSqlQuery query;
+    QString REFERENCE_EQUIPEMENT=ui->combo_ref_md->currentText() ;
+   query.prepare("Select * from equipements where REFERENCE_EQUIPEMENT=:REFERENCE_EQUIPEMENT" );
+           query.bindValue(":REFERENCE_EQUIPEMENT",REFERENCE_EQUIPEMENT) ;
+           query.exec();
+    query.next() ;
+    ui->lineEdit_marque_md->setText(query.value(1).toString());
+    ui->lineEdit_nom_md->setText(query.value(2).toString());
+    ui->lineEdit_annee_md->setText(query.value(3).toString());
+    QString etat=query.value(4).toString();
+    if(etat=="En panne")
+    ui->radioButton_panne_md->setChecked("");
+    else
+    ui->radioButton_marche_md->setChecked("");
+    ui->combo_cin_md->setCurrentText(query.value(5).toString());
+}
+
+QString MainWindow::on_combo_ref_7_activated(const QString &arg1)
+{
+    QSqlQuery query;
+    QString REFERENCE_EQUIPEMENT=ui->combo_ref_7->currentText() ;
+   query.prepare("Select etat_equipement from equipements where REFERENCE_EQUIPEMENT=:REFERENCE_EQUIPEMENT" );
+           query.bindValue(":REFERENCE_EQUIPEMENT",REFERENCE_EQUIPEMENT) ;
+           query.exec();
+    query.next() ;
+    return query.value("etat_equipement").toString();
+}
+
+void MainWindow::on_facebook_5_clicked()
+{
+    QString link = "https://www.facebook.com/MORYS-Fashion-107812848401567";
+    QDesktopServices::openUrl(QUrl(link));
+}
+
+void MainWindow::on_instagram_3_clicked()
+{
+    QString link = "https://www.instagram.com/drycleaningband/";
+    QDesktopServices::openUrl(QUrl(link));
+}
+
+void MainWindow::on_Demarrer_arduino_3_clicked()
+{
+    QString etat=on_combo_ref_7_activated("");
+        if(etat=="En panne")
+        {
+
+            ard.write_to_arduino("0"); //envoyer 0 à arduino
+            QMessageBox::critical(nullptr, QObject::tr("Machine en panne"),
+                        QObject::tr("demarrage echouee.\n"
+                                    "Click Cancel to exit."), QMessageBox::Cancel);
+            // ecrire en panne sur l'afficheur et la machine ne demarre pas
+            QSqlQuery query;
+             query.prepare("Update equipements set nb_pieces= :nb_pieces  where REFERENCE_EQUIPEMENT= :REFERENCE_EQUIPEMENT ");
+             QString REFERENCE_EQUIPEMENT=ui->combo_ref_7->currentText() ;
+             query.bindValue(":REFERENCE_EQUIPEMENT",REFERENCE_EQUIPEMENT);
+             query.bindValue(":nb_pieces", 0);
+
+             query.exec();
+             ui->tableView_4->setModel(E.afficher_equipements());
+        }
+        else
+        {
+
+            ard.write_to_arduino("1"); //envoyer 1 à arduino
+            QMessageBox::information(nullptr, QObject::tr("Machine en marche"),
+                        QObject::tr("demarrage avec succee.\n"
+                                    "Click Cancel to exit."), QMessageBox::Cancel);
+            // ecrire en marche sur l'afficheur et la machine demarre correctement
+        }
+}
+
+void MainWindow::on_Trier_equipement_3_activated(const QString &arg1)
+{
+    if(arg1=="Année")
+    ui->tableView_4->setModel(E.Trie_Annee());
+    else if(arg1=="Etat")
+    ui->tableView_4->setModel(E.Trie_Etat());
+    else if(arg1=="Référence croissante")
+    ui->tableView_4->setModel(E.Trie_RefASC());
+    else if(arg1=="Référence décroissante")
+    ui->tableView_4->setModel(E.Trie_RefDESC());
+}
+
+
+void MainWindow::on_Rechercher_equipement_3_textChanged(const QString &arg1)
+{
+ui->tableView_4->setModel(E.Recherche_Avancee(arg1));
+}
+
+void MainWindow::on_chatbox_3_clicked()
+{
+    son->play();
+    ui->stackedWidget->setCurrentIndex(11);
+
+}
+
+void MainWindow::on_facebook_6_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_connecter_clicked()
+{
+    mSocket->connectToHost("localhost",3333);
+    ui->textEdit->setText(load());
+    QString temps=get_temps();
+    QFile file ("C:/Users/ASUS/Documents/interface/interface/chat.txt");
+     if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
+      qDebug()<<"erreur";
+     QTextStream out(&file);
+     out <<"Opened at :" <<temps<<"\n\n";
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    if(ui->line_message->text()!="")
+    {
+        QTextStream T(mSocket);
+        T << ui->nom_user->text()<<": "<<ui->line_message->text();
+        mSocket->flush();
+        QFile file ("C:/Users/ASUS/Documents/interface/interface/chat.txt");
+         if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
+          qDebug()<<"erreur";
+         QTextStream out(&file);
+         out << ui->nom_user->text()<<": "<<ui->line_message->text()<<"\n";
+        ui->line_message->clear();
+
+    }
+}
+QString MainWindow::load(){
+
+    tmp="";
+       QFile file("C:/Users/ASUS/Documents/interface/interface/chat.txt");
+       if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+         tmp="";
+
+       QTextStream in(&file);
+
+      while (!in.atEnd()) {
+
+            QString myString = in.readLine();
+            tmp+=myString+"\n";
+
+      }
+      return tmp;
+}
+QString MainWindow::get_temps()
+{
+    int heure=QDateTime::currentDateTime().time().hour(),minutes=QDateTime::currentDateTime().time().minute();
+    QString minutes_st;
+    if(minutes>=0 && minutes<=9)
+    minutes_st="0"+QString::number(minutes);
+    else
+        minutes_st=QString::number(minutes);
+    return(QString::number(heure)+":"+minutes_st);
+}
+
+void MainWindow::on_connecter_2_clicked()
+{
+    QString temps=get_temps();
+    QFile file ("C:/Users/ASUS/Documents/interface/interface/chat.txt");
+     if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
+      qDebug()<<"erreur";
+     QTextStream out(&file);
+     out <<"\nClosed at :" <<temps<<"\n";
+    ui->stackedWidget->setCurrentIndex(9);
+}
+
+void MainWindow::on_connecter_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(deplacement);
+}
+
+void MainWindow::on_connecter_4_clicked()
+{
+  ui->stackedWidget->setCurrentIndex(deplacement);
+}
+
+void MainWindow::on_facebook_7_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_facebook_8_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_facebook_9_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_connecter_5_clicked()
+{
+  ui->stackedWidget->setCurrentIndex(deplacement);
+}
+
+void MainWindow::on_connecter_6_clicked()
+{
+  ui->stackedWidget->setCurrentIndex(deplacement);
+}
+
+void MainWindow::on_facebook_10_clicked()
+{
+   ui->stackedWidget->setCurrentIndex(1);
+}
+void MainWindow::finTempo2()
+{
+delete ui->animation_logo;
+
 }

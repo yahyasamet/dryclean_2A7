@@ -12,7 +12,9 @@ class widget : public QDialog
     Q_OBJECT
 
 public:
+    QString prenom_e;
     explicit widget(QWidget *parent = nullptr);
+
     ~widget();
     QString load();
     QString get_temps();

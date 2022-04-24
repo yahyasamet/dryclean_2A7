@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1580</width>
-    <height>857</height>
+    <width>1599</width>
+    <height>986</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page_0">
      <widget class="QGroupBox" name="groupBox_46">
@@ -339,18 +339,18 @@ QPushButton:pressed {
          <rect>
           <x>60</x>
           <y>180</y>
-          <width>41</width>
-          <height>41</height>
+          <width>31</width>
+          <height>31</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/user.png);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>user.png</pixmap>
-        </property>
         <property name="scaledContents">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="QPushButton" name="forgot_password">
@@ -406,43 +406,43 @@ color: gray;
           <height>141</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+        </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>logo_c++-1.png</pixmap>
-        </property>
         <property name="scaledContents">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="QLabel" name="label_14">
         <property name="geometry">
          <rect>
-          <x>55</x>
-          <y>255</y>
-          <width>51</width>
-          <height>41</height>
+          <x>60</x>
+          <y>260</y>
+          <width>31</width>
+          <height>31</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/password.png);</string>
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap>padlock.png</pixmap>
-        </property>
-        <property name="scaledContents">
-         <bool>true</bool>
         </property>
        </widget>
        <widget class="QLabel" name="label_15">
         <property name="geometry">
          <rect>
-          <x>90</x>
+          <x>130</x>
           <y>490</y>
-          <width>61</width>
-          <height>51</height>
+          <width>41</width>
+          <height>41</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/forgot.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -454,6 +454,25 @@ color: gray;
          <bool>true</bool>
         </property>
        </widget>
+      </widget>
+      <widget class="QLabel" name="animation_logo">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>1531</width>
+         <height>701</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
+       </property>
       </widget>
      </widget>
     </widget>
@@ -788,36 +807,36 @@ QPushButton:pressed {
        <widget class="QLabel" name="label_32">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>40</x>
           <y>95</y>
-          <width>81</width>
+          <width>71</width>
           <height>61</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/inventory.png);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>pics/inventory.png</pixmap>
-        </property>
         <property name="scaledContents">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="QLabel" name="label_33">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>40</x>
           <y>180</y>
-          <width>81</width>
+          <width>71</width>
           <height>61</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/warehouse.png);</string>
+        </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap>pics/warehouse (1).png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -826,36 +845,36 @@ QPushButton:pressed {
        <widget class="QLabel" name="label_34">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>40</x>
           <y>250</y>
           <width>71</width>
           <height>71</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/affaires-et-finances.png);</string>
+        </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>pics/cashier.png</pixmap>
-        </property>
         <property name="scaledContents">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="QLabel" name="label_35">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>40</x>
           <y>330</y>
           <width>71</width>
           <height>71</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/fast-delivery.png);</string>
+        </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap>pics/fast-delivery.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -870,11 +889,11 @@ QPushButton:pressed {
           <height>61</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/employee.png);</string>
+        </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap>pics/employee.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -889,14 +908,11 @@ QPushButton:pressed {
           <height>71</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/bars.png);</string>
+        </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap>pics/bars.png</pixmap>
-        </property>
-        <property name="scaledContents">
-         <bool>true</bool>
         </property>
        </widget>
       </widget>
@@ -1063,33 +1079,33 @@ QPushButton:pressed {
           <height>71</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/inventory.png);</string>
+        </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>pics/inventory.png</pixmap>
-        </property>
         <property name="scaledContents">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="QLabel" name="label_19">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>50</x>
           <y>370</y>
-          <width>101</width>
+          <width>81</width>
           <height>81</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/warehouse.png);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>pics/warehouse (1).png</pixmap>
-        </property>
         <property name="scaledContents">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="wordWrap">
          <bool>false</bool>
@@ -1353,7 +1369,7 @@ font-size: 17px;
 }</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -2152,7 +2168,7 @@ QTabWidget::pane {
 }</string>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tab_42">
         <attribute name="title">
@@ -2246,6 +2262,22 @@ QTabWidget::pane {
           </rect>
          </property>
         </widget>
+        <widget class="QLabel" name="label_305">
+         <property name="geometry">
+          <rect>
+           <x>930</x>
+           <y>10</y>
+           <width>101</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="tab_43">
         <attribute name="title">
@@ -2254,11 +2286,27 @@ QTabWidget::pane {
         <widget class="QTextBrowser" name="presence_emp">
          <property name="geometry">
           <rect>
-           <x>10</x>
-           <y>10</y>
-           <width>1031</width>
-           <height>611</height>
+           <x>0</x>
+           <y>30</y>
+           <width>921</width>
+           <height>591</height>
           </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_304">
+         <property name="geometry">
+          <rect>
+           <x>930</x>
+           <y>10</y>
+           <width>101</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </widget>
@@ -2272,7 +2320,7 @@ QTabWidget::pane {
         <x>500</x>
         <y>0</y>
         <width>1031</width>
-        <height>671</height>
+        <height>651</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2304,23 +2352,7 @@ QLineEdit {
     background: white;
     selection-background-color: darkgray;
 }
-QPushButton {
-    background-color: rgb(7, 214, 255);
-    border-style: outset;
-    border-width: 2px;
-    border-radius: 10px;
-    border-color: beige;
-    min-width: 10em;
-    padding: 6px;
-}
-QPushButton:hover {
-    background-color: rgb(43, 163, 255);
-    border-style: inset;
-}
-QPushButton:pressed {
-    background-color: rgb(43, 163, 255);
-    border-style: inset;
-}
+
 QComboBox {
 	border: 1px solid #333333;
 	border-radius: 3px;
@@ -2354,7 +2386,7 @@ font-size: 17px;
 }</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_9">
        <attribute name="title">
@@ -2521,6 +2553,22 @@ QPushButton:pressed {
           <string>Trier par:</string>
          </property>
         </widget>
+        <widget class="QLabel" name="label_302">
+         <property name="geometry">
+          <rect>
+           <x>920</x>
+           <y>40</y>
+           <width>101</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_10">
@@ -2563,25 +2611,7 @@ QLineEdit {
     background: white;
     selection-background-color: darkgray;
 }
-QPushButton {
-    color: rgb(255, 255, 255);
-  background-color: #4d7cff;
-    border-style: outset;
-    border-width: 0px;
-    border-radius: 10px;
-    border-color: beige;
-    min-width: 10em;
-    padding: 6px;
-}
-QPushButton:hover {
-color: #fff;
-    background-color: rgb(43, 163, 255);
-    border-style: inset;
-}
-QPushButton:pressed {
-    background-color: rgb(43, 163, 255);
-    border-style: inset;
-}
+
 </string>
         </property>
         <property name="title">
@@ -2629,11 +2659,32 @@ QPushButton:pressed {
         <widget class="QPushButton" name="sendBtn_f">
          <property name="geometry">
           <rect>
-           <x>340</x>
+           <x>830</x>
            <y>570</y>
-           <width>172</width>
+           <width>176</width>
            <height>31</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    color: rgb(255, 255, 255);
+  background-color: #4d7cff;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: beige;
+    min-width: 10em;
+    padding: 6px;
+}
+QPushButton:hover {
+color: #fff;
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+QPushButton:pressed {
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}</string>
          </property>
          <property name="text">
           <string>Envoyer</string>
@@ -2684,11 +2735,32 @@ QPushButton:pressed {
         <widget class="QPushButton" name="exitBtn_f">
          <property name="geometry">
           <rect>
-           <x>50</x>
+           <x>540</x>
            <y>570</y>
-           <width>172</width>
+           <width>176</width>
            <height>31</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    color: rgb(255, 255, 255);
+  background-color: #4d7cff;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: beige;
+    min-width: 10em;
+    padding: 6px;
+}
+QPushButton:hover {
+color: #fff;
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+QPushButton:pressed {
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}</string>
          </property>
          <property name="text">
           <string>Annuler</string>
@@ -2702,6 +2774,22 @@ QPushButton:pressed {
            <width>951</width>
            <height>411</height>
           </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_303">
+         <property name="geometry">
+          <rect>
+           <x>920</x>
+           <y>30</y>
+           <width>101</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </widget>
@@ -3640,6 +3728,69 @@ font-size: 13px;
         </widget>
        </widget>
       </widget>
+     </widget>
+     <widget class="QPushButton" name="facebook_9">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>660</y>
+        <width>41</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	
+	border-image: url(:/images/images/logout.png);
+}
+QPushButton:hover{
+	
+	
+	border-image: url(:/images/images/logout1.png);
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="connecter_5">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>660</y>
+        <width>41</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton
+{
+	border-image: url(:/images/images/return1.png);
+}
+QPushButton:hover
+{
+	border-image: url(:/images/images/return.png);
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_292">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>700</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 9pt &quot;Louis George Café&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Déconnexion</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="page_7">
@@ -5327,7 +5478,7 @@ QTabWidget::pane {
 </string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_24">
        <attribute name="title">
@@ -5559,23 +5710,20 @@ QHeaderView::section {
           <bool>false</bool>
          </property>
         </widget>
-        <widget class="QLabel" name="label_150">
+        <widget class="QLabel" name="label_298">
          <property name="geometry">
           <rect>
-           <x>810</x>
+           <x>930</x>
            <y>40</y>
            <width>101</width>
            <height>101</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
          <property name="text">
           <string/>
-         </property>
-         <property name="pixmap">
-          <pixmap>../dryclean_2A7-Gestion_Commandes/logo_c++_1.png</pixmap>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
          </property>
         </widget>
        </widget>
@@ -5646,11 +5794,27 @@ QPushButton:pressed {
         <widget class="QTextBrowser" name="historique_2">
          <property name="geometry">
           <rect>
-           <x>70</x>
+           <x>20</x>
            <y>70</y>
            <width>891</width>
            <height>641</height>
           </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_299">
+         <property name="geometry">
+          <rect>
+           <x>930</x>
+           <y>40</y>
+           <width>101</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </widget>
@@ -5858,6 +6022,22 @@ QPushButton:pressed {
           <string>Nombre de points:</string>
          </property>
         </widget>
+        <widget class="QLabel" name="label_300">
+         <property name="geometry">
+          <rect>
+           <x>940</x>
+           <y>40</y>
+           <width>101</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_45">
@@ -5870,7 +6050,7 @@ QPushButton:pressed {
           <x>-30</x>
           <y>-30</y>
           <width>1061</width>
-          <height>831</height>
+          <height>741</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -5926,13 +6106,92 @@ QPushButton:pressed {
         <widget class="QTextBrowser" name="historique_3">
          <property name="geometry">
           <rect>
-           <x>70</x>
+           <x>40</x>
            <y>70</y>
            <width>891</width>
            <height>641</height>
           </rect>
          </property>
         </widget>
+        <widget class="QLabel" name="label_301">
+         <property name="geometry">
+          <rect>
+           <x>950</x>
+           <y>40</y>
+           <width>101</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_291">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>760</y>
+          <width>91</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 9pt &quot;Louis George Café&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Déconnexion</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="connecter_4">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>720</y>
+          <width>41</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{
+	border-image: url(:/images/images/return1.png);
+}
+QPushButton:hover
+{
+	border-image: url(:/images/images/return.png);
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="facebook_8">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>720</y>
+          <width>41</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	
+	border-image: url(:/images/images/logout.png);
+}
+QPushButton:hover{
+	
+	
+	border-image: url(:/images/images/logout1.png);
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
        </widget>
       </widget>
      </widget>
@@ -7183,7 +7442,7 @@ font-size: 17px;
 </string>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_29">
        <attribute name="title">
@@ -7355,7 +7614,7 @@ QComboBox QAbstractView{
 }</string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="depenses">
           <attribute name="title">
@@ -7886,6 +8145,22 @@ QComboBox QAbstractView{
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QLabel" name="label_294">
+         <property name="geometry">
+          <rect>
+           <x>920</x>
+           <y>50</y>
+           <width>101</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_31">
@@ -7970,25 +8245,6 @@ QPushButton:pressed {
           <bool>true</bool>
          </property>
         </widget>
-        <widget class="QLabel" name="label_202">
-         <property name="geometry">
-          <rect>
-           <x>790</x>
-           <y>40</y>
-           <width>81</width>
-           <height>81</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="pixmap">
-          <pixmap>../../../Downloads/logo_c++-1.png</pixmap>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-        </widget>
         <widget class="QLabel" name="label_203">
          <property name="geometry">
           <rect>
@@ -8012,10 +8268,26 @@ QPushButton:pressed {
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>60</y>
+           <y>140</y>
            <width>981</width>
-           <height>631</height>
+           <height>551</height>
           </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_296">
+         <property name="geometry">
+          <rect>
+           <x>910</x>
+           <y>40</y>
+           <width>91</width>
+           <height>91</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </widget>
@@ -8144,7 +8416,7 @@ QPushButton:pressed {
          <property name="geometry">
           <rect>
            <x>30</x>
-           <y>50</y>
+           <y>100</y>
            <width>181</width>
            <height>41</height>
           </rect>
@@ -8168,9 +8440,9 @@ QPushButton:pressed {
          <property name="geometry">
           <rect>
            <x>30</x>
-           <y>100</y>
+           <y>160</y>
            <width>971</width>
-           <height>591</height>
+           <height>491</height>
           </rect>
          </property>
          <property name="frameShape">
@@ -8184,7 +8456,7 @@ QPushButton:pressed {
          <property name="geometry">
           <rect>
            <x>230</x>
-           <y>50</y>
+           <y>100</y>
            <width>181</width>
            <height>41</height>
           </rect>
@@ -8202,6 +8474,22 @@ QPushButton:pressed {
          </property>
          <property name="text">
           <string>depenses</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_295">
+         <property name="geometry">
+          <rect>
+           <x>890</x>
+           <y>40</y>
+           <width>101</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </widget>
@@ -9026,8 +9314,64 @@ font-size: 50px;
           <string>télechrager fichier excel</string>
          </property>
         </widget>
+        <widget class="QLabel" name="label_297">
+         <property name="geometry">
+          <rect>
+           <x>880</x>
+           <y>40</y>
+           <width>71</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </widget>
       </widget>
+     </widget>
+     <widget class="QLabel" name="label_281">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>700</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 9pt &quot;Louis George Café&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Déconnexion</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="facebook_7">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>660</y>
+        <width>41</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	
+	border-image: url(:/images/images/logout.png);
+}
+QPushButton:hover{
+	
+	
+	border-image: url(:/images/images/logout1.png);
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="page_9">
@@ -9036,7 +9380,7 @@ font-size: 50px;
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>491</width>
+        <width>381</width>
         <height>721</height>
        </rect>
       </property>
@@ -9081,18 +9425,18 @@ QTabBar::tab:selected {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
-      <widget class="QWidget" name="tab_4">
+      <widget class="QWidget" name="tab_56">
        <attribute name="title">
         <string>Ajouter</string>
        </attribute>
-       <widget class="QGroupBox" name="groupBox_5">
+       <widget class="QGroupBox" name="groupBox_78">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>-30</y>
-          <width>491</width>
+          <width>381</width>
           <height>711</height>
          </rect>
         </property>
@@ -9195,11 +9539,11 @@ QRadioButton::indicator:checked:hover {
         <property name="title">
          <string/>
         </property>
-        <widget class="QLabel" name="label_38">
+        <widget class="QLabel" name="label_260">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>340</y>
+           <x>50</x>
+           <y>320</y>
            <width>81</width>
            <height>20</height>
           </rect>
@@ -9208,11 +9552,11 @@ QRadioButton::indicator:checked:hover {
           <string>Année:</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_39">
+        <widget class="QLabel" name="label_261">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>250</y>
+           <x>50</x>
+           <y>230</y>
            <width>81</width>
            <height>20</height>
           </rect>
@@ -9221,11 +9565,11 @@ QRadioButton::indicator:checked:hover {
           <string>Nom:</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_40">
+        <widget class="QLabel" name="label_262">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>70</y>
+           <x>50</x>
+           <y>50</y>
            <width>101</width>
            <height>20</height>
           </rect>
@@ -9234,11 +9578,11 @@ QRadioButton::indicator:checked:hover {
           <string>Référence:</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_41">
+        <widget class="QLabel" name="label_263">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>430</y>
+           <x>50</x>
+           <y>410</y>
            <width>81</width>
            <height>31</height>
           </rect>
@@ -9247,11 +9591,11 @@ QRadioButton::indicator:checked:hover {
           <string>État:</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_42">
+        <widget class="QLabel" name="label_264">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>160</y>
+           <x>50</x>
+           <y>140</y>
            <width>81</width>
            <height>20</height>
           </rect>
@@ -9260,11 +9604,11 @@ QRadioButton::indicator:checked:hover {
           <string>Marque:</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_8">
+        <widget class="QLineEdit" name="lineEdit_ref_aj">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>100</y>
+           <x>50</x>
+           <y>80</y>
            <width>251</width>
            <height>41</height>
           </rect>
@@ -9278,11 +9622,11 @@ QRadioButton::indicator:checked:hover {
           <string notr="true"/>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_9">
+        <widget class="QLineEdit" name="lineEdit_marque_aj">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>190</y>
+           <x>50</x>
+           <y>170</y>
            <width>251</width>
            <height>41</height>
           </rect>
@@ -9296,11 +9640,11 @@ QRadioButton::indicator:checked:hover {
           <string notr="true"/>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_10">
+        <widget class="QLineEdit" name="lineEdit_nom_aj">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>280</y>
+           <x>50</x>
+           <y>260</y>
            <width>251</width>
            <height>41</height>
           </rect>
@@ -9314,11 +9658,11 @@ QRadioButton::indicator:checked:hover {
           <string notr="true"/>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_11">
+        <widget class="QLineEdit" name="lineEdit_annee_aj">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>370</y>
+           <x>50</x>
+           <y>350</y>
            <width>251</width>
            <height>41</height>
           </rect>
@@ -9332,11 +9676,11 @@ QRadioButton::indicator:checked:hover {
           <string notr="true"/>
          </property>
         </widget>
-        <widget class="QPushButton" name="Ajouter_equipement">
+        <widget class="QPushButton" name="Ajouter_equipement_in">
          <property name="geometry">
           <rect>
-           <x>100</x>
-           <y>630</y>
+           <x>90</x>
+           <y>610</y>
            <width>176</width>
            <height>41</height>
           </rect>
@@ -9356,11 +9700,11 @@ QRadioButton::indicator:checked:hover {
           <string>Ajouter</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton">
+        <widget class="QRadioButton" name="radioButton_marche_aj">
          <property name="geometry">
           <rect>
-           <x>50</x>
-           <y>490</y>
+           <x>40</x>
+           <y>470</y>
            <width>141</width>
            <height>20</height>
           </rect>
@@ -9372,11 +9716,11 @@ QRadioButton::indicator:checked:hover {
           <string>En marche</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_2">
+        <widget class="QRadioButton" name="radioButton_panne_aj">
          <property name="geometry">
           <rect>
-           <x>220</x>
-           <y>490</y>
+           <x>210</x>
+           <y>470</y>
            <width>111</width>
            <height>20</height>
           </rect>
@@ -9388,11 +9732,11 @@ QRadioButton::indicator:checked:hover {
           <string>En panne</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_43">
+        <widget class="QLabel" name="label_265">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>540</y>
+           <x>50</x>
+           <y>520</y>
            <width>81</width>
            <height>31</height>
           </rect>
@@ -9401,17 +9745,17 @@ QRadioButton::indicator:checked:hover {
           <string>CIN:</string>
          </property>
         </widget>
-        <widget class="QComboBox" name="combo_cin">
+        <widget class="QComboBox" name="combo_cin_aj">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>580</y>
+           <x>50</x>
+           <y>560</y>
            <width>271</width>
            <height>31</height>
           </rect>
          </property>
         </widget>
-        <widget class="QLabel" name="cs2">
+        <widget class="QLabel" name="cs2_4">
          <property name="geometry">
           <rect>
            <x>260</x>
@@ -9424,7 +9768,7 @@ QRadioButton::indicator:checked:hover {
           <string/>
          </property>
         </widget>
-        <widget class="QLabel" name="cs3">
+        <widget class="QLabel" name="cs3_4">
          <property name="geometry">
           <rect>
            <x>260</x>
@@ -9437,7 +9781,7 @@ QRadioButton::indicator:checked:hover {
           <string/>
          </property>
         </widget>
-        <widget class="QLabel" name="cs4">
+        <widget class="QLabel" name="cs4_4">
          <property name="geometry">
           <rect>
            <x>260</x>
@@ -9450,7 +9794,7 @@ QRadioButton::indicator:checked:hover {
           <string/>
          </property>
         </widget>
-        <widget class="QLabel" name="cs1">
+        <widget class="QLabel" name="cs1_4">
          <property name="geometry">
           <rect>
            <x>260</x>
@@ -9465,16 +9809,16 @@ QRadioButton::indicator:checked:hover {
         </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_5">
+      <widget class="QWidget" name="tab_57">
        <attribute name="title">
         <string>Modifier</string>
        </attribute>
-       <widget class="QGroupBox" name="groupBox_6">
+       <widget class="QGroupBox" name="groupBox_79">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>-30</y>
-          <width>491</width>
+          <width>381</width>
           <height>711</height>
          </rect>
         </property>
@@ -9559,11 +9903,11 @@ QRadioButton::indicator:checked:hover {
         <property name="title">
          <string/>
         </property>
-        <widget class="QLabel" name="label_44">
+        <widget class="QLabel" name="label_266">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>340</y>
+           <x>50</x>
+           <y>320</y>
            <width>81</width>
            <height>20</height>
           </rect>
@@ -9572,11 +9916,11 @@ QRadioButton::indicator:checked:hover {
           <string>Année:</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_45">
+        <widget class="QLabel" name="label_267">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>250</y>
+           <x>50</x>
+           <y>230</y>
            <width>81</width>
            <height>20</height>
           </rect>
@@ -9585,11 +9929,11 @@ QRadioButton::indicator:checked:hover {
           <string>Nom:</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_46">
+        <widget class="QLabel" name="label_268">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>70</y>
+           <x>50</x>
+           <y>50</y>
            <width>101</width>
            <height>20</height>
           </rect>
@@ -9598,11 +9942,11 @@ QRadioButton::indicator:checked:hover {
           <string>Référence:</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_47">
+        <widget class="QLabel" name="label_269">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>430</y>
+           <x>50</x>
+           <y>410</y>
            <width>81</width>
            <height>31</height>
           </rect>
@@ -9611,11 +9955,11 @@ QRadioButton::indicator:checked:hover {
           <string>État:</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_48">
+        <widget class="QLabel" name="label_270">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>160</y>
+           <x>50</x>
+           <y>140</y>
            <width>81</width>
            <height>20</height>
           </rect>
@@ -9624,11 +9968,11 @@ QRadioButton::indicator:checked:hover {
           <string>Marque:</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_14">
+        <widget class="QLineEdit" name="lineEdit_marque_md">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>190</y>
+           <x>50</x>
+           <y>170</y>
            <width>251</width>
            <height>41</height>
           </rect>
@@ -9642,11 +9986,11 @@ QRadioButton::indicator:checked:hover {
           <string notr="true"/>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_15">
+        <widget class="QLineEdit" name="lineEdit_nom_md">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>280</y>
+           <x>50</x>
+           <y>260</y>
            <width>251</width>
            <height>41</height>
           </rect>
@@ -9660,11 +10004,11 @@ QRadioButton::indicator:checked:hover {
           <string notr="true"/>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_16">
+        <widget class="QLineEdit" name="lineEdit_annee_md">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>370</y>
+           <x>50</x>
+           <y>350</y>
            <width>251</width>
            <height>41</height>
           </rect>
@@ -9678,11 +10022,11 @@ QRadioButton::indicator:checked:hover {
           <string notr="true"/>
          </property>
         </widget>
-        <widget class="QPushButton" name="Modifier_equipement">
+        <widget class="QPushButton" name="Modifier_equipement_md">
          <property name="geometry">
           <rect>
-           <x>100</x>
-           <y>630</y>
+           <x>90</x>
+           <y>610</y>
            <width>176</width>
            <height>41</height>
           </rect>
@@ -9720,11 +10064,11 @@ QPushButton:pressed {
           <string>Modifier</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_3">
+        <widget class="QRadioButton" name="radioButton_marche_md">
          <property name="geometry">
           <rect>
-           <x>50</x>
-           <y>490</y>
+           <x>40</x>
+           <y>470</y>
            <width>141</width>
            <height>20</height>
           </rect>
@@ -9736,11 +10080,11 @@ QPushButton:pressed {
           <string>En marche</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_4">
+        <widget class="QRadioButton" name="radioButton_panne_md">
          <property name="geometry">
           <rect>
-           <x>220</x>
-           <y>490</y>
+           <x>210</x>
+           <y>470</y>
            <width>111</width>
            <height>20</height>
           </rect>
@@ -9752,11 +10096,11 @@ QPushButton:pressed {
           <string>En panne</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_49">
+        <widget class="QLabel" name="label_271">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>540</y>
+           <x>50</x>
+           <y>520</y>
            <width>81</width>
            <height>31</height>
           </rect>
@@ -9765,27 +10109,27 @@ QPushButton:pressed {
           <string>CIN:</string>
          </property>
         </widget>
-        <widget class="QComboBox" name="combo_ref">
+        <widget class="QComboBox" name="combo_ref_md">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>110</y>
+           <x>50</x>
+           <y>90</y>
            <width>271</width>
            <height>31</height>
           </rect>
          </property>
         </widget>
-        <widget class="QComboBox" name="combo_cin_2">
+        <widget class="QComboBox" name="combo_cin_md">
          <property name="geometry">
           <rect>
-           <x>60</x>
-           <y>580</y>
+           <x>50</x>
+           <y>560</y>
            <width>271</width>
            <height>31</height>
           </rect>
          </property>
         </widget>
-        <widget class="QLabel" name="cs5">
+        <widget class="QLabel" name="cs5_4">
          <property name="geometry">
           <rect>
            <x>260</x>
@@ -9798,7 +10142,7 @@ QPushButton:pressed {
           <string/>
          </property>
         </widget>
-        <widget class="QLabel" name="cs6">
+        <widget class="QLabel" name="cs6_4">
          <property name="geometry">
           <rect>
            <x>260</x>
@@ -9811,7 +10155,7 @@ QPushButton:pressed {
           <string/>
          </property>
         </widget>
-        <widget class="QLabel" name="cs7">
+        <widget class="QLabel" name="cs7_4">
          <property name="geometry">
           <rect>
            <x>260</x>
@@ -9826,16 +10170,16 @@ QPushButton:pressed {
         </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_6">
+      <widget class="QWidget" name="tab_58">
        <attribute name="title">
         <string>Supprimer</string>
        </attribute>
-       <widget class="QGroupBox" name="groupBox_8">
+       <widget class="QGroupBox" name="groupBox_80">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>-30</y>
-          <width>491</width>
+          <width>381</width>
           <height>711</height>
          </rect>
         </property>
@@ -9938,10 +10282,10 @@ QRadioButton::indicator:checked:hover {
         <property name="title">
          <string/>
         </property>
-        <widget class="QLabel" name="label_50">
+        <widget class="QLabel" name="label_272">
          <property name="geometry">
           <rect>
-           <x>50</x>
+           <x>20</x>
            <y>150</y>
            <width>301</width>
            <height>41</height>
@@ -9951,11 +10295,11 @@ QRadioButton::indicator:checked:hover {
           <string>Vous devez séléctionner la ligne</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="Supprimer_equipement">
+        <widget class="QPushButton" name="Supprimer_equipement_eq">
          <property name="geometry">
           <rect>
-           <x>130</x>
-           <y>510</y>
+           <x>90</x>
+           <y>520</y>
            <width>176</width>
            <height>41</height>
           </rect>
@@ -9975,10 +10319,10 @@ QRadioButton::indicator:checked:hover {
           <string>Supprimer</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_51">
+        <widget class="QLabel" name="label_273">
          <property name="geometry">
           <rect>
-           <x>60</x>
+           <x>30</x>
            <y>180</y>
            <width>271</width>
            <height>31</height>
@@ -9994,9 +10338,9 @@ QRadioButton::indicator:checked:hover {
      <widget class="QTabWidget" name="tabWidget_10">
       <property name="geometry">
        <rect>
-        <x>500</x>
+        <x>380</x>
         <y>0</y>
-        <width>1041</width>
+        <width>911</width>
         <height>721</height>
        </rect>
       </property>
@@ -10021,18 +10365,18 @@ QTabBar::tab:selected {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
-      <widget class="QWidget" name="tab_7">
+      <widget class="QWidget" name="tab_59">
        <attribute name="title">
         <string>Afficher</string>
        </attribute>
-       <widget class="QGroupBox" name="groupBox_9">
+       <widget class="QGroupBox" name="groupBox_81">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>-30</y>
-          <width>1091</width>
+          <width>911</width>
           <height>831</height>
          </rect>
         </property>
@@ -10066,7 +10410,7 @@ QLineEdit {
         <property name="title">
          <string/>
         </property>
-        <widget class="QLineEdit" name="Rechercher_equipement">
+        <widget class="QLineEdit" name="Rechercher_equipement_3">
          <property name="geometry">
           <rect>
            <x>30</x>
@@ -10084,10 +10428,10 @@ QLineEdit {
           <string notr="true"/>
          </property>
         </widget>
-        <widget class="QPushButton" name="chatbox">
+        <widget class="QPushButton" name="chatbox_3">
          <property name="geometry">
           <rect>
-           <x>960</x>
+           <x>840</x>
            <y>620</y>
            <width>41</width>
            <height>41</height>
@@ -10113,7 +10457,7 @@ QPushButton:hover{
           <string/>
          </property>
         </widget>
-        <widget class="QLabel" name="label_52">
+        <widget class="QLabel" name="label_274">
          <property name="geometry">
           <rect>
            <x>20</x>
@@ -10134,32 +10478,29 @@ QPushButton:hover{
           <string>Gestion des équipements</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_53">
+        <widget class="QLabel" name="label_275">
          <property name="geometry">
           <rect>
-           <x>940</x>
-           <y>40</y>
-           <width>81</width>
-           <height>81</height>
+           <x>740</x>
+           <y>120</y>
+           <width>21</width>
+           <height>21</height>
           </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border-image: url(:/images/images/logo_1.png);</string>
          </property>
          <property name="text">
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>../../../Downloads/logo_c++-1.png</pixmap>
+          <pixmap>../../Downloads/search.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
          </property>
         </widget>
-        <widget class="QComboBox" name="Trier_equipement">
+        <widget class="QComboBox" name="Trier_equipement_3">
          <property name="geometry">
           <rect>
-           <x>780</x>
+           <x>640</x>
            <y>160</y>
            <width>241</width>
            <height>31</height>
@@ -10216,10 +10557,10 @@ QComboBox QAbstractView{
           </property>
          </item>
         </widget>
-        <widget class="QLabel" name="label_55">
+        <widget class="QLabel" name="label_276">
          <property name="geometry">
           <rect>
-           <x>750</x>
+           <x>790</x>
            <y>120</y>
            <width>21</width>
            <height>21</height>
@@ -10232,18 +10573,18 @@ QComboBox QAbstractView{
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>../../../Downloads/recherche-a-la-loupe.png</pixmap>
+          <pixmap>../../Downloads/recherche-a-la-loupe.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
          </property>
         </widget>
-        <widget class="QTableView" name="tableView">
+        <widget class="QTableView" name="tableView_4">
          <property name="geometry">
           <rect>
            <x>30</x>
            <y>200</y>
-           <width>991</width>
+           <width>851</width>
            <height>391</height>
           </rect>
          </property>
@@ -10260,10 +10601,10 @@ QHeaderView::section {
 }</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_56">
+        <widget class="QLabel" name="label_277">
          <property name="geometry">
           <rect>
-           <x>950</x>
+           <x>830</x>
            <y>660</y>
            <width>61</width>
            <height>20</height>
@@ -10276,10 +10617,10 @@ QHeaderView::section {
           <string>Chat Box</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="facebook">
+        <widget class="QPushButton" name="facebook_5">
          <property name="geometry">
           <rect>
-           <x>800</x>
+           <x>680</x>
            <y>620</y>
            <width>41</width>
            <height>41</height>
@@ -10298,10 +10639,10 @@ QPushButton:hover{
           <string/>
          </property>
         </widget>
-        <widget class="QPushButton" name="instagram">
+        <widget class="QPushButton" name="instagram_3">
          <property name="geometry">
           <rect>
-           <x>880</x>
+           <x>760</x>
            <y>620</y>
            <width>41</width>
            <height>41</height>
@@ -10320,10 +10661,10 @@ QPushButton:hover{
           <string/>
          </property>
         </widget>
-        <widget class="QLabel" name="label_57">
+        <widget class="QLabel" name="label_278">
          <property name="geometry">
           <rect>
-           <x>790</x>
+           <x>670</x>
            <y>660</y>
            <width>71</width>
            <height>20</height>
@@ -10336,10 +10677,10 @@ QPushButton:hover{
           <string>Facebook</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_58">
+        <widget class="QLabel" name="label_279">
          <property name="geometry">
           <rect>
-           <x>870</x>
+           <x>750</x>
            <y>660</y>
            <width>71</width>
            <height>20</height>
@@ -10352,7 +10693,7 @@ QPushButton:hover{
           <string>Instagram</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="facebook_3">
+        <widget class="QPushButton" name="facebook_6">
          <property name="geometry">
           <rect>
            <x>50</x>
@@ -10376,7 +10717,7 @@ QPushButton:hover{
           <string/>
          </property>
         </widget>
-        <widget class="QLabel" name="label_59">
+        <widget class="QLabel" name="label_280">
          <property name="geometry">
           <rect>
            <x>20</x>
@@ -10392,18 +10733,57 @@ QPushButton:hover{
           <string>Déconnexion</string>
          </property>
         </widget>
+        <widget class="QLabel" name="label_282">
+         <property name="geometry">
+          <rect>
+           <x>800</x>
+           <y>40</y>
+           <width>101</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="connecter_3">
+         <property name="geometry">
+          <rect>
+           <x>130</x>
+           <y>620</y>
+           <width>41</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton
+{
+	border-image: url(:/images/images/return1.png);
+}
+QPushButton:hover
+{
+	border-image: url(:/images/images/return.png);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_8">
+      <widget class="QWidget" name="tab_60">
        <attribute name="title">
         <string>Historique</string>
        </attribute>
-       <widget class="QGroupBox" name="groupBox_10">
+       <widget class="QGroupBox" name="groupBox_82">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>1041</width>
+          <width>911</width>
           <height>661</height>
          </rect>
         </property>
@@ -10416,7 +10796,7 @@ QPushButton:hover{
         <property name="title">
          <string/>
         </property>
-        <widget class="QTextBrowser" name="historique">
+        <widget class="QTextBrowser" name="historique_5">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -10432,26 +10812,7 @@ font: 13pt &quot;Louis George Café&quot;;
 }</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_60">
-         <property name="geometry">
-          <rect>
-           <x>820</x>
-           <y>10</y>
-           <width>81</width>
-           <height>81</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="pixmap">
-          <pixmap>../../../Downloads/logo_c++-1.png</pixmap>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_84">
+        <widget class="QLabel" name="label_283">
          <property name="geometry">
           <rect>
            <x>40</x>
@@ -10464,13 +10825,13 @@ font: 13pt &quot;Louis George Café&quot;;
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>../../../Downloads/historical.png</pixmap>
+          <pixmap>../../Downloads/historical.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
          </property>
         </widget>
-        <widget class="QLabel" name="label_85">
+        <widget class="QLabel" name="label_284">
          <property name="geometry">
           <rect>
            <x>110</x>
@@ -10491,6 +10852,292 @@ font: 13pt &quot;Louis George Café&quot;;
           <string>Historique</string>
          </property>
         </widget>
+        <widget class="QLabel" name="label_285">
+         <property name="geometry">
+          <rect>
+           <x>810</x>
+           <y>10</y>
+           <width>81</width>
+           <height>81</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_61">
+       <attribute name="title">
+        <string>Tri de couleurs</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_83">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>911</width>
+          <height>661</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox
+{
+	background-color: #F3F3F3;
+}</string>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_286">
+         <property name="geometry">
+          <rect>
+           <x>110</x>
+           <y>30</y>
+           <width>211</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Louis George Café</family>
+           <pointsize>18</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Tri de couleurs</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_287">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>30</y>
+           <width>61</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/waste.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="scaledContents">
+          <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="Demarrer_arduino_3">
+         <property name="geometry">
+          <rect>
+           <x>320</x>
+           <y>410</y>
+           <width>201</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Louis George Café</family>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    color: rgb(255, 255, 255);
+  background-color: #4d7cff;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: beige;
+    min-width: 10em;
+    padding: 6px;
+}
+QPushButton:hover {
+color: #fff;
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+QPushButton:pressed {
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}</string>
+         </property>
+         <property name="text">
+          <string>Démarrer</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_288">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>170</y>
+           <width>271</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Louis George Café</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel
+{
+color: black;
+font-size: 20px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Veuillez choisir une machine: </string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="combo_ref_7">
+         <property name="geometry">
+          <rect>
+           <x>320</x>
+           <y>180</y>
+           <width>211</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #797979, stop:0.48 #696969, stop:0.52 #5e5e5e, stop:1 #4f4f4f);
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+	color: #ffffff;
+}
+QComboBox::drop-down {
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 20px;
+ 
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+QComboBox::down-arrow {
+     image: url(:/images/combobox-arrow.png);
+}
+ 
+QComboBox QAbstractView{
+	background-color: #4f4f4f;
+	color: #999999;
+ 
+	selection-background-color: rgb(252, 252, 252);
+	selection-color: #4f4f4f;
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="bubbles_3">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>721</width>
+           <height>621</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_289">
+         <property name="geometry">
+          <rect>
+           <x>810</x>
+           <y>10</y>
+           <width>91</width>
+           <height>91</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_290">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>520</y>
+           <width>231</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Louis George Café</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel
+{
+color: black;
+font-size: 20px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Nombre de pièces triées:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="nb_pieces_3">
+         <property name="geometry">
+          <rect>
+           <x>280</x>
+           <y>520</y>
+           <width>191</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Louis George Café</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel
+{
+color: black;
+font-size: 20px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <zorder>bubbles_3</zorder>
+        <zorder>label_286</zorder>
+        <zorder>label_287</zorder>
+        <zorder>Demarrer_arduino_3</zorder>
+        <zorder>label_288</zorder>
+        <zorder>combo_ref_7</zorder>
+        <zorder>label_289</zorder>
+        <zorder>label_290</zorder>
+        <zorder>nb_pieces_3</zorder>
        </widget>
       </widget>
      </widget>
@@ -12173,7 +12820,7 @@ font-size: 17px;
 }</string>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tab_39">
         <attribute name="title">
@@ -12328,16 +12975,13 @@ QComboBox QAbstractView{
            </rect>
           </property>
           <property name="styleSheet">
-           <string notr="true">image::url(:/new/prefix1/images/logo_c++-1.png)</string>
+           <string notr="true">border-image: url(:/images/images/logo_machine.png);</string>
           </property>
           <property name="text">
            <string/>
           </property>
-          <property name="pixmap">
-           <pixmap resource="img.qrc">:/new/prefix1/images/logo_c++-1.png</pixmap>
-          </property>
           <property name="scaledContents">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
          </widget>
          <widget class="QPushButton" name="Calendrier">
@@ -12420,6 +13064,253 @@ QComboBox QAbstractView{
        </widget>
       </widget>
      </widget>
+     <widget class="QLabel" name="label_293">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>790</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 9pt &quot;Louis George Café&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Déconnexion</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="facebook_10">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>750</y>
+        <width>41</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	
+	border-image: url(:/images/images/logout.png);
+}
+QPushButton:hover{
+	
+	
+	border-image: url(:/images/images/logout1.png);
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="connecter_6">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>750</y>
+        <width>41</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton
+{
+	border-image: url(:/images/images/return1.png);
+}
+QPushButton:hover
+{
+	border-image: url(:/images/images/return.png);
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page">
+     <widget class="QGroupBox" name="groupBox_5">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>20</y>
+        <width>961</width>
+        <height>681</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox{
+	background-color: rgb(255, 255, 255);
+}
+QLineEdit {
+	font: 10pt &quot;Nirmala UI Semilight&quot;;
+	
+	
+	
+
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 0 8px;
+    background: white;
+    selection-background-color: darkgray;
+}
+</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>650</x>
+         <y>600</y>
+         <width>172</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    color: rgb(255, 255, 255);
+  background-color: #4d7cff;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: beige;
+    min-width: 10em;
+    padding: 6px;
+}
+QPushButton:hover {
+color: #fff;
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+QPushButton:pressed {
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}</string>
+       </property>
+       <property name="text">
+        <string>Envoyer</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="line_message">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>600</y>
+         <width>531</width>
+         <height>51</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_38">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>20</y>
+         <width>51</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_39">
+       <property name="geometry">
+        <rect>
+         <x>730</x>
+         <y>10</y>
+         <width>61</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>../../Downloads/logo_c++-1 (1).png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="connecter">
+       <property name="geometry">
+        <rect>
+         <x>580</x>
+         <y>600</y>
+         <width>51</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:/images/images/connection.png);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="nom_user">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>30</y>
+         <width>201</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel
+{
+	font: 63 10pt &quot;Yu Gothic UI Semibold&quot;;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="connecter_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+	border-image: url(:/images/images/return1.png);
+}
+QPushButton:hover
+{
+	border-image: url(:/images/images/return.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QTextBrowser" name="textEdit">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>100</y>
+         <width>961</width>
+         <height>451</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 231, 231);
+font: 25 12pt &quot;Malgun Gothic Semilight&quot;;</string>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -12428,7 +13319,7 @@ QComboBox QAbstractView{
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1580</width>
+     <width>1599</width>
      <height>26</height>
     </rect>
    </property>
