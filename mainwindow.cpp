@@ -416,8 +416,8 @@ void MainWindow::update_label()
     bool test=true;
     QString data2 = ard.read_from_arduino();
 
-   qDebug()<<data2;
-   qDebug()<<"ind="<<ind;
+
+
 
    QString numstring="";
        for (int var = 0; var < data2.length(); ++var) {
@@ -426,50 +426,132 @@ void MainWindow::update_label()
                 numstring =numstring+QString::number(data2.at(var).digitValue());
            }
        }
-       if(ind==5)
-       {if(numstring.length()>1)
-       {
        QSqlQuery query;
-       query.prepare("SELECT FONCTION,SERIAL_NUMBER FROM EMPLOYE WHERE SERIAL_NUMBER LIKE :SERIAL_NUMBER");
+       query.prepare("SELECT FONCTION,NOM,PRENOM,SERIAL_NUMBER FROM EMPLOYE WHERE SERIAL_NUMBER LIKE :SERIAL_NUMBER");
        query.bindValue(":SERIAL_NUMBER", numstring);
        query.exec();
        query.next();
        QString serial=query.value("SERIAL_NUMBER").toString();
        QString fonction=query.value("FONCTION").toString();
+       QString nom=query.value("NOM").toString();
+       QString prenom=query.value("PRENOM").toString();
 
 
-   qDebug()<<"serial="<<serial;
-    if(numstring == serial )
+
+       if(ind==1)
+       {if(numstring.length()>1)
+       {
+
+
+    if((numstring == serial ) && (fonction=="Gerant"))
     {
 
-        QMessageBox::information(this,"Access granted",fonction);
-        ard.write_to_arduino("1");
+
+        if(x==1)
+                   {
+                      ard.write_to_arduino2("1");
+                      ui->stackedWidget->setCurrentIndex(1);
+                      deplacement=1;
+                      QMessageBox::information(this,"Logout",fonction);
+                    }
+
+         else if (x==0)
+                    { ard.write_to_arduino2("1");
+                      ui->stackedWidget->setCurrentIndex(2);
+                      deplacement=2;
+                      QMessageBox::information(this,"Login",fonction);
+                    }
+        x++;
+        if (x==2)
+        x=0;
+
+                test=true;
+    }
+    else if((numstring == serial ) && (fonction=="Magasinier"))
+    {
+        if(y==1)
+                 {
+                   ard.write_to_arduino2("1");
+                   ui->stackedWidget->setCurrentIndex(1);
+                   deplacement=1;
+                   QMessageBox::information(this,"Logout",fonction);
+                 }
+
+        else if (y==0)
+                 { ard.write_to_arduino2("1");
+                   ui->stackedWidget->setCurrentIndex(3);
+                   deplacement=3;
+                   QMessageBox::information(this,"Login",fonction);
+                  }
+        y++;
+        if (y==2)
+        y=0;
+
+
+                test=true;
+    }
+    else if((numstring == serial ) && (fonction=="Caissier"))
+    {
+        if(z==1)
+                  {   ard.write_to_arduino2("1");
+                      ui->stackedWidget->setCurrentIndex(1);
+                      deplacement=1;
+                      QMessageBox::information(this,"Logout",fonction);
+                  }
+         else if (z==0)
+
+                    { ard.write_to_arduino2("1");
+                      ui->stackedWidget->setCurrentIndex(4);
+                      deplacement=4;
+                     QMessageBox::information(this,"Login",fonction);}
+        z++;
+        if (z==2)
+         z=0;
+
+
+                test=true;
     }
 
     else
-    {
-        QMessageBox::information(this,"Error","Access denied");
+    {   ard.write_to_arduino2("0");
+        QMessageBox::information(this,"Erreur","Accès interdit");
         test=false;
-        ard.write_to_arduino("0");
+
+    }
+    bool w;
+     w=emp.update(numstring);
+     qDebug()<<"w="<<w;
+     Historique h;
+            ui->presence_emp->setText(h.load_door());
+            h.save_door(fonction,nom,prenom,test);
+            ui->presence_emp->setText(h.load_door());
+    }
+    ui->tab_employe->setModel(emp.afficher());
+ }
+
+
+  else if(ind==5)
+       {if(numstring.length()!=0)
+       {
+
+    if(numstring == serial)
+    {
+        ard.write_to_arduino2("1");
+        QMessageBox::information(this,"Accès garanti",fonction);
+        test=true;
+    }
+    else
+    {
+        ard.write_to_arduino2("0");
+        QMessageBox::information(this,"Erreur","Accès interdit");
+        test=false;
+
     }
      emp.update(numstring);
-
-    QSqlQuery query1;
-
-        query1.prepare("SELECT * FROM EMPLOYE WHERE SERIAL_NUMBER LIKE :SERIAL_NUMBER");
-        query1.bindValue(":SERIAL_NUMBER",numstring);
-        query1.exec();
-        query1.next();
-        QString fn=query1.value("FONCTION").toString();
-                QString nom=query1.value("NOM").toString();
-                QString prenom=query1.value("PRENOM").toString();
-
-        Historique h;
+     Historique h;
             ui->presence_emp->setText(h.load_door());
-            h.save_door(fn,nom,prenom,test);
+            h.save_door(fonction,nom,prenom,test);
             ui->presence_emp->setText(h.load_door());
-
-
     }
     ui->tab_employe->setModel(emp.afficher());}
     //arduino ines + ramy
@@ -890,8 +972,8 @@ void MainWindow::on_modifier_employe_clicked()
 }
 
 void MainWindow::on_gestion_employes_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(4);
+{ind=5;
+    ui->stackedWidget->setCurrentIndex(5);
 }
 
 void MainWindow::on_tri_emp_activated(int index)

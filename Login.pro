@@ -63,8 +63,6 @@ qrcode.h
 
 FORMS += \
     mainwindow.ui \
-    widget.ui \
-    chat.ui \
     secformdialog.ui
 
 OTHER_FILES += qml/main.qml
@@ -84,7 +82,7 @@ RESOURCES += \
     res.qrc \
     Ressources.qrc \
     img.qrc \
-    mymap.qrc
+    resources.qrc
 
 target.path = $$[QT_INSTALL_EXAMPLES]/quickcontrols/controls/calendar
 INSTALLS += target

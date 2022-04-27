@@ -18,6 +18,8 @@ public:
     QString read_from_arduino();
     QSerialPort* getserial();
     QString getarduino_port_name(){return arduino_port_name;};
+    void write_to_arduino2(QString  d);
+    QByteArray read_from_arduino2();
 
 private:
     QSerialPort* serial;
@@ -26,6 +28,7 @@ private:
     QString arduino_port_name;
     bool arduino_is_available;
     QByteArray data;
+
     //QByteArray serialData;
     //QString serialBuffer;
 };

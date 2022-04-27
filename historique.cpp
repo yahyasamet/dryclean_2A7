@@ -154,7 +154,7 @@ void Historique::save_door(QString fn,QString nom,QString prenom,bool test)
 {
     QDateTime date = QDateTime::currentDateTime();
     QString time=date.toString();
-    QFile file ("C:/Users/ASUS/Documents/interface/interface/Historique_door.txt");
+    QFile file ("C:/Users/zeine/Desktop/dryclean_2A7-main//Historique_door.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";
      QTextStream out(&file);
@@ -165,7 +165,7 @@ void Historique::save_door(QString fn,QString nom,QString prenom,bool test)
 
 QString Historique::load_door()
 {   tmp="";
-    QFile file("C:/Users/ASUS/Documents/interface/interface/Historique_door.txt");
+    QFile file("C:/Users/zeine/Desktop/dryclean_2A7-main//Historique_door.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
           tmp="";
 

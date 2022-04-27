@@ -69,20 +69,20 @@ QString arduino::read_from_arduino(){
 
         }
     }
-         qDebug()<<"read:"<<list.join(',');
+
         return list.join(',');
 }
 
 int arduino::write_to_arduino(QString d){
     int i = 0;
     int size = d.size();
-    qDebug()<<"write:"<<d;
+    //qDebug()<<"write:"<<d;
     QString line = "";
     int c = 0;
     while(i < size){
         line.append(d[i]);
-        if(c == size){
-            serial->write(line.toUtf8(), size);
+        if(c == 24){
+            serial->write(line.toUtf8(), 24);
             serial->flush();
             line.clear();
             c = 0;
@@ -93,6 +93,17 @@ int arduino::write_to_arduino(QString d){
     if(c > 0){
         serial->write(line.toUtf8(), c);
     }
+    qDebug() << "c: " << c;
     serial->flush();
     return 0;
+}
+
+
+
+void arduino::write_to_arduino2(QString  d)
+{
+    if(serial->isWritable())
+        serial->write(d.toUtf8());
+    else
+        qDebug() << "Couldn't write to serial";
 }

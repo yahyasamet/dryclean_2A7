@@ -373,9 +373,9 @@ bool employe::chercher_employe(QString email)
 bool employe::update(QString data)
 {
     QSqlQuery query;
-    query.prepare("UPDATE EMPLOYE SET PRESENCE=:presence WHERE SERIAL_NUMBER=:SERIAL_NUMBER");
+    query.prepare("UPDATE EMPLOYE SET PRESENCE=:PRESENCE WHERE SERIAL_NUMBER LIKE :SERIAL_NUMBER");
 
-    query.bindValue(":PRESENCE",presence);
+    query.bindValue(":PRESENCE",1);
     query.bindValue(":SERIAL_NUMBER",data);
 
     return query.exec();

@@ -48,7 +48,9 @@ public:
    void finTempo1();
    QString load();
    QString get_temps();
-
+    int x=0;
+    int y=0;
+    int z=0;
 
 
 public slots:
@@ -268,7 +270,7 @@ private:
 QTimer *timer;
     equipements E;
     QSound *success,*error;
-int ind=0;
+int ind=1;
     livraisons L;
     SECFORMDialog *secDialog;
     widget w;

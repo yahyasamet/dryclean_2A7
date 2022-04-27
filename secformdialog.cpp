@@ -11,7 +11,6 @@ SECFORMDialog::SECFORMDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
     qmlRegisterType<SqlEventModel>("org.qtproject.examples.calendar", 1, 0, "SqlEventModel");
     ui->quickWidget->setSource(QUrl("qrc:/qml/main.qml"));
     ui->quickWidget->show();
@@ -19,6 +18,5 @@ SECFORMDialog::SECFORMDialog(QWidget *parent) :
 
 SECFORMDialog::~SECFORMDialog()
 {
-
     delete ui;
 }
