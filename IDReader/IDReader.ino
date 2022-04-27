@@ -67,9 +67,11 @@ if (piccType != MFRC522::PICC_TYPE_MIFARE_MINI &&
 
 NUID_dec = String(rfid.uid.uidByte[0])+String(rfid.uid.uidByte[1])+String(rfid.uid.uidByte[2])+String(rfid.uid.uidByte[3]);
 //Serial.print("NUID Tag (DEC): "); 
+if(NUID_dec!=0)
+{
 Serial.println(NUID_dec); 
 
-NUID_hex = String(rfid.uid.uidByte[0], HEX) + " "
+/*NUID_hex = String(rfid.uid.uidByte[0], HEX) + " "
            +String(rfid.uid.uidByte[1], HEX) + " "
            +String(rfid.uid.uidByte[2], HEX) + " " 
            +String(rfid.uid.uidByte[3], HEX);
@@ -79,14 +81,14 @@ NUID_hex.toUpperCase();
 
 for (byte i = 0; i < 4; i++) {
 nuidPICC[i] = rfid.uid.uidByte[i];
-}
+}*/
   
        x=Serial.readString(); 
        
 
-if (compareNUID(nuidPICC, 67, 247, 82, 148)) 
+if (x=="1")
     {//Serial.println("Welcome manager");
-      if ((locked == true) && (x=="1"))       //If the lock is closed then open it
+      if (locked == true)       //If the lock is closed then open it
       {
           lockServo.write(lockPos);
           locked = false;
@@ -99,7 +101,7 @@ if (compareNUID(nuidPICC, 67, 247, 82, 148))
            delay(200);
            digitalWrite(greenLEDPin, LOW);
       }
-      else if ((locked == false)&& (x=="1"))   //If the lock is open then close it
+      else if (locked == false)   //If the lock is open then close it
       { 
         
           lockServo.write(unlockPos);
@@ -115,71 +117,9 @@ if (compareNUID(nuidPICC, 67, 247, 82, 148))
       }
      
     }
-else if (compareNUID(nuidPICC, 83, 133, 106, 25)) 
-    {//Serial.println("Welcome storekeeper"); 
-      if ((locked == true)   && (x=="1")  )   //If the lock is closed then open it
-      {
-          lockServo.write(lockPos);
-          locked = false;
-          // Serial.println("Door unlocked");
-          digitalWrite(greenLEDPin, HIGH);
-          delay(200);
-          digitalWrite(greenLEDPin, LOW);
-           delay(200);
-           digitalWrite(greenLEDPin, HIGH);
-           delay(200);
-           digitalWrite(greenLEDPin, LOW);
-      }
-      else if ((locked == false) && (x=="1")  ) //If the lock is open then close it
-      { 
-        
-          lockServo.write(unlockPos);
-          locked = true;
-          //Serial.println("Door locked");
-          digitalWrite(redLEDPin, HIGH);
-          delay(200);
-          digitalWrite(redLEDPin, LOW);
-          delay(200);
-           digitalWrite(redLEDPin, HIGH);
-          delay(200);
-          digitalWrite(redLEDPin, LOW);
-      }
-     
-    }
 
- else if (compareNUID(nuidPICC, 124, 75, 96, 73)) 
-    {//Serial.println("Welcome cashier"); 
-      if( (locked == true)    &&  (x=="1") )     //If the lock is closed then open it
-      {
-          lockServo.write(lockPos);
-          locked = false;
-           //Serial.println("Door unlocked");
-          digitalWrite(greenLEDPin, HIGH);
-          delay(200);
-          digitalWrite(greenLEDPin, LOW);
-           delay(200);
-           digitalWrite(greenLEDPin, HIGH);
-           delay(200);
-           digitalWrite(greenLEDPin, LOW);
-      }
-      else if( (locked == false) && (x=="1") )   //If the lock is open then close it
-      { 
-        
-          lockServo.write(unlockPos);
-          locked = true;
-          //Serial.println("Door locked");
-          digitalWrite(redLEDPin, HIGH);
-          delay(200);
-          digitalWrite(redLEDPin, LOW);
-          delay(200);
-           digitalWrite(redLEDPin, HIGH);
-          delay(200);
-          digitalWrite(redLEDPin, LOW);
-      }
-     
-    }   
-else 
-     {if ((locked == false)  && (x=="0") )  //If the lock is open then close it
+else if (x=="0")
+     {if (locked == false)  //If the lock is open then close it
       {
           lockServo.write(unlockPos);
           locked = true;
@@ -202,10 +142,10 @@ rfid.PICC_HaltA();
 // Stop encryption on PCD
 rfid.PCD_StopCrypto1();
 }
-
-boolean compareNUID(byte x[4], byte x0, byte x1, byte x2, byte x3)
+}
+/*boolean compareNUID(byte x[4], byte x0, byte x1, byte x2, byte x3)
 {
 if (x[0] == x0 && x[1] == x1 && x[2] == x2 && x[3] == x3)
 return true; 
 else return false;
-}
+}*/
