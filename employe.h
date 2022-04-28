@@ -38,7 +38,7 @@ public:
     void setPresence (int );
     void setSerial_number (QString);
 
-
+    bool chercher_password(QString pass);
     bool ajouter();
     bool supprimer(QString);
     QSqlQueryModel *afficher();

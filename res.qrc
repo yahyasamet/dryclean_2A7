@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/new/prefix1">
-        <file>myappico.png</file>
+        <file>images/logo_machine.png</file>
     </qresource>
 </RCC>

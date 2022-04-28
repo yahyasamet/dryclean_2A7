@@ -4,20 +4,21 @@
 arduino::arduino()
 {
     data="";
-               arduino_port_name="";
-               arduino_is_available=false;
-               serial=new QSerialPort;
+    arduino_port_name="";
+    arduino_is_available=false;
+    serial=new QSerialPort;
 
 
 }
 
-int arduino::connect_arduino(){
+int arduino::connect_arduino()
+{
 
     foreach(const QSerialPortInfo& serial_port_info, QSerialPortInfo::availablePorts())
     {
         if(serial_port_info.hasVendorIdentifier() && serial_port_info.hasProductIdentifier())
         {
-           if(serial_port_info.vendorIdentifier() == arduino_uno_vendor_id && serial_port_info.productIdentifier() == arduino_uno_producy_id)
+            if(serial_port_info.vendorIdentifier() == arduino_uno_vendor_id && serial_port_info.productIdentifier() == arduino_uno_producy_id)
             {
                 arduino_is_available = true;
                 arduino_port_name = serial_port_info.portName();
@@ -46,8 +47,10 @@ int arduino::connect_arduino(){
     return -1;
 }
 
-int arduino::close_arduino(){
-    if(serial->isOpen()){
+int arduino::close_arduino()
+{
+    if(serial->isOpen())
+    {
         serial->close();
         return 0;
     }
@@ -59,29 +62,35 @@ QSerialPort* arduino::getserial()
     return serial;
 }
 
-QString arduino::read_from_arduino(){
+QString arduino::read_from_arduino()
+{
     QStringList list;
-        if(serial->isReadable()){
+    if(serial->isReadable())
+    {
 
-            while (serial->canReadLine()) {
-                QByteArray data = serial->readLine();
-               list = QString(data).split(',');
+        while (serial->canReadLine())
+        {
+            QByteArray data = serial->readLine();
+            list = QString(data).split(',');
 
         }
     }
 
-        return list.join(',');
+    return list.join(',');
 }
 
-int arduino::write_to_arduino(QString d){
+int arduino::write_to_arduino(QString d)
+{
     int i = 0;
     int size = d.size();
     //qDebug()<<"write:"<<d;
     QString line = "";
     int c = 0;
-    while(i < size){
+    while(i < size)
+    {
         line.append(d[i]);
-        if(c == 24){
+        if(c == 24)
+        {
             serial->write(line.toUtf8(), 24);
             serial->flush();
             line.clear();
@@ -90,7 +99,8 @@ int arduino::write_to_arduino(QString d){
         i++;
         c++;
     }
-    if(c > 0){
+    if(c > 0)
+    {
         serial->write(line.toUtf8(), c);
     }
     qDebug() << "c: " << c;

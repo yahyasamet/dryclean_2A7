@@ -12,13 +12,13 @@ Fournisseurs::Fournisseurs()
        EMAIL_F="";
        TYPE_ACHATF="";
        QUANTITE_F=0;
-       PRIX_F=0;
+       PRIX_F="";
 
 
 }
 
 
-Fournisseurs::Fournisseurs(QString MATRICULE_F, QString NOMSOCIETE,QString NUMERO_TEL,QString ADRESSE_SOCIETE,QString EMAIL_F,QString TYPE_ACHATF, int QUANTITE_F, int PRIX_F)
+Fournisseurs::Fournisseurs(QString MATRICULE_F, QString NOMSOCIETE,QString NUMERO_TEL,QString ADRESSE_SOCIETE,QString EMAIL_F,QString TYPE_ACHATF, int QUANTITE_F, QString PRIX_F)
 {
     this->MATRICULE_F=MATRICULE_F;
     this->NOMSOCIETE=NOMSOCIETE;
@@ -46,7 +46,7 @@ QString Fournisseurs::getTYPE_ACHATF()
 { return TYPE_ACHATF;}
 int Fournisseurs::getQUANTITE_F()
 { return QUANTITE_F;}
-int Fournisseurs::getPRIX_F()
+QString Fournisseurs::getPRIX_F()
 {return PRIX_F;}
 
 void Fournisseurs::setMATRICULE_F(QString MATRICULE_F)
@@ -63,7 +63,7 @@ void Fournisseurs::setTYPE_ACHATF(QString TYPE_ACHATF)
 {this->TYPE_ACHATF=TYPE_ACHATF;}
 void Fournisseurs::setQUANTITE_F (int QUANTITE_F)
 {this->QUANTITE_F=QUANTITE_F;}
-void Fournisseurs::setPRIX_F (int PRIX_F)
+void Fournisseurs::setPRIX_F (QString PRIX_F)
 {this->PRIX_F=PRIX_F;}
 
 

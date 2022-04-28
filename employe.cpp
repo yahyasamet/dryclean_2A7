@@ -142,22 +142,22 @@ bool employe::ajouter()
 }
 
 QSqlQueryModel * employe::afficher()
-   {
-       QSqlQueryModel* model=new QSqlQueryModel();
+{
+    QSqlQueryModel* model=new QSqlQueryModel();
 
-             model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE");
-             model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
-             model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
-             model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
-             model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
-             model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
-             model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
-             model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
-             model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
-             model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
-       return model;
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+    model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
+    return model;
 
-   }
+}
 bool employe::supprimer(QString cin)
 {
     QSqlQuery query;
@@ -186,7 +186,7 @@ bool employe::modifier(QString cin)
 
 bool employe:: string_test(QString ch)
 {
-    for (int i=0;i!=ch.length();i++)
+    for (int i=0; i!=ch.length(); i++)
     {
         if (!((ch[i] >= 'A' && ch[i]<='Z') || (ch[i] >= 'a' && ch[i]<='z')))
             return false;
@@ -341,33 +341,44 @@ QSqlQueryModel *employe:: tri_salaire_desc()
 QSqlQueryModel* employe::recherche_avancee_employe(QString ch)
 {
     QSqlQueryModel * model =new QSqlQueryModel();
-       QSqlQuery query;
-       model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE WHERE CIN LIKE'%"+ch+"%' or LOWER(NOM) LIKE LOWER('%"+ch+"%') or LOWER(PRENOM) LIKE LOWER('%"+ch+"%') or LOWER(FONCTION) LIKE LOWER('%"+ch+"%')");
-       query.bindValue(":ch",ch);
-       query.exec();
+    QSqlQuery query;
+    model->setQuery("SELECT CIN,NOM,PRENOM,AGE,EMAIL,NUM_TEL,FONCTION,SALAIRE,PRESENCE FROM EMPLOYE WHERE CIN LIKE'%"+ch+"%' or LOWER(NOM) LIKE LOWER('%"+ch+"%') or LOWER(PRENOM) LIKE LOWER('%"+ch+"%') or LOWER(FONCTION) LIKE LOWER('%"+ch+"%')");
+    query.bindValue(":ch",ch);
+    query.exec();
 
-       model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
-       model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
-       model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
-       model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
-       model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
-       model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
-       model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
-       model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
-       model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("AGE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_TEL"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("FONCTION"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("SALAIRE"));
+    model->setHeaderData(8, Qt::Horizontal, QObject::tr("PRESENCE"));
 
-       return model;
+    return model;
 }
 
 bool employe::chercher_employe(QString email)
 {
-   QSqlQuery query;
-   query.prepare("SELECT * FROM EMPLOYE WHERE EMAIL= :EMAIL");
-   query.bindValue(":EMAIL", email);
-   if (query.exec() && query.next())
-           return true;
-   else
-       return false;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM EMPLOYE WHERE EMAIL= :EMAIL");
+    query.bindValue(":EMAIL", email);
+    if (query.exec() && query.next())
+        return true;
+    else
+        return false;
+}
+
+bool employe::chercher_password(QString pass)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM EMPLOYE WHERE PASSWORD= :PASSWORD");
+    query.bindValue(":PASSWORD", pass);
+    if (query.exec() && query.next())
+        return true;
+    else
+        return false;
 }
 
 bool employe::update(QString data)

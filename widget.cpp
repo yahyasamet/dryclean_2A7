@@ -44,7 +44,7 @@ if(ui->line_message->text()!="")
     QTextStream T(mSocket);
     T << ui->nom_user->text()<<": "<<ui->line_message->text();
     mSocket->flush();
-    QFile file ("C:/Users/ASUS/Documents/interface/interface/chat.txt");
+    QFile file ("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/chat.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";
      QTextStream out(&file);
@@ -60,7 +60,7 @@ void widget::on_connecter_clicked()
     mSocket->connectToHost("localhost",3333);
     ui->textEdit->setText(load());
     QString temps=get_temps();
-    QFile file ("C:/Users/ASUS/Documents/interface/interface/chat.txt");
+    QFile file ("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/chat.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";
      QTextStream out(&file);
@@ -72,7 +72,7 @@ void widget::on_connecter_clicked()
 void widget::on_connecter_2_clicked()
 {
     QString temps=get_temps();
-    QFile file ("C:/Users/ASUS/Documents/interface/interface/chat.txt");
+    QFile file ("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/chat.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";
      QTextStream out(&file);
@@ -82,7 +82,7 @@ void widget::on_connecter_2_clicked()
 QString widget::load(){
 
     tmp="";
-       QFile file("C:/Users/ASUS/Documents/interface/interface/chat.txt");
+       QFile file("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/chat.txt");
        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
          tmp="";
 

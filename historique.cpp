@@ -12,7 +12,7 @@ void Historique::save(QString cin,QString ref,QString mt,QString action)
     //QDate date;
     QDateTime date = QDateTime::currentDateTime();
     QString dates=date.toString();
-    QFile file ("C:/Users/Amira/Desktop/esprit/sem2/qt/integration/Historique_commande.txt");
+    QFile file ("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/Historique_commande.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";
      QTextStream out(&file);
@@ -21,7 +21,7 @@ void Historique::save(QString cin,QString ref,QString mt,QString action)
 
 QString Historique::load()
 {   tmp="";
-    QFile file("C:/Users/Amira/Desktop/esprit/sem2/qt/integration/Historique_commande.txt");
+    QFile file("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/Historique_commande.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
       tmp="";
 
@@ -58,7 +58,7 @@ void Historique::save_f(QString id,QString action,QString prenom)
     //QDate date;
     QDateTime date = QDateTime::currentDateTime();
     QString dates=date.toString();
-    QFile file ("C:/Users/ASUS/Documents/interface/interface/Historique_finance.txt");
+    QFile file ("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/Historique_finance.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";
      QTextStream out(&file);
@@ -66,7 +66,7 @@ void Historique::save_f(QString id,QString action,QString prenom)
 }
 QString Historique::load_f()
 {   tmp="";
-    QFile file("C:/Users/ASUS/Documents/interface/interface/Historique_finance.txt");
+    QFile file("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/Historique_finance.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
           tmp="";
 
@@ -108,7 +108,7 @@ void Historique::save_e(QString cin,QString ref,QString action,QString prenom)
 
     QString time=w.get_temps();
     QString dates=QString::number(day)+"/"+QString::number(month)+"/"+QString::number(year);
-    QFile file ("C:/Users/ASUS/Documents/interface/interface/Historique.txt");
+    QFile file ("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/Historique.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";
      QTextStream out(&file);
@@ -116,7 +116,7 @@ void Historique::save_e(QString cin,QString ref,QString action,QString prenom)
 }
 QString Historique::load_e()
 {    tmp="";
-     QFile file("C:/Users/ASUS/Documents/interface/interface/Historique.txt");
+     QFile file("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/Historique.txt");
      if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
        tmp="";
 
@@ -154,7 +154,7 @@ void Historique::save_door(QString fn,QString nom,QString prenom,bool test)
 {
     QDateTime date = QDateTime::currentDateTime();
     QString time=date.toString();
-    QFile file ("C:/Users/zeine/Desktop/dryclean_2A7-main//Historique_door.txt");
+    QFile file ("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/Historique_door.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";
      QTextStream out(&file);
@@ -165,7 +165,7 @@ void Historique::save_door(QString fn,QString nom,QString prenom,bool test)
 
 QString Historique::load_door()
 {   tmp="";
-    QFile file("C:/Users/zeine/Desktop/dryclean_2A7-main//Historique_door.txt");
+    QFile file("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/Historique_door.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
           tmp="";
 
@@ -182,7 +182,7 @@ void Historique::saveA(QString name,QString cin,QString nb,QString g)
     //QDate date;
     QDateTime date = QDateTime::currentDateTime();
     QString dates=date.toString();
-    QFile file ("C:/Users/MSI/Desktop/untitled_cb/HistoriqueA.txt");
+    QFile file ("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/HistoriqueA.txt");
      if (!file.open(QIODevice::WriteOnly|QIODevice::Append | QIODevice::Text))
       qDebug()<<"erreur";
      QTextStream out(&file);
@@ -194,7 +194,7 @@ void Historique::saveA(QString name,QString cin,QString nb,QString g)
 QString Historique::loadA()
 {
     tmp="";
-      QFile file("C:/Users/MSI/Desktop/untitled_cb/HistoriqueA.txt");
+      QFile file("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/HistoriqueA.txt");
       if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         tmp="";
 

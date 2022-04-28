@@ -54,9 +54,9 @@ void BarCodeBox::savePicture()
     this->render(&pixmap,QPoint(0,0),QRegion(posX-4,posY-12,barCodeWidth+8,BARCODE_HEIGHT+24));//Rendre la page du widget dans le pixmap
     pixmap=pixmap.scaled(400,300);//Mettez l'image à l'échelle à la taille spécifiée, le paramètre par défaut ignore le rapport d'aspect
     //Le premier paramètre spécifie le nom du fichier enregistré, le second est le format d'image et le troisième est la qualité d'image 0-100
-    if(pixmap.save("C:/Users/Amira/Desktop/esprit/sem2/qt/integration/Barcode.png","PNG",90))//enregistrer l'image
+    if(pixmap.save("C:/Users/Amira/Desktop/waterproof/dryclean_2A7/Barcode.png","PNG",90))//enregistrer l'image
     {
-        QMessageBox::information(this,"Sucess","success");
+        QMessageBox::information(this,"Succès","Succès");
     }
     else
     {

@@ -10,13 +10,13 @@
 class Fournisseurs
 {
 private:
-    QString MATRICULE_F, NOMSOCIETE, ADRESSE_SOCIETE, EMAIL_F, TYPE_ACHATF,NUMERO_TEL;
-    int QUANTITE_F, PRIX_F;
+    QString MATRICULE_F, NOMSOCIETE, ADRESSE_SOCIETE, EMAIL_F, TYPE_ACHATF,NUMERO_TEL,PRIX_F;
+    int QUANTITE_F;
 
 
 public:
     Fournisseurs();
-    Fournisseurs(QString MATRICULE_F, QString NOMSOCIETE,QString NUMERO_TEL,QString ADRESSE_SOCIETE,QString EMAIL_F,QString TYPE_ACHATF, int QUANTITE_F, int PRIX_F );
+    Fournisseurs(QString MATRICULE_F, QString NOMSOCIETE,QString NUMERO_TEL,QString ADRESSE_SOCIETE,QString EMAIL_F,QString TYPE_ACHATF, int QUANTITE_F, QString PRIX_F );
 
     QString getMATRICULE_F();
     QString getNOMSOCIETE();
@@ -25,7 +25,7 @@ public:
     QString getEMAIL_F();
     QString getTYPE_ACHATF();
     int getQUANTITE_F();
-    int getPRIX_F();
+    QString getPRIX_F();
 
 
     void setMATRICULE_F( QString MATRICULE_F);
@@ -35,7 +35,7 @@ public:
     void setEMAIL_F (QString EMAIL_F);
     void setTYPE_ACHATF (QString TYPE_ACHATF);
     void setQUANTITE_F (int QUANTITE_F);
-    void setPRIX_F (int PRIX_F);
+    void setPRIX_F (QString PRIX_F);
 
     bool ajouter();
     QSqlQueryModel* afficher();

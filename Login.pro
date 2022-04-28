@@ -1,4 +1,4 @@
-QT       += core gui sql printsupport widgets network multimedia charts serialport axcontainer qml  quickwidgets quick opengl
+QT       += core gui sql printsupport widgets network multimedia charts serialport axcontainer qml quickwidgets quick opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -73,7 +73,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RC_ICONS = myappico.ico
+RC_ICONS = logo_machine.ico
 
 QMAKE_CXXFLAGS+=-std=gnu++14
 
